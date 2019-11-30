@@ -1,0 +1,42 @@
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: posts","time":"2019-11-30T13:51:14.621Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: posts_meta","time":"2019-11-30T13:51:14.636Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: users","time":"2019-11-30T13:51:14.652Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: posts_authors","time":"2019-11-30T13:51:14.670Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: roles","time":"2019-11-30T13:51:14.678Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: roles_users","time":"2019-11-30T13:51:14.691Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: permissions","time":"2019-11-30T13:51:14.699Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: permissions_users","time":"2019-11-30T13:51:14.711Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: permissions_roles","time":"2019-11-30T13:51:14.722Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: permissions_apps","time":"2019-11-30T13:51:14.729Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: settings","time":"2019-11-30T13:51:14.738Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: tags","time":"2019-11-30T13:51:14.750Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: posts_tags","time":"2019-11-30T13:51:14.764Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: apps","time":"2019-11-30T13:51:14.772Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: app_settings","time":"2019-11-30T13:51:14.791Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: app_fields","time":"2019-11-30T13:51:14.805Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: invites","time":"2019-11-30T13:51:14.813Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: brute","time":"2019-11-30T13:51:14.831Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: webhooks","time":"2019-11-30T13:51:14.840Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: sessions","time":"2019-11-30T13:51:14.848Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: integrations","time":"2019-11-30T13:51:14.862Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: api_keys","time":"2019-11-30T13:51:14.876Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: mobiledoc_revisions","time":"2019-11-30T13:51:14.889Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: members","time":"2019-11-30T13:51:14.902Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: members_stripe_customers","time":"2019-11-30T13:51:14.920Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: members_stripe_customers_subscriptions","time":"2019-11-30T13:51:14.928Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: actions","time":"2019-11-30T13:51:14.936Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Creating table: emails","time":"2019-11-30T13:51:14.944Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Model: Tag","time":"2019-11-30T13:51:14.974Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Model: Role","time":"2019-11-30T13:51:15.022Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Model: Permission","time":"2019-11-30T13:51:15.075Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Model: User","time":"2019-11-30T13:51:15.443Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Model: Post","time":"2019-11-30T13:51:17.183Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Model: Integration","time":"2019-11-30T13:51:18.103Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Relation: Role to Permission","time":"2019-11-30T13:51:18.279Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Relation: Post to Tag","time":"2019-11-30T13:51:18.875Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Relation: User to Role","time":"2019-11-30T13:51:18.935Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Ghost is running in development...","time":"2019-11-30T13:51:28.696Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Listening on: 127.0.0.1:2368","time":"2019-11-30T13:51:28.702Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Url configured as: http://localhost:2368/","time":"2019-11-30T13:51:28.708Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Ctrl+C to shut down","time":"2019-11-30T13:51:28.711Z","v":0}
+{"name":"Log","hostname":"DESKTOP-M0PABVP","pid":7876,"level":30,"msg":"Ghost boot 19.853s","time":"2019-11-30T13:51:28.722Z","v":0}

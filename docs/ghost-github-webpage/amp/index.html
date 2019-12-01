@@ -19,7 +19,7 @@
     <meta property="og:url" content="http://localhost:2368/ghost-github-webpage/" />
     <meta property="og:image" content="http://localhost:2368/content/images/2019/11/Ghost-Logo.svg" />
     <meta property="article:published_time" content="2019-11-30T17:57:56.000Z" />
-    <meta property="article:modified_time" content="2019-11-30T18:11:26.000Z" />
+    <meta property="article:modified_time" content="2019-12-01T08:05:18.000Z" />
     <meta property="article:publisher" content="https://www.facebook.com/ghost" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="使用Ghost和GitHub Pages建立網頁" />
@@ -55,7 +55,7 @@
     "headline": "使用Ghost和GitHub Pages建立網頁",
     "url": "http://localhost:2368/ghost-github-webpage/",
     "datePublished": "2019-11-30T17:57:56.000Z",
-    "dateModified": "2019-11-30T18:11:26.000Z",
+    "dateModified": "2019-12-01T08:05:18.000Z",
     "image": {
         "@type": "ImageObject",
         "url": "http://localhost:2368/content/images/2019/11/Ghost-Logo.svg",
@@ -116,7 +116,7 @@ git commit -m 'Installed Node dependencies'</code></pre>
 <hr></hr><h2 id="-ghost-1">設定Ghost</h2><p>1.移動到已安裝Ghost的目錄並輸入指令開啟Ghost</p><pre><code>ghost start</code></pre>
 <p>2.一般使用<a href="../../ghost/index.html">http://localhost:2368/ghost</a>開啟Ghost的管理介面，但因為先前已經在另一個地方裝過一個Ghost，所以畫面顯示以<a href="http://localhost:2369/ghost/">http://localhost:2369/ghost</a>/開啟管理介面</p><figure class="kg-card kg-image-card"></figure><figure class="kg-card kg-image-card"></figure><p>3.填寫網站名稱及作者基本資料</p><figure class="kg-card kg-image-card"></figure><p>4.可輸入email邀請其他作者一起協作，只有自己使用的話則按下方直接進入管理介面</p><figure class="kg-card kg-image-card"></figure><p>5.更新repository</p><pre><code>git add -A 
 git commit -m 'Finished local Ghost setup'</code></pre>
-<hr></hr><h2 id="-">將網頁輸出為檔案</h2><p>1.使用wget輸出網頁到docs資料夾內</p><pre><code>wget -r -nH -P docs -E -T 2 -np -k http://localhost:2368/</code></pre>
+<hr></hr><h2 id="-">將網頁輸出為檔案</h2><p>1.使用wget輸出網頁到docs資料夾內<br />   --mirror : 鏡像下載所有檔案相當於-N -r -l inf --no-remove-listing選項<br />        -N : 若遠端檔案較新則下載檔案<br />        -r : 遞迴下載<br />        -l : 最大搜尋深度(0或inf表示無限)<br />        --no-remove-listing : 不刪除<strong>.listing</strong>檔案<br />   --convert-links : 轉換檔案內路徑為符合本地目錄的路徑   <br />   --page-requisites : 下載所有顯示網頁所需的檔案，例如圖片等<br />   -nH : 不建立名稱為網站名稱的目錄，直接在當前目錄建立檔案<br />   --no-parent : 不進入上層目錄<br />   -P : 指定下載目錄</p><pre><code>wget --mirror --convert-links --page-requisites -nH --no-parent -P docs http://localhost:2368/</code></pre>
 <p>2.由於從Ghost抓下來的css、js的檔名和html內的相關路徑都會被加上類似下圖.css後方的字串，若直接傳到GitHub Pages上的話會讀不到，我們可使用Notepad++將目錄中所有檔案中有包括此字串的替換為空字串</p><figure class="kg-card kg-image-card"></figure><p>3.開啟Notepad++，點選<strong>在檔案中尋找</strong></p><figure class="kg-card kg-image-card"></figure><p>4.輸入要刪除的字串並按下<strong>在多個檔案中取代</strong></p><figure class="kg-card kg-image-card"></figure><p>5.更改docs/assets內built、css和js資料夾內所有包含該字串的檔名</p><figure class="kg-card kg-image-card"></figure><p>6.更新repository</p><pre><code>git add -A 
 git commit -m "Export website to docs file;"</code></pre>
 <hr></hr><h2 id="push-github">PUSH檔案到GitHub</h2><p>1.設定遠端倉庫</p><pre><code>git remote add origin &lt;webURL|SSH Key&gt;</code></pre>

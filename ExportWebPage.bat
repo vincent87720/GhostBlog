@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\GnuWin32\bin\wget.exe" --mirror --convert-links --page-requisites -nH --no-parent -P docs http://localhost:2368/

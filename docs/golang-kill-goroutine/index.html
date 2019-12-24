@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>從外部中斷Goroutine</title>
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<meta name="description" content="想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="柴魚筆記本" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="從外部中斷Goroutine" />
+    <meta property="og:description" content="想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷" />
+    <meta property="og:url" content="http://localhost:2368/golang-kill-goroutine/" />
+    <meta property="og:image" content="http://localhost:2368/content/images/2019/12/golang-long-1.jpeg" />
+    <meta property="article:published_time" content="2019-12-24T06:29:39.000Z" />
+    <meta property="article:modified_time" content="2019-12-24T06:33:01.000Z" />
+    <meta property="article:tag" content="golang" />
+    <meta property="article:tag" content="goroutine" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="從外部中斷Goroutine" />
+    <meta name="twitter:description" content="想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷" />
+    <meta name="twitter:url" content="http://localhost:2368/golang-kill-goroutine/" />
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2019/12/golang-long-1.jpeg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Katsuobushi" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="golang, goroutine" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="515" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.png",
+            "width": 1048,
+            "height": 1063
+        },
+        "url": "http://localhost:2368/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "從外部中斷Goroutine",
+    "url": "http://localhost:2368/golang-kill-goroutine/",
+    "datePublished": "2019-12-24T06:29:39.000Z",
+    "dateModified": "2019-12-24T06:33:01.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2019/12/golang-long-1.jpeg",
+        "width": 2000,
+        "height": 515
+    },
+    "keywords": "golang, goroutine",
+    "description": "想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
+</head>
+
+<body class="post-template tag-golang tag-goroutine">
+
+	<nav id="menu">
+	<a class="close-button">Close</a>
+	<div class="nav-wrapper">
+		<p class="nav-label">Menu</p>
+		<ul>
+			<li class="nav-home" role="presentation"><a href="../index.html">Home</a></li>
+			<li class="nav-author" role="presentation"><a href="../author/katsuobushi/index.html">Author</a></li>
+		</ul>
+	</div>
+</nav>
+
+
+	<section id="wrapper">
+		<a class="hidden-close"></a>
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header id="post-header" class="has-cover" >
+	<div class="inner">
+		<nav id="navigation">
+			<span id="home-button" class="nav-button">
+				<a class="home-button" href="../index.html" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+			</span>
+			<span id="menu-button" class="nav-button">
+				<a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+			</span>
+		</nav>
+		<h1 class="post-title">從外部中斷Goroutine</h1>
+		<span class="post-meta"><a href="../author/katsuobushi/index.html">Katsuobushi</a> | <time datetime="2019-12-24">24 Dec 2019</time> | 1 min read</span>
+		<div class="post-cover cover">
+			<img
+			src="../content/images/size/w1920/2019/12/golang-long-1.jpeg"
+			alt="從外部中斷Goroutine" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-golang tag-goroutine">
+		<div class="inner">
+
+			<section class="post-content">
+				<p>想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷</p><h3 id="-channel">建立Channel</h3><p>使用<strong>chan</strong>關鍵字宣告為channel，並指定通道類型</p><!--kg-card-begin: markdown--><pre><code>ch := make(chan struct{})</code></pre>
+<!--kg-card-end: markdown--><p>若要傳入channel多個值，則必須指定buffer的大小，否則會造成deadlock</p><!--kg-card-begin: markdown--><pre><code>ch := make(chan struct{},10)//buffer大小為10</code></pre>
+<!--kg-card-end: markdown--><p>設定目標函式的參數</p><!--kg-card-begin: markdown--><pre><code>func main(){
+    ch := make(chan struct{})
+    go spinner(80*time.Millisecond, ch)
+}
+
+func spinner(delay time.Duration, ch chan struct{}) {
+    
+}</code></pre>
+<!--kg-card-end: markdown--><h3 id="-select-case-">使用select case控制流程</h3><p>select case只能用在有關channel的操作上，若多個case都符合，則會隨機挑選一個執行，若都不符合則執行default</p><!--kg-card-begin: markdown--><pre><code>func main(){
+    ch := make(chan struct{})
+    go spinner(80*time.Millisecond, ch)
+}
+
+func spinner(delay time.Duration, ch chan struct{}) {
+    for {
+        select {
+        case &lt;-ch:
+            return
+        default:
+            for _, r := range `-\|/` {
+                fmt.Printf(&quot;\r%c&quot;, r)
+                time.Sleep(delay)
+            }
+        }
+    }
+}</code></pre>
+<!--kg-card-end: markdown--><h3 id="-goroutine">結束goroutine</h3><p>在要中斷的地方插入close(ch)以關閉channel</p><!--kg-card-begin: markdown--><pre><code>func main(){
+    ch := make(chan struct{})
+    go spinner(80*time.Millisecond, ch)
+    close(ch)
+}
+
+func spinner(delay time.Duration, ch chan struct{}) {
+    for {
+        select {
+        case &lt;-ch:
+            return
+        default:
+            for _, r := range `-\|/` {
+                fmt.Printf(&quot;\r%c&quot;, r)
+                time.Sleep(delay)
+            }
+        }
+    }
+}</code></pre>
+<!--kg-card-end: markdown-->
+			</section>
+
+			<section class="post-info">
+
+				<div class="post-share">
+					<span class="post-info-label">Share:</span>
+					<a class="twitter" href="https://twitter.com/share?text=從外部中斷Goroutine&url=http://localhost:2368/golang-kill-goroutine/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+					</a>
+					<a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/golang-kill-goroutine/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Tags:</span>
+					<a href="../tag/golang/index.html">golang</a> <a href="../tag/goroutine/index.html">goroutine</a>
+				</aside>
+
+				<div class="clear"></div>
+
+						<aside class="post-author">
+							<figure class="post-author-avatar avatar">
+									<img src="../content/images/2019/12/dog-breeder-small.png" alt="Katsuobushi" />
+							</figure>
+							<div class="post-author-bio">
+								<h4 class="post-author-name"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+							</div>
+							<div class="clear"></div>
+						</aside>
+
+			</section>
+
+
+			<section class="post-comments">
+				<a id="show-disqus" class="post-comments-activate">Show Comments</a>
+			   <div id="disqus_thread"></div>
+			</section>
+
+
+			<aside class="post-nav">
+					<a class="post-nav-prev" href="../golang-function/index.html">
+						<section class="post-nav-teaser">
+							<i class="ic ic-arrow-right"></i>
+							<h2 class="post-nav-title">Golang函式</h2>
+							<p class="post-nav-excerpt">Golang基礎 - 函式&hellip;</p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+
+		</div>
+	</article>
+</main>
+
+
+		<div id="body-class" style="display: none;" class="post-template tag-golang tag-goroutine"></div>
+
+		<footer id="footer">
+			<div class="inner">
+				<section class="credits">
+					<span class="credits-theme">Theme <a href="https://github.com/zutrinken/attila">Attila</a> by <a href="https://zutrinken.com" rel="nofollow">zutrinken</a></span>
+					<span class="credits-software">Published with <a href="https://ghost.org">Ghost</a></span>
+				</section>
+			</div>
+		</footer>
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	
+
+</body>
+</html>

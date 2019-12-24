@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Sat, 21 Dec 2019 12:56:15 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Golang函式]]></title><description><![CDATA[Golang基礎 - 函式]]></description><link>http://localhost:2368/golang-function/</link><guid isPermaLink="false">5dfde8756c21ff2c7860dae4</guid><category><![CDATA[golang]]></category><category><![CDATA[function]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 21 Dec 2019 12:49:49 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/golang-long.jpeg" alt="Golang函式"><p></p><h3 id="-">基本用法</h3><p>最基本的用法為使用func作為宣告函式的關鍵字，後面接上函式名稱(test)及回傳值(string)，這裡要注意的是必須指定回傳型態，否則會跳出錯誤訊息"too many arguments to return"</p><!--kg-card-begin: markdown--><pre><code>func test() string{
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Tue, 24 Dec 2019 06:34:37 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[從外部中斷Goroutine]]></title><description><![CDATA[想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷]]></description><link>http://localhost:2368/golang-kill-goroutine/</link><guid isPermaLink="false">5e019b6b9d3d371b842d0b37</guid><category><![CDATA[golang]]></category><category><![CDATA[goroutine]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 24 Dec 2019 06:29:39 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/golang-long-1.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/golang-long-1.jpeg" alt="從外部中斷Goroutine"><p>想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷</p><h3 id="-channel">建立Channel</h3><p>使用<strong>chan</strong>關鍵字宣告為channel，並指定通道類型</p><!--kg-card-begin: markdown--><pre><code>ch := make(chan struct{})</code></pre>
+<!--kg-card-end: markdown--><p>若要傳入channel多個值，則必須指定buffer的大小，否則會造成deadlock</p><!--kg-card-begin: markdown--><pre><code>ch := make(chan struct{},10)//buffer大小為10</code></pre>
+<!--kg-card-end: markdown--><p>設定目標函式的參數</p><!--kg-card-begin: markdown--><pre><code>func main(){
+    ch := make(chan struct{})
+    go spinner(80*time.Millisecond, ch)
+}
+
+func spinner(delay time.Duration, ch chan struct{}) {
+    
+}</code></pre>
+<!--kg-card-end: markdown--><h3 id="-select-case-">使用select case控制流程</h3><p>select case只能用在有關channel的操作上，若多個case都符合，則會隨機挑選一個執行，若都不符合則執行default</p><!--kg-card-begin: markdown--><pre><code>func main(){
+    ch := make(chan struct{})
+    go spinner(80*time.Millisecond, ch)
+}
+
+func spinner(delay time.Duration, ch chan struct{}) {
+    for {
+        select {
+        case &lt;-ch:
+            return
+        default:
+            for _, r := range `-\|/` {
+                fmt.Printf(&quot;\r%c&quot;, r)
+                time.Sleep(delay)
+            }
+        }
+    }
+}</code></pre>
+<!--kg-card-end: markdown--><h3 id="-goroutine">結束goroutine</h3><p>在要中斷的地方插入close(ch)以關閉channel</p><!--kg-card-begin: markdown--><pre><code>func main(){
+    ch := make(chan struct{})
+    go spinner(80*time.Millisecond, ch)
+    close(ch)
+}
+
+func spinner(delay time.Duration, ch chan struct{}) {
+    for {
+        select {
+        case &lt;-ch:
+            return
+        default:
+            for _, r := range `-\|/` {
+                fmt.Printf(&quot;\r%c&quot;, r)
+                time.Sleep(delay)
+            }
+        }
+    }
+}</code></pre>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Golang函式]]></title><description><![CDATA[Golang基礎 - 函式]]></description><link>http://localhost:2368/golang-function/</link><guid isPermaLink="false">5dfde8756c21ff2c7860dae4</guid><category><![CDATA[golang]]></category><category><![CDATA[function]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 21 Dec 2019 12:49:49 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/golang-long.jpeg" alt="Golang函式"><p></p><h3 id="-">基本用法</h3><p>最基本的用法為使用func作為宣告函式的關鍵字，後面接上函式名稱(test)及回傳值(string)，這裡要注意的是必須指定回傳型態，否則會跳出錯誤訊息"too many arguments to return"</p><!--kg-card-begin: markdown--><pre><code>func test() string{
     return &quot;Hello&quot; 
 }
 

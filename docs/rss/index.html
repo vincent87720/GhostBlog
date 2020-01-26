@@ -1,4 +1,101 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Tue, 14 Jan 2020 16:24:08 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[記憶體的時脈與頻寬]]></title><description><![CDATA[記憶體的時脈與頻寬]]></description><link>http://localhost:2368/clock-and-bandwidth/</link><guid isPermaLink="false">5e1de4127108022a40ad7b02</guid><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 14 Jan 2020 16:21:42 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/01/binary-code-binary-binary-system-byte-bits-administrator-1458897-pxhere.com.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/01/binary-code-binary-binary-system-byte-bits-administrator-1458897-pxhere.com.jpg" alt="記憶體的時脈與頻寬"><p></p><h2 id="-">傳輸寬度</h2><h3 id="--1">每次可傳輸的量</h3><p>資料進出記憶體時會有寬度的限制，若頻寬是8bit，則代表一次可進去8個bit，若是64bit，則代表一次可同時傳輸64bit</p><hr><h2 id="--2">時脈</h2><h3 id="--3">一秒可傳輸多少次</h3><p>以Hz作為單位，代表一秒可以傳多少次，例如800MHz則為每秒800百萬次</p><hr><h2 id="--4">頻寬</h2><h3 id="--5">一秒可傳輸的量</h3><p>一秒可傳輸多少次 * 每次可傳輸的量 = 一秒可傳輸的量，以寬度為64bit及時脈為800HHz的例子來說，記憶體頻寬即為每秒64GB</p><p>64bit * 800MHz = 8Bytes * 800MHz = 6400 MBHz = 6.4GBHz = 每秒64GB</p>]]></content:encoded></item><item><title><![CDATA[使用Python爬蟲抓取網站資料]]></title><description><![CDATA[使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。]]></description><link>http://localhost:2368/python-web-crawler/</link><guid isPermaLink="false">5e0e8ba22418ef16205128e7</guid><category><![CDATA[python]]></category><category><![CDATA[crawler]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 03 Jan 2020 16:48:36 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/01/python-logo.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/01/python-logo.jpg" alt="使用Python爬蟲抓取網站資料"><p>使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。</p><h2 id="-">建立請求<br></h2><p>載入requests模組以建立HTTP請求</p><!--kg-card-begin: markdown--><pre><code>import requests</code></pre>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Sun, 26 Jan 2020 15:58:56 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[GolangPackage Excel的讀寫與操作]]></title><description><![CDATA[excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理]]></description><link>http://localhost:2368/golang-package-excelize/</link><guid isPermaLink="false">5e2d660c17169e27181beddf</guid><category><![CDATA[golang]]></category><category><![CDATA[golangPackage]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 26 Jan 2020 15:50:18 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/01/golang-long-1.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/01/golang-long-1.jpeg" alt="GolangPackage Excel的讀寫與操作"><p></p><p>excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理，須注意的是該package只支援.xlsx的檔案格式，尚不支援.xls的檔案處理</p><hr><h2 id="-">安裝</h2><p>使用指令安裝package</p><!--kg-card-begin: markdown--><pre><code>go get github.com/Luxurioust/excelize</code></pre>
+<!--kg-card-end: markdown--><hr><h2 id="--1">檔案操作<br></h2><h3 id="--2">創建新檔</h3><!--kg-card-begin: markdown--><pre><code>xlsx := excelize.NewFile()</code></pre>
+<!--kg-card-end: markdown--><h3 id="--3">開啟舊檔</h3><!--kg-card-begin: markdown--><pre><code>inputFilePath := &quot;D:\Project&quot;
+xlsx, err := excelize.OpenFile(inputFilePath)
+if err != nil {
+	fmt.Println(&quot;\rERROR:&quot;, err)
+}</code></pre>
+<!--kg-card-end: markdown--><h3 id="--4">讀取內容</h3><p>將檔案內的資料讀入一個二維的字串slice</p><!--kg-card-begin: markdown--><pre><code>sheetName := &quot;Sheet1&quot;//指定要讀取的工作表名稱
+xlsxRows, err = xlsx.GetRows(sheetName)
+if err != nil {
+	fmt.Println(&quot;\rERROR:&quot;,err)
+}</code></pre>
+<!--kg-card-end: markdown--><h3 id="--5">變更工作表名稱</h3><!--kg-card-begin: markdown--><pre><code>oldSheetName := &quot;Sheet1&quot;//指定目前工作表名稱
+newSheetName := &quot;工作表&quot;//指定新的工作表名稱
+xlsx.SetSheetName(oldSheetName, newSheetName)</code></pre>
+<!--kg-card-end: markdown--><h3 id="--6">設定樣式</h3><p><strong>建立樣式</strong><br>呼叫函式時使用JSON格式填入所需的樣式參數</p><p>fill：設定儲存格網底</p><!--kg-card-begin: markdown--><table>
+<thead>
+<tr>
+<th>fill</th>
+<th>使用單一顏色填充</th>
+<th>使用漸層填充</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>typr</td>
+<td>pattern</td>
+<td>gradient</td>
+</tr>
+<tr>
+<td>color</td>
+<td>[&quot;#FFFFFF&quot;]</td>
+<td>[&quot;#FFFFFF&quot;,&quot;#E0EBF5&quot;]</td>
+</tr>
+<tr>
+<td>gradient</td>
+<td>X</td>
+<td>0:橫向<br>1:縱向<br>2:對角線向上<br>3:對角線向下<br>4:由對角線向內<br>5:由中心向外</td>
+</tr>
+<tr>
+<td>pattern</td>
+<td>0:無<br>1:實心<br>2:75%灰色<br>3:50%灰色<br>4:25%灰色<br>5:水平條紋<br>6:垂直條紋<br>7:反對角線條紋<br>8:對角線條紋<br>9:對角線斜紋<br>10:粗線對角線斜紋<br>11:細線水平條紋<br>12:細線垂直條紋<br>13:細線反對角線條紋<br>14:細線對角線條紋<br>15:細線水平斜紋<br>16:細線對角線斜紋<br>17:12.5%灰色<br>18:6.25%灰色</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>//單一顏色填充
+patternStyle, err := xlsx.NewStyle(`{&quot;fill&quot;:{&quot;type&quot;:&quot;pattern&quot;,&quot;color&quot;:[&quot;#EBF0F3&quot;],&quot;pattern&quot;:1}}`)
+if err != nil {
+	fmt.Println(&quot;\rERROR:&quot;,err)
+}
+
+//漸層填充
+gradientStyle, err := f.NewStyle(`{&quot;fill&quot;:{&quot;type&quot;:&quot;gradient&quot;,&quot;color&quot;:[&quot;#FFFFFF&quot;,&quot;#E0EBF5&quot;],&quot;shading&quot;:1}}`)
+if err != nil {
+    fmt.Println(err)
+}
+</code></pre>
+<!--kg-card-end: markdown--><p></p><p>font：設定儲存格字體</p><!--kg-card-begin: markdown--><table>
+<thead>
+<tr>
+<th style="text-align:center">font</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">bold</td>
+<td style="text-align:center">true/false</td>
+</tr>
+<tr>
+<td style="text-align:center">italic</td>
+<td style="text-align:center">true/false</td>
+</tr>
+<tr>
+<td style="text-align:center">family</td>
+<td style="text-align:center">字型名稱</td>
+</tr>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">字體大小</td>
+</tr>
+<tr>
+<td style="text-align:center">color</td>
+<td style="text-align:center">[&quot;#FFFFFF&quot;]</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>fontStyle, err := f.NewStyle(`{&quot;font&quot;:{&quot;bold&quot;:true,&quot;italic&quot;:false,&quot;size&quot;:12,&quot;color&quot;:&quot;#FFFFFF&quot;}}`)
+if err != nil {
+    fmt.Println(err)
+}</code></pre>
+<!--kg-card-end: markdown--><p><strong>使用樣式</strong></p><!--kg-card-begin: markdown--><pre><code>//使用樣式設定column
+err := xlsx.SetColStyle(sheetName, &quot;A1&quot;, patternStyle)
+
+//使用樣式設定cell
+err := xlsx.SetCellStyle(sheetName, &quot;A1&quot;, &quot;A1&quot;, gradientStyle)</code></pre>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[記憶體的時脈與頻寬]]></title><description><![CDATA[記憶體的時脈與頻寬]]></description><link>http://localhost:2368/clock-and-bandwidth/</link><guid isPermaLink="false">5e1de4127108022a40ad7b02</guid><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 14 Jan 2020 16:21:42 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/01/binary-code-binary-binary-system-byte-bits-administrator-1458897-pxhere.com.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/01/binary-code-binary-binary-system-byte-bits-administrator-1458897-pxhere.com.jpg" alt="記憶體的時脈與頻寬"><p></p><h2 id="-">傳輸寬度</h2><h3 id="--1">每次可傳輸的量</h3><p>資料進出記憶體時會有寬度的限制，若頻寬是8bit，則代表一次可進去8個bit，若是64bit，則代表一次可同時傳輸64bit</p><hr><h2 id="--2">時脈</h2><h3 id="--3">一秒可傳輸多少次</h3><p>以Hz作為單位，代表一秒可以傳多少次，例如800MHz則為每秒800百萬次</p><hr><h2 id="--4">頻寬</h2><h3 id="--5">一秒可傳輸的量</h3><p>一秒可傳輸多少次 * 每次可傳輸的量 = 一秒可傳輸的量，以寬度為64bit及時脈為800HHz的例子來說，記憶體頻寬即為每秒64GB</p><p>64bit * 800MHz = 8Bytes * 800MHz = 6400 MBHz = 6.4GBHz = 每秒64GB</p>]]></content:encoded></item><item><title><![CDATA[使用Python爬蟲抓取網站資料]]></title><description><![CDATA[使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。]]></description><link>http://localhost:2368/python-web-crawler/</link><guid isPermaLink="false">5e0e8ba22418ef16205128e7</guid><category><![CDATA[python]]></category><category><![CDATA[crawler]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 03 Jan 2020 16:48:36 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/01/python-logo.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/01/python-logo.jpg" alt="使用Python爬蟲抓取網站資料"><p></p><p>使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。</p><hr><h2 id="-">建立請求<br></h2><p>載入requests模組以建立HTTP請求</p><!--kg-card-begin: markdown--><pre><code>import requests</code></pre>
 <!--kg-card-end: markdown--><p>建立GET請求</p><!--kg-card-begin: markdown--><pre><code>url = '' //填入目標網址以取得網頁內容
 resp = requests.get(url) //建立get請求</code></pre>
 <!--kg-card-end: markdown--><hr><h2 id="--1">解析請求<br></h2><h3 id="-json">目標為JSON</h3><p>使用<strong>json()</strong>方法解析內容，返回值(data)為字典</p><!--kg-card-begin: markdown--><pre><code>data = resp.json()</code></pre>
@@ -43,7 +140,7 @@ import csv</code></pre>
 <!--kg-card-end: markdown--><p>使用csv.writer()創建一個writer</p><!--kg-card-begin: markdown--><pre><code>csvWriter = csv.writer(file)</code></pre>
 <!--kg-card-end: markdown--><p>writerow()方法可將一列資料寫入到檔案中</p><!--kg-card-begin: markdown--><pre><code>csvWriter.writerow(row)</code></pre>
 <!--kg-card-end: markdown--><p>寫入完畢後須關閉檔案，釋放資源</p><!--kg-card-begin: markdown--><pre><code>file.close()</code></pre>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[從外部中斷Goroutine]]></title><description><![CDATA[想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷]]></description><link>http://localhost:2368/golang-kill-goroutine/</link><guid isPermaLink="false">5e019b6b9d3d371b842d0b37</guid><category><![CDATA[golang]]></category><category><![CDATA[goroutine]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 24 Dec 2019 06:29:39 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/golang-long-1.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/golang-long-1.jpeg" alt="從外部中斷Goroutine"><p>想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷</p><h3 id="-channel">建立Channel</h3><p>使用<strong>chan</strong>關鍵字宣告為channel，並指定通道類型</p><!--kg-card-begin: markdown--><pre><code>ch := make(chan struct{})</code></pre>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[從外部中斷Goroutine]]></title><description><![CDATA[想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷]]></description><link>http://localhost:2368/golang-kill-goroutine/</link><guid isPermaLink="false">5e019b6b9d3d371b842d0b37</guid><category><![CDATA[golang]]></category><category><![CDATA[goroutine]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 24 Dec 2019 06:29:39 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/golang-long-1.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/golang-long-1.jpeg" alt="從外部中斷Goroutine"><p></p><p>想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷</p><hr><h3 id="-channel">建立Channel</h3><p>使用<strong>chan</strong>關鍵字宣告為channel，並指定通道類型</p><!--kg-card-begin: markdown--><pre><code>ch := make(chan struct{})</code></pre>
 <!--kg-card-end: markdown--><p>若要傳入channel多個值，則必須指定buffer的大小，否則會造成deadlock</p><!--kg-card-begin: markdown--><pre><code>ch := make(chan struct{},10)//buffer大小為10</code></pre>
 <!--kg-card-end: markdown--><p>設定目標函式的參數</p><!--kg-card-begin: markdown--><pre><code>func main(){
     ch := make(chan struct{})
@@ -90,7 +187,7 @@ func spinner(delay time.Duration, ch chan struct{}) {
         }
     }
 }</code></pre>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Golang函式]]></title><description><![CDATA[Golang基礎 - 函式]]></description><link>http://localhost:2368/golang-function/</link><guid isPermaLink="false">5dfde8756c21ff2c7860dae4</guid><category><![CDATA[golang]]></category><category><![CDATA[function]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 21 Dec 2019 12:49:49 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/golang-long.jpeg" alt="Golang函式"><p></p><h3 id="-">基本用法</h3><p>最基本的用法為使用func作為宣告函式的關鍵字，後面接上函式名稱(test)及回傳值(string)，這裡要注意的是必須指定回傳型態，否則會跳出錯誤訊息"too many arguments to return"</p><!--kg-card-begin: markdown--><pre><code>func test() string{
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Golang函式]]></title><description><![CDATA[Golang基礎 - 函式]]></description><link>http://localhost:2368/golang-function/</link><guid isPermaLink="false">5dfde8756c21ff2c7860dae4</guid><category><![CDATA[golang]]></category><category><![CDATA[golangBasic]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 21 Dec 2019 12:49:49 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/golang-long.jpeg" alt="Golang函式"><p></p><h3 id="-">基本用法</h3><p>最基本的用法為使用func作為宣告函式的關鍵字，後面接上函式名稱(test)及回傳值(string)，這裡要注意的是必須指定回傳型態，否則會跳出錯誤訊息"too many arguments to return"</p><!--kg-card-begin: markdown--><pre><code>func test() string{
     return &quot;Hello&quot; 
 }
 
@@ -145,7 +242,7 @@ func main() {
     co.print()
 }
 </code></pre>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[計算Wildcard Mask]]></title><description><![CDATA[在設置ACL(Access Control List)時，會用到Wildcard Mask標示在範圍內的IP位址，這篇筆記記錄如何使用wildcard mask計算IP範圍的起點及終點]]></description><link>http://localhost:2368/wildcard-mask/</link><guid isPermaLink="false">5df3b117bd62740960b57409</guid><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 13 Dec 2019 16:49:37 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/binary-code-binary-binary-system-byte-bits-administrator-1458897-pxhere.com.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/binary-code-binary-binary-system-byte-bits-administrator-1458897-pxhere.com.jpg" alt="計算Wildcard Mask"><p>在設置ACL(Access Control List)時，會用到Wildcard Mask標示在範圍內的IP位址，這篇筆記記錄如何使用wildcard mask計算IP範圍的起點及終點</p><hr><h2 id="-">簡介<br></h2><p>wildcard mask使用0和1表示<br>0代表匹配，1代表忽略<br>以下使用8bit作為示範</p><!--kg-card-begin: markdown--><table>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[計算Wildcard Mask]]></title><description><![CDATA[在設置ACL(Access Control List)時，會用到Wildcard Mask標示在範圍內的IP位址，這篇筆記記錄如何使用wildcard mask計算IP範圍的起點及終點]]></description><link>http://localhost:2368/wildcard-mask/</link><guid isPermaLink="false">5df3b117bd62740960b57409</guid><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 13 Dec 2019 16:49:37 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/binary-code-binary-binary-system-byte-bits-administrator-1458897-pxhere.com.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/binary-code-binary-binary-system-byte-bits-administrator-1458897-pxhere.com.jpg" alt="計算Wildcard Mask"><p></p><p>在設置ACL(Access Control List)時，會用到Wildcard Mask標示在範圍內的IP位址，這篇筆記記錄如何使用wildcard mask計算IP範圍的起點及終點</p><hr><h2 id="-">簡介<br></h2><p>wildcard mask使用0和1表示<br>0代表匹配，1代表忽略<br>以下使用8bit作為示範</p><!--kg-card-begin: markdown--><table>
 <thead>
 <tr>
 <th>128</th>
@@ -279,7 +376,7 @@ func main() {
 </tr>
 </tbody>
 </table>
-<!--kg-card-end: markdown--><p>1.計算IP位址的二進位值<br>    192.51.100.58 -&gt; 11000000.00110011.01100100.00111010<br>2.計算Mask的二進位值<br>    0.0.0.63 -&gt; 00000000.00000000.00000000.00111111<br>3.觀察Mask的值為最後6個bit，故範圍為00000000~00111111</p><p><br>        </p>]]></content:encoded></item><item><title><![CDATA[使用Ghost和GitHub Pages建立網頁]]></title><description><![CDATA[一直以來都有個困擾，就是查個程式寫法或是軟體操作方法每次都很快就忘記，所以想寫個Blog紀錄自己的手順，先前曾想過直接寫個網頁PUSH到GitHub上，但實在有點累( ˘･з･)，偶然又看到有個很喜歡的排版是用Ghost建立的，因此使用Ghost+GitHub的形式建立部落格]]></description><link>http://localhost:2368/ghost-github-webpage/</link><guid isPermaLink="false">5de291f8c31a24007887a233</guid><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 30 Nov 2019 17:57:56 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/11/Ghost-Logo.svg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/11/Ghost-Logo.svg" alt="使用Ghost和GitHub Pages建立網頁"><p></p><p>一直以來都有個困擾，就是查個程式寫法或是軟體操作方法每次都很快就忘記，所以想寫個Blog紀錄自己的手順，先前曾想過直接寫個網頁PUSH到GitHub上，但實在有點累( ˘･з･)，偶然又看到有個很喜歡的排版是用Ghost建立的，因此使用Ghost+GitHub的形式建立部落格</p><h2 id="-ghost">安裝Ghost</h2><p>1.安裝Ghost-CLI‌‌   使用npm或yarn指令安裝Ghost-CLI</p><!--kg-card-begin: markdown--><pre><code>npm install ghost-cli@latest -g</code></pre>
+<!--kg-card-end: markdown--><p>1.計算IP位址的二進位值<br>    192.51.100.58 -&gt; 11000000.00110011.01100100.00111010<br>2.計算Mask的二進位值<br>    0.0.0.63 -&gt; 00000000.00000000.00000000.00111111<br>3.觀察Mask的值為最後6個bit，故範圍為00000000~00111111</p><p><br>        </p>]]></content:encoded></item><item><title><![CDATA[使用Ghost和GitHub Pages建立網頁]]></title><description><![CDATA[一直以來都有個困擾，就是查個程式寫法或是軟體操作方法每次都很快就忘記，所以想寫個Blog紀錄自己的手順，先前曾想過直接寫個網頁PUSH到GitHub上，但實在有點累( ˘･з･)，偶然又看到有個很喜歡的排版是用Ghost建立的，因此使用Ghost+GitHub的形式建立部落格]]></description><link>http://localhost:2368/ghost-github-webpage/</link><guid isPermaLink="false">5de291f8c31a24007887a233</guid><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 30 Nov 2019 17:57:56 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/11/Ghost-Logo.svg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/11/Ghost-Logo.svg" alt="使用Ghost和GitHub Pages建立網頁"><p></p><p>一直以來都有個困擾，就是查個程式寫法或是軟體操作方法每次都很快就忘記，所以想寫個Blog紀錄自己的手順，先前曾想過直接寫個網頁PUSH到GitHub上，但實在有點累( ˘･з･)，偶然又看到有個很喜歡的排版是用Ghost建立的，因此使用Ghost+GitHub的形式建立部落格</p><hr><h2 id="-ghost">安裝Ghost</h2><p>1.安裝Ghost-CLI‌‌   使用npm或yarn指令安裝Ghost-CLI</p><!--kg-card-begin: markdown--><pre><code>npm install ghost-cli@latest -g</code></pre>
 <!--kg-card-end: markdown--><p>2.安裝Ghost‌‌   開啟終端機，移動到要建立Ghost的目錄並使用指令安裝Ghost</p><!--kg-card-begin: markdown--><pre><code>ghost install local</code></pre>
 <!--kg-card-end: markdown--><figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2019/11/bandicam-2019-12-01-00-43-12-343-2.jpg" class="kg-image" alt="使用Ghost和GitHub Pages建立網頁"></figure><p>3.安裝完成後開啟git bash切換到同一目錄並初始化目錄</p><!--kg-card-begin: markdown--><pre><code>git init git add -A git commit -m &quot;Initial repository&quot;</code></pre>
 <!--kg-card-end: markdown--><p>4.安裝npm並更新repository</p><!--kg-card-begin: markdown--><pre><code>npm install 

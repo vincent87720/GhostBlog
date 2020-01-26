@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>GolangPackage Excel的讀寫與操作</title>
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<meta name="description" content="excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="柴魚筆記本" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="GolangPackage Excel的讀寫與操作" />
+    <meta property="og:description" content="excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理" />
+    <meta property="og:url" content="http://localhost:2368/golang-package-excelize/" />
+    <meta property="og:image" content="http://localhost:2368/content/images/2020/01/golang-long-1.jpeg" />
+    <meta property="article:published_time" content="2020-01-26T15:50:18.000Z" />
+    <meta property="article:modified_time" content="2020-01-26T15:50:18.000Z" />
+    <meta property="article:tag" content="golang" />
+    <meta property="article:tag" content="golangPackage" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GolangPackage Excel的讀寫與操作" />
+    <meta name="twitter:description" content="excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理" />
+    <meta name="twitter:url" content="http://localhost:2368/golang-package-excelize/" />
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2020/01/golang-long-1.jpeg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Katsuobushi" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="golang, golangPackage" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="515" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.png",
+            "width": 1048,
+            "height": 1063
+        },
+        "url": "http://localhost:2368/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "GolangPackage Excel的讀寫與操作",
+    "url": "http://localhost:2368/golang-package-excelize/",
+    "datePublished": "2020-01-26T15:50:18.000Z",
+    "dateModified": "2020-01-26T15:50:18.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2020/01/golang-long-1.jpeg",
+        "width": 2000,
+        "height": 515
+    },
+    "keywords": "golang, golangPackage",
+    "description": "excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
+</head>
+
+<body class="post-template tag-golang tag-golangpackage">
+
+	<nav id="menu">
+	<a class="close-button">Close</a>
+	<div class="nav-wrapper">
+		<p class="nav-label">Menu</p>
+		<ul>
+			<li class="nav-home" role="presentation"><a href="../index.html">Home</a></li>
+			<li class="nav-author" role="presentation"><a href="../author/katsuobushi/index.html">Author</a></li>
+		</ul>
+	</div>
+</nav>
+
+
+	<section id="wrapper">
+		<a class="hidden-close"></a>
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header id="post-header" class="has-cover" >
+	<div class="inner">
+		<nav id="navigation">
+			<span id="home-button" class="nav-button">
+				<a class="home-button" href="../index.html" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+			</span>
+			<span id="menu-button" class="nav-button">
+				<a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+			</span>
+		</nav>
+		<h1 class="post-title">GolangPackage Excel的讀寫與操作</h1>
+		<span class="post-meta"><a href="../author/katsuobushi/index.html">Katsuobushi</a> | <time datetime="2020-01-26">26 Jan 2020</time> | 2 min read</span>
+		<div class="post-cover cover">
+			<img
+			src="../content/images/size/w1920/2020/01/golang-long-1.jpeg"
+			alt="GolangPackage Excel的讀寫與操作" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-golang tag-golangpackage">
+		<div class="inner">
+
+			<section class="post-content">
+				<p></p><p>excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理，須注意的是該package只支援.xlsx的檔案格式，尚不支援.xls的檔案處理</p><hr><h2 id="-">安裝</h2><p>使用指令安裝package</p><!--kg-card-begin: markdown--><pre><code>go get github.com/Luxurioust/excelize</code></pre>
+<!--kg-card-end: markdown--><hr><h2 id="--1">檔案操作<br></h2><h3 id="--2">創建新檔</h3><!--kg-card-begin: markdown--><pre><code>xlsx := excelize.NewFile()</code></pre>
+<!--kg-card-end: markdown--><h3 id="--3">開啟舊檔</h3><!--kg-card-begin: markdown--><pre><code>inputFilePath := &quot;D:\Project&quot;
+xlsx, err := excelize.OpenFile(inputFilePath)
+if err != nil {
+	fmt.Println(&quot;\rERROR:&quot;, err)
+}</code></pre>
+<!--kg-card-end: markdown--><h3 id="--4">讀取內容</h3><p>將檔案內的資料讀入一個二維的字串slice</p><!--kg-card-begin: markdown--><pre><code>sheetName := &quot;Sheet1&quot;//指定要讀取的工作表名稱
+xlsxRows, err = xlsx.GetRows(sheetName)
+if err != nil {
+	fmt.Println(&quot;\rERROR:&quot;,err)
+}</code></pre>
+<!--kg-card-end: markdown--><h3 id="--5">變更工作表名稱</h3><!--kg-card-begin: markdown--><pre><code>oldSheetName := &quot;Sheet1&quot;//指定目前工作表名稱
+newSheetName := &quot;工作表&quot;//指定新的工作表名稱
+xlsx.SetSheetName(oldSheetName, newSheetName)</code></pre>
+<!--kg-card-end: markdown--><h3 id="--6">設定樣式</h3><p><strong>建立樣式</strong><br>呼叫函式時使用JSON格式填入所需的樣式參數</p><p>fill：設定儲存格網底</p><!--kg-card-begin: markdown--><table>
+<thead>
+<tr>
+<th>fill</th>
+<th>使用單一顏色填充</th>
+<th>使用漸層填充</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>typr</td>
+<td>pattern</td>
+<td>gradient</td>
+</tr>
+<tr>
+<td>color</td>
+<td>[&quot;#FFFFFF&quot;]</td>
+<td>[&quot;#FFFFFF&quot;,&quot;#E0EBF5&quot;]</td>
+</tr>
+<tr>
+<td>gradient</td>
+<td>X</td>
+<td>0:橫向<br>1:縱向<br>2:對角線向上<br>3:對角線向下<br>4:由對角線向內<br>5:由中心向外</td>
+</tr>
+<tr>
+<td>pattern</td>
+<td>0:無<br>1:實心<br>2:75%灰色<br>3:50%灰色<br>4:25%灰色<br>5:水平條紋<br>6:垂直條紋<br>7:反對角線條紋<br>8:對角線條紋<br>9:對角線斜紋<br>10:粗線對角線斜紋<br>11:細線水平條紋<br>12:細線垂直條紋<br>13:細線反對角線條紋<br>14:細線對角線條紋<br>15:細線水平斜紋<br>16:細線對角線斜紋<br>17:12.5%灰色<br>18:6.25%灰色</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>//單一顏色填充
+patternStyle, err := xlsx.NewStyle(`{&quot;fill&quot;:{&quot;type&quot;:&quot;pattern&quot;,&quot;color&quot;:[&quot;#EBF0F3&quot;],&quot;pattern&quot;:1}}`)
+if err != nil {
+	fmt.Println(&quot;\rERROR:&quot;,err)
+}
+
+//漸層填充
+gradientStyle, err := f.NewStyle(`{&quot;fill&quot;:{&quot;type&quot;:&quot;gradient&quot;,&quot;color&quot;:[&quot;#FFFFFF&quot;,&quot;#E0EBF5&quot;],&quot;shading&quot;:1}}`)
+if err != nil {
+    fmt.Println(err)
+}
+</code></pre>
+<!--kg-card-end: markdown--><p></p><p>font：設定儲存格字體</p><!--kg-card-begin: markdown--><table>
+<thead>
+<tr>
+<th style="text-align:center">font</th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">bold</td>
+<td style="text-align:center">true/false</td>
+</tr>
+<tr>
+<td style="text-align:center">italic</td>
+<td style="text-align:center">true/false</td>
+</tr>
+<tr>
+<td style="text-align:center">family</td>
+<td style="text-align:center">字型名稱</td>
+</tr>
+<tr>
+<td style="text-align:center">size</td>
+<td style="text-align:center">字體大小</td>
+</tr>
+<tr>
+<td style="text-align:center">color</td>
+<td style="text-align:center">[&quot;#FFFFFF&quot;]</td>
+</tr>
+</tbody>
+</table>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>fontStyle, err := f.NewStyle(`{&quot;font&quot;:{&quot;bold&quot;:true,&quot;italic&quot;:false,&quot;size&quot;:12,&quot;color&quot;:&quot;#FFFFFF&quot;}}`)
+if err != nil {
+    fmt.Println(err)
+}</code></pre>
+<!--kg-card-end: markdown--><p><strong>使用樣式</strong></p><!--kg-card-begin: markdown--><pre><code>//使用樣式設定column
+err := xlsx.SetColStyle(sheetName, &quot;A1&quot;, patternStyle)
+
+//使用樣式設定cell
+err := xlsx.SetCellStyle(sheetName, &quot;A1&quot;, &quot;A1&quot;, gradientStyle)</code></pre>
+<!--kg-card-end: markdown-->
+			</section>
+
+			<section class="post-info">
+
+				<div class="post-share">
+					<span class="post-info-label">Share:</span>
+					<a class="twitter" href="https://twitter.com/share?text=GolangPackage Excel的讀寫與操作&url=http://localhost:2368/golang-package-excelize/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+					</a>
+					<a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/golang-package-excelize/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Tags:</span>
+					<a href="../tag/golang/index.html">golang</a> <a href="../tag/golangpackage/index.html">golangPackage</a>
+				</aside>
+
+				<div class="clear"></div>
+
+						<aside class="post-author">
+							<figure class="post-author-avatar avatar">
+									<img src="../content/images/2019/12/dog-breeder-small.png" alt="Katsuobushi" />
+							</figure>
+							<div class="post-author-bio">
+								<h4 class="post-author-name"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+							</div>
+							<div class="clear"></div>
+						</aside>
+
+			</section>
+
+
+			<section class="post-comments">
+				<a id="show-disqus" class="post-comments-activate">Show Comments</a>
+			   <div id="disqus_thread"></div>
+			</section>
+
+
+			<aside class="post-nav">
+					<a class="post-nav-prev" href="../clock-and-bandwidth/index.html">
+						<section class="post-nav-teaser">
+							<i class="ic ic-arrow-right"></i>
+							<h2 class="post-nav-title">記憶體的時脈與頻寬</h2>
+							<p class="post-nav-excerpt">記憶體的時脈與頻寬&hellip;</p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+
+		</div>
+	</article>
+</main>
+
+
+		<div id="body-class" style="display: none;" class="post-template tag-golang tag-golangpackage"></div>
+
+		<footer id="footer">
+			<div class="inner">
+				<section class="credits">
+					<span class="credits-theme">Theme <a href="https://github.com/zutrinken/attila">Attila</a> by <a href="https://zutrinken.com" rel="nofollow">zutrinken</a></span>
+					<span class="credits-software">Published with <a href="https://ghost.org">Ghost</a></span>
+				</section>
+			</div>
+		</footer>
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	
+
+</body>
+</html>

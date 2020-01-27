@@ -1,4 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Sun, 26 Jan 2020 15:58:56 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[GolangPackage Excel的讀寫與操作]]></title><description><![CDATA[excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理]]></description><link>http://localhost:2368/golang-package-excelize/</link><guid isPermaLink="false">5e2d660c17169e27181beddf</guid><category><![CDATA[golang]]></category><category><![CDATA[golangPackage]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 26 Jan 2020 15:50:18 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/01/golang-long-1.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/01/golang-long-1.jpeg" alt="GolangPackage Excel的讀寫與操作"><p></p><p>excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理，須注意的是該package只支援.xlsx的檔案格式，尚不支援.xls的檔案處理</p><hr><h2 id="-">安裝</h2><p>使用指令安裝package</p><!--kg-card-begin: markdown--><pre><code>go get github.com/Luxurioust/excelize</code></pre>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Mon, 27 Jan 2020 15:44:28 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Golang channel簡介]]></title><description><![CDATA[在golang裡可使用channel在多個執行緒與主程式之間傳送資料，channel可設定不同型態的buffer，並指定緩衝區大小]]></description><link>http://localhost:2368/golang-channel/</link><guid isPermaLink="false">5e2ee3d2c847230f10934c35</guid><category><![CDATA[golang]]></category><category><![CDATA[golangBasic]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 27 Jan 2020 15:43:32 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/01/golang-long-2.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/01/golang-long-2.jpeg" alt="Golang channel簡介"><p></p><p>在golang裡可使用channel在多個執行緒與主程式之間傳送資料，channel可設定不同型態的buffer，並指定緩衝區大小</p><hr><h2 id="-channel">建立channel</h2><p>使用make配置空間，第一個參數使用chan指定為通道類型，後面接上channel的型態，第二個參數可加可不加，用來宣告buffer的大小</p><!--kg-card-begin: markdown--><pre><code>ch := make(chan int)
+ch := make(chan int,5)</code></pre>
+<!--kg-card-end: markdown--><p>須注意buffer的預設大小為零，若無指定buffer大小則發送方與接收方需同時準備好才可傳值，否則會造成deadlock(死結)</p><!--kg-card-begin: markdown--><pre><code>//OK(buffer為0)
+ch := make(chan int)
+defer close(ch)
+go func(){
+    ch &lt;- 7
+}()
+
+fmt.Println(&lt;-ch)
+
+//ERROR(buffer為0)
+ch := make(chan int)
+defer close(ch)
+ch &lt;- 7
+
+fmt.Println(&lt;-ch)
+
+//OK(buffer為1)
+ch := make(chan int,1)
+defer close(ch)
+ch &lt;- 7
+
+fmt.Println(&lt;-ch)</code></pre>
+<!--kg-card-end: markdown--><hr><h2 id="-channel-">使用channel傳遞數值</h2><h3 id="-channel-1">傳入channel</h3><p>將箭頭由數值指向channel，代表將值傳入到channel內</p><!--kg-card-begin: markdown--><pre><code>ch &lt;- 7</code></pre>
+<!--kg-card-end: markdown--><h3 id="-channel-2">傳出channel</h3><p>將箭頭由channel指向目的地，代表將數值由channel傳出</p><!--kg-card-begin: markdown--><pre><code>var result int
+result &lt;- ch
+fmt.Println(result)</code></pre>
+<!--kg-card-end: markdown--><hr><h2 id="-goroutine-">等待所有goroutine結束</h2><p>有時會遇到明明寫好了goroutine，但在最後將要把數據輸出時卻沒出現任何數據，這時就有可能是因為執行緒尚未結束運算而主程式已經執行完輸出的作業了，所以輸出時不會得到channel傳來的任何資訊，當然也不會輸出任何東西</p><!--kg-card-begin: markdown--><pre><code>func foo(ch chan int, val int) {
+    ch &lt;- val
+}
+
+func main() {
+    ch := make(chan int, 5)
+    for i := 0; i &lt; 5; i++ {
+        foo(ch, i)
+    }
+    close(ch)
+
+    for ele := range ch {
+        fmt.Println(ele)
+    }
+}</code></pre>
+<!--kg-card-end: markdown--><p>我們可以使用WaitGroup控制，等到所有執行緒都結束後再繼續往下執行</p><!--kg-card-begin: markdown--><pre><code>var wg sync.WaitGroup
+
+func foo(ch chan int, val int) {
+    defer wg.Done()
+    ch &lt;- val
+}
+
+func main() {
+    ch := make(chan int, 5)
+    for i := 0; i &lt; 5; i++ {
+        wg.Add(1)
+        foo(ch, i)
+    }
+    wg.Wait()
+    close(ch)
+
+    for ele := range ch {
+        fmt.Println(ele)
+    }
+}</code></pre>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[GolangPackage Excel的讀寫與操作]]></title><description><![CDATA[excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理]]></description><link>http://localhost:2368/golang-package-excelize/</link><guid isPermaLink="false">5e2d660c17169e27181beddf</guid><category><![CDATA[golang]]></category><category><![CDATA[golangPackage]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 26 Jan 2020 15:50:18 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/01/golang-long-1.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/01/golang-long-1.jpeg" alt="GolangPackage Excel的讀寫與操作"><p></p><p>excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理，須注意的是該package只支援.xlsx的檔案格式，尚不支援.xls的檔案處理</p><hr><h2 id="-">安裝</h2><p>使用指令安裝package</p><!--kg-card-begin: markdown--><pre><code>go get github.com/Luxurioust/excelize</code></pre>
 <!--kg-card-end: markdown--><hr><h2 id="--1">檔案操作<br></h2><h3 id="--2">創建新檔</h3><!--kg-card-begin: markdown--><pre><code>xlsx := excelize.NewFile()</code></pre>
 <!--kg-card-end: markdown--><h3 id="--3">開啟舊檔</h3><!--kg-card-begin: markdown--><pre><code>inputFilePath := &quot;D:\Project&quot;
 xlsx, err := excelize.OpenFile(inputFilePath)

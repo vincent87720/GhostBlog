@@ -1,4 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Wed, 18 Mar 2020 07:44:19 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[C++陣列與指標的位址]]></title><description><![CDATA[C++陣列與指標的位址]]></description><link>http://localhost:2368/cpp-array-pointer-address/</link><guid isPermaLink="false">5e71c4046286de0ce0c06f09</guid><category><![CDATA[C++]]></category><category><![CDATA[C++Basic]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Wed, 18 Mar 2020 07:43:05 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/03/C--.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/03/C--.jpg" alt="C++陣列與指標的位址"><p>首先宣告名稱為arr大小為10的int陣列，接著分別輸出arr、&amp;arr[0]和&amp;arr</p><!--kg-card-begin: markdown--><pre><code>#include &lt;iostream&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Thu, 21 May 2020 17:35:02 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[GolangPackage 指定golang執行檔檔案屬性]]></title><description><![CDATA[GoVersionInfo package可在生成執行檔時指定執行檔縮圖及檔案屬性，檔案描述、檔案類型、版本等參數皆可指定]]></description><link>http://localhost:2368/golang-package-goversioninfo/</link><guid isPermaLink="false">5ec6a6b6986e6527cc1d24c9</guid><category><![CDATA[golangPackage]]></category><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 21 May 2020 17:34:18 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/05/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/05/golang-long.jpeg" alt="GolangPackage 指定golang執行檔檔案屬性"><p>GoVersionInfo package可在生成執行檔時指定執行檔縮圖及檔案屬性，檔案描述、檔案類型、版本等參數皆可指定</p><hr><h2 id="-">安裝<br></h2><h3 id="-package">使用指令安裝package</h3><!--kg-card-begin: markdown--><pre><code>go get github.com/josephspurrier/goversioninfo/cmd/goversioninfo</code></pre>
+<!--kg-card-end: markdown--><h3 id="--1">產生可執行檔</h3><p>-0 bin/goversioninfo.exe代表要將產生出來的可執行檔放在bin目錄裡，並將檔名命名為goversioninfo.exe<br>空一格後面接github.com/josephspurrier/goversioninfo/cmd/goversioninfo代表要以這個package為目標產生可執行檔</p><!--kg-card-begin: markdown--><pre><code>go build -o bin/goversioninfo.exe github.com/josephspurrier/goversioninfo/cmd/goversioninfo</code></pre>
+<!--kg-card-end: markdown--><hr><h2 id="--2">設定<br></h2><h3 id="-go-generate-">設定go generate註釋</h3><p>將//go:generate goversioninfo加入到程式碼的最頂端，往後在執行go generate命令時才能夠被搜尋到</p><!--kg-card-begin: markdown--><pre><code>//go:generate goversioninfo
+
+package main
+
+import &quot;fmt&quot;
+
+func main() {
+    fmt.Println(&quot;Hello world&quot;)
+}
+</code></pre>
+<!--kg-card-end: markdown--><h3 id="-versioninfo-json-">設定versioninfo.json檔案</h3><p>在github.com\josephspurrier\goversioninfo\testdata\resource內有一個檔名為versioninfo的json檔，將其複製並放置於要產生執行檔的程式碼的目錄中</p><p>resource資料夾內有icon和goversioninfo.exe.manifest兩個檔案，等等在設定versioninfo時會用到</p><figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2020/05/---2020-05-22-012503.png" class="kg-image" alt="GolangPackage 指定golang執行檔檔案屬性"></figure><h3 id="-versioninfo-json--1">指定versioninfo.json檔案參數</h3><p>將IconPath和ManifestPath的路徑指定為可執行檔圖示的路徑和Manifest檔案的路徑</p><!--kg-card-begin: markdown--><pre><code>{
+    &quot;FixedFileInfo&quot;: {
+        &quot;FileVersion&quot;: {
+            &quot;Major&quot;: 1,
+            &quot;Minor&quot;: 0,
+            &quot;Patch&quot;: 0,
+            &quot;Build&quot;: 0
+        },
+        &quot;ProductVersion&quot;: {
+            &quot;Major&quot;: 1,
+            &quot;Minor&quot;: 0,
+            &quot;Patch&quot;: 0,
+            &quot;Build&quot;: 0
+        },
+        &quot;FileFlagsMask&quot;: &quot;3f&quot;,
+        &quot;FileFlags &quot;: &quot;00&quot;,
+        &quot;FileOS&quot;: &quot;040004&quot;,
+        &quot;FileType&quot;: &quot;01&quot;,
+        &quot;FileSubType&quot;: &quot;00&quot;
+    },
+    &quot;StringFileInfo&quot;: {
+        &quot;Comments&quot;: &quot;Test file.&quot;,
+        &quot;CompanyName&quot;: &quot;josephspurrier&quot;,
+        &quot;FileDescription&quot;: &quot;This is a hello world file.&quot;,
+        &quot;FileVersion&quot;: &quot;v1.0.0.0&quot;,
+        &quot;InternalName&quot;: &quot;goversioninfo.exe&quot;,
+        &quot;LegalCopyright&quot;: &quot;Copyright (c) 2019 Joseph Spurrier&quot;,
+        &quot;LegalTrademarks&quot;: &quot;&quot;,
+        &quot;OriginalFilename&quot;: &quot;main.go&quot;,
+        &quot;PrivateBuild&quot;: &quot;&quot;,
+        &quot;ProductName&quot;: &quot;goversioninfo&quot;,
+        &quot;ProductVersion&quot;: &quot;v1.0.0.0&quot;,
+        &quot;SpecialBuild&quot;: &quot;&quot;
+    },
+    &quot;VarFileInfo&quot;: {
+        &quot;Translation&quot;: {
+            &quot;LangID&quot;: &quot;0409&quot;,
+            &quot;CharsetID&quot;: &quot;04B0&quot;
+        }
+    },
+    &quot;IconPath&quot;: &quot;resource/icon.ico&quot;,
+    &quot;ManifestPath&quot;: &quot;resource/goversioninfo.exe.manifest&quot;
+}</code></pre>
+<!--kg-card-end: markdown--><h3 id="-syso-">產生syso檔</h3><p>輸入go generate指令產生resource.syso檔案，若不在同個目錄內可指定package路徑，例如主程式在D:\Project\Go\src\goinfotest，若當前位置在目錄內直接下go generate即可，若不在目錄內則要輸入go generate+從src目錄後開始算的package路徑(go generate goinfotest)產生syso檔</p><!--kg-card-begin: markdown--><pre><code>go generate
+go generate your\package\route</code></pre>
+<!--kg-card-end: markdown--><figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2020/05/---2020-05-22-013035.png" class="kg-image" alt="GolangPackage 指定golang執行檔檔案屬性"></figure><h3 id="--3">產生可執行檔</h3><p>使用go build產生可執行檔，亦可使用"go build -o 目的路徑與檔名 +package路徑"產生可執行檔</p><!--kg-card-begin: markdown--><pre><code>go build
+go build -o output\route your\package\route</code></pre>
+<!--kg-card-end: markdown--><figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2020/05/---2020-05-22-013343.png" class="kg-image" alt="GolangPackage 指定golang執行檔檔案屬性"></figure>]]></content:encoded></item><item><title><![CDATA[C++陣列與指標的位址]]></title><description><![CDATA[C++陣列與指標的位址]]></description><link>http://localhost:2368/cpp-array-pointer-address/</link><guid isPermaLink="false">5e71c4046286de0ce0c06f09</guid><category><![CDATA[C++]]></category><category><![CDATA[C++Basic]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Wed, 18 Mar 2020 07:43:05 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/03/C--.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/03/C--.jpg" alt="C++陣列與指標的位址"><p>首先宣告名稱為arr大小為10的int陣列，接著分別輸出arr、&amp;arr[0]和&amp;arr</p><!--kg-card-begin: markdown--><pre><code>#include &lt;iostream&gt;
 
 int main()
 {

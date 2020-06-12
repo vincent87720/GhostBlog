@@ -1,4 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Thu, 21 May 2020 17:35:02 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[GolangPackage 指定golang執行檔檔案屬性]]></title><description><![CDATA[GoVersionInfo package可在生成執行檔時指定執行檔縮圖及檔案屬性，檔案描述、檔案類型、版本等參數皆可指定]]></description><link>http://localhost:2368/golang-package-goversioninfo/</link><guid isPermaLink="false">5ec6a6b6986e6527cc1d24c9</guid><category><![CDATA[golangPackage]]></category><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 21 May 2020 17:34:18 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/05/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/05/golang-long.jpeg" alt="GolangPackage 指定golang執行檔檔案屬性"><p>GoVersionInfo package可在生成執行檔時指定執行檔縮圖及檔案屬性，檔案描述、檔案類型、版本等參數皆可指定</p><hr><h2 id="-">安裝<br></h2><h3 id="-package">使用指令安裝package</h3><!--kg-card-begin: markdown--><pre><code>go get github.com/josephspurrier/goversioninfo/cmd/goversioninfo</code></pre>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Fri, 12 Jun 2020 14:50:33 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></title><description><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></description><link>http://localhost:2368/qt-key-mouse-press-event/</link><guid isPermaLink="false">5ee33b6118d9a726c4d13dcf</guid><category><![CDATA[Qt]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 12 Jun 2020 14:29:28 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" alt="Qt的鍵盤與滑鼠點擊事件"><p></p><h2 id="-">環境</h2><p>Qt 5.14.1<br>Qt Creator 4.11.1</p><hr><h2 id="--1">滑鼠點擊事件</h2><p>引用QMouseEvent標頭檔</p><!--kg-card-begin: markdown--><pre><code>#include &lt;QMouseEvent&gt;</code></pre>
+<!--kg-card-end: markdown--><p>在protected裡定義滑鼠觸發事件</p><!--kg-card-begin: markdown--><pre><code>protected:
+    void mousePressEvent(QMouseEvent * event);</code></pre>
+<!--kg-card-end: markdown--><p>新增具體觸發事件</p><!--kg-card-begin: markdown--><pre><code>void MainWindow::mousePressEvent(QMouseEvent * e)
+{
+    //獲取座標
+    qDebug() &lt;&lt;&quot;(&quot;&lt;&lt; e-&gt;x() &lt;&lt; &quot;,&quot; &lt;&lt; e-&gt;y()&lt;&lt;&quot;)&quot;;
+
+    if(e-&gt;button() == Qt::LeftButton)
+    {
+        qDebug() &lt;&lt; &quot;左鍵&quot; ;
+    }
+    else if(e-&gt;button() == Qt::RightButton)
+    {
+        qDebug() &lt;&lt; &quot;右鍵&quot; ;
+    }
+}</code></pre>
+<!--kg-card-end: markdown--><p>要使用qDebug()輸出時必須增加#include&lt;QDebug&gt;引用QDebug標頭檔</p><hr><h2 id="--2">鍵盤點擊事件</h2><p>在protected裡定義滑鼠觸發事件</p><!--kg-card-begin: markdown--><pre><code>protected:
+    void keyPressEvent(QKeyEvent * event);</code></pre>
+<!--kg-card-end: markdown--><p>新增鍵盤觸發事件</p><!--kg-card-begin: markdown--><pre><code>void MainWindow::keyPressEvent(QKeyEvent * event)
+{
+    switch (event-&gt;key())
+    {
+        case Qt::Key_Alt:{
+                qDebug() &lt;&lt; &quot;Alt&quot;;
+            break;
+        }
+        default:{
+                qDebug() &lt;&lt; event-&gt;key();
+            break;
+        }
+    }
+}</code></pre>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[GolangPackage 指定golang執行檔檔案屬性]]></title><description><![CDATA[GoVersionInfo package可在生成執行檔時指定執行檔縮圖及檔案屬性，檔案描述、檔案類型、版本等參數皆可指定]]></description><link>http://localhost:2368/golang-package-goversioninfo/</link><guid isPermaLink="false">5ec6a6b6986e6527cc1d24c9</guid><category><![CDATA[golangPackage]]></category><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 21 May 2020 17:34:18 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/05/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/05/golang-long.jpeg" alt="GolangPackage 指定golang執行檔檔案屬性"><p>GoVersionInfo package可在生成執行檔時指定執行檔縮圖及檔案屬性，檔案描述、檔案類型、版本等參數皆可指定</p><hr><h2 id="-">安裝<br></h2><h3 id="-package">使用指令安裝package</h3><!--kg-card-begin: markdown--><pre><code>go get github.com/josephspurrier/goversioninfo/cmd/goversioninfo</code></pre>
 <!--kg-card-end: markdown--><h3 id="--1">產生可執行檔</h3><p>-0 bin/goversioninfo.exe代表要將產生出來的可執行檔放在bin目錄裡，並將檔名命名為goversioninfo.exe<br>空一格後面接github.com/josephspurrier/goversioninfo/cmd/goversioninfo代表要以這個package為目標產生可執行檔</p><!--kg-card-begin: markdown--><pre><code>go build -o bin/goversioninfo.exe github.com/josephspurrier/goversioninfo/cmd/goversioninfo</code></pre>
 <!--kg-card-end: markdown--><hr><h2 id="--2">設定<br></h2><h3 id="-go-generate-">設定go generate註釋</h3><p>將//go:generate goversioninfo加入到程式碼的最頂端，往後在執行go generate命令時才能夠被搜尋到</p><!--kg-card-begin: markdown--><pre><code>//go:generate goversioninfo
 

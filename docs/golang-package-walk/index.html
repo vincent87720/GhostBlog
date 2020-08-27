@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>[GolangPackage] 使用lnx/walk建立圖形化介面</title>
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<meta name="description" content="golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="柴魚筆記本" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="[GolangPackage] 使用lnx/walk建立圖形化介面" />
+    <meta property="og:description" content="golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面" />
+    <meta property="og:url" content="http://localhost:2368/golang-package-walk/" />
+    <meta property="og:image" content="http://localhost:2368/content/images/2020/08/golang-long.jpeg" />
+    <meta property="article:published_time" content="2020-08-27T19:48:31.000Z" />
+    <meta property="article:modified_time" content="2020-08-27T19:48:31.000Z" />
+    <meta property="article:tag" content="golang" />
+    <meta property="article:tag" content="golangPackage" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[GolangPackage] 使用lnx/walk建立圖形化介面" />
+    <meta name="twitter:description" content="golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面" />
+    <meta name="twitter:url" content="http://localhost:2368/golang-package-walk/" />
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2020/08/golang-long.jpeg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Katsuobushi" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="golang, golangPackage" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="515" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.png",
+            "width": 1048,
+            "height": 1063
+        },
+        "url": "http://localhost:2368/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "[GolangPackage] 使用lnx/walk建立圖形化介面",
+    "url": "http://localhost:2368/golang-package-walk/",
+    "datePublished": "2020-08-27T19:48:31.000Z",
+    "dateModified": "2020-08-27T19:48:31.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2020/08/golang-long.jpeg",
+        "width": 2000,
+        "height": 515
+    },
+    "keywords": "golang, golangPackage",
+    "description": "golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.1" />
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
+</head>
+
+<body class="post-template tag-golang tag-golangpackage">
+
+	<nav id="menu">
+	<a class="close-button">Close</a>
+	<div class="nav-wrapper">
+		<p class="nav-label">Menu</p>
+		<ul>
+			<li class="nav-home" role="presentation"><a href="../index.html">Home</a></li>
+			<li class="nav-author" role="presentation"><a href="../author/katsuobushi/index.html">Author</a></li>
+		</ul>
+	</div>
+</nav>
+
+
+	<section id="wrapper">
+		<a class="hidden-close"></a>
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header id="post-header" class="has-cover" >
+	<div class="inner">
+		<nav id="navigation">
+			<span id="home-button" class="nav-button">
+				<a class="home-button" href="../index.html" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+			</span>
+			<span id="menu-button" class="nav-button">
+				<a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+			</span>
+		</nav>
+		<h1 class="post-title">[GolangPackage] 使用lnx/walk建立圖形化介面</h1>
+		<span class="post-meta"><a href="../author/katsuobushi/index.html">Katsuobushi</a> | <time datetime="2020-08-27">27 Aug 2020</time> | 3 min read</span>
+		<div class="post-cover cover">
+			<img
+			src="../content/images/size/w1920/2020/08/golang-long.jpeg"
+			alt="[GolangPackage] 使用lnx/walk建立圖形化介面" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-golang tag-golangpackage">
+		<div class="inner">
+
+			<section class="post-content">
+				<p>golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面</p><h2 id="-">環境</h2><ul><li>Windows 10 x64</li><li>go 1.15</li><li>github.com/lxn/walk v0.0.0-20200806153934-8721e9bc9ff7</li><li>github.com/akavel/rsrc v0.9.0</li></ul><h2 id="--1">安裝</h2><p>要將程式包裝成可執行檔需要兩個package，分別是lxn/walk和akavel/rsrc<br>lxn/walk用來建立圖形化介面<br>akavel/rsrc用來將資源嵌入可執行檔<br>使用指令安裝lxn/walk和akavel/rsrc</p><pre><code>go get github.com/lxn/walk
+go get github.com/akavel/rsrc
+</code></pre><h2 id="--2">結構</h2><p>在lxn/walk下包含了declarative sub package、範例檔和各種元件的檔案</p><pre><code>－github.com
+    |－lxn
+        |－walk
+            |－declarative
+            |－examples
+            |...其他檔案
+</code></pre><p>以examples下的action範例裡的一小段程式碼為例</p><pre><code>PushButton{
+	AssignTo: &amp;toggleSpecialModePB,
+	Text:     "Enable Special Mode",
+	OnClicked: func() {
+		isSpecialMode.SetSatisfied(!isSpecialMode.Satisfied())
+
+		if isSpecialMode.Satisfied() {
+			toggleSpecialModePB.SetText("Disable Special Mode")
+		} else {
+			toggleSpecialModePB.SetText("Enable Special Mode")
+		}
+	},
+	Accessibility: Accessibility{
+		Help: "Toggles special mode",
+	},
+},
+</code></pre><p>很好奇PushButton裡面的這些參數到底是哪裡來的對吧<br>讓我們看看declarative目錄下的pushbutton.go檔案</p><p><strong>pushbutton.go</strong></p><pre><code>package declarative
+
+import (
+	"github.com/lxn/walk"
+)
+
+type PushButton struct {
+	// Window
+
+	Accessibility      Accessibility
+	Background         Brush
+	ContextMenuItems   []MenuItem
+	DoubleBuffering    bool
+	Enabled            Property
+	Font               Font
+	MaxSize            Size
+	MinSize            Size
+	Name               string
+	OnBoundsChanged    walk.EventHandler
+	OnKeyDown          walk.KeyEventHandler
+	OnKeyPress         walk.KeyEventHandler
+	OnKeyUp            walk.KeyEventHandler
+	OnMouseDown        walk.MouseEventHandler
+	OnMouseMove        walk.MouseEventHandler
+	OnMouseUp          walk.MouseEventHandler
+	OnSizeChanged      walk.EventHandler
+	Persistent         bool
+	RightToLeftReading bool
+	ToolTipText        Property
+	Visible            Property
+
+	// Widget
+
+	Alignment          Alignment2D
+	AlwaysConsumeSpace bool
+	Column             int
+	ColumnSpan         int
+	GraphicsEffects    []walk.WidgetGraphicsEffect
+	Row                int
+	RowSpan            int
+	StretchFactor      int
+
+	// Button
+
+	Image     Property
+	OnClicked walk.EventHandler
+	Text      Property
+
+	// PushButton
+
+	AssignTo       **walk.PushButton
+	ImageAboveText bool
+}
+</code></pre><p>這邊清楚的定義了哪些元件可以用哪些參數，只要照著結構裡定義的屬性名稱和型別給予對應的數值就可以了</p><h2 id="--3">建置與執行</h2><p>要執行圖形化介面無法直接使用go run執行<br>必須在相同目錄下新增.manifest檔案並使用go build建置產生可執行檔<br>再啟動可執行檔執行<br>我們使用examples下的clipboard作為範例</p><p><strong>clipboard.go</strong></p><pre><code>// Copyright 2013 The Walk Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+package main
+
+import (
+	"log"
+)
+
+import (
+	"github.com/lxn/walk"
+	. "github.com/lxn/walk/declarative"
+)
+
+func main() {
+	var te *walk.TextEdit
+
+	if _, err := (MainWindow{
+		Title:   "Walk Clipboard Example",
+		MinSize: Size{300, 200},
+		Layout:  VBox{},
+		Children: []Widget{
+			PushButton{
+				Text: "Copy",
+				OnClicked: func() {
+					if err := walk.Clipboard().SetText(te.Text()); err != nil {
+						log.Print("Copy: ", err)
+					}
+				},
+			},
+			PushButton{
+				Text: "Paste",
+				OnClicked: func() {
+					if text, err := walk.Clipboard().Text(); err != nil {
+						log.Print("Paste: ", err)
+					} else {
+						te.SetText(text)
+					}
+				},
+			},
+			TextEdit{
+				AssignTo: &amp;te,
+			},
+		},
+	}).Run(); err != nil {
+		log.Fatal(err)
+	}
+}
+</code></pre><p><strong>test.manifest</strong></p><pre><code>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"&gt;
+    &lt;assemblyIdentity version="1.0.0.0" processorArchitecture="*" name="SomeFunkyNameHere" type="win32"/&gt;
+    &lt;dependency&gt;
+        &lt;dependentAssembly&gt;
+            &lt;assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" processorArchitecture="*" publicKeyToken="6595b64144ccf1df" language="*"/&gt;
+        &lt;/dependentAssembly&gt;
+    &lt;/dependency&gt;
+    &lt;application xmlns="urn:schemas-microsoft-com:asm.v3"&gt;
+        &lt;windowsSettings&gt;
+            &lt;dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings"&gt;PerMonitorV2, PerMonitor&lt;/dpiAwareness&gt;
+            &lt;dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings"&gt;True&lt;/dpiAware&gt;
+        &lt;/windowsSettings&gt;
+    &lt;/application&gt;
+&lt;/assembly&gt;
+</code></pre><p>建立一個目錄並在目錄底下放置clipboard.go和test.manifest兩個檔案</p><pre><code>－walktest
+    |－clipboard.go
+    |－test.manifest
+</code></pre><p>第一次要使用指令產生.syso檔</p><pre><code>rsrc -manifest test.manifest -o rsrc.syso
+</code></pre><p>再輸入指令建置可執行檔</p><pre><code>go build
+</code></pre><p>運行可執行檔就會出現圖形化介面了</p><pre><code>walktest.exe
+</code></pre><figure class="kg-card kg-image-card"><img src="../content/images/2020/08/1.png" class="kg-image"></figure>
+			</section>
+
+			<section class="post-info">
+
+				<div class="post-share">
+					<span class="post-info-label">Share:</span>
+					<a class="twitter" href="https://twitter.com/share?text=[GolangPackage] 使用lnx/walk建立圖形化介面&url=http://localhost:2368/golang-package-walk/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+					</a>
+					<a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/golang-package-walk/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Tags:</span>
+					<a href="../tag/golang/index.html">golang</a> <a href="../tag/golangpackage/index.html">golangPackage</a>
+				</aside>
+
+				<div class="clear"></div>
+
+						<aside class="post-author">
+							<figure class="post-author-avatar avatar">
+									<img src="../content/images/2019/12/dog-breeder-small.png" alt="Katsuobushi" />
+							</figure>
+							<div class="post-author-bio">
+								<h4 class="post-author-name"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+							</div>
+							<div class="clear"></div>
+						</aside>
+
+			</section>
+
+
+			<section class="post-comments">
+				<a id="show-disqus" class="post-comments-activate">Show Comments</a>
+			   <div id="disqus_thread"></div>
+			</section>
+
+
+			<aside class="post-nav">
+					<a class="post-nav-prev" href="../qt-key-mouse-press-event/index.html">
+						<section class="post-nav-teaser">
+							<i class="ic ic-arrow-right"></i>
+							<h2 class="post-nav-title">Qt的鍵盤與滑鼠點擊事件</h2>
+							<p class="post-nav-excerpt">Qt的鍵盤與滑鼠點擊事件&hellip;</p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+
+		</div>
+	</article>
+</main>
+
+
+		<div id="body-class" style="display: none;" class="post-template tag-golang tag-golangpackage"></div>
+
+		<footer id="footer">
+			<div class="inner">
+				<section class="credits">
+					<span class="credits-theme">Theme <a href="https://github.com/zutrinken/attila">Attila</a> by <a href="https://zutrinken.com" rel="nofollow">zutrinken</a></span>
+					<span class="credits-software">Published with <a href="https://ghost.org">Ghost</a></span>
+				</section>
+			</div>
+		</footer>
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	
+
+</body>
+</html>

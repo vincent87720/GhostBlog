@@ -1,4 +1,151 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Fri, 12 Jun 2020 14:50:33 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></title><description><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></description><link>http://localhost:2368/qt-key-mouse-press-event/</link><guid isPermaLink="false">5ee33b6118d9a726c4d13dcf</guid><category><![CDATA[Qt]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 12 Jun 2020 14:29:28 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" alt="Qt的鍵盤與滑鼠點擊事件"><p></p><h2 id="-">環境</h2><p>Qt 5.14.1<br>Qt Creator 4.11.1</p><hr><h2 id="--1">滑鼠點擊事件</h2><p>引用QMouseEvent標頭檔</p><!--kg-card-begin: markdown--><pre><code>#include &lt;QMouseEvent&gt;</code></pre>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Thu, 27 Aug 2020 19:50:16 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[GolangPackage] 使用lnx/walk建立圖形化介面]]></title><description><![CDATA[golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面]]></description><link>http://localhost:2368/golang-package-walk/</link><guid isPermaLink="false">5f4809f66c8c391358537596</guid><category><![CDATA[golang]]></category><category><![CDATA[golangPackage]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 27 Aug 2020 19:48:31 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/08/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/08/golang-long.jpeg" alt="[GolangPackage] 使用lnx/walk建立圖形化介面"><p>golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面</p><h2 id="-">環境</h2><ul><li>Windows 10 x64</li><li>go 1.15</li><li>github.com/lxn/walk v0.0.0-20200806153934-8721e9bc9ff7</li><li>github.com/akavel/rsrc v0.9.0</li></ul><h2 id="--1">安裝</h2><p>要將程式包裝成可執行檔需要兩個package，分別是lxn/walk和akavel/rsrc<br>lxn/walk用來建立圖形化介面<br>akavel/rsrc用來將資源嵌入可執行檔<br>使用指令安裝lxn/walk和akavel/rsrc</p><pre><code>go get github.com/lxn/walk
+go get github.com/akavel/rsrc
+</code></pre><h2 id="--2">結構</h2><p>在lxn/walk下包含了declarative sub package、範例檔和各種元件的檔案</p><pre><code>－github.com
+    |－lxn
+        |－walk
+            |－declarative
+            |－examples
+            |...其他檔案
+</code></pre><p>以examples下的action範例裡的一小段程式碼為例</p><pre><code>PushButton{
+	AssignTo: &amp;toggleSpecialModePB,
+	Text:     "Enable Special Mode",
+	OnClicked: func() {
+		isSpecialMode.SetSatisfied(!isSpecialMode.Satisfied())
+
+		if isSpecialMode.Satisfied() {
+			toggleSpecialModePB.SetText("Disable Special Mode")
+		} else {
+			toggleSpecialModePB.SetText("Enable Special Mode")
+		}
+	},
+	Accessibility: Accessibility{
+		Help: "Toggles special mode",
+	},
+},
+</code></pre><p>很好奇PushButton裡面的這些參數到底是哪裡來的對吧<br>讓我們看看declarative目錄下的pushbutton.go檔案</p><p><strong>pushbutton.go</strong></p><pre><code>package declarative
+
+import (
+	"github.com/lxn/walk"
+)
+
+type PushButton struct {
+	// Window
+
+	Accessibility      Accessibility
+	Background         Brush
+	ContextMenuItems   []MenuItem
+	DoubleBuffering    bool
+	Enabled            Property
+	Font               Font
+	MaxSize            Size
+	MinSize            Size
+	Name               string
+	OnBoundsChanged    walk.EventHandler
+	OnKeyDown          walk.KeyEventHandler
+	OnKeyPress         walk.KeyEventHandler
+	OnKeyUp            walk.KeyEventHandler
+	OnMouseDown        walk.MouseEventHandler
+	OnMouseMove        walk.MouseEventHandler
+	OnMouseUp          walk.MouseEventHandler
+	OnSizeChanged      walk.EventHandler
+	Persistent         bool
+	RightToLeftReading bool
+	ToolTipText        Property
+	Visible            Property
+
+	// Widget
+
+	Alignment          Alignment2D
+	AlwaysConsumeSpace bool
+	Column             int
+	ColumnSpan         int
+	GraphicsEffects    []walk.WidgetGraphicsEffect
+	Row                int
+	RowSpan            int
+	StretchFactor      int
+
+	// Button
+
+	Image     Property
+	OnClicked walk.EventHandler
+	Text      Property
+
+	// PushButton
+
+	AssignTo       **walk.PushButton
+	ImageAboveText bool
+}
+</code></pre><p>這邊清楚的定義了哪些元件可以用哪些參數，只要照著結構裡定義的屬性名稱和型別給予對應的數值就可以了</p><h2 id="--3">建置與執行</h2><p>要執行圖形化介面無法直接使用go run執行<br>必須在相同目錄下新增.manifest檔案並使用go build建置產生可執行檔<br>再啟動可執行檔執行<br>我們使用examples下的clipboard作為範例</p><p><strong>clipboard.go</strong></p><pre><code>// Copyright 2013 The Walk Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+package main
+
+import (
+	"log"
+)
+
+import (
+	"github.com/lxn/walk"
+	. "github.com/lxn/walk/declarative"
+)
+
+func main() {
+	var te *walk.TextEdit
+
+	if _, err := (MainWindow{
+		Title:   "Walk Clipboard Example",
+		MinSize: Size{300, 200},
+		Layout:  VBox{},
+		Children: []Widget{
+			PushButton{
+				Text: "Copy",
+				OnClicked: func() {
+					if err := walk.Clipboard().SetText(te.Text()); err != nil {
+						log.Print("Copy: ", err)
+					}
+				},
+			},
+			PushButton{
+				Text: "Paste",
+				OnClicked: func() {
+					if text, err := walk.Clipboard().Text(); err != nil {
+						log.Print("Paste: ", err)
+					} else {
+						te.SetText(text)
+					}
+				},
+			},
+			TextEdit{
+				AssignTo: &amp;te,
+			},
+		},
+	}).Run(); err != nil {
+		log.Fatal(err)
+	}
+}
+</code></pre><p><strong>test.manifest</strong></p><pre><code>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"&gt;
+    &lt;assemblyIdentity version="1.0.0.0" processorArchitecture="*" name="SomeFunkyNameHere" type="win32"/&gt;
+    &lt;dependency&gt;
+        &lt;dependentAssembly&gt;
+            &lt;assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" processorArchitecture="*" publicKeyToken="6595b64144ccf1df" language="*"/&gt;
+        &lt;/dependentAssembly&gt;
+    &lt;/dependency&gt;
+    &lt;application xmlns="urn:schemas-microsoft-com:asm.v3"&gt;
+        &lt;windowsSettings&gt;
+            &lt;dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings"&gt;PerMonitorV2, PerMonitor&lt;/dpiAwareness&gt;
+            &lt;dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings"&gt;True&lt;/dpiAware&gt;
+        &lt;/windowsSettings&gt;
+    &lt;/application&gt;
+&lt;/assembly&gt;
+</code></pre><p>建立一個目錄並在目錄底下放置clipboard.go和test.manifest兩個檔案</p><pre><code>－walktest
+    |－clipboard.go
+    |－test.manifest
+</code></pre><p>第一次要使用指令產生.syso檔</p><pre><code>rsrc -manifest test.manifest -o rsrc.syso
+</code></pre><p>再輸入指令建置可執行檔</p><pre><code>go build
+</code></pre><p>運行可執行檔就會出現圖形化介面了</p><pre><code>walktest.exe
+</code></pre><figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2020/08/1.png" class="kg-image" alt="[GolangPackage] 使用lnx/walk建立圖形化介面"></figure>]]></content:encoded></item><item><title><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></title><description><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></description><link>http://localhost:2368/qt-key-mouse-press-event/</link><guid isPermaLink="false">5ee33b6118d9a726c4d13dcf</guid><category><![CDATA[Qt]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 12 Jun 2020 14:29:28 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" alt="Qt的鍵盤與滑鼠點擊事件"><p></p><h2 id="-">環境</h2><p>Qt 5.14.1<br>Qt Creator 4.11.1</p><hr><h2 id="--1">滑鼠點擊事件</h2><p>引用QMouseEvent標頭檔</p><!--kg-card-begin: markdown--><pre><code>#include &lt;QMouseEvent&gt;</code></pre>
 <!--kg-card-end: markdown--><p>在protected裡定義滑鼠觸發事件</p><!--kg-card-begin: markdown--><pre><code>protected:
     void mousePressEvent(QMouseEvent * event);</code></pre>
 <!--kg-card-end: markdown--><p>新增具體觸發事件</p><!--kg-card-begin: markdown--><pre><code>void MainWindow::mousePressEvent(QMouseEvent * e)

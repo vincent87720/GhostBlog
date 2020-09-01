@@ -1,16 +1,49 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Tue, 01 Sep 2020 14:37:09 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Golang]使用筆畫排序中文字]]></title><description><![CDATA[有次嘗試要使用筆劃排序中文姓名時，直接使用sort包進行排序，但發現結果並不是照著筆劃排序，查了點資料發現原來和UTF-8、Big5兩種編碼有極大的關係]]></description><link>http://localhost:2368/golang-sort-traditionalchinese/</link><guid isPermaLink="false">5f4e5a4978355806f01eea76</guid><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 01 Sep 2020 14:33:48 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/09/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/09/golang-long.jpeg" alt="[Golang]使用筆畫排序中文字"><p>有次嘗試要使用筆劃排序中文姓名時，直接使用sort包進行排序，但發現結果並不是照著筆劃排序，查了點資料發現原來和UTF-8、Big5兩種編碼有極大的關係</p><h2 id="-">環境</h2><ul><li>Windows 10 x64</li><li>go 1.15</li><li>golang.org/x/text v0.3.3</li></ul><h2 id="utf-8-big5-">UTF-8和Big5的排序</h2><h3 id="big5">Big5</h3><p>從全字庫查詢到Big5的編碼原則</p><p>以國家標準CNS11643及國際標準ISO10646漢字集為字源範圍，並依CNS11643之序編碼。</p><p>而CNS11643的字碼編排原則又是如何呢?以下是定義</p><p>依<strong>先筆畫後部首</strong>排列順序編碼。 說明： 每一字面均以文字總筆畫數為首序、部首為次序、筆順為末序編訂字碼，使用者只需以書寫之實際筆畫數即可查尋到國標碼。</p><p>所以我們可以得知Big5以"<strong>筆畫-&gt;部首-&gt;筆順</strong>"為排列順序</p><h3 id="utf-8">UTF-8</h3><p>而全字庫裡對於UTF-8的說明如下</p><p>在I區的中日韓漢字部份，最當初進行編碼時，因各國漢字型體不盡相同，必須先進行認同(unify)整理工作，SC2/WG2因此邀集有關各國指派專家組成CJK/JRG(中日韓聯合研究工作組，即IRG前身)，進行字集的總整理。CJK/JRG歷經五次會議完成此項艱鉅工作，所整理的「中日韓認同表意文字」(CJK Unified Ideographs)參考了我國75年版CNS 11643之第1、2、14字面(T欄)，大陸的GB 2312、GB 12345、GB 7589、GB 17590、GB 8565(G欄)，日本的JIS X 0208、JIS X 0212(J欄)及南韓的KS C 5601、KSC 5667(K欄)等標準字符集，可說已包含這四地所常用的字。其字序主要是參考康熙字典、大漢和詞典、漢語大詞典及大字源字典，以<strong>先部首後筆劃</strong>的順序排列。</p><p>所以我們可以得知UTF-8以"<strong>部首-&gt;筆畫</strong>"為排列順序</p><h2 id="golang-">Golang的預設編碼</h2><p>golang預設使用UTF-8作為編碼格式，所以若直接使用sort包進行排序得出的結果會是依照先部首後筆畫的順序排序</p><h2 id="-big5-">轉為Big5排序</h2><p>若想得到以先筆畫後部首的方式排序，其中一個方法是將預設的UTF-8轉為Big5，使用Big5排序過後依照需求再轉換回UTF-8</p><h2 id="--1">程式碼</h2><p>以"<strong>毛隆青,劉雅君,陳嘉鴻,王育如,郭苡良,楊宗穎,李玉全,劉玉合,姚昶民,林欣麟</strong>"十個姓名作為測試資料輸入，結果應為[<strong>毛隆青 王育如 李玉全 林欣麟 姚昶民 郭苡良 陳嘉鴻 楊宗穎 劉玉合 劉雅君</strong>]</p><p>此處須注意若筆劃數量相同，則會比對完部首後再比對下一個字，例如:<br><strong>毛隆青</strong>和<strong>王育如</strong>姓氏都是四劃，但是比對過筆劃後結果是'<strong>毛</strong>'先於'<strong>王</strong>'所以'<strong>毛</strong>'才會排在'<strong>王</strong>'前面</p><p><strong>main.go</strong></p><pre><code class="language-go">package main
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Tue, 01 Sep 2020 15:57:31 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Golang]使用筆畫排序中文字]]></title><description><![CDATA[有次嘗試要使用筆劃排序中文姓名時，直接使用sort包進行排序，但發現結果並不是照著筆劃排序，查了點資料發現原來和UTF-8、Big5兩種編碼有極大的關係]]></description><link>http://localhost:2368/golang-sort-traditionalchinese/</link><guid isPermaLink="false">5f4e5a4978355806f01eea76</guid><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 01 Sep 2020 14:33:48 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/09/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2020/09/golang-long.jpeg" alt="[Golang]使用筆畫排序中文字"><p>有次嘗試要使用筆劃排序中文姓名時，直接使用sort包進行排序，但發現結果並不是照著筆劃排序，查了點資料發現原來和UTF-8、Big5兩種編碼有極大的關係</p>
+<h2 id>環境</h2>
+<ul>
+<li>Windows 10 x64</li>
+<li>go 1.15</li>
+<li>golang.org/x/text v0.3.3</li>
+</ul>
+<h2 id="utf8big5">UTF-8和Big5的排序</h2>
+<h3 id="big5">Big5</h3>
+<p>從全字庫查詢到Big5的編碼原則</p>
+<blockquote>
+<p>以國家標準CNS11643及國際標準ISO10646漢字集為字源範圍，並依CNS11643之序編碼。</p>
+</blockquote>
+<p>而CNS11643的字碼編排原則又是如何呢?以下是定義</p>
+<blockquote>
+<p>依<strong>先筆畫後部首</strong>排列順序編碼。 說明： 每一字面均以文字總筆畫數為首序、部首為次序、筆順為末序編訂字碼，使用者只需以書寫之實際筆畫數即可查尋到國標碼。</p>
+</blockquote>
+<p>所以我們可以得知Big5以&quot;<strong>筆畫-&gt;部首-&gt;筆順</strong>&quot;為排列順序</p>
+<h3 id="utf8">UTF-8</h3>
+<p>而全字庫裡對於UTF-8的說明如下</p>
+<blockquote>
+<p>在I區的中日韓漢字部份，最當初進行編碼時，因各國漢字型體不盡相同，必須先進行認同(unify)整理工作，SC2/WG2因此邀集有關各國指派專家組成CJK/JRG(中日韓聯合研究工作組，即IRG前身)，進行字集的總整理。CJK/JRG歷經五次會議完成此項艱鉅工作，所整理的「中日韓認同表意文字」(CJK Unified Ideographs)參考了我國75年版CNS 11643之第1、2、14字面(T欄)，大陸的GB 2312、GB 12345、GB 7589、GB 17590、GB 8565(G欄)，日本的JIS X 0208、JIS X 0212(J欄)及南韓的KS C 5601、KSC 5667(K欄)等標準字符集，可說已包含這四地所常用的字。其字序主要是參考康熙字典、大漢和詞典、漢語大詞典及大字源字典，以<strong>先部首後筆劃</strong>的順序排列。</p>
+</blockquote>
+<p>所以我們可以得知UTF-8以&quot;<strong>部首-&gt;筆畫</strong>&quot;為排列順序</p>
+<h2 id="golang">Golang的預設編碼</h2>
+<p>golang預設使用UTF-8作為編碼格式，所以若直接使用sort包進行排序得出的結果會是依照先部首後筆畫的順序排序</p>
+<h2 id="big5">轉為Big5排序</h2>
+<p>若想得到以先筆畫後部首的方式排序，其中一個方法是將預設的UTF-8轉為Big5，使用Big5排序過後依照需求再轉換回UTF-8</p>
+<h2 id>程式碼</h2>
+<p>以&quot;<strong>毛隆青,劉雅君,陳嘉鴻,王育如,郭苡良,楊宗穎,李玉全,劉玉合,姚昶民,林欣麟</strong>&quot;十個姓名作為測試資料輸入，結果應為[<strong>毛隆青 王育如 李玉全 林欣麟 姚昶民 郭苡良 陳嘉鴻 楊宗穎 劉玉合 劉雅君</strong>]</p>
+<p>此處須注意若筆劃數量相同，則會比對完部首後再比對下一個字，例如:<br>
+<strong>毛隆青</strong>和<strong>王育如</strong>姓氏都是四劃，但是比對過筆劃後結果是'<strong>毛</strong>'先於'<strong>王</strong>'所以'<strong>毛</strong>'才會排在'<strong>王</strong>'前面</p>
+<p><strong>main.go</strong></p>
+<pre><code class="language-go">package main
 
 import (
-	"fmt"
-	"sort"
+	&quot;fmt&quot;
+	&quot;sort&quot;
 
-	"golang.org/x/text/encoding/traditionalchinese"
-	"golang.org/x/text/transform"
+	&quot;golang.org/x/text/encoding/traditionalchinese&quot;
+	&quot;golang.org/x/text/transform&quot;
 )
 
 func main() {
 
-	s := []string{"毛隆青", "劉雅君", "陳嘉鴻", "王育如", "郭苡良", "楊宗穎", "李玉全", "劉玉合", "姚昶民", "林欣麟"}
+	s := []string{&quot;毛隆青&quot;, &quot;劉雅君&quot;, &quot;陳嘉鴻&quot;, &quot;王育如&quot;, &quot;郭苡良&quot;, &quot;楊宗穎&quot;, &quot;李玉全&quot;, &quot;劉玉合&quot;, &quot;姚昶民&quot;, &quot;林欣麟&quot;}
 
 	s1 := sortByStroke(s)
 	fmt.Println(s1)
@@ -40,36 +73,62 @@ func sortByStroke(input []string) (output []string) {
 
 	return output
 }
-</code></pre><pre><code>D:\&gt;go run main
+</code></pre>
+<pre><code>D:\&gt;go run main
 [毛隆青 王育如 李玉全 林欣麟 姚昶民 郭苡良 陳嘉鴻 楊宗穎 劉玉合 劉雅君]
-</code></pre><h2 id="--2">參考資料</h2><p><a href="https://www.cns11643.gov.tw/pageView.jsp?ID=9">全字庫-中文碼介紹</a></p>]]></content:encoded></item><item><title><![CDATA[[GolangPackage] 使用lnx/walk建立圖形化介面]]></title><description><![CDATA[golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面]]></description><link>http://localhost:2368/golang-package-walk/</link><guid isPermaLink="false">5f4809f66c8c391358537596</guid><category><![CDATA[golang]]></category><category><![CDATA[golangPackage]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 27 Aug 2020 19:48:31 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/08/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/08/golang-long.jpeg" alt="[GolangPackage] 使用lnx/walk建立圖形化介面"><p>golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面</p><h2 id="-">環境</h2><ul><li>Windows 10 x64</li><li>go 1.15</li><li>github.com/lxn/walk v0.0.0-20200806153934-8721e9bc9ff7</li><li>github.com/akavel/rsrc v0.9.0</li></ul><h2 id="--1">安裝</h2><p>要將程式包裝成可執行檔需要兩個package，分別是lxn/walk和akavel/rsrc<br>lxn/walk用來建立圖形化介面<br>akavel/rsrc用來將資源嵌入可執行檔<br>使用指令安裝lxn/walk和akavel/rsrc</p><pre><code>go get github.com/lxn/walk
+</code></pre>
+<h2 id>參考資料</h2>
+<p><a href="https://www.cns11643.gov.tw/pageView.jsp?ID=9">全字庫-中文碼介紹</a></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[GolangPackage] 使用lnx/walk建立圖形化介面]]></title><description><![CDATA[golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面]]></description><link>http://localhost:2368/golang-package-walk/</link><guid isPermaLink="false">5f4809f66c8c391358537596</guid><category><![CDATA[golang]]></category><category><![CDATA[golangPackage]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 27 Aug 2020 19:48:31 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/08/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2020/08/golang-long.jpeg" alt="[GolangPackage] 使用lnx/walk建立圖形化介面"><p>golang 普遍使用CLI作為使用者介面，但因為需要做一個程式給不常使用指令的人使用，所以使用lxn/walk建立圖形化使用者介面，lxn/walk可以滿足視窗的大部分需求，適用於建立一些基本的圖形化介面</p>
+<h2 id>環境</h2>
+<ul>
+<li>Windows 10 x64</li>
+<li>go 1.15</li>
+<li>github.com/lxn/walk v0.0.0-20200806153934-8721e9bc9ff7</li>
+<li>github.com/akavel/rsrc v0.9.0</li>
+</ul>
+<h2 id>安裝</h2>
+<p>要將程式包裝成可執行檔需要兩個package，分別是lxn/walk和akavel/rsrc<br>
+lxn/walk用來建立圖形化介面<br>
+akavel/rsrc用來將資源嵌入可執行檔<br>
+使用指令安裝lxn/walk和akavel/rsrc</p>
+<pre><code>go get github.com/lxn/walk
 go get github.com/akavel/rsrc
-</code></pre><h2 id="--2">結構</h2><p>在lxn/walk下包含了declarative sub package、範例檔和各種元件的檔案</p><pre><code>－github.com
+</code></pre>
+<h2 id>結構</h2>
+<p>在lxn/walk下包含了declarative sub package、範例檔和各種元件的檔案</p>
+<pre><code>－github.com
     |－lxn
         |－walk
             |－declarative
             |－examples
             |...其他檔案
-</code></pre><p>以examples下的action範例裡的一小段程式碼為例</p><pre><code>PushButton{
+</code></pre>
+<p>以examples下的action範例裡的一小段程式碼為例</p>
+<pre><code>PushButton{
 	AssignTo: &amp;toggleSpecialModePB,
-	Text:     "Enable Special Mode",
+	Text:     &quot;Enable Special Mode&quot;,
 	OnClicked: func() {
 		isSpecialMode.SetSatisfied(!isSpecialMode.Satisfied())
 
 		if isSpecialMode.Satisfied() {
-			toggleSpecialModePB.SetText("Disable Special Mode")
+			toggleSpecialModePB.SetText(&quot;Disable Special Mode&quot;)
 		} else {
-			toggleSpecialModePB.SetText("Enable Special Mode")
+			toggleSpecialModePB.SetText(&quot;Enable Special Mode&quot;)
 		}
 	},
 	Accessibility: Accessibility{
-		Help: "Toggles special mode",
+		Help: &quot;Toggles special mode&quot;,
 	},
 },
-</code></pre><p>很好奇PushButton裡面的這些參數到底是哪裡來的對吧<br>讓我們看看declarative目錄下的pushbutton.go檔案</p><p><strong>pushbutton.go</strong></p><pre><code>package declarative
+</code></pre>
+<p>很好奇PushButton裡面的這些參數到底是哪裡來的對吧<br>
+讓我們看看declarative目錄下的pushbutton.go檔案</p>
+<p><strong>pushbutton.go</strong></p>
+<pre><code>package declarative
 
 import (
-	"github.com/lxn/walk"
+	&quot;github.com/lxn/walk&quot;
 )
 
 type PushButton struct {
@@ -119,42 +178,50 @@ type PushButton struct {
 	AssignTo       **walk.PushButton
 	ImageAboveText bool
 }
-</code></pre><p>這邊清楚的定義了哪些元件可以用哪些參數，只要照著結構裡定義的屬性名稱和型別給予對應的數值就可以了</p><h2 id="--3">建置與執行</h2><p>要執行圖形化介面無法直接使用go run執行<br>必須在相同目錄下新增.manifest檔案並使用go build建置產生可執行檔<br>再啟動可執行檔執行<br>我們使用examples下的clipboard作為範例</p><p><strong>clipboard.go</strong></p><pre><code>// Copyright 2013 The Walk Authors. All rights reserved.
+</code></pre>
+<p>這邊清楚的定義了哪些元件可以用哪些參數，只要照著結構裡定義的屬性名稱和型別給予對應的數值就可以了</p>
+<h2 id>建置與執行</h2>
+<p>要執行圖形化介面無法直接使用go run執行<br>
+必須在相同目錄下新增.manifest檔案並使用go build建置產生可執行檔<br>
+再啟動可執行檔執行<br>
+我們使用examples下的clipboard作為範例</p>
+<p><strong>clipboard.go</strong></p>
+<pre><code>// Copyright 2013 The Walk Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
 package main
 
 import (
-	"log"
+	&quot;log&quot;
 )
 
 import (
-	"github.com/lxn/walk"
-	. "github.com/lxn/walk/declarative"
+	&quot;github.com/lxn/walk&quot;
+	. &quot;github.com/lxn/walk/declarative&quot;
 )
 
 func main() {
 	var te *walk.TextEdit
 
 	if _, err := (MainWindow{
-		Title:   "Walk Clipboard Example",
+		Title:   &quot;Walk Clipboard Example&quot;,
 		MinSize: Size{300, 200},
 		Layout:  VBox{},
 		Children: []Widget{
 			PushButton{
-				Text: "Copy",
+				Text: &quot;Copy&quot;,
 				OnClicked: func() {
 					if err := walk.Clipboard().SetText(te.Text()); err != nil {
-						log.Print("Copy: ", err)
+						log.Print(&quot;Copy: &quot;, err)
 					}
 				},
 			},
 			PushButton{
-				Text: "Paste",
+				Text: &quot;Paste&quot;,
 				OnClicked: func() {
 					if text, err := walk.Clipboard().Text(); err != nil {
-						log.Print("Paste: ", err)
+						log.Print(&quot;Paste: &quot;, err)
 					} else {
 						te.SetText(text)
 					}
@@ -168,28 +235,40 @@ func main() {
 		log.Fatal(err)
 	}
 }
-</code></pre><p><strong>test.manifest</strong></p><pre><code>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
-&lt;assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"&gt;
-    &lt;assemblyIdentity version="1.0.0.0" processorArchitecture="*" name="SomeFunkyNameHere" type="win32"/&gt;
+</code></pre>
+<p><strong>test.manifest</strong></p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;assembly xmlns=&quot;urn:schemas-microsoft-com:asm.v1&quot; manifestVersion=&quot;1.0&quot;&gt;
+    &lt;assemblyIdentity version=&quot;1.0.0.0&quot; processorArchitecture=&quot;*&quot; name=&quot;SomeFunkyNameHere&quot; type=&quot;win32&quot;/&gt;
     &lt;dependency&gt;
         &lt;dependentAssembly&gt;
-            &lt;assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" processorArchitecture="*" publicKeyToken="6595b64144ccf1df" language="*"/&gt;
+            &lt;assemblyIdentity type=&quot;win32&quot; name=&quot;Microsoft.Windows.Common-Controls&quot; version=&quot;6.0.0.0&quot; processorArchitecture=&quot;*&quot; publicKeyToken=&quot;6595b64144ccf1df&quot; language=&quot;*&quot;/&gt;
         &lt;/dependentAssembly&gt;
     &lt;/dependency&gt;
-    &lt;application xmlns="urn:schemas-microsoft-com:asm.v3"&gt;
+    &lt;application xmlns=&quot;urn:schemas-microsoft-com:asm.v3&quot;&gt;
         &lt;windowsSettings&gt;
-            &lt;dpiAwareness xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings"&gt;PerMonitorV2, PerMonitor&lt;/dpiAwareness&gt;
-            &lt;dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings"&gt;True&lt;/dpiAware&gt;
+            &lt;dpiAwareness xmlns=&quot;http://schemas.microsoft.com/SMI/2016/WindowsSettings&quot;&gt;PerMonitorV2, PerMonitor&lt;/dpiAwareness&gt;
+            &lt;dpiAware xmlns=&quot;http://schemas.microsoft.com/SMI/2005/WindowsSettings&quot;&gt;True&lt;/dpiAware&gt;
         &lt;/windowsSettings&gt;
     &lt;/application&gt;
 &lt;/assembly&gt;
-</code></pre><p>建立一個目錄並在目錄底下放置clipboard.go和test.manifest兩個檔案</p><pre><code>－walktest
+</code></pre>
+<p>建立一個目錄並在目錄底下放置clipboard.go和test.manifest兩個檔案</p>
+<pre><code>－walktest
     |－clipboard.go
     |－test.manifest
-</code></pre><p>第一次要使用指令產生.syso檔</p><pre><code>rsrc -manifest test.manifest -o rsrc.syso
-</code></pre><p>再輸入指令建置可執行檔</p><pre><code>go build
-</code></pre><p>運行可執行檔就會出現圖形化介面了</p><pre><code>walktest.exe
-</code></pre><figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2020/08/1.png" class="kg-image" alt="[GolangPackage] 使用lnx/walk建立圖形化介面"></figure>]]></content:encoded></item><item><title><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></title><description><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></description><link>http://localhost:2368/qt-key-mouse-press-event/</link><guid isPermaLink="false">5ee33b6118d9a726c4d13dcf</guid><category><![CDATA[Qt]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 12 Jun 2020 14:29:28 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" alt="Qt的鍵盤與滑鼠點擊事件"><p></p><h2 id="-">環境</h2><p>Qt 5.14.1<br>Qt Creator 4.11.1</p><hr><h2 id="--1">滑鼠點擊事件</h2><p>引用QMouseEvent標頭檔</p><!--kg-card-begin: markdown--><pre><code>#include &lt;QMouseEvent&gt;</code></pre>
+</code></pre>
+<p>第一次要使用指令產生.syso檔</p>
+<pre><code>rsrc -manifest test.manifest -o rsrc.syso
+</code></pre>
+<p>再輸入指令建置可執行檔</p>
+<pre><code>go build
+</code></pre>
+<p>運行可執行檔就會出現圖形化介面了</p>
+<pre><code>walktest.exe
+</code></pre>
+<p><img src="http://localhost:2368/golang-package-walk/assets/1.png" alt="[GolangPackage] 使用lnx/walk建立圖形化介面"></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></title><description><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></description><link>http://localhost:2368/qt-key-mouse-press-event/</link><guid isPermaLink="false">5ee33b6118d9a726c4d13dcf</guid><category><![CDATA[Qt]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 12 Jun 2020 14:29:28 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" alt="Qt的鍵盤與滑鼠點擊事件"><p></p><h2 id="-">環境</h2><p>Qt 5.14.1<br>Qt Creator 4.11.1</p><hr><h2 id="--1">滑鼠點擊事件</h2><p>引用QMouseEvent標頭檔</p><!--kg-card-begin: markdown--><pre><code>#include &lt;QMouseEvent&gt;</code></pre>
 <!--kg-card-end: markdown--><p>在protected裡定義滑鼠觸發事件</p><!--kg-card-begin: markdown--><pre><code>protected:
     void mousePressEvent(QMouseEvent * event);</code></pre>
 <!--kg-card-end: markdown--><p>新增具體觸發事件</p><!--kg-card-begin: markdown--><pre><code>void MainWindow::mousePressEvent(QMouseEvent * e)

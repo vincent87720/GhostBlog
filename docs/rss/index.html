@@ -1,4 +1,136 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Tue, 01 Sep 2020 15:57:31 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Golang]使用筆畫排序中文字]]></title><description><![CDATA[有次嘗試要使用筆劃排序中文姓名時，直接使用sort包進行排序，但發現結果並不是照著筆劃排序，查了點資料發現原來和UTF-8、Big5兩種編碼有極大的關係]]></description><link>http://localhost:2368/golang-sort-traditionalchinese/</link><guid isPermaLink="false">5f4e5a4978355806f01eea76</guid><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 01 Sep 2020 14:33:48 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/09/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2020/09/golang-long.jpeg" alt="[Golang]使用筆畫排序中文字"><p>有次嘗試要使用筆劃排序中文姓名時，直接使用sort包進行排序，但發現結果並不是照著筆劃排序，查了點資料發現原來和UTF-8、Big5兩種編碼有極大的關係</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Wed, 02 Sep 2020 20:24:39 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[C#]使用Npgsql連接到PostgreSQL server]]></title><description><![CDATA[<!--kg-card-begin: markdown--><h2 id>環境</h2>
+<ul>
+<li>Windows 10 x64</li>
+<li>Visual Studio Community 2019 v16.2.2</li>
+<li>Npgsql v4.1.4</li>
+</ul>
+<h2 id>安裝</h2>
+<p>開啟visual studio後點選&quot;<strong>工具</strong>-&gt;<strong>NuGet套件管理員</strong>-&gt;<strong>管理方案的NuGet套件</strong>&quot;<br>
+<img src="http://localhost:2368/content/images/2020/09/1.png" alt="1"><br>
+點選Npgsql，勾選右方會執行到此套件的專案，再點選安裝<br>
+<img src="http://localhost:2368/content/images/2020/09/2.png" alt="2"><br>
+按確定進行安裝<br>
+<img src="http://localhost:2368/content/images/2020/09/3.png" alt="3"></p>
+<h2 id>建立連線</h2>
+<p>設定好<code>host</code> <code>post</code> <code>username</code> <code>password</code> <code>database</code>等連線資訊後，使用<code>NpgsqlConnection</code>建立一個新連線，再使用Open()方法開啟連線</p>
+<pre><code class="language-csharp">class Program
+{
+    
+    static void Main(string[</code></pre>]]></description><link>http://localhost:2368/csharp-connect-to-postgresql/</link><guid isPermaLink="false">5f4ffba3a1fe94288c940dc2</guid><category><![CDATA[C#]]></category><category><![CDATA[NuGet]]></category><category><![CDATA[PostgreSQL]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Wed, 02 Sep 2020 20:21:06 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/09/dotNET.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><h2 id>環境</h2>
+<ul>
+<li>Windows 10 x64</li>
+<li>Visual Studio Community 2019 v16.2.2</li>
+<li>Npgsql v4.1.4</li>
+</ul>
+<h2 id>安裝</h2>
+<img src="http://localhost:2368/content/images/2020/09/dotNET.png" alt="[C#]使用Npgsql連接到PostgreSQL server"><p>開啟visual studio後點選&quot;<strong>工具</strong>-&gt;<strong>NuGet套件管理員</strong>-&gt;<strong>管理方案的NuGet套件</strong>&quot;<br>
+<img src="http://localhost:2368/content/images/2020/09/1.png" alt="[C#]使用Npgsql連接到PostgreSQL server"><br>
+點選Npgsql，勾選右方會執行到此套件的專案，再點選安裝<br>
+<img src="http://localhost:2368/content/images/2020/09/2.png" alt="[C#]使用Npgsql連接到PostgreSQL server"><br>
+按確定進行安裝<br>
+<img src="http://localhost:2368/content/images/2020/09/3.png" alt="[C#]使用Npgsql連接到PostgreSQL server"></p>
+<h2 id>建立連線</h2>
+<p>設定好<code>host</code> <code>post</code> <code>username</code> <code>password</code> <code>database</code>等連線資訊後，使用<code>NpgsqlConnection</code>建立一個新連線，再使用Open()方法開啟連線</p>
+<pre><code class="language-csharp">class Program
+{
+    
+    static void Main(string[] args)
+    {
+        string host = &quot;localhost&quot;;
+        string port = &quot;5432&quot;;
+        string username = &quot;postgres&quot;;
+        string password = &quot;password&quot;;
+        string database = &quot;postgis&quot;;
+        string connStr = $&quot;Host={host};Port={port};Username={username};Password={password};Database={database};&quot;;
+        using (NpgsqlConnection pgconn = new NpgsqlConnection(connStr))
+        {
+            pgconn.Open();
+        }
+
+    }
+}
+</code></pre>
+<h2 id>執行查詢</h2>
+<h3 id="npgsqldatareader">方法一：使用NpgsqlDataReader讀取資料</h3>
+<p>執行查詢必須用到先前建立好的連線和即將要執行的查詢式</p>
+<pre><code class="language-csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        ExecuteQuery(&quot;SELECT id,x,y FROM users;&quot;);
+    }
+    
+    public static void ExecuteQuery(string sqlstr)
+    {
+        using (var pgconn = new NpgsqlConnection(connStr))
+        {
+            pgconn.Open();
+            using (var cmd = new NpgsqlCommand(sqlstr, pgconn))
+            {
+                using (var reader = cmd.ExecuteReader())//使用NpgsqlDataReader讀取資料
+                {
+                    while (reader.Read())//讀取下一列直到沒有數值
+                    {
+                        Console.Write(reader.GetInt32(0));//0代表該列第0行的值，也就是對應到查詢式中的id
+                        Console.Write(reader.GetDouble(1));//1代表該列第1行的值，也就是對應到查詢式中的x
+                        Console.WriteLine(reader.GetDouble(2));//2代表該列第2行的值，也就是對應到查詢式中的y
+                    }
+                }
+            }
+        }
+    }
+    private static string host = &quot;localhost&quot;;
+    private static string port = &quot;5432&quot;;
+    private static string username = &quot;postgres&quot;;
+    private static string password = &quot;password&quot;;
+    private static string database = &quot;postgis&quot;;
+    private static string connStr = $&quot;Host={host};Port={port};Username={username};Password={password};Database={database};&quot;;
+}
+</code></pre>
+<h3 id="npgsqldataadapterdatatable">方法二：使用NpgsqlDataAdapter將資料放入DataTable</h3>
+<pre><code class="language-csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        DataTable dt = ExecuteQuery(&quot;SELECT id,x,y FROM sptable;&quot;);
+
+        foreach (DataRow row in dt.Rows)
+        {
+            Console.WriteLine(&quot;{0} {1} {2}&quot;, row[0], row[1], row[2]);//輸出該行的0,1,2個值，分別為id,x,y的值
+        }
+    }
+    public static DataTable ExecuteQuery(string sqlstr)
+    {
+        using (NpgsqlConnection pgconn = new NpgsqlConnection(connStr))
+        {
+            pgconn.Open();
+
+            DataTable dt = new DataTable();//建立一個DataTable
+
+            try
+            {
+                using (NpgsqlDataAdapter sqladap = new NpgsqlDataAdapter(sqlstr, pgconn))
+                {
+                    sqladap.Fill(dt);//使用NpgsqlDataAdapter將資料放入DataTable中
+                }
+                return dt;//返回DataTable
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return dt;
+            }
+        }
+    }
+    private static string host = &quot;localhost&quot;;
+    private static string port = &quot;5432&quot;;
+    private static string username = &quot;postgres&quot;;
+    private static string password = &quot;password&quot;;
+    private static string database = &quot;postgis&quot;;
+    private static string connStr = $&quot;Host={host};Port={port};Username={username};Password={password};Database={database};&quot;;
+}
+</code></pre>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Golang]使用筆畫排序中文字]]></title><description><![CDATA[有次嘗試要使用筆劃排序中文姓名時，直接使用sort包進行排序，但發現結果並不是照著筆劃排序，查了點資料發現原來和UTF-8、Big5兩種編碼有極大的關係]]></description><link>http://localhost:2368/golang-sort-traditionalchinese/</link><guid isPermaLink="false">5f4e5a4978355806f01eea76</guid><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 01 Sep 2020 14:33:48 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/09/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2020/09/golang-long.jpeg" alt="[Golang]使用筆畫排序中文字"><p>有次嘗試要使用筆劃排序中文姓名時，直接使用sort包進行排序，但發現結果並不是照著筆劃排序，查了點資料發現原來和UTF-8、Big5兩種編碼有極大的關係</p>
 <h2 id>環境</h2>
 <ul>
 <li>Windows 10 x64</li>

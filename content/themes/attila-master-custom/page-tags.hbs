@@ -1,0 +1,48 @@
+{{!< default}}
+
+<header id="blog-header"{{#if @site.cover_image}} class="has-cover"{{/if}}>
+	<div class="inner">
+		<nav id="navigation">
+			{{#if @site.logo}}
+			<span class="blog-logo">
+				<a href="{{@site.url}}"><img src="{{@site.logo}}" alt="{{t "Blog Logo"}}" /></a>
+			</span>
+			{{/if}}
+			{{#if @site.navigation}}
+			<span id="menu-button" class="nav-button">
+				<a class="menu-button"><i class="ic ic-menu"></i> {{t "Menu"}}</a>
+			</span>
+			{{/if}}
+		</nav>
+		<h1 class="blog-name"><a href="{{@site.url}}">{{@site.title}}</a></h1>
+		{{#if @site.description}}
+		<span class="blog-description">{{@site.description}}</span>
+		{{/if}}
+		{{#if @site.cover_image}}
+		<div class="blog-cover cover">
+			<img
+			src="{{img_url @site.cover_image size="xl"}}"
+			alt="{{@site.title}}" />
+		</div>
+		{{/if}}
+	</div>
+</header>
+
+{{#post}}
+
+<main id="site-main" class="site-main outer" role="main">
+  <div class="inner">
+    <header class="post-full-header">
+      <h1 class="post-full-title">{{title}}</h1>
+    </header>
+    {{#get 'tags' limit='all' include='count.posts' order='count.posts desc'}}
+    {{#foreach tags}}
+        <a href='{{ url }}'>
+        <h3>{{ name }} <small>({{ count.posts }})</small></h3>
+        </a>
+    {{/foreach}}
+    {{/get}}
+  </div>
+</main>
+
+{{/post}}

@@ -1,4 +1,160 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Sun, 08 Nov 2020 17:28:36 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Vue]Vuetify安裝與使用]]></title><description><![CDATA[Vuetify是一個Vue的UI框架，有許多精美和現成的組件可讓我們快速進行網頁排版及呈現，由於這篇文章撰寫時vuetify尚未支援Vue3，所以本篇文章以Vue2為例，示範如何將vuetify加入到Vue2專案中]]></description><link>http://localhost:2368/vue-vuetify-init/</link><guid isPermaLink="false">5fa82780420dbd31a087d3d1</guid><category><![CDATA[Vue]]></category><category><![CDATA[vuetify]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 08 Nov 2020 17:18:40 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/11/vue.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/11/vue.jpg" alt="[Vue]Vuetify安裝與使用"><p>Vuetify是一個Vue的UI框架，有許多精美和現成的組件可讓我們快速進行網頁排版及呈現，由於這篇文章撰寫時vuetify尚未支援Vue3，所以本篇文章以Vue2為例，示範如何將vuetify加入到Vue2專案中</p><!--kg-card-begin: markdown--><h2 id>環境</h2>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.1</generator><lastBuildDate>Tue, 10 Nov 2020 16:43:14 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Vue]將Vue-Router加入到專案中]]></title><description><![CDATA[在使用vue時，有時會需要在畫面中切換component，這時vue-router就派上用場啦，vue-router常常被用在single-page application中，這次的期中專題因為要將舊網頁變成single-page app，所以必須先了解如何將vue-router加入到專案中，方便後續使用]]></description><link>http://localhost:2368/vue-vuerouter-init/</link><guid isPermaLink="false">5faab3648214a931cca9350d</guid><category><![CDATA[Vue]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 10 Nov 2020 15:39:37 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/11/vue-1.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/11/vue-1.jpg" alt="[Vue]將Vue-Router加入到專案中"><p>在使用vue時，有時會需要在畫面中切換component，這時vue-router就派上用場啦，vue-router常常被用在single-page application中，這次的期中專題因為要將舊網頁變成single-page app，所以必須先了解如何將vue-router加入到專案中，方便後續使用</p><!--kg-card-begin: markdown--><h2 id>環境</h2>
+<ul>
+<li>Windows10 x64 2004</li>
+<li>Node.js - v12.19.0</li>
+<li>Vue - @vue/cli 4.5.8</li>
+<li>vue-router@3.4.9</li>
+</ul>
+<h2 id="vuerouter">安裝Vue-Router</h2>
+<p>要將Vue-Router加入到專案可使用CDN嵌入，或是使用npm安裝</p>
+<h3 id="cdn">CDN</h3>
+<p>在<code>&lt;head&gt;&lt;/head&gt;</code>標籤中加入下面這行標籤即可將Vue-Router加入到專案</p>
+<pre><code class="language-htmlmixed">&lt;head&gt;
+    &lt;script src=&quot;https://unpkg.com/vue-router/dist/vue-router.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+</code></pre>
+<h3 id="npm">npm</h3>
+<p>開啟終端機，並輸入以下指令，即可安裝Vue-Router</p>
+<pre><code class="language-shell">npm install vue-router
+</code></pre>
+<h2 id="vue">建立Vue專案</h2>
+<p>在使用Vue-Router之前建議先建立Vue專案，建立專案的方法請參考<a href="https://vincent87720.github.io/Blog/vue-vuecli-init/index.html">[Vue]使用Vue CLI建立專案</a></p>
+<h2 id="component">加入component</h2>
+<p>在已建立好的專案中尋找src資料夾，並在src目錄下新增views目錄<br>
+<img src="http://localhost:2368/content/images/2020/11/1-1.png" alt="[Vue]將Vue-Router加入到專案中"><br>
+在views目錄中放入想要進行切換的component，這邊以Home.vue和About.vue進行示範<br>
+<img src="http://localhost:2368/content/images/2020/11/2-1.png" alt="[Vue]將Vue-Router加入到專案中"><br>
+<strong>Home.vue</strong></p>
+<pre><code class="language-htmlmixed">&lt;template&gt;
+  &lt;div class=&quot;home&quot;&gt;
+    &lt;h1&gt;Home page&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+
+}
+&lt;/script&gt;
+
+</code></pre>
+<p><strong>About.vue</strong></p>
+<pre><code class="language-htmlmixed">&lt;template&gt;
+  &lt;div class=&quot;about&quot;&gt;
+    &lt;h1&gt;About page&lt;/h1&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+
+}
+&lt;/script&gt;
+
+</code></pre>
+<h2 id>建立路由目錄與檔案</h2>
+<p>接著在src目錄下新增router資料夾，並新增index.js檔案<br>
+<img src="http://localhost:2368/content/images/2020/11/3-1.png" alt="[Vue]將Vue-Router加入到專案中"><br>
+在檔案中可自由新增或刪除component，並配置component對應的路由</p>
+<p><strong>index.js</strong></p>
+<pre><code class="language-javascript">import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+//這裡可以自行import需要的component
+import Home from '../views/Home.vue'
+import About from '../views/About.vue'
+
+Vue.use(VueRouter)
+
+//建立路由routes
+const routes = [
+    {
+        path: '/',
+        component: Home
+    },
+    {
+        path: '/About',
+        component: About
+    }
+]
+
+//建立Vue-Router的instance，並將routes的配置帶入
+const router = new VueRouter({
+    mode: 'hash',
+    routes
+})
+//匯出成模組給Vue使用
+export default router
+
+</code></pre>
+<h2 id>匯入路由</h2>
+<p><img src="http://localhost:2368/content/images/2020/11/4-1.png" alt="[Vue]將Vue-Router加入到專案中"><br>
+在<code>main.js</code>中加入以下指令載入router模組</p>
+<pre><code class="language-javascript">import router from './router'
+</code></pre>
+<p>並在new Vue中加入router</p>
+<pre><code class="language-javascript">new Vue({
+  router,
+  render: h =&gt; h(App)
+}).$mount('#app')
+</code></pre>
+<p><strong>main.js</strong></p>
+<pre><code class="language-javascript">import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+
+Vue.config.productionTip = false
+
+new Vue({
+  router,
+  render: h =&gt; h(App)
+}).$mount('#app')
+
+</code></pre>
+<h2 id>加入路由連結</h2>
+<p>在<code>App.vue</code>中加入Home和About的連結<br>
+<img src="http://localhost:2368/content/images/2020/11/5.png" alt="[Vue]將Vue-Router加入到專案中"></p>
+<pre><code class="language-javascript">&lt;router-link to=&quot;/&quot;&gt;Home&lt;/router-link&gt;|
+&lt;router-link to=&quot;/About&quot;&gt;About&lt;/router-link&gt;
+&lt;router-view&gt;&lt;/router-view&gt;
+</code></pre>
+<p><strong>App.vue</strong></p>
+<pre><code class="language-htmlmixed">&lt;template&gt;
+  &lt;v-app&gt;
+    &lt;v-main&gt;
+      &lt;router-link to=&quot;/&quot;&gt;Home&lt;/router-link&gt;|
+      &lt;router-link to=&quot;/About&quot;&gt;About&lt;/router-link&gt;
+      &lt;router-view&gt;&lt;/router-view&gt;
+    &lt;/v-main&gt;
+  &lt;/v-app&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+
+export default {
+  name: 'App',
+
+  components: {
+  },
+
+  data: () =&gt; ({
+    //
+  }),
+};
+&lt;/script&gt;
+</code></pre>
+<p>到這裡我們已經建立好路由了，接著我們使用開發者模式查看成果</p>
+<h2 id>啟動開發者模式</h2>
+<p>在終端機輸入命令啟動開發者模式</p>
+<pre><code class="language-shell">npm run serve
+</code></pre>
+<p><img src="http://localhost:2368/content/images/2020/11/6.png" alt="[Vue]將Vue-Router加入到專案中"><br>
+依照指示在瀏覽器輸入網址</p>
+<h2 id>完成</h2>
+<p>現在已可使用連結切換component!<br>
+<img src="http://localhost:2368/content/images/2020/11/7.png" alt="[Vue]將Vue-Router加入到專案中"><br>
+<img src="http://localhost:2368/content/images/2020/11/8.png" alt="[Vue]將Vue-Router加入到專案中"></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Vue]Vuetify安裝與使用]]></title><description><![CDATA[Vuetify是一個Vue的UI框架，有許多精美和現成的組件可讓我們快速進行網頁排版及呈現，由於這篇文章撰寫時vuetify尚未支援Vue3，所以本篇文章以Vue2為例，示範如何將vuetify加入到Vue2專案中]]></description><link>http://localhost:2368/vue-vuetify-init/</link><guid isPermaLink="false">5fa82780420dbd31a087d3d1</guid><category><![CDATA[Vue]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 08 Nov 2020 17:18:40 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/11/vue.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/11/vue.jpg" alt="[Vue]Vuetify安裝與使用"><p>Vuetify是一個Vue的UI框架，有許多精美和現成的組件可讓我們快速進行網頁排版及呈現，由於這篇文章撰寫時vuetify尚未支援Vue3，所以本篇文章以Vue2為例，示範如何將vuetify加入到Vue2專案中</p><!--kg-card-begin: markdown--><h2 id>環境</h2>
 <ul>
 <li>Windows10 x64 2004</li>
 <li>Node.js - 6.12.1</li>
@@ -863,59 +1019,4 @@ func spinner(delay time.Duration, ch chan struct{}) {
         }
     }
 }</code></pre>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Golang]Golang函式]]></title><description><![CDATA[Golang基礎 - 函式]]></description><link>http://localhost:2368/golang-function/</link><guid isPermaLink="false">5dfde8756c21ff2c7860dae4</guid><category><![CDATA[golang]]></category><category><![CDATA[golangBasic]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 21 Dec 2019 12:49:49 GMT</pubDate><media:content url="http://localhost:2368/content/images/2019/12/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2019/12/golang-long.jpeg" alt="[Golang]Golang函式"><p></p><h3 id="-">基本用法</h3><p>最基本的用法為使用func作為宣告函式的關鍵字，後面接上函式名稱(test)及回傳值(string)，這裡要注意的是必須指定回傳型態，否則會跳出錯誤訊息"too many arguments to return"</p><!--kg-card-begin: markdown--><pre><code>func test() string{
-    return &quot;Hello&quot; 
-}
-
-func main(){
-    fmt.Println(test())
-}</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello</code></pre>
-<!--kg-card-end: markdown--><h3 id="--1">多個回傳值</h3><p>golang可以一次回傳多個值，在呼叫的地方必須使用多個變數接收傳回來的值</p><!--kg-card-begin: markdown--><pre><code>func test() (string,string){
-    return &quot;Hello&quot;,&quot;katsuobushi&quot;
-}
-
-func main(){
-    hlo,name := test()
-    fmt.Println(hlo , name)
-}</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello katsuobushi</code></pre>
-<!--kg-card-end: markdown--><h3 id="--2">傳入參數</h3><p>在函式名稱後的括號內加入一個或多個"<strong>變數名稱 變數型態"</strong>，以傳入參數</p><!--kg-card-begin: markdown--><pre><code>func foo(name string,age int){
-    fmt.Println(name,age)
-}
-
-func main(){
-    foo(&quot;katsuobushi&quot;,100)
-}</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;katsuobushi 100
-</code></pre>
-<!--kg-card-end: markdown--><h3 id="--3">為回傳值命名</h3><p>可為回傳變數命名(宣告變數)，在回傳時可直接呼叫<strong>return</strong>就可以了</p><!--kg-card-begin: markdown--><pre><code>func foo(str string) (returnStr string) {
-    returnStr = str
-    return
-}
-
-func main() {
-    fmt.Println(foo(&quot;Hello&quot;))
-}</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello</code></pre>
-<!--kg-card-end: markdown--><h3 id="--4">類別的方法</h3><p>這個應該歸在類別裡介紹，但自己曾經搞混過所以在這裡註記下，這是類別裡宣告方法的方式，在函式的前面加上<strong>"(變數名稱 *類別)"</strong>，即表示宣告該類別的一個方法</p><p>在方法中使用<strong>變數名稱.方法</strong>或<strong>變數名稱.屬性</strong>表示存取呼叫該方法的物件(本例為co物件)的方法或屬性</p><p>假設使用co物件呼叫setCourse方法，則在setCourse方法裡的c即代表co物件，而c.courseID就代表co物件裡的courseID屬性</p><!--kg-card-begin: markdown--><pre><code>type course struct {
-    courseID      string
-    courseTeacher string
-}
-
-func (c *course) setCourse(id string, teacher string) {
-    c.courseID = id
-    c.courseTeacher = teacher
-}
-
-func (c *course) print() {
-    fmt.Println(c.courseID, c.courseTeacher)
-}
-
-func main() {
-    var co course
-    co.setCourse(&quot;3452&quot;, &quot;GolangProgramming&quot;)
-    co.print()
-}
-</code></pre>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

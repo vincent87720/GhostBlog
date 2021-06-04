@@ -7,7 +7,7 @@ open(FILE, $fn) or die "$!";
 $cnt=0;
 $data="";
 while(<FILE>){
-  $cnt += ($_ =~ s/http:\/\/localhost\:2368\///ig);
+  $cnt += ($_ =~ s/\?v=94b9acde7e//ig);
   $data .= $_;
 }
  

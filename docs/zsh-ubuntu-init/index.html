@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>[Zsh]更改Ubuntu終端機樣式</title>
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<meta name="description" content="近期無意間在網路上發現Bullet Train這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇~~爽度~~工作效率" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="柴魚筆記本" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="[Zsh]更改Ubuntu終端機樣式" />
+    <meta property="og:description" content="近期無意間在網路上發現Bullet Train這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇~~爽度~~工作效率" />
+    <meta property="og:url" content="http://localhost:2368/zsh-ubuntu-init/" />
+    <meta property="og:image" content="http://localhost:2368/content/images/2021/06/2021-06-05-00-26-14-------1.png" />
+    <meta property="article:published_time" content="2021-06-04T16:32:31.000Z" />
+    <meta property="article:modified_time" content="2021-06-04T16:33:34.000Z" />
+    <meta property="article:tag" content="zsh" />
+    <meta property="article:tag" content="Ubuntu" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[Zsh]更改Ubuntu終端機樣式" />
+    <meta name="twitter:description" content="近期無意間在網路上發現Bullet Train這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇~~爽度~~工作效率" />
+    <meta name="twitter:url" content="http://localhost:2368/zsh-ubuntu-init/" />
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2021/06/2021-06-05-00-26-14-------1.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Katsuobushi" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="zsh, Ubuntu" />
+    <meta property="og:image:width" content="1083" />
+    <meta property="og:image:height" content="221" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "http://localhost:2368/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.png",
+            "width": 1048,
+            "height": 1063
+        },
+        "url": "http://localhost:2368/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "[Zsh]更改Ubuntu終端機樣式",
+    "url": "http://localhost:2368/zsh-ubuntu-init/",
+    "datePublished": "2021-06-04T16:32:31.000Z",
+    "dateModified": "2021-06-04T16:33:34.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2021/06/2021-06-05-00-26-14-------1.png",
+        "width": 1083,
+        "height": 221
+    },
+    "keywords": "zsh, Ubuntu",
+    "description": "近期無意間在網路上發現Bullet Train這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇~~爽度~~工作效率",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.42" />
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
+</head>
+
+<body class="post-template tag-zsh tag-ubuntu">
+
+	<nav id="menu">
+	<a class="close-button">Close</a>
+	<div class="nav-wrapper">
+		<p class="nav-label">Menu</p>
+		<ul>
+			<li class="nav-home" role="presentation"><a href="../index.html">Home</a></li>
+			<li class="nav-author" role="presentation"><a href="../author/Katsuobushi/index.html">Author</a></li>
+			<li class="nav-golang" role="presentation"><a href="../tag/golang/index.html">Golang</a></li>
+			<li class="nav-tags" role="presentation"><a href="../tags/index.html">Tags</a></li>
+			<li class="nav-lao-jian-bao-ji-suan-cheng-shi" role="presentation"><a href="https://vincent87720.github.io/lhipcp/">勞健保計算程式</a></li>
+		</ul>
+	</div>
+</nav>
+
+
+	<section id="wrapper">
+		<a class="hidden-close"></a>
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header id="post-header" class="has-cover" >
+	<div class="inner">
+		<nav id="navigation">
+			<span id="home-button" class="nav-button">
+				<a class="home-button" href="../index.html" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+			</span>
+			<span id="menu-button" class="nav-button">
+				<a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+			</span>
+		</nav>
+		<h1 class="post-title">[Zsh]更改Ubuntu終端機樣式</h1>
+		<span class="post-meta"><a href="../author/Katsuobushi/index.html">Katsuobushi</a> | <time datetime="2021-06-04">04 Jun 2021</time> | 1 min read</span>
+		<div class="post-cover cover">
+			<img
+			src="../content/images/size/w1920/2021/06/2021-06-05-00-26-14-------1.png"
+			alt="[Zsh]更改Ubuntu終端機樣式" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-zsh tag-ubuntu">
+		<div class="inner">
+
+			<section class="post-content">
+				<!--kg-card-begin: markdown--><p>近期無意間在網路上發現<a href="https://github.com/caiogondim/bullet-train.zsh">Bullet Train</a>這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇<s>爽度</s>工作效率</p>
+<h2 id="">環境</h2>
+<ul>
+<li>Ubuntu 20.04.2LTS</li>
+</ul>
+<h2 id="">安裝</h2>
+<p>更新套件清單</p>
+<pre><code class="language-shell">$ sudo apt-get update #更新套件清單
+$ sudo apt-get upgrade #根據已經更新的套件清單，比對是否更新套件
+</code></pre>
+<p>安裝Zsh</p>
+<pre><code class="language-shell">$ sudo apt-get install zsh
+</code></pre>
+<p>查看Zsh是否成功安裝</p>
+<pre><code class="language-shell">$ cat /etc/shells
+</code></pre>
+<p>安裝oh-my-zsh</p>
+<pre><code class="language-shell">$ sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+</code></pre>
+<p>安裝完會顯示oh-my-zsh的歡迎畫面</p>
+<h2 id="">修改設定</h2>
+<p>目前預設的還是Bash Shell，要將它改成Zsh</p>
+<pre><code class="language-shell">$ chsh -s /bin/zsh
+</code></pre>
+<p>修改完成後須重新登入</p>
+<h2 id="theme">安裝Theme</h2>
+<p>前往<a href="https://github.com/caiogondim/bullet-train.zsh">Bullet train</a>下載<a href="https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme">主題</a></p>
+<p>將下載好的主題<strong>bullet-train.zsh-theme</strong>放入<code>.oh-my-zsh/themes</code>目錄內</p>
+<p>接著編輯<code>~/.zshrc</code>，將<strong>ZSH_THEME</strong>設定為&quot;bullet-train&quot;</p>
+<h2 id="powerline">安裝powerline</h2>
+<pre><code class="language-shell">$ sudo apt-get install powerline
+$ sudo apt-get install fonts-powerline
+</code></pre>
+<h2 id="melso">安裝Melso字型</h2>
+<pre><code class="language-shell">$ git clone https://github.com/powerline/fonts.git --depth=1
+$ cd fonts 
+$ ./install.sh
+</code></pre>
+<p>右鍵點選Terminal&gt;偏好設定&gt;文字&gt;自訂字型，選擇<strong>Meslo LG S for Powerline Bold</strong>更改字型</p>
+<h2 id="">參考資料</h2>
+<ul>
+<li><a href="https://medium.com/@wifferlin0505/%E5%9C%A8-ubuntu-16-04-lts-%E4%B8%AD%E5%AE%89%E8%A3%9D%E4%BD%BF%E7%94%A8-oh-my-zsh-cf92203ca8a2">在 Ubuntu 18.04 LTS / 16.04 LTS 中安裝使用 Oh-My-Zsh</a></li>
+<li><a href="https://medium.com/@hazelwu/%E7%94%A8oh-my-zsh%E6%8A%8Aiterm%E8%AE%8A%E7%BE%8E%E7%BE%8E-8a18daa8eac">用Oh My Zsh把iTerm變美美</a></li>
+<li><a href="https://github.com/caiogondim/bullet-train.zsh">Github - Bullet Train for oh-my-zsh</a></li>
+<li><a href="https://github.com/powerline/fonts">Github - Powerline fonts</a></li>
+<li><a href="https://github.com/agnoster/agnoster-zsh-theme">agnoster.zsh-theme</a></li>
+</ul>
+<!--kg-card-end: markdown-->
+			</section>
+
+			<section class="post-info">
+
+				<div class="post-share">
+					<span class="post-info-label">Share:</span>
+					<a class="twitter" href="https://twitter.com/share?text=[Zsh]更改Ubuntu終端機樣式&url=http://localhost:2368/zsh-ubuntu-init/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+					</a>
+					<a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/zsh-ubuntu-init/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Tags:</span>
+					<a href="../tag/zsh/index.html">zsh</a> <a href="../tag/ubuntu/index.html">Ubuntu</a>
+				</aside>
+
+				<div class="clear"></div>
+
+						<aside class="post-author">
+							<figure class="post-author-avatar avatar">
+									<img src="../content/images/2019/12/dog-breeder-small.png" alt="Katsuobushi" />
+							</figure>
+							<div class="post-author-bio">
+								<h4 class="post-author-name"><a href="../author/Katsuobushi/index.html">Katsuobushi</a></h4>
+							</div>
+							<div class="clear"></div>
+						</aside>
+
+			</section>
+
+
+			<section class="post-comments">
+				<a id="show-disqus" class="post-comments-activate">Show Comments</a>
+			   <div id="disqus_thread"></div>
+			</section>
+
+
+			<aside class="post-nav">
+					<a class="post-nav-prev" href="../flash-firmware-on-esp01/index.html">
+						<section class="post-nav-teaser">
+							<i class="ic ic-arrow-right"></i>
+							<h2 class="post-nav-title">[ESP8266]ESP-01韌體燒錄</h2>
+							<p class="post-nav-excerpt">在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟&hellip;</p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+
+		</div>
+	</article>
+</main>
+
+
+		<div id="body-class" style="display: none;" class="post-template tag-zsh tag-ubuntu"></div>
+
+		<footer id="footer">
+			<div class="inner">
+				<section class="credits">
+					<span class="credits-theme">Theme <a href="https://github.com/zutrinken/attila">Attila</a> by <a href="https://zutrinken.com" rel="nofollow">zutrinken</a></span>
+					<span class="credits-software">Published with <a href="https://ghost.org">Ghost</a></span>
+				</section>
+			</div>
+		</footer>
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	
+
+</body>
+</html>

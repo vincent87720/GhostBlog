@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
 
 	<meta name="description" content="在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟" />
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
     <link rel="canonical" href="index.html" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="amp/index.html" />
@@ -46,6 +46,7 @@
     "publisher": {
         "@type": "Organization",
         "name": "柴魚筆記本",
+        "url": "http://localhost:2368/",
         "logo": {
             "@type": "ImageObject",
             "url": "http://localhost:2368/favicon.ico",
@@ -84,7 +85,7 @@
 }
     </script>
 
-    <meta name="generator" content="Ghost 3.1" />
+    <meta name="generator" content="Ghost 3.42" />
     <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
 </head>
 
@@ -96,7 +97,7 @@
 		<p class="nav-label">Menu</p>
 		<ul>
 			<li class="nav-home" role="presentation"><a href="../index.html">Home</a></li>
-			<li class="nav-author" role="presentation"><a href="../author/katsuobushi/index.html">Author</a></li>
+			<li class="nav-author" role="presentation"><a href="../author/Katsuobushi/index.html">Author</a></li>
 			<li class="nav-golang" role="presentation"><a href="../tag/golang/index.html">Golang</a></li>
 			<li class="nav-tags" role="presentation"><a href="../tags/index.html">Tags</a></li>
 			<li class="nav-lao-jian-bao-ji-suan-cheng-shi" role="presentation"><a href="https://vincent87720.github.io/lhipcp/">勞健保計算程式</a></li>
@@ -124,7 +125,7 @@
 			</span>
 		</nav>
 		<h1 class="post-title">[ESP8266]ESP-01韌體燒錄</h1>
-		<span class="post-meta"><a href="../author/katsuobushi/index.html">Katsuobushi</a> | <time datetime="2021-02-22">22 Feb 2021</time> | 4 min read</span>
+		<span class="post-meta"><a href="../author/Katsuobushi/index.html">Katsuobushi</a> | <time datetime="2021-02-22">22 Feb 2021</time> | 4 min read</span>
 		<div class="post-cover cover">
 			<img
 			src="../content/images/size/w1920/2021/02/pexels-skitterphoto-1448561.jpg"
@@ -242,7 +243,7 @@
 									<img src="../content/images/2019/12/dog-breeder-small.png" alt="Katsuobushi" />
 							</figure>
 							<div class="post-author-bio">
-								<h4 class="post-author-name"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+								<h4 class="post-author-name"><a href="../author/Katsuobushi/index.html">Katsuobushi</a></h4>
 							</div>
 							<div class="clear"></div>
 						</aside>
@@ -257,6 +258,13 @@
 
 
 			<aside class="post-nav">
+					<a class="post-nav-next" href="../zsh-ubuntu-init/index.html">
+						<section class="post-nav-teaser">
+							<i class="ic ic-arrow-left"></i>
+							<h2 class="post-nav-title">[Zsh]更改Ubuntu終端機樣式</h2>
+							<p class="post-nav-excerpt">近期無意間在網路上發現Bullet Train這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇~~爽度~~工作效率&hellip;</p>
+						</section>
+					</a>
 					<a class="post-nav-prev" href="../ide-vscode-terminal-using-msys/index.html">
 						<section class="post-nav-teaser">
 							<i class="ic ic-arrow-right"></i>

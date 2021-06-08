@@ -1,4 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.42</generator><lastBuildDate>Fri, 04 Jun 2021 20:08:26 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Zsh]更改Ubuntu終端機樣式]]></title><description><![CDATA[近期無意間在網路上發現Bullet Train這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇~~爽度~~工作效率]]></description><link>http://localhost:2368/zsh-ubuntu-init/</link><guid isPermaLink="false">60ba55154b0bccce2a8deb75</guid><category><![CDATA[zsh]]></category><category><![CDATA[Ubuntu]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 04 Jun 2021 16:32:31 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/06/2021-06-05-00-26-14-------1.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/06/2021-06-05-00-26-14-------1.png" alt="[Zsh]更改Ubuntu終端機樣式"><p>近期無意間在網路上發現<a href="https://github.com/caiogondim/bullet-train.zsh">Bullet Train</a>這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇<s>爽度</s>工作效率</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.42</generator><lastBuildDate>Tue, 08 Jun 2021 16:11:12 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Golang]MySQL Error 1040: Too Many Connections 錯誤處理]]></title><description><![CDATA[前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。]]></description><link>http://localhost:2368/golang-mysql-error-1040/</link><guid isPermaLink="false">60bf95efd94d554e3a9b2b57</guid><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 08 Jun 2021 16:09:52 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/06/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/06/golang-long.jpeg" alt="[Golang]MySQL Error 1040: Too Many Connections 錯誤處理"><p>前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。</p>
+<h2 id="mysql">查看MySQL的連線數量</h2>
+<p>在MySQL下SQL查詢</p>
+<pre><code class="language-sql">SHOW STATUS LIKE '%connected';
+</code></pre>
+<p>查詢結果如下</p>
+<table>
+<thead>
+<tr>
+<th>Variable_name</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slaves_connected</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td>Threads_connected</td>
+<td style="text-align:left">151</td>
+</tr>
+</tbody>
+</table>
+<p>我們可以發現到Threads_connected已經到達151了，MySQL預設的最大允許連線數量為151，可以使用以下指令查詢最大允許連線數量</p>
+<pre><code class="language-sql">SHOW VARIABLES LIKE 'max_connections';
+</code></pre>
+<h2 id>檢查程式碼</h2>
+<p>後來檢查程式碼發現在database/sql這個package有兩個struct，一個是DB，另一個是Conn，我將DB物件的連線關掉而沒有關閉Conn物件的，導致連線數一直增加，造成1040錯誤。</p>
+<h3 id>錯誤程式碼範例</h3>
+<pre><code class="language-go">db, err := sql.Open(&quot;mysql&quot;, &quot;user:password@tcp(127.0.0.1)/testdb?charset=utf8&quot;)
+if err != nil {
+    fmt.Println(err)
+}
+defer db.Close()
+
+_, err = db.Query(&quot;call SP(?,?,?,?)&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;)
+if err != nil {
+    fmt.Println(err)
+}
+</code></pre>
+<p>我們可以看到上面關閉的是db.Close()，這樣並不能正確關閉連線，必須關閉db.Query的連線才能正確的降低連線卡住的數量</p>
+<h3 id>修正程式碼範例</h3>
+<pre><code class="language-go">db, err := sql.Open(&quot;mysql&quot;, &quot;user:password@tcp(127.0.0.1)/testdb?charset=utf8&quot;)
+if err != nil {
+    fmt.Println(err)
+}
+defer db.Close()
+
+conn, err := db.Query(&quot;call SP(?,?,?,?)&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;)
+if err != nil {
+    fmt.Println(err)
+}
+defer conn.Close()
+
+</code></pre>
+<h2 id>參考資料</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/39452555/is-it-normal-to-have-these-many-connections-in-mysql">stackoverflow - Is it normal to have these many connections in MySQL?</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Zsh]更改Ubuntu終端機樣式]]></title><description><![CDATA[近期無意間在網路上發現Bullet Train這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇~~爽度~~工作效率]]></description><link>http://localhost:2368/zsh-ubuntu-init/</link><guid isPermaLink="false">60ba55154b0bccce2a8deb75</guid><category><![CDATA[zsh]]></category><category><![CDATA[Ubuntu]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 04 Jun 2021 16:32:31 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/06/2021-06-05-00-26-14-------1.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/06/2021-06-05-00-26-14-------1.png" alt="[Zsh]更改Ubuntu終端機樣式"><p>近期無意間在網路上發現<a href="https://github.com/caiogondim/bullet-train.zsh">Bullet Train</a>這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇<s>爽度</s>工作效率</p>
 <h2 id>環境</h2>
 <ul>
 <li>Ubuntu 20.04.2LTS</li>
@@ -961,67 +1021,4 @@ int main()
       <a href="https://www.reddit.com/r/hackintosh/">hackintosh</a>
     </blockquote>
     <script async src="https://embed.redditmedia.com/widgets/platform.js" charset="UTF-8"></script>
-</figure>]]></content:encoded></item><item><title><![CDATA[[Golang]channel簡介]]></title><description><![CDATA[在golang裡可使用channel在多個執行緒與主程式之間傳送資料，channel可設定不同型態的buffer，並指定緩衝區大小]]></description><link>http://localhost:2368/golang-channel/</link><guid isPermaLink="false">5e2ee3d2c847230f10934c35</guid><category><![CDATA[golang]]></category><category><![CDATA[golangBasic]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 27 Jan 2020 15:43:32 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/01/golang-long-2.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/01/golang-long-2.jpeg" alt="[Golang]channel簡介"><p></p><p>在golang裡可使用channel在多個執行緒與主程式之間傳送資料，channel可設定不同型態的buffer，並指定緩衝區大小</p><hr><h2 id="-channel">建立channel</h2><p>使用make配置空間，第一個參數使用chan指定為通道類型，後面接上channel的型態，第二個參數可加可不加，用來宣告buffer的大小</p><!--kg-card-begin: markdown--><pre><code>ch := make(chan int)
-ch := make(chan int,5)</code></pre>
-<!--kg-card-end: markdown--><p>須注意buffer的預設大小為零，若無指定buffer大小則發送方與接收方需同時準備好才可傳值，否則會造成deadlock(死結)</p><!--kg-card-begin: markdown--><pre><code>//OK(buffer為0)
-ch := make(chan int)
-defer close(ch)
-go func(){
-    ch &lt;- 7
-}()
-
-fmt.Println(&lt;-ch)
-
-//ERROR(buffer為0)
-ch := make(chan int)
-defer close(ch)
-ch &lt;- 7
-
-fmt.Println(&lt;-ch)
-
-//OK(buffer為1)
-ch := make(chan int,1)
-defer close(ch)
-ch &lt;- 7
-
-fmt.Println(&lt;-ch)</code></pre>
-<!--kg-card-end: markdown--><hr><h2 id="-channel-">使用channel傳遞數值</h2><h3 id="-channel-1">傳入channel</h3><p>將箭頭由數值指向channel，代表將值傳入到channel內</p><!--kg-card-begin: markdown--><pre><code>ch &lt;- 7</code></pre>
-<!--kg-card-end: markdown--><h3 id="-channel-2">傳出channel</h3><p>將箭頭由channel指向目的地，代表將數值由channel傳出</p><!--kg-card-begin: markdown--><pre><code>var result int
-result &lt;- ch
-fmt.Println(result)</code></pre>
-<!--kg-card-end: markdown--><hr><h2 id="-goroutine-">等待所有goroutine結束</h2><p>有時會遇到明明寫好了goroutine，但在最後將要把數據輸出時卻沒出現任何數據，這時就有可能是因為執行緒尚未結束運算而主程式已經執行完輸出的作業了，所以輸出時不會得到channel傳來的任何資訊，當然也不會輸出任何東西</p><!--kg-card-begin: markdown--><pre><code>func foo(ch chan int, val int) {
-    ch &lt;- val
-}
-
-func main() {
-    ch := make(chan int, 5)
-    for i := 0; i &lt; 5; i++ {
-        foo(ch, i)
-    }
-    close(ch)
-
-    for ele := range ch {
-        fmt.Println(ele)
-    }
-}</code></pre>
-<!--kg-card-end: markdown--><p>我們可以使用WaitGroup控制，等到所有執行緒都結束後再繼續往下執行</p><!--kg-card-begin: markdown--><pre><code>var wg sync.WaitGroup
-
-func foo(ch chan int, val int) {
-    defer wg.Done()
-    ch &lt;- val
-}
-
-func main() {
-    ch := make(chan int, 5)
-    for i := 0; i &lt; 5; i++ {
-        wg.Add(1)
-        foo(ch, i)
-    }
-    wg.Wait()
-    close(ch)
-
-    for ele := range ch {
-        fmt.Println(ele)
-    }
-}</code></pre>
-<!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>
+</figure>]]></content:encoded></item></channel></rss>

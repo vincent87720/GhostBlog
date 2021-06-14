@@ -1,4 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.42</generator><lastBuildDate>Wed, 09 Jun 2021 16:30:35 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Golang]MySQL Error 1040: Too Many Connections 錯誤處理]]></title><description><![CDATA[前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。]]></description><link>http://localhost:2368/golang-mysql-error-1040/</link><guid isPermaLink="false">60bf95efd94d554e3a9b2b57</guid><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 08 Jun 2021 16:09:52 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/06/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/06/golang-long.jpeg" alt="[Golang]MySQL Error 1040: Too Many Connections 錯誤處理"><p>前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.42</generator><lastBuildDate>Mon, 14 Jun 2021 09:21:34 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Pattern]REST API 設計規範]]></title><description><![CDATA[REST是一種架構風格，類似設計模式，使用一些原則規範應用程式的設計]]></description><link>http://localhost:2368/pattern-rest-api-design/</link><guid isPermaLink="false">60c7188467f493abc689cd41</guid><category><![CDATA[Pattern]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 14 Jun 2021 09:20:00 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg" alt="[Pattern]REST API 設計規範"><p>REST是一種架構風格，類似設計模式，使用一些原則規範應用程式的設計，以下為REST風格的一些特徵</p>
+<h2 id>使用名詞而非動詞</h2>
+<p>當我們想要設計一個學生的API時，應使用名詞進行定義</p>
+<pre><code class="language-javascript">//這是對的
+/students/1
+</code></pre>
+<p>而非使用動詞定義</p>
+<pre><code class="language-javascript">//這是錯的
+/getStudent/1
+</code></pre>
+<h2 id>使用複數名詞</h2>
+<p>不區分單複數，全部使用複數定義</p>
+<pre><code class="language-javascript">//這是對的
+/students
+</code></pre>
+<p>不使用單數定義</p>
+<pre><code class="language-javascript">//這是錯的
+/student
+</code></pre>
+<h2 id>使用子資源表達資源間的關係</h2>
+<p>以取得所有資源與特定資源為例</p>
+<pre><code class="language-javascript">//這是對的
+/students //取得所有學生
+/students/1 //取得特定學生
+</code></pre>
+<p>呼應到使用複數名詞定義API，取得特定資源時不使用單數表達，而是使用子資源方式定義</p>
+<pre><code class="language-javascript">//這是錯的
+/students //取得所有學生
+/student/1 //取得特定學生
+</code></pre>
+<h2 id="get">使用GET以外的方法改變資源狀態</h2>
+<p>要改變資源狀態應使用GET以外的方法，例如POST、PUT或DELETE等</p>
+<pre><code class="language-javascript">//這是對的
+POST /students/1/activate
+</code></pre>
+<p>不使用GET進行修改</p>
+<pre><code class="language-javascript">//這是錯的
+GET /students/1/activate
+</code></pre>
+<h2 id="httpheader">使用HTTP header定義格式</h2>
+<ul>
+<li>Content-Type定義請求格式</li>
+<li>Accept定義接收對應的格式列表</li>
+</ul>
+<h2 id="hateoas">使用HATEOAS約束</h2>
+<p>用戶端可以在伺服器返回的內容中動態的取得URI的資訊，再使用取得的URI資訊送出請求</p>
+<h2 id>提供過濾、排序、欄位選擇、分頁</h2>
+<h3 id>過濾</h3>
+<pre><code class="language-javascript">GET /students?gender=male
+GET /students?age&lt;=18
+</code></pre>
+<h3 id>排序</h3>
+<pre><code class="language-javascript">GET /students?sort=-age,+id
+</code></pre>
+<h3 id>欄位選擇</h3>
+<pre><code class="language-javascript">GET /students?fields=id,name,age,gender
+</code></pre>
+<h3 id>分頁</h3>
+<pre><code class="language-javascript">GET /students?offset=10&amp;limit=5 //取得學生第20個之後的5個學生
+</code></pre>
+<h2 id>使用版本</h2>
+<p>使用版本編號將API版本化，提供彈性</p>
+<pre><code class="language-javascript">/yourService/api/v1
+</code></pre>
+<h2 id="httpstatuscode">使用HTTP Status Code進行錯誤處理</h2>
+<p>每個錯誤都須返回一個payload，不可僅返回錯誤狀態碼(500 Internal Server Error)</p>
+<pre><code class="language-json">{
+    &quot;errors&quot;:[
+        {
+            &quot;userMessage&quot;:&quot;Sorry, the requested resource dose not exists.&quot;,
+            &quot;internalMessage&quot;:&quot;Student not found&quot;,
+            &quot;code&quot;:&quot;34&quot;
+        }
+    ]
+}
+</code></pre>
+<h2 id>參考資料</h2>
+<ul>
+<li>巨型公司的網路架構：分散是系統內部解密/柳偉衛</li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Golang]MySQL Error 1040: Too Many Connections 錯誤處理]]></title><description><![CDATA[前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。]]></description><link>http://localhost:2368/golang-mysql-error-1040/</link><guid isPermaLink="false">60bf95efd94d554e3a9b2b57</guid><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 08 Jun 2021 16:09:52 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/06/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/06/golang-long.jpeg" alt="[Golang]MySQL Error 1040: Too Many Connections 錯誤處理"><p>前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。</p>
 <h2 id="mysql">查看MySQL的連線數量</h2>
 <p>在MySQL下SQL查詢</p>
 <pre><code class="language-sql">SHOW STATUS LIKE '%connected';
@@ -1015,10 +1095,4 @@ int main()
 <!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;p       006FFC80
 &gt;&amp;p[0]   006FFC80
 &gt;&amp;p      006FFC74</code></pre>
-<!--kg-card-end: markdown--><p>這時p指標中儲存的是arr的位址，所以輸出的自然也就和arr的位址相同</p><p>&amp;p[0]指的是p[0]這個元素的位址，因為p指標是指向arr陣列的，所以當存取p[0]時會去尋找arr[0]，而自然其位址也就會等於arr[0]的位址</p><p>比較特別的是&amp;p，&amp;p代表取得p的位址，而因為p是指標，我們是取得p的位址，所以和arr的位址就不會是同一個了</p>]]></content:encoded></item><item><title><![CDATA[[Clover]開啟Clover時顯示錯誤訊息：Cannot install without ensuring the file system is read-write]]></title><description><![CDATA[在開啟Clover時會跳出"Cannot install without ensuring the file system is read-write"錯誤訊息]]></description><link>http://localhost:2368/clover-package-err/</link><guid isPermaLink="false">5e512e2257c9b119c4cb7261</guid><category><![CDATA[clover]]></category><category><![CDATA[hackintosh]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 22 Feb 2020 14:11:49 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/02/clover-1.png" medium="image"/><content:encoded><![CDATA[<figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2020/02/errMsg.png" class="kg-image" alt="[Clover]開啟Clover時顯示錯誤訊息：Cannot install without ensuring the file system is read-write"></figure><img src="http://localhost:2368/content/images/2020/02/clover-1.png" alt="[Clover]開啟Clover時顯示錯誤訊息：Cannot install without ensuring the file system is read-write"><p></p><h2 id="-">版本</h2><p>OS：macOs Catalina  Version 10.15.3<br>Clover：Clover_v2.5k_r5104</p><hr><h2 id="--1">問題</h2><p>在開啟Clover時會跳出"Cannot install without ensuring the file system is read-write"錯誤訊息</p><hr><h2 id="--2">解決方法及步驟</h2><p>1.Click the Apple symbol in the Menu bar.<br>2.Click Restart…<br>3.Hold down Command-R to reboot into Recovery Mode.<br>4.Click Utilities.<br>5.Select Terminal.<br>6.Type csrutil disable.<br>7.Press Return or Enter on your keyboard.<br>8.Click the Apple symbol in the Menu bar.<br>9.Click Restart…</p><hr><h2 id="--3">參考資料</h2><figure class="kg-card kg-embed-card">
-    <blockquote class="reddit-card">
-      <a href="https://www.reddit.com/r/hackintosh/comments/d9pbhy/clover_cannot_install_wo_ensuring_file_system_is/?ref_source=embed&amp;ref=share">Clover - Cannot Install w/o Ensuring File System is Read/Write</a> from
-      <a href="https://www.reddit.com/r/hackintosh/">hackintosh</a>
-    </blockquote>
-    <script async src="https://embed.redditmedia.com/widgets/platform.js" charset="UTF-8"></script>
-</figure>]]></content:encoded></item></channel></rss>
+<!--kg-card-end: markdown--><p>這時p指標中儲存的是arr的位址，所以輸出的自然也就和arr的位址相同</p><p>&amp;p[0]指的是p[0]這個元素的位址，因為p指標是指向arr陣列的，所以當存取p[0]時會去尋找arr[0]，而自然其位址也就會等於arr[0]的位址</p><p>比較特別的是&amp;p，&amp;p代表取得p的位址，而因為p是指標，我們是取得p的位址，所以和arr的位址就不會是同一個了</p>]]></content:encoded></item></channel></rss>

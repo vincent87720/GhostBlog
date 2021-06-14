@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>[Pattern]REST API 設計規範</title>
+
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<meta name="description" content="REST是一種架構風格，類似設計模式，使用一些原則規範應用程式的設計" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="柴魚筆記本" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="[Pattern]REST API 設計規範" />
+    <meta property="og:description" content="REST是一種架構風格，類似設計模式，使用一些原則規範應用程式的設計" />
+    <meta property="og:url" content="http://localhost:2368/pattern-rest-api-design/" />
+    <meta property="og:image" content="http://localhost:2368/content/images/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg" />
+    <meta property="article:published_time" content="2021-06-14T09:20:00.000Z" />
+    <meta property="article:modified_time" content="2021-06-14T09:20:00.000Z" />
+    <meta property="article:tag" content="Pattern" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[Pattern]REST API 設計規範" />
+    <meta name="twitter:description" content="REST是一種架構風格，類似設計模式，使用一些原則規範應用程式的設計" />
+    <meta name="twitter:url" content="http://localhost:2368/pattern-rest-api-design/" />
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Katsuobushi" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Pattern" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="682" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "http://localhost:2368/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/favicon.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.png",
+            "width": 1048,
+            "height": 1063
+        },
+        "url": "http://localhost:2368/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "[Pattern]REST API 設計規範",
+    "url": "http://localhost:2368/pattern-rest-api-design/",
+    "datePublished": "2021-06-14T09:20:00.000Z",
+    "dateModified": "2021-06-14T09:20:00.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg",
+        "width": 1024,
+        "height": 682
+    },
+    "keywords": "Pattern",
+    "description": "REST是一種架構風格，類似設計模式，使用一些原則規範應用程式的設計",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 3.42" />
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
+</head>
+
+<body class="post-template tag-pattern">
+
+	<nav id="menu">
+	<a class="close-button">Close</a>
+	<div class="nav-wrapper">
+		<p class="nav-label">Menu</p>
+		<ul>
+			<li class="nav-home" role="presentation"><a href="../index.html">Home</a></li>
+			<li class="nav-author" role="presentation"><a href="../author/katsuobushi/index.html">Author</a></li>
+			<li class="nav-golang" role="presentation"><a href="../tag/golang/index.html">Golang</a></li>
+			<li class="nav-tags" role="presentation"><a href="../tags/index.html">Tags</a></li>
+			<li class="nav-lao-jian-bao-ji-suan-cheng-shi" role="presentation"><a href="https://vincent87720.github.io/lhipcp/">勞健保計算程式</a></li>
+		</ul>
+	</div>
+</nav>
+
+
+	<section id="wrapper">
+		<a class="hidden-close"></a>
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header id="post-header" class="has-cover" >
+	<div class="inner">
+		<nav id="navigation">
+			<span id="home-button" class="nav-button">
+				<a class="home-button" href="../index.html" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+			</span>
+			<span id="menu-button" class="nav-button">
+				<a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+			</span>
+		</nav>
+		<h1 class="post-title">[Pattern]REST API 設計規範</h1>
+		<span class="post-meta"><a href="../author/katsuobushi/index.html">Katsuobushi</a> | <time datetime="2021-06-14">14 Jun 2021</time> | 2 min read</span>
+		<div class="post-cover cover">
+			<img
+			src="../content/images/size/w1920/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg"
+			alt="[Pattern]REST API 設計規範" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-pattern">
+		<div class="inner">
+
+			<section class="post-content">
+				<!--kg-card-begin: markdown--><p>REST是一種架構風格，類似設計模式，使用一些原則規範應用程式的設計，以下為REST風格的一些特徵</p>
+<h2 id="">使用名詞而非動詞</h2>
+<p>當我們想要設計一個學生的API時，應使用名詞進行定義</p>
+<pre><code class="language-javascript">//這是對的
+/students/1
+</code></pre>
+<p>而非使用動詞定義</p>
+<pre><code class="language-javascript">//這是錯的
+/getStudent/1
+</code></pre>
+<h2 id="">使用複數名詞</h2>
+<p>不區分單複數，全部使用複數定義</p>
+<pre><code class="language-javascript">//這是對的
+/students
+</code></pre>
+<p>不使用單數定義</p>
+<pre><code class="language-javascript">//這是錯的
+/student
+</code></pre>
+<h2 id="">使用子資源表達資源間的關係</h2>
+<p>以取得所有資源與特定資源為例</p>
+<pre><code class="language-javascript">//這是對的
+/students //取得所有學生
+/students/1 //取得特定學生
+</code></pre>
+<p>呼應到使用複數名詞定義API，取得特定資源時不使用單數表達，而是使用子資源方式定義</p>
+<pre><code class="language-javascript">//這是錯的
+/students //取得所有學生
+/student/1 //取得特定學生
+</code></pre>
+<h2 id="get">使用GET以外的方法改變資源狀態</h2>
+<p>要改變資源狀態應使用GET以外的方法，例如POST、PUT或DELETE等</p>
+<pre><code class="language-javascript">//這是對的
+POST /students/1/activate
+</code></pre>
+<p>不使用GET進行修改</p>
+<pre><code class="language-javascript">//這是錯的
+GET /students/1/activate
+</code></pre>
+<h2 id="httpheader">使用HTTP header定義格式</h2>
+<ul>
+<li>Content-Type定義請求格式</li>
+<li>Accept定義接收對應的格式列表</li>
+</ul>
+<h2 id="hateoas">使用HATEOAS約束</h2>
+<p>用戶端可以在伺服器返回的內容中動態的取得URI的資訊，再使用取得的URI資訊送出請求</p>
+<h2 id="">提供過濾、排序、欄位選擇、分頁</h2>
+<h3 id="">過濾</h3>
+<pre><code class="language-javascript">GET /students?gender=male
+GET /students?age&lt;=18
+</code></pre>
+<h3 id="">排序</h3>
+<pre><code class="language-javascript">GET /students?sort=-age,+id
+</code></pre>
+<h3 id="">欄位選擇</h3>
+<pre><code class="language-javascript">GET /students?fields=id,name,age,gender
+</code></pre>
+<h3 id="">分頁</h3>
+<pre><code class="language-javascript">GET /students?offset=10&amp;limit=5 //取得學生第20個之後的5個學生
+</code></pre>
+<h2 id="">使用版本</h2>
+<p>使用版本編號將API版本化，提供彈性</p>
+<pre><code class="language-javascript">/yourService/api/v1
+</code></pre>
+<h2 id="httpstatuscode">使用HTTP Status Code進行錯誤處理</h2>
+<p>每個錯誤都須返回一個payload，不可僅返回錯誤狀態碼(500 Internal Server Error)</p>
+<pre><code class="language-json">{
+    &quot;errors&quot;:[
+        {
+            &quot;userMessage&quot;:&quot;Sorry, the requested resource dose not exists.&quot;,
+            &quot;internalMessage&quot;:&quot;Student not found&quot;,
+            &quot;code&quot;:&quot;34&quot;
+        }
+    ]
+}
+</code></pre>
+<h2 id="">參考資料</h2>
+<ul>
+<li>巨型公司的網路架構：分散是系統內部解密/柳偉衛</li>
+</ul>
+<!--kg-card-end: markdown-->
+			</section>
+
+			<section class="post-info">
+
+				<div class="post-share">
+					<span class="post-info-label">Share:</span>
+					<a class="twitter" href="https://twitter.com/share?text=[Pattern]REST API 設計規範&url=http://localhost:2368/pattern-rest-api-design/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+					</a>
+					<a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/pattern-rest-api-design/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Tags:</span>
+					<a href="../tag/pattern/index.html">Pattern</a>
+				</aside>
+
+				<div class="clear"></div>
+
+						<aside class="post-author">
+							<figure class="post-author-avatar avatar">
+									<img src="../content/images/2019/12/dog-breeder-small.png" alt="Katsuobushi" />
+							</figure>
+							<div class="post-author-bio">
+								<h4 class="post-author-name"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+							</div>
+							<div class="clear"></div>
+						</aside>
+
+			</section>
+
+
+			<section class="post-full-comments">
+				<script src="https://utteranc.es/client.js"
+					repo="vincent87720/BlogComments"
+					issue-term="pathname"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+				</script>
+			</section>
+
+
+			<aside class="post-nav">
+					<a class="post-nav-prev" href="../golang-mysql-error-1040/index.html">
+						<section class="post-nav-teaser">
+							<i class="ic ic-arrow-right"></i>
+							<h2 class="post-nav-title">[Golang]MySQL Error 1040: Too Many Connections 錯誤處理</h2>
+							<p class="post-nav-excerpt">前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。&hellip;</p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+
+		</div>
+	</article>
+</main>
+
+
+		<div id="body-class" style="display: none;" class="post-template tag-pattern"></div>
+
+		<footer id="footer">
+			<div class="inner">
+				<section class="credits">
+					<span class="credits-theme">Theme <a href="https://github.com/zutrinken/attila">Attila</a> by <a href="https://zutrinken.com" rel="nofollow">zutrinken</a></span>
+					<span class="credits-software">Published with <a href="https://ghost.org">Ghost</a></span>
+				</section>
+			</div>
+		</footer>
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	
+
+</body>
+</html>

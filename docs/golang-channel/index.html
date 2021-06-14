@@ -24,7 +24,7 @@
     <meta property="og:url" content="http://localhost:2368/golang-channel/" />
     <meta property="og:image" content="http://localhost:2368/content/images/2020/01/golang-long-2.jpeg" />
     <meta property="article:published_time" content="2020-01-27T15:43:32.000Z" />
-    <meta property="article:modified_time" content="2020-10-27T18:28:22.000Z" />
+    <meta property="article:modified_time" content="2021-06-14T09:38:33.000Z" />
     <meta property="article:tag" content="golang" />
     
     <meta name="twitter:card" content="summary_large_image" />
@@ -69,7 +69,7 @@
     "headline": "[Golang]channel簡介",
     "url": "http://localhost:2368/golang-channel/",
     "datePublished": "2020-01-27T15:43:32.000Z",
-    "dateModified": "2020-10-27T18:28:22.000Z",
+    "dateModified": "2021-06-14T09:38:33.000Z",
     "image": {
         "@type": "ImageObject",
         "url": "http://localhost:2368/content/images/2020/01/golang-long-2.jpeg",
@@ -167,7 +167,7 @@ fmt.Println(&lt;-ch)</code></pre>
 <!--kg-card-end: markdown--><h3 id="-channel-2">傳出channel</h3><p>將箭頭由channel指向目的地，代表將數值由channel傳出</p><!--kg-card-begin: markdown--><pre><code>var result int
 result &lt;- ch
 fmt.Println(result)</code></pre>
-<!--kg-card-end: markdown--><hr><h2 id="-goroutine-">等待所有goroutine結束</h2><p>有時會遇到明明寫好了goroutine，但在最後將要把數據輸出時卻沒出現任何數據，這時就有可能是因為執行緒尚未結束運算而主程式已經執行完輸出的作業了，所以輸出時不會得到channel傳來的任何資訊，當然也不會輸出任何東西</p><!--kg-card-begin: markdown--><pre><code>func foo(ch chan int, val int) {
+<!--kg-card-end: markdown--><hr><h2 id="-goroutine-">等待所有goroutine結束</h2><p>有時會遇到明明寫好了goroutine，但在最後將要把數據輸出時卻沒出現任何數據，這時就有可能是因為執行緒尚未結束運算而已經先呼叫close(ch)導致無法使用ch，所以輸出時不會得到channel傳來的任何資訊，當然也不會輸出任何東西</p><!--kg-card-begin: markdown--><pre><code>func foo(ch chan int, val int) {
     ch &lt;- val
 }
 

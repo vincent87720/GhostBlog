@@ -8,6 +8,10 @@ $cnt=0;
 $data="";
 while(<FILE>){
   $cnt += ($_ =~ s/\?v=[a-zA-Z0-9]*//ig);
+  $cnt += ($_ =~ s/jpg[a-z]+/jpg/ig);
+  $cnt += ($_ =~ s/jpeg[a-z]+/jpeg/ig);
+  $cnt += ($_ =~ s/png[a-z]+/png/ig);
+  $cnt += ($_ =~ s/svg[a-z]+/svg/ig);
   $data .= $_;
 }
  

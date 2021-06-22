@@ -9,3 +9,6 @@ find ./docs/assets/font -type f -name '*?*' -exec rm {} \;
 	
 #取代檔案內的奇怪字串
 find ./docs -type f -name '*.html' -exec ./replace.pl {} \;
+
+#複製assets到docs裡面
+cp -Rf content/themes/attila-3.1.1/assets/* docs/assets/

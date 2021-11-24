@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.42</generator><lastBuildDate>Thu, 22 Jul 2021 15:32:35 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Network]TCP 三方交握]]></title><description><![CDATA[三方交握(Three-Way Handshake)是TCP(Transmission Control Protocol)在傳送資料前的一個儀式，用來確認雙方都有收到訊息並建立連線]]></description><link>http://localhost:2368/tcp-three-way-handshake/</link><guid isPermaLink="false">60f98e1812844678e7108e33</guid><category><![CDATA[network]]></category><category><![CDATA[TCP]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 22 Jul 2021 15:29:27 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/07/communication-4871245.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/07/communication-4871245.jpg" alt="[Network]TCP 三方交握"><p>三方交握(Three-Way Handshake)是TCP(Transmission Control Protocol)在傳送資料前的一個儀式，用來確認雙方都有收到訊息並建立連線</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://localhost:2368/</link><image><url>http://localhost:2368/favicon.png</url><title>柴魚筆記本</title><link>http://localhost:2368/</link></image><generator>Ghost 3.42</generator><lastBuildDate>Wed, 24 Nov 2021 15:40:35 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named 'XXX'.錯誤]]></title><description><![CDATA[使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行`manage.exe runserver --noreload`指令時發生*ModuleNotFoundError: No module named 'XXX'.* 錯誤]]></description><link>http://localhost:2368/python-shi-yong-pyinstallerda-bao-djangozhuan-an-fa-sheng-modulenotfounderror-no-module-named-xxx-cuo-wu/</link><guid isPermaLink="false">619e5c60bfa2143800faf4a8</guid><category><![CDATA[python]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Wed, 24 Nov 2021 15:39:29 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/11/python-logo-1.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/11/python-logo-1.jpg" alt="[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named 'XXX'.錯誤"><p><img src="http://localhost:2368/content/images/2021/11/0.0-1.png" alt="[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named 'XXX'.錯誤"></p>
+<p>使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行<code>manage.exe runserver --noreload</code>指令時發生<em>ModuleNotFoundError: No module named 'XXX'.</em> 錯誤</p>
+<h2 id>環境</h2>
+<ul>
+<li>Windows10 x64 20H2</li>
+<li>Python 3.9.7</li>
+<li>Django 3.2.7</li>
+<li>pyinstaller 4.7</li>
+</ul>
+<h2 id>解決方法</h2>
+<p>先前使用<code>pyinstaller -F .\manage.py</code>直接打包產生exe檔案，但是因為錯誤訊息提示缺少模組，其中一個解決方法是將錯誤訊息顯示的模組手動加入到hiddenimports中</p>
+<p>首先使用<code>pyi-makespec -F .\manage.py</code>指令產生spec檔，在檔案裡的hiddenimports中加入錯誤訊息所提示的模組名稱<br>
+<img src="http://localhost:2368/content/images/2021/11/0.1-1.png" alt="[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named 'XXX'.錯誤"></p>
+<p><img src="http://localhost:2368/content/images/2021/11/0.2.png" alt="[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named 'XXX'.錯誤"></p>
+<p>接著使用<code>pyinstaller -F .\manage.spec</code>指令將spec檔案打包成exe檔，再次使用<code>manage.exe runserver --noreload</code>指令執行顯示已可正常運作</p>
+<p><img src="http://localhost:2368/content/images/2021/11/0.3.png" alt="[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named 'XXX'.錯誤"></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Python]使用Pyinstaller打包Django專案發生"RuntimeError: Script runserver does not exist."錯誤]]></title><description><![CDATA[使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行`manage.exe runserver`指令時發生*RuntimeError: Script runserver does not exist.* 錯誤]]></description><link>http://localhost:2368/python-pyinstaller-django-runserver-does-not-exist-error/</link><guid isPermaLink="false">619e5aedbfa2143800faf491</guid><category><![CDATA[python]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Wed, 24 Nov 2021 15:35:58 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/11/python-logo.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/11/python-logo.jpg" alt="[Python]使用Pyinstaller打包Django專案發生"RuntimeError: Script runserver does not exist."錯誤"><p><img src="http://localhost:2368/content/images/2021/11/0.0.png" alt="[Python]使用Pyinstaller打包Django專案發生"RuntimeError: Script runserver does not exist."錯誤"><br>
+使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行<code>manage.exe runserver</code>指令時發生<em>RuntimeError: Script runserver does not exist.</em> 錯誤</p>
+<h2 id>環境</h2>
+<ul>
+<li>Windows10 x64 20H2</li>
+<li>Python 3.9.7</li>
+<li>Django 3.2.7</li>
+<li>pyinstaller 4.7</li>
+</ul>
+<h2 id>解決方法</h2>
+<p>將指令加上 <code>--noreload</code> 參數，使用指令<code>manage.exe runserver --noreload</code>即可解決這個錯誤</p>
+<p><img src="http://localhost:2368/content/images/2021/11/0.1.png" alt="[Python]使用Pyinstaller打包Django專案發生"RuntimeError: Script runserver does not exist."錯誤"></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Network]TCP 三方交握]]></title><description><![CDATA[三方交握(Three-Way Handshake)是TCP(Transmission Control Protocol)在傳送資料前的一個儀式，用來確認雙方都有收到訊息並建立連線]]></description><link>http://localhost:2368/tcp-three-way-handshake/</link><guid isPermaLink="false">60f98e1812844678e7108e33</guid><category><![CDATA[network]]></category><category><![CDATA[TCP]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 22 Jul 2021 15:29:27 GMT</pubDate><media:content url="http://localhost:2368/content/images/2021/07/communication-4871245.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://localhost:2368/content/images/2021/07/communication-4871245.jpg" alt="[Network]TCP 三方交握"><p>三方交握(Three-Way Handshake)是TCP(Transmission Control Protocol)在傳送資料前的一個儀式，用來確認雙方都有收到訊息並建立連線</p>
 <p>而在解釋三方交握之前，先來看看三方交握會用到的三個概念：請求、確認和同步</p>
 <h2 id>請求/確認</h2>
 <p>假設有A和B兩台電腦，A電腦要傳送封包給B電腦，為了確認B電腦是否收到封包，B電腦在收到A傳過來的封包之後會返回一個確認(Acknowledgment,ACK)封包，以告知A電腦已經有收到封包了，步驟如下：</p>
@@ -998,96 +1026,4 @@ func main() {
 <pre><code>walktest.exe
 </code></pre>
 <p><img src="http://localhost:2368/golang-package-walk/assets/1.png" alt="[GolangPackage] 使用lnx/walk建立圖形化介面"></p>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Qt]Qt的鍵盤與滑鼠點擊事件]]></title><description><![CDATA[Qt的鍵盤與滑鼠點擊事件]]></description><link>http://localhost:2368/qt-key-mouse-press-event/</link><guid isPermaLink="false">5ee33b6118d9a726c4d13dcf</guid><category><![CDATA[Qt]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 12 Jun 2020 14:29:28 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/06/DarkCyan.jpg" alt="[Qt]Qt的鍵盤與滑鼠點擊事件"><p></p><h2 id="-">環境</h2><p>Qt 5.14.1<br>Qt Creator 4.11.1</p><hr><h2 id="--1">滑鼠點擊事件</h2><p>引用QMouseEvent標頭檔</p><!--kg-card-begin: markdown--><pre><code>#include &lt;QMouseEvent&gt;</code></pre>
-<!--kg-card-end: markdown--><p>在protected裡定義滑鼠觸發事件</p><!--kg-card-begin: markdown--><pre><code>protected:
-    void mousePressEvent(QMouseEvent * event);</code></pre>
-<!--kg-card-end: markdown--><p>新增具體觸發事件</p><!--kg-card-begin: markdown--><pre><code>void MainWindow::mousePressEvent(QMouseEvent * e)
-{
-    //獲取座標
-    qDebug() &lt;&lt;&quot;(&quot;&lt;&lt; e-&gt;x() &lt;&lt; &quot;,&quot; &lt;&lt; e-&gt;y()&lt;&lt;&quot;)&quot;;
-
-    if(e-&gt;button() == Qt::LeftButton)
-    {
-        qDebug() &lt;&lt; &quot;左鍵&quot; ;
-    }
-    else if(e-&gt;button() == Qt::RightButton)
-    {
-        qDebug() &lt;&lt; &quot;右鍵&quot; ;
-    }
-}</code></pre>
-<!--kg-card-end: markdown--><p>要使用qDebug()輸出時必須增加#include&lt;QDebug&gt;引用QDebug標頭檔</p><hr><h2 id="--2">鍵盤點擊事件</h2><p>在protected裡定義滑鼠觸發事件</p><!--kg-card-begin: markdown--><pre><code>protected:
-    void keyPressEvent(QKeyEvent * event);</code></pre>
-<!--kg-card-end: markdown--><p>新增鍵盤觸發事件</p><!--kg-card-begin: markdown--><pre><code>void MainWindow::keyPressEvent(QKeyEvent * event)
-{
-    switch (event-&gt;key())
-    {
-        case Qt::Key_Alt:{
-                qDebug() &lt;&lt; &quot;Alt&quot;;
-            break;
-        }
-        default:{
-                qDebug() &lt;&lt; event-&gt;key();
-            break;
-        }
-    }
-}</code></pre>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[GolangPackage]指定golang執行檔檔案屬性]]></title><description><![CDATA[GoVersionInfo package可在生成執行檔時指定執行檔縮圖及檔案屬性，檔案描述、檔案類型、版本等參數皆可指定]]></description><link>http://localhost:2368/golang-package-goversioninfo/</link><guid isPermaLink="false">5ec6a6b6986e6527cc1d24c9</guid><category><![CDATA[golangPackage]]></category><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 21 May 2020 17:34:18 GMT</pubDate><media:content url="http://localhost:2368/content/images/2020/05/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<img src="http://localhost:2368/content/images/2020/05/golang-long.jpeg" alt="[GolangPackage]指定golang執行檔檔案屬性"><p>GoVersionInfo package可在生成執行檔時指定執行檔縮圖及檔案屬性，檔案描述、檔案類型、版本等參數皆可指定</p><hr><h2 id="-">安裝<br></h2><h3 id="-package">使用指令安裝package</h3><!--kg-card-begin: markdown--><pre><code>go get github.com/josephspurrier/goversioninfo/cmd/goversioninfo</code></pre>
-<!--kg-card-end: markdown--><h3 id="--1">產生可執行檔</h3><p>-0 bin/goversioninfo.exe代表要將產生出來的可執行檔放在bin目錄裡，並將檔名命名為goversioninfo.exe<br>空一格後面接github.com/josephspurrier/goversioninfo/cmd/goversioninfo代表要以這個package為目標產生可執行檔</p><!--kg-card-begin: markdown--><pre><code>go build -o bin/goversioninfo.exe github.com/josephspurrier/goversioninfo/cmd/goversioninfo</code></pre>
-<!--kg-card-end: markdown--><hr><h2 id="--2">設定<br></h2><h3 id="-go-generate-">設定go generate註釋</h3><p>將//go:generate goversioninfo加入到程式碼的最頂端，往後在執行go generate命令時才能夠被搜尋到</p><!--kg-card-begin: markdown--><pre><code>//go:generate goversioninfo
-
-package main
-
-import &quot;fmt&quot;
-
-func main() {
-    fmt.Println(&quot;Hello world&quot;)
-}
-</code></pre>
-<!--kg-card-end: markdown--><h3 id="-versioninfo-json-">設定versioninfo.json檔案</h3><p>在github.com\josephspurrier\goversioninfo\testdata\resource內有一個檔名為versioninfo的json檔，將其複製並放置於要產生執行檔的程式碼的目錄中</p><p>resource資料夾內有icon和goversioninfo.exe.manifest兩個檔案，等等在設定versioninfo時會用到</p><figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2020/05/---2020-05-22-012503.png" class="kg-image" alt="[GolangPackage]指定golang執行檔檔案屬性"></figure><h3 id="-versioninfo-json--1">指定versioninfo.json檔案參數</h3><p>將IconPath和ManifestPath的路徑指定為可執行檔圖示的路徑和Manifest檔案的路徑</p><!--kg-card-begin: markdown--><pre><code>{
-    &quot;FixedFileInfo&quot;: {
-        &quot;FileVersion&quot;: {
-            &quot;Major&quot;: 1,
-            &quot;Minor&quot;: 0,
-            &quot;Patch&quot;: 0,
-            &quot;Build&quot;: 0
-        },
-        &quot;ProductVersion&quot;: {
-            &quot;Major&quot;: 1,
-            &quot;Minor&quot;: 0,
-            &quot;Patch&quot;: 0,
-            &quot;Build&quot;: 0
-        },
-        &quot;FileFlagsMask&quot;: &quot;3f&quot;,
-        &quot;FileFlags &quot;: &quot;00&quot;,
-        &quot;FileOS&quot;: &quot;040004&quot;,
-        &quot;FileType&quot;: &quot;01&quot;,
-        &quot;FileSubType&quot;: &quot;00&quot;
-    },
-    &quot;StringFileInfo&quot;: {
-        &quot;Comments&quot;: &quot;Test file.&quot;,
-        &quot;CompanyName&quot;: &quot;josephspurrier&quot;,
-        &quot;FileDescription&quot;: &quot;This is a hello world file.&quot;,
-        &quot;FileVersion&quot;: &quot;v1.0.0.0&quot;,
-        &quot;InternalName&quot;: &quot;goversioninfo.exe&quot;,
-        &quot;LegalCopyright&quot;: &quot;Copyright (c) 2019 Joseph Spurrier&quot;,
-        &quot;LegalTrademarks&quot;: &quot;&quot;,
-        &quot;OriginalFilename&quot;: &quot;main.go&quot;,
-        &quot;PrivateBuild&quot;: &quot;&quot;,
-        &quot;ProductName&quot;: &quot;goversioninfo&quot;,
-        &quot;ProductVersion&quot;: &quot;v1.0.0.0&quot;,
-        &quot;SpecialBuild&quot;: &quot;&quot;
-    },
-    &quot;VarFileInfo&quot;: {
-        &quot;Translation&quot;: {
-            &quot;LangID&quot;: &quot;0409&quot;,
-            &quot;CharsetID&quot;: &quot;04B0&quot;
-        }
-    },
-    &quot;IconPath&quot;: &quot;resource/icon.ico&quot;,
-    &quot;ManifestPath&quot;: &quot;resource/goversioninfo.exe.manifest&quot;
-}</code></pre>
-<!--kg-card-end: markdown--><h3 id="-syso-">產生syso檔</h3><p>輸入go generate指令產生resource.syso檔案，若不在同個目錄內可指定package路徑，例如主程式在D:\Project\Go\src\goinfotest，若當前位置在目錄內直接下go generate即可，若不在目錄內則要輸入go generate+從src目錄後開始算的package路徑(go generate goinfotest)產生syso檔</p><!--kg-card-begin: markdown--><pre><code>go generate
-go generate your\package\route</code></pre>
-<!--kg-card-end: markdown--><figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2020/05/---2020-05-22-013035.png" class="kg-image" alt="[GolangPackage]指定golang執行檔檔案屬性"></figure><h3 id="--3">產生可執行檔</h3><p>使用go build產生可執行檔，亦可使用"go build -o 目的路徑與檔名 +package路徑"產生可執行檔</p><!--kg-card-begin: markdown--><pre><code>go build
-go build -o output\route your\package\route</code></pre>
-<!--kg-card-end: markdown--><figure class="kg-card kg-image-card"><img src="http://localhost:2368/content/images/2020/05/---2020-05-22-013343.png" class="kg-image" alt="[GolangPackage]指定golang執行檔檔案屬性"></figure>]]></content:encoded></item></channel></rss>
+<!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

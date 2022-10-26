@@ -1,0 +1,63 @@
+{
+  "name": "grunt-bg-shell",
+  "description": "Better shell commands for grunt. Background/parallel run",
+  "version": "2.3.3",
+  "author": {
+    "name": "rma4ok",
+    "email": "rma4ok@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Matthew Dzaman",
+      "email": "matthew@dzaman.org",
+      "github": "https://github.com/dzaman"
+    },
+    {
+      "name": "Chris Wren",
+      "email": "chris@chrisawren.com",
+      "github": "https://github.com/ChrisWren"
+    },
+    {
+      "name": "Max Brosnahan",
+      "email": "maximilianbrosnahan@gmail.com",
+      "github": "https://github.com/gingermusketeer"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rma4ok/grunt-bg-shell.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rma4ok/grunt-bg-shell/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/rma4ok/grunt-bg-shell/blob/master/LICENSE-MIT"
+    }
+  ],
+  "keywords": [
+    "gruntplugin",
+    "grunt",
+    "shell",
+    "command",
+    "cmd",
+    "exec",
+    "bash",
+    "bg",
+    "background",
+    "job",
+    "async"
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": ">=0.4.0"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  }
+}

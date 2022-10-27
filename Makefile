@@ -16,7 +16,8 @@ backup: backupInstance
 
 .PHONY: installDependency
 installDependency:
-	cd ./versions/$(VERSION); yarn install;
+	# cd ./versions/$(VERSION); yarn install;
+	ghost update --force
 
 .PHONY: installDarwinTools
 installDarwinTools:

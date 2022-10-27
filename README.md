@@ -1,10 +1,26 @@
 # Blog
 
 ## Environment
-- Node.js: v12.22.1
-- Ghost-CLI version: 1.21.0
-- Ghost version: 3.42.5
+- Node.js: v16.13.0
+- Ghost-CLI version: 1.23.1
+- Ghost version: 5.20.0
 
+## 啟動流程
+
+### 切換Node.js版本
+確認node版本
+```
+node --version
+```
+若版本不相同，使用nvm切換版本
+```
+nvm use 16.13.0
+```
+### 初始化設定
+設定ghost檔案內容路徑及下載Ghost相關dependency
+```
+make init
+```
 
 ## 錯誤修復
 

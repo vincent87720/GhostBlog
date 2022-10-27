@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-Hant">
 <head>
 
 	<meta charset="utf-8" />
@@ -29,8 +29,21 @@
 			}
 	</script>
 
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
 	<meta name="description" content="excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理" />
-    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
     <link rel="canonical" href="index.html" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="amp/index.html" />
@@ -68,7 +81,7 @@
         "url": "http://localhost:2368/",
         "logo": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/favicon.ico",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.ico",
             "width": 60,
             "height": 60
         }
@@ -78,9 +91,9 @@
         "name": "Katsuobushi",
         "image": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.png",
-            "width": 1048,
-            "height": 1063
+            "url": "http://localhost:2368/content/images/2022/10/dog-breeder-round-big.png",
+            "width": 2095,
+            "height": 2126
         },
         "url": "http://localhost:2368/author/katsuobushi/",
         "sameAs": []
@@ -104,8 +117,76 @@
 }
     </script>
 
-    <meta name="generator" content="Ghost 3.42" />
+    <meta name="generator" content="Ghost 5.20" />
     <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.15/umd/portal.min.js" data-ghost="http://localhost:2368/" data-key="5230415085a98103bb9daaa3d3" data-api="http://localhost:2368/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="http://localhost:2368/" crossorigin="anonymous"></script>
+    <script defer src="../public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
+    <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
 </head>
 
 <body class="post-template tag-golang tag-golangpackage">
@@ -120,24 +201,19 @@
 </ul>
 
 				<ul class="nav-meta">
-  <li class="nav-search" style="display: none;">
-    <a title="Search">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
       <i class="icon icon-search" aria-hidden="true"></i>
       <span>Search</span>
     </a>
   </li>
-  <!--
-    <li class="nav-subscribe">
-      <a href="#/portal">Subscribe</a>
-    </li>
-  -->
 </ul>
 		</nav>
 
 		<div class="nav-wrapper-control">
 			<div class="inner">
 				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
-				<a class="nav-search" style="display: none;" title="Search" role="button"><i class="icon icon-search" aria-hidden="true"></i></a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
 			</div>
 		</div>
 	</div>
@@ -162,7 +238,7 @@
 			<div class="post-meta-avatars">
 					<figure class="post-meta-avatar avatar">
 						<a href="../author/katsuobushi/index.html" class="author-avatar">
-								<img class="author-profile-image" src="../content/images/2019/12/dog-breeder-small.png" alt="Katsuobushi" />
+								<img class="author-profile-image" src="../content/images/2022/10/dog-breeder-round-big.png" alt="Katsuobushi" />
 						</a>
 					</figure>
 			</div>
@@ -186,21 +262,26 @@
 		<div class="inner">
 
 			<section class="post-content">
-				<p></p><p>excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理，須注意的是該package只支援.xlsx的檔案格式，尚不支援.xls的檔案處理</p><hr><h2 id="-">安裝</h2><p>使用指令安裝package</p><!--kg-card-begin: markdown--><pre><code>go get github.com/Luxurioust/excelize</code></pre>
-<!--kg-card-end: markdown--><hr><h2 id="--1">檔案操作<br></h2><h3 id="--2">創建新檔</h3><!--kg-card-begin: markdown--><pre><code>xlsx := excelize.NewFile()</code></pre>
+				<p></p><p>excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理，須注意的是該package只支援.xlsx的檔案格式，尚不支援.xls的檔案處理</p><hr><h2 id="-">安裝</h2><p>使用指令安裝package</p><!--kg-card-begin: markdown--><pre><code>go get github.com/Luxurioust/excelize
+</code></pre>
+<!--kg-card-end: markdown--><hr><h2 id="--1">檔案操作<br></h2><h3 id="--2">創建新檔</h3><!--kg-card-begin: markdown--><pre><code>xlsx := excelize.NewFile()
+</code></pre>
 <!--kg-card-end: markdown--><h3 id="--3">開啟舊檔</h3><!--kg-card-begin: markdown--><pre><code>inputFilePath := &quot;D:\Project&quot;
 xlsx, err := excelize.OpenFile(inputFilePath)
 if err != nil {
 	fmt.Println(&quot;\rERROR:&quot;, err)
-}</code></pre>
+}
+</code></pre>
 <!--kg-card-end: markdown--><h3 id="--4">讀取內容</h3><p>將檔案內的資料讀入一個二維的字串slice</p><!--kg-card-begin: markdown--><pre><code>sheetName := &quot;Sheet1&quot;//指定要讀取的工作表名稱
 xlsxRows, err = xlsx.GetRows(sheetName)
 if err != nil {
 	fmt.Println(&quot;\rERROR:&quot;,err)
-}</code></pre>
+}
+</code></pre>
 <!--kg-card-end: markdown--><h3 id="--5">變更工作表名稱</h3><!--kg-card-begin: markdown--><pre><code>oldSheetName := &quot;Sheet1&quot;//指定目前工作表名稱
 newSheetName := &quot;工作表&quot;//指定新的工作表名稱
-xlsx.SetSheetName(oldSheetName, newSheetName)</code></pre>
+xlsx.SetSheetName(oldSheetName, newSheetName)
+</code></pre>
 <!--kg-card-end: markdown--><h3 id="--6">設定樣式</h3><p><strong>建立樣式</strong><br>呼叫函式時使用JSON格式填入所需的樣式參數</p><p>fill：設定儲存格網底</p><!--kg-card-begin: markdown--><table>
 <thead>
 <tr>
@@ -277,12 +358,14 @@ if err != nil {
 <!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>fontStyle, err := f.NewStyle(`{&quot;font&quot;:{&quot;bold&quot;:true,&quot;italic&quot;:false,&quot;size&quot;:12,&quot;color&quot;:&quot;#FFFFFF&quot;}}`)
 if err != nil {
     fmt.Println(err)
-}</code></pre>
+}
+</code></pre>
 <!--kg-card-end: markdown--><p><strong>使用樣式</strong></p><!--kg-card-begin: markdown--><pre><code>//使用樣式設定column
 err := xlsx.SetColStyle(sheetName, &quot;A1&quot;, patternStyle)
 
 //使用樣式設定cell
-err := xlsx.SetCellStyle(sheetName, &quot;A1&quot;, &quot;A1&quot;, gradientStyle)</code></pre>
+err := xlsx.SetCellStyle(sheetName, &quot;A1&quot;, &quot;A1&quot;, gradientStyle)
+</code></pre>
 <!--kg-card-end: markdown-->
 			</section>
 
@@ -312,15 +395,6 @@ err := xlsx.SetCellStyle(sheetName, &quot;A1&quot;, &quot;A1&quot;, gradientStyl
 			</section>
 
 
-			<section class="post-full-comments">
-				<script src="https://utteranc.es/client.js"
-					repo="vincent87720/BlogComments"
-					issue-term="pathname"
-					theme="github-light"
-					crossorigin="anonymous"
-					async>
-				</script>
-			</section>
 
 
 			<aside class="post-nav">
@@ -352,48 +426,9 @@ err := xlsx.SetCellStyle(sheetName, &quot;A1&quot;, &quot;A1&quot;, gradientStyl
 
 
 
-
-		<div class="search-wrapper">
-			<div class="search">
-		    <form class="search-form">
-          <input class="search-field" type="text" placeholder="Search …">
-          <button class="search-button" type="submit">
-						<i class="icon icon-search" aria-hidden="true"></i>
-					</button>
-		    </form>
-				<div class="popular-wrapper">
-					<h4 class="popular-title">Topics</h4>
-					<span class="popular-tags post-tags">
-								<a href='../tag/golang/index.html'>golang: 8</a>
-								<a href='../tag/python/index.html'>python: 3</a>
-								<a href='../tag/golangpackage/index.html'>golangPackage: 3</a>
-								<a href='../tag/vue/index.html'>Vue: 3</a>
-								<a href='../tag/crawler/index.html'>crawler: 1</a>
-								<a href='../tag/clover/index.html'>clover: 1</a>
-								<a href='../tag/hackintosh/index.html'>hackintosh: 1</a>
-								<a href='../tag/cpp/index.html'>C++: 1</a>
-								<a href='../tag/qt/index.html'>Qt: 1</a>
-								<a href='../tag/csharp/index.html'>C#: 1</a>
-								<a href='../tag/nuget/index.html'>NuGet: 1</a>
-								<a href='../tag/postgresql/index.html'>PostgreSQL: 1</a>
-								<a href='../tag/mqtt/index.html'>mqtt: 1</a>
-								<a href='../tag/visualstudiocode/index.html'>VisualStudioCode: 1</a>
-								<a href='../tag/esp8266/index.html'>ESP8266: 1</a>
-								<a href='../tag/zsh/index.html'>zsh: 1</a>
-								<a href='../tag/ubuntu/index.html'>Ubuntu: 1</a>
-								<a href='../tag/pattern/index.html'>Pattern: 1</a>
-								<a href='../tag/network/index.html'>network: 1</a>
-								<a href='../tag/tcp/index.html'>TCP: 1</a>
-					</span>
-				</div>
-				<div class="search-result"></div>
-			</div>
-			<button class="search-wrapper-close" aria-label="Close"></button>
-		</div>
-
 		<div class="nav-footer">
 			<nav class="nav-wrapper" aria-label="Footer">
-				<span class="nav-copy">柴魚筆記本 &copy; 2021  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<span class="nav-copy">柴魚筆記本 &copy; 2022  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
 				<ul>
 		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
 		<li class="nav-lao-jian-bao-ji-suan-cheng-shi"><a href="https://vincent87720.github.io/lhipcp/"><span>勞健保計算程式</span></a></li>
@@ -417,7 +452,7 @@ err := xlsx.SetCellStyle(sheetName, &quot;A1&quot;, &quot;A1&quot;, gradientStyl
 		function codestyling() {
 	    $('pre code').each(function(i, e) {
 				// Code highlight
-	      hljs.highlightBlock(e);
+	      hljs.highlightElement(e);
 	      // No lines for plain text blocks
 	      if (!$(this).hasClass('language-text')) {
 	        var code = $(this);
@@ -456,23 +491,7 @@ err := xlsx.SetCellStyle(sheetName, &quot;A1&quot;, &quot;A1&quot;, gradientStyl
 	      readingProgress();
 	    }
 	  });
-		// Check if disqus is defined by code injection
-		if (typeof disqus === 'undefined') {
-			// hide comment section
-	    $('.post-comments').css({
-	      'display': 'none'
-	    });
-	  } else {
-	    $('#show-disqus').on('click', function() {
-	      $.ajax({
-	        type: "GET",
-	        url: "//" + disqus + ".disqus.com/embed.js",
-	        dataType: "script",
-	        cache: true
-	      });
-	      $(this).parent().addClass('activated');
-	    });
-	  }
+
   });
 </script>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-Hant">
 <head>
 
 	<meta charset="utf-8" />
@@ -29,8 +29,21 @@
 			}
 	</script>
 
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
 	<meta name="description" content="使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。" />
-    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
     <link rel="canonical" href="index.html" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="amp/index.html" />
@@ -68,7 +81,7 @@
         "url": "http://localhost:2368/",
         "logo": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/favicon.ico",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.ico",
             "width": 60,
             "height": 60
         }
@@ -78,9 +91,9 @@
         "name": "Katsuobushi",
         "image": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.png",
-            "width": 1048,
-            "height": 1063
+            "url": "http://localhost:2368/content/images/2022/10/dog-breeder-round-big.png",
+            "width": 2095,
+            "height": 2126
         },
         "url": "http://localhost:2368/author/katsuobushi/",
         "sameAs": []
@@ -104,8 +117,76 @@
 }
     </script>
 
-    <meta name="generator" content="Ghost 3.42" />
+    <meta name="generator" content="Ghost 5.20" />
     <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.15/umd/portal.min.js" data-ghost="http://localhost:2368/" data-key="5230415085a98103bb9daaa3d3" data-api="http://localhost:2368/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="http://localhost:2368/" crossorigin="anonymous"></script>
+    <script defer src="../public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
+    <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
 </head>
 
 <body class="post-template tag-python tag-crawler">
@@ -120,24 +201,19 @@
 </ul>
 
 				<ul class="nav-meta">
-  <li class="nav-search" style="display: none;">
-    <a title="Search">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
       <i class="icon icon-search" aria-hidden="true"></i>
       <span>Search</span>
     </a>
   </li>
-  <!--
-    <li class="nav-subscribe">
-      <a href="#/portal">Subscribe</a>
-    </li>
-  -->
 </ul>
 		</nav>
 
 		<div class="nav-wrapper-control">
 			<div class="inner">
 				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
-				<a class="nav-search" style="display: none;" title="Search" role="button"><i class="icon icon-search" aria-hidden="true"></i></a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
 			</div>
 		</div>
 	</div>
@@ -162,7 +238,7 @@
 			<div class="post-meta-avatars">
 					<figure class="post-meta-avatar avatar">
 						<a href="../author/katsuobushi/index.html" class="author-avatar">
-								<img class="author-profile-image" src="../content/images/2019/12/dog-breeder-small.png" alt="Katsuobushi" />
+								<img class="author-profile-image" src="../content/images/2022/10/dog-breeder-round-big.png" alt="Katsuobushi" />
 						</a>
 					</figure>
 			</div>
@@ -186,16 +262,22 @@
 		<div class="inner">
 
 			<section class="post-content">
-				<p></p><p>使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。</p><hr><h2 id="-">建立請求<br></h2><p>載入requests模組以建立HTTP請求</p><!--kg-card-begin: markdown--><pre><code>import requests</code></pre>
+				<p></p><p>使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。</p><hr><h2 id="-">建立請求<br></h2><p>載入requests模組以建立HTTP請求</p><!--kg-card-begin: markdown--><pre><code>import requests
+</code></pre>
 <!--kg-card-end: markdown--><p>建立GET請求</p><!--kg-card-begin: markdown--><pre><code>url = '' //填入目標網址以取得網頁內容
-resp = requests.get(url) //建立get請求</code></pre>
-<!--kg-card-end: markdown--><hr><h2 id="--1">解析請求<br></h2><h3 id="-json">目標為JSON</h3><p>使用<strong>json()</strong>方法解析內容，返回值(data)為字典</p><!--kg-card-begin: markdown--><pre><code>data = resp.json()</code></pre>
-<!--kg-card-end: markdown--><h3 id="-html-">目標為HTML網頁內容</h3><p>需使用BeautifulSoup模組裡的方法，使用以下指令載入該模組</p><!--kg-card-begin: markdown--><pre><code>from bs4 import BeautifulSoup</code></pre>
-<!--kg-card-end: markdown--><p>使用<strong>BeautifulSoup(htmlMarkup,'html5lib')</strong>方法解析網頁內容，返回值(soup)為&lt;class 'bs4.BeautifulSoup'&gt;</p><!--kg-card-begin: markdown--><pre><code>soup = BeautifulSoup(resp.text,'html5lib')</code></pre>
-<!--kg-card-end: markdown--><hr><h2 id="--2">取得內容<br></h2><h3 id="-json-1">目標為JSON</h3><p>以台灣證券交易所-201901月個股日成交資訊為例，網址為'<a href="https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&amp;date=20190101&amp;stockNo=2881">https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&amp;date=20190101&amp;stockNo=2881</a>'，該請求返回的內容如下圖</p><figure class="kg-card kg-image-card"><img src="../content/images/2020/01/bandicam-2020-01-03-22-28-14-255.jpg" class="kg-image"></figure><p>需使用Pandas模組裡的方法，使用以下指令載入該模組</p><!--kg-card-begin: markdown--><pre><code>import pandas as pd
+resp = requests.get(url) //建立get請求
+</code></pre>
+<!--kg-card-end: markdown--><hr><h2 id="--1">解析請求<br></h2><h3 id="-json">目標為JSON</h3><p>使用<strong>json()</strong>方法解析內容，返回值(data)為字典</p><!--kg-card-begin: markdown--><pre><code>data = resp.json()
+</code></pre>
+<!--kg-card-end: markdown--><h3 id="-html-">目標為HTML網頁內容</h3><p>需使用BeautifulSoup模組裡的方法，使用以下指令載入該模組</p><!--kg-card-begin: markdown--><pre><code>from bs4 import BeautifulSoup
+</code></pre>
+<!--kg-card-end: markdown--><p>使用<strong>BeautifulSoup(htmlMarkup,'html5lib')</strong>方法解析網頁內容，返回值(soup)為&lt;class 'bs4.BeautifulSoup'&gt;</p><!--kg-card-begin: markdown--><pre><code>soup = BeautifulSoup(resp.text,'html5lib')
+</code></pre>
+<!--kg-card-end: markdown--><hr><h2 id="--2">取得內容<br></h2><h3 id="-json-1">目標為JSON</h3><p>以台灣證券交易所-201901月個股日成交資訊為例，網址為'<a href="https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&amp;date=20190101&amp;stockNo=2881">https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&amp;date=20190101&amp;stockNo=2881</a>'，該請求返回的內容如下圖</p><figure class="kg-card kg-image-card"><img src="../content/images/2020/01/bandicam-2020-01-03-22-28-14-255.jpg" class="kg-image" alt loading="lazy"></figure><p>需使用Pandas模組裡的方法，使用以下指令載入該模組</p><!--kg-card-begin: markdown--><pre><code>import pandas as pd
 </code></pre>
 <!--kg-card-end: markdown--><p>我們需要取得data裡的0~20所有資訊做為內容，將其放入pandas的dataframe裡，並使用fields作為其欄位的標籤</p><!--kg-card-begin: markdown--><pre><code>//data[]為先前取得的資料，型態為字典
-df = pd.DataFrame(data['data'],columns = data['fields'])</code></pre>
+df = pd.DataFrame(data['data'],columns = data['fields'])
+</code></pre>
 <!--kg-card-end: markdown--><p>若要使用foreach迴圈讀取或印出dataframe的內容時，需使用<strong>df.values</strong>作為範圍，若只使用df作為範圍會得到錯誤的結果</p><!--kg-card-begin: markdown--><pre><code>for row in df:
     print(row)
 </code></pre>
@@ -207,30 +289,45 @@ df = pd.DataFrame(data['data'],columns = data['fields'])</code></pre>
 最低價
 收盤價
 漲跌價差
-成交筆數</code></pre>
+成交筆數
+</code></pre>
 <!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>for row in df.values:
-    print(row)</code></pre>
+    print(row)
+</code></pre>
 <!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;['108/10/01' '8,895,183' '399,156,974' '44.85' '45.00' '44.75' '45.00' '+0.45' '3,310']
 ['108/10/02' '4,399,985' '196,735,002' '44.55' '44.85' '44.55' '44.75' '-0.25' '1,745']
 ...
-['108/10/31' '17,527,040' '787,119,996' '45.40' '45.40' '44.55' '44.55' '-0.90' '5,017']</code></pre>
-<!--kg-card-end: markdown--><h3 id="-html--1">目標為HTML網頁內容</h3><p>類別為'bs4.BeautifulSoup'的物件可使用以下方法<br><br>find()	//查詢第一筆符合的資料<br>find(htmlTag)	//查詢標籤類型為htmlTag的第一筆元素<br>find(id='elementID')	//查詢id為elementID的元素<br>find(htmlTag,class_='className')	//查詢標籤為htmlTag且class為className的第一筆元素<br>find(htmlTag,className)	//查詢標籤為htmlTag且class為className的第一筆元素<br><br>find_all()	//查詢所有符合的元素<br>find_all(htmlTag)	//查詢所有符合標籤類型為htmlTag的元素<br>find_all(id='elementID')	//查詢id為elementID的元素<br>find_all(htmlTag,class_='className')	//查詢標籤為htmlTag且class為className的所有元素<br>find_all(htmlTag,className)	//查詢標籤為htmlTag且class為className的所有元素</p><p>若使用find_all()查詢，可使用foreach迴圈歷遍所有查找到的元素</p><!--kg-card-begin: markdown--><pre><code>for content in soup.find_all('li'):
-    print(content.string)</code></pre>
+['108/10/31' '17,527,040' '787,119,996' '45.40' '45.40' '44.55' '44.55' '-0.90' '5,017']
+</code></pre>
+<!--kg-card-end: markdown--><h3 id="-html--1">目標為HTML網頁內容</h3><p>類別為'bs4.BeautifulSoup'的物件可使用以下方法<br><br>find() //查詢第一筆符合的資料<br>find(htmlTag) //查詢標籤類型為htmlTag的第一筆元素<br>find(id='elementID') //查詢id為elementID的元素<br>find(htmlTag,class_='className') //查詢標籤為htmlTag且class為className的第一筆元素<br>find(htmlTag,className) //查詢標籤為htmlTag且class為className的第一筆元素<br><br>find_all() //查詢所有符合的元素<br>find_all(htmlTag) //查詢所有符合標籤類型為htmlTag的元素<br>find_all(id='elementID') //查詢id為elementID的元素<br>find_all(htmlTag,class_='className') //查詢標籤為htmlTag且class為className的所有元素<br>find_all(htmlTag,className) //查詢標籤為htmlTag且class為className的所有元素</p><p>若使用find_all()查詢，可使用foreach迴圈歷遍所有查找到的元素</p><!--kg-card-begin: markdown--><pre><code>for content in soup.find_all('li'):
+    print(content.string)
+</code></pre>
 <!--kg-card-end: markdown--><p>使用<strong>.string</strong>方法取得元素的內容</p><!--kg-card-begin: markdown--><pre><code>soup = BeautifulSoup('&lt;h1 id=&quot;thisish1&quot;&gt;content&lt;/h1&gt;', 'html5lib')
-print(soup.h1)</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;&lt;h1 id=&quot;thisish1&quot;&gt;content&lt;/h1&gt;</code></pre>
+print(soup.h1)
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;&lt;h1 id=&quot;thisish1&quot;&gt;content&lt;/h1&gt;
+</code></pre>
 <!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>soup = BeautifulSoup('&lt;h1 id=&quot;thisish1&quot;&gt;content&lt;/h1&gt;', 'html5lib')
-print(soup.h1.string)</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;content</code></pre>
+print(soup.h1.string)
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;content
+</code></pre>
 <!--kg-card-end: markdown--><p>使用get('href')方法取得元素的href屬性</p><!--kg-card-begin: markdown--><pre><code>soup = BeautifulSoup('&lt;h1 href=&quot;katsuobushi.com&quot;&gt;content&lt;/h1&gt;', 'html5lib')
-print(soup.h1.get('href'))</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;katsuobushi.com</code></pre>
+print(soup.h1.get('href'))
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;katsuobushi.com
+</code></pre>
 <!--kg-card-end: markdown--><hr><h2 id="--3">輸出為檔案<br></h2><h3 id="-csv-">輸出為csv檔案</h3><p>需載入os及csv模組以使用open及writer方法</p><!--kg-card-begin: markdown--><pre><code>import os
-import csv</code></pre>
-<!--kg-card-end: markdown--><p>使用w模式開啟檔案，w模式為打開一個文件只用於寫入，若文件已存在則打开文件，並從頭開始編輯，原有内容會被刪除。若文件不存在，則創建新文件。</p><!--kg-card-begin: markdown--><pre><code>file = open(filepath,'w',newline='',encoding='utf-8-sig')</code></pre>
-<!--kg-card-end: markdown--><p>使用csv.writer()創建一個writer</p><!--kg-card-begin: markdown--><pre><code>csvWriter = csv.writer(file)</code></pre>
-<!--kg-card-end: markdown--><p>writerow()方法可將一列資料寫入到檔案中</p><!--kg-card-begin: markdown--><pre><code>csvWriter.writerow(row)</code></pre>
-<!--kg-card-end: markdown--><p>寫入完畢後須關閉檔案，釋放資源</p><!--kg-card-begin: markdown--><pre><code>file.close()</code></pre>
+import csv
+</code></pre>
+<!--kg-card-end: markdown--><p>使用w模式開啟檔案，w模式為打開一個文件只用於寫入，若文件已存在則打开文件，並從頭開始編輯，原有内容會被刪除。若文件不存在，則創建新文件。</p><!--kg-card-begin: markdown--><pre><code>file = open(filepath,'w',newline='',encoding='utf-8-sig')
+</code></pre>
+<!--kg-card-end: markdown--><p>使用csv.writer()創建一個writer</p><!--kg-card-begin: markdown--><pre><code>csvWriter = csv.writer(file)
+</code></pre>
+<!--kg-card-end: markdown--><p>writerow()方法可將一列資料寫入到檔案中</p><!--kg-card-begin: markdown--><pre><code>csvWriter.writerow(row)
+</code></pre>
+<!--kg-card-end: markdown--><p>寫入完畢後須關閉檔案，釋放資源</p><!--kg-card-begin: markdown--><pre><code>file.close()
+</code></pre>
 <!--kg-card-end: markdown-->
 			</section>
 
@@ -260,15 +357,6 @@ import csv</code></pre>
 			</section>
 
 
-			<section class="post-full-comments">
-				<script src="https://utteranc.es/client.js"
-					repo="vincent87720/BlogComments"
-					issue-term="pathname"
-					theme="github-light"
-					crossorigin="anonymous"
-					async>
-				</script>
-			</section>
 
 
 			<aside class="post-nav">
@@ -300,48 +388,9 @@ import csv</code></pre>
 
 
 
-
-		<div class="search-wrapper">
-			<div class="search">
-		    <form class="search-form">
-          <input class="search-field" type="text" placeholder="Search …">
-          <button class="search-button" type="submit">
-						<i class="icon icon-search" aria-hidden="true"></i>
-					</button>
-		    </form>
-				<div class="popular-wrapper">
-					<h4 class="popular-title">Topics</h4>
-					<span class="popular-tags post-tags">
-								<a href='../tag/golang/index.html'>golang: 8</a>
-								<a href='../tag/python/index.html'>python: 3</a>
-								<a href='../tag/golangpackage/index.html'>golangPackage: 3</a>
-								<a href='../tag/vue/index.html'>Vue: 3</a>
-								<a href='../tag/crawler/index.html'>crawler: 1</a>
-								<a href='../tag/clover/index.html'>clover: 1</a>
-								<a href='../tag/hackintosh/index.html'>hackintosh: 1</a>
-								<a href='../tag/cpp/index.html'>C++: 1</a>
-								<a href='../tag/qt/index.html'>Qt: 1</a>
-								<a href='../tag/csharp/index.html'>C#: 1</a>
-								<a href='../tag/nuget/index.html'>NuGet: 1</a>
-								<a href='../tag/postgresql/index.html'>PostgreSQL: 1</a>
-								<a href='../tag/mqtt/index.html'>mqtt: 1</a>
-								<a href='../tag/visualstudiocode/index.html'>VisualStudioCode: 1</a>
-								<a href='../tag/esp8266/index.html'>ESP8266: 1</a>
-								<a href='../tag/zsh/index.html'>zsh: 1</a>
-								<a href='../tag/ubuntu/index.html'>Ubuntu: 1</a>
-								<a href='../tag/pattern/index.html'>Pattern: 1</a>
-								<a href='../tag/network/index.html'>network: 1</a>
-								<a href='../tag/tcp/index.html'>TCP: 1</a>
-					</span>
-				</div>
-				<div class="search-result"></div>
-			</div>
-			<button class="search-wrapper-close" aria-label="Close"></button>
-		</div>
-
 		<div class="nav-footer">
 			<nav class="nav-wrapper" aria-label="Footer">
-				<span class="nav-copy">柴魚筆記本 &copy; 2021  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<span class="nav-copy">柴魚筆記本 &copy; 2022  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
 				<ul>
 		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
 		<li class="nav-lao-jian-bao-ji-suan-cheng-shi"><a href="https://vincent87720.github.io/lhipcp/"><span>勞健保計算程式</span></a></li>
@@ -365,7 +414,7 @@ import csv</code></pre>
 		function codestyling() {
 	    $('pre code').each(function(i, e) {
 				// Code highlight
-	      hljs.highlightBlock(e);
+	      hljs.highlightElement(e);
 	      // No lines for plain text blocks
 	      if (!$(this).hasClass('language-text')) {
 	        var code = $(this);
@@ -404,23 +453,7 @@ import csv</code></pre>
 	      readingProgress();
 	    }
 	  });
-		// Check if disqus is defined by code injection
-		if (typeof disqus === 'undefined') {
-			// hide comment section
-	    $('.post-comments').css({
-	      'display': 'none'
-	    });
-	  } else {
-	    $('#show-disqus').on('click', function() {
-	      $.ajax({
-	        type: "GET",
-	        url: "//" + disqus + ".disqus.com/embed.js",
-	        dataType: "script",
-	        cache: true
-	      });
-	      $(this).parent().addClass('activated');
-	    });
-	  }
+
   });
 </script>
 

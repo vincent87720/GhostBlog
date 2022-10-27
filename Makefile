@@ -18,6 +18,10 @@ backup: backupInstance
 installDependency:
 	cd ./versions/$(VERSION); yarn install;
 
+.PHONY: installDarwinTools
+installDarwinTools:
+	brew install wget
+
 .PHONY: startInstance
 startInstance:
 	ghost start

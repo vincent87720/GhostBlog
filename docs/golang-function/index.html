@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-Hant">
 <head>
 
 	<meta charset="utf-8" />
@@ -29,8 +29,21 @@
 			}
 	</script>
 
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
 	<meta name="description" content="Golang基礎 - 函式" />
-    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
     <link rel="canonical" href="index.html" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="amp/index.html" />
@@ -67,7 +80,7 @@
         "url": "http://localhost:2368/",
         "logo": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/favicon.ico",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.ico",
             "width": 60,
             "height": 60
         }
@@ -77,9 +90,9 @@
         "name": "Katsuobushi",
         "image": {
             "@type": "ImageObject",
-            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.png",
-            "width": 1048,
-            "height": 1063
+            "url": "http://localhost:2368/content/images/2022/10/dog-breeder-round-big.png",
+            "width": 2095,
+            "height": 2126
         },
         "url": "http://localhost:2368/author/katsuobushi/",
         "sameAs": []
@@ -103,8 +116,76 @@
 }
     </script>
 
-    <meta name="generator" content="Ghost 3.42" />
+    <meta name="generator" content="Ghost 5.20" />
     <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.15/umd/portal.min.js" data-ghost="http://localhost:2368/" data-key="5230415085a98103bb9daaa3d3" data-api="http://localhost:2368/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="http://localhost:2368/" crossorigin="anonymous"></script>
+    <script defer src="../public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
+    <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
 </head>
 
 <body class="post-template tag-golang">
@@ -119,24 +200,19 @@
 </ul>
 
 				<ul class="nav-meta">
-  <li class="nav-search" style="display: none;">
-    <a title="Search">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
       <i class="icon icon-search" aria-hidden="true"></i>
       <span>Search</span>
     </a>
   </li>
-  <!--
-    <li class="nav-subscribe">
-      <a href="#/portal">Subscribe</a>
-    </li>
-  -->
 </ul>
 		</nav>
 
 		<div class="nav-wrapper-control">
 			<div class="inner">
 				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
-				<a class="nav-search" style="display: none;" title="Search" role="button"><i class="icon icon-search" aria-hidden="true"></i></a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
 			</div>
 		</div>
 	</div>
@@ -161,7 +237,7 @@
 			<div class="post-meta-avatars">
 					<figure class="post-meta-avatar avatar">
 						<a href="../author/katsuobushi/index.html" class="author-avatar">
-								<img class="author-profile-image" src="../content/images/2019/12/dog-breeder-small.png" alt="Katsuobushi" />
+								<img class="author-profile-image" src="../content/images/2022/10/dog-breeder-round-big.png" alt="Katsuobushi" />
 						</a>
 					</figure>
 			</div>
@@ -191,8 +267,10 @@
 
 func main(){
     fmt.Println(test())
-}</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello</code></pre>
+}
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello
+</code></pre>
 <!--kg-card-end: markdown--><h3 id="--1">多個回傳值</h3><p>golang可以一次回傳多個值，在呼叫的地方必須使用多個變數接收傳回來的值</p><!--kg-card-begin: markdown--><pre><code>func test() (string,string){
     return &quot;Hello&quot;,&quot;katsuobushi&quot;
 }
@@ -200,15 +278,18 @@ func main(){
 func main(){
     hlo,name := test()
     fmt.Println(hlo , name)
-}</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello katsuobushi</code></pre>
+}
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello katsuobushi
+</code></pre>
 <!--kg-card-end: markdown--><h3 id="--2">傳入參數</h3><p>在函式名稱後的括號內加入一個或多個"<strong>變數名稱 變數型態"</strong>，以傳入參數</p><!--kg-card-begin: markdown--><pre><code>func foo(name string,age int){
     fmt.Println(name,age)
 }
 
 func main(){
     foo(&quot;katsuobushi&quot;,100)
-}</code></pre>
+}
+</code></pre>
 <!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;katsuobushi 100
 </code></pre>
 <!--kg-card-end: markdown--><h3 id="--3">為回傳值命名</h3><p>可為回傳變數命名(宣告變數)，在回傳時可直接呼叫<strong>return</strong>就可以了</p><!--kg-card-begin: markdown--><pre><code>func foo(str string) (returnStr string) {
@@ -218,8 +299,10 @@ func main(){
 
 func main() {
     fmt.Println(foo(&quot;Hello&quot;))
-}</code></pre>
-<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello</code></pre>
+}
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello
+</code></pre>
 <!--kg-card-end: markdown--><h3 id="--4">類別的方法</h3><p>這個應該歸在類別裡介紹，但自己曾經搞混過所以在這裡註記下，這是類別裡宣告方法的方式，在函式的前面加上<strong>"(變數名稱 *類別)"</strong>，即表示宣告該類別的一個方法</p><p>在方法中使用<strong>變數名稱.方法</strong>或<strong>變數名稱.屬性</strong>表示存取呼叫該方法的物件(本例為co物件)的方法或屬性</p><p>假設使用co物件呼叫setCourse方法，則在setCourse方法裡的c即代表co物件，而c.courseID就代表co物件裡的courseID屬性</p><!--kg-card-begin: markdown--><pre><code>type course struct {
     courseID      string
     courseTeacher string
@@ -269,15 +352,6 @@ func main() {
 			</section>
 
 
-			<section class="post-full-comments">
-				<script src="https://utteranc.es/client.js"
-					repo="vincent87720/BlogComments"
-					issue-term="pathname"
-					theme="github-light"
-					crossorigin="anonymous"
-					async>
-				</script>
-			</section>
 
 
 			<aside class="post-nav">
@@ -309,48 +383,9 @@ func main() {
 
 
 
-
-		<div class="search-wrapper">
-			<div class="search">
-		    <form class="search-form">
-          <input class="search-field" type="text" placeholder="Search …">
-          <button class="search-button" type="submit">
-						<i class="icon icon-search" aria-hidden="true"></i>
-					</button>
-		    </form>
-				<div class="popular-wrapper">
-					<h4 class="popular-title">Topics</h4>
-					<span class="popular-tags post-tags">
-								<a href='../tag/golang/index.html'>golang: 8</a>
-								<a href='../tag/python/index.html'>python: 3</a>
-								<a href='../tag/golangpackage/index.html'>golangPackage: 3</a>
-								<a href='../tag/vue/index.html'>Vue: 3</a>
-								<a href='../tag/crawler/index.html'>crawler: 1</a>
-								<a href='../tag/clover/index.html'>clover: 1</a>
-								<a href='../tag/hackintosh/index.html'>hackintosh: 1</a>
-								<a href='../tag/cpp/index.html'>C++: 1</a>
-								<a href='../tag/qt/index.html'>Qt: 1</a>
-								<a href='../tag/csharp/index.html'>C#: 1</a>
-								<a href='../tag/nuget/index.html'>NuGet: 1</a>
-								<a href='../tag/postgresql/index.html'>PostgreSQL: 1</a>
-								<a href='../tag/mqtt/index.html'>mqtt: 1</a>
-								<a href='../tag/visualstudiocode/index.html'>VisualStudioCode: 1</a>
-								<a href='../tag/esp8266/index.html'>ESP8266: 1</a>
-								<a href='../tag/zsh/index.html'>zsh: 1</a>
-								<a href='../tag/ubuntu/index.html'>Ubuntu: 1</a>
-								<a href='../tag/pattern/index.html'>Pattern: 1</a>
-								<a href='../tag/network/index.html'>network: 1</a>
-								<a href='../tag/tcp/index.html'>TCP: 1</a>
-					</span>
-				</div>
-				<div class="search-result"></div>
-			</div>
-			<button class="search-wrapper-close" aria-label="Close"></button>
-		</div>
-
 		<div class="nav-footer">
 			<nav class="nav-wrapper" aria-label="Footer">
-				<span class="nav-copy">柴魚筆記本 &copy; 2021  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<span class="nav-copy">柴魚筆記本 &copy; 2022  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
 				<ul>
 		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
 		<li class="nav-lao-jian-bao-ji-suan-cheng-shi"><a href="https://vincent87720.github.io/lhipcp/"><span>勞健保計算程式</span></a></li>
@@ -374,7 +409,7 @@ func main() {
 		function codestyling() {
 	    $('pre code').each(function(i, e) {
 				// Code highlight
-	      hljs.highlightBlock(e);
+	      hljs.highlightElement(e);
 	      // No lines for plain text blocks
 	      if (!$(this).hasClass('language-text')) {
 	        var code = $(this);
@@ -413,23 +448,7 @@ func main() {
 	      readingProgress();
 	    }
 	  });
-		// Check if disqus is defined by code injection
-		if (typeof disqus === 'undefined') {
-			// hide comment section
-	    $('.post-comments').css({
-	      'display': 'none'
-	    });
-	  } else {
-	    $('#show-disqus').on('click', function() {
-	      $.ajax({
-	        type: "GET",
-	        url: "//" + disqus + ".disqus.com/embed.js",
-	        dataType: "script",
-	        cache: true
-	      });
-	      $(this).parent().addClass('activated');
-	    });
-	  }
+
   });
 </script>
 

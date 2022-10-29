@@ -8,7 +8,7 @@
     <title>Ghost Admin</title>
 
     
-<meta name="ghost-admin/config/environment" content="%7B%22modulePrefix%22%3A%22ghost-admin%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22trailing-hash%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%2C%22Array%22%3Atrue%2C%22String%22%3Atrue%2C%22Function%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_JQUERY_INTEGRATION%22%3Atrue%2C%22_TEMPLATE_ONLY_GLIMMER_COMPONENTS%22%3Atrue%7D%2C%22APP%22%3A%7B%22version%22%3A%225.20%22%2C%22name%22%3A%22ghost-admin%22%7D%2C%22ember-simple-auth%22%3A%7B%7D%2C%22%40sentry%2Fember%22%3A%7B%22disablePerformance%22%3Atrue%2C%22sentry%22%3A%7B%7D%7D%2C%22ember-cli-mirage%22%3A%7B%22usingProxy%22%3Afalse%2C%22useDefaultPassthroughs%22%3Atrue%7D%2C%22exportApplicationGlobal%22%3Afalse%2C%22ember-load%22%3A%7B%22loadingIndicatorClass%22%3A%22ember-load-indicator%22%7D%7D" />
+<meta name="ghost-admin/config/environment" content="%7B%22modulePrefix%22%3A%22ghost-admin%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22trailing-hash%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%2C%22Array%22%3Atrue%2C%22String%22%3Atrue%2C%22Function%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_JQUERY_INTEGRATION%22%3Atrue%2C%22_TEMPLATE_ONLY_GLIMMER_COMPONENTS%22%3Atrue%7D%2C%22APP%22%3A%7B%22version%22%3A%225.21%22%2C%22name%22%3A%22ghost-admin%22%7D%2C%22ember-simple-auth%22%3A%7B%7D%2C%22%40sentry%2Fember%22%3A%7B%22disablePerformance%22%3Atrue%2C%22sentry%22%3A%7B%7D%7D%2C%22ember-cli-mirage%22%3A%7B%22usingProxy%22%3Afalse%2C%22useDefaultPassthroughs%22%3Atrue%7D%2C%22exportApplicationGlobal%22%3Afalse%2C%22ember-load%22%3A%7B%22loadingIndicatorClass%22%3A%22ember-load-indicator%22%7D%7D" />
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
@@ -37,7 +37,7 @@
     </style>
 
     <link integrity="" rel="stylesheet" href="http://localhost:2368/ghost/assets/vendor-3e6947aa681f0fb82b193090e520dc73.css">
-    <link integrity="" rel="stylesheet" href="http://localhost:2368/ghost/assets/ghost-fd0480352bf27e013b2b00a1bf9ffe84.css" title="light">
+    <link integrity="" rel="stylesheet" href="http://localhost:2368/ghost/assets/ghost-9873519a8ad69b5b23284f0a9e050bc6.css" title="light">
 
     
 </head>
@@ -56,9 +56,9 @@
 
     <div id="ember-basic-dropdown-wormhole"></div>
 
-    <script src="http://localhost:2368/ghost/assets/vendor-518b03b02df9a55706d150627ef1004f.js"></script>
-<script src="http://localhost:2368/ghost/assets/chunk.613.c4d89dc2d28c1b20348f.js"></script>
-<script src="http://localhost:2368/ghost/assets/chunk.143.d245b085ad1efed4ee76.js"></script>
-    <script src="http://localhost:2368/ghost/assets/ghost-07e4bbf5029630b3c8a8a50c4b9f2d9e.js"></script>
+    <script src="http://localhost:2368/ghost/assets/vendor-26cca1d4d56660dc6e915a12ccc3b330.js"></script>
+<script src="http://localhost:2368/ghost/assets/chunk.613.695f31829550fb00d43c.js"></script>
+<script src="http://localhost:2368/ghost/assets/chunk.143.9cddfa7bd1a8b9cf3d4b.js"></script>
+    <script src="http://localhost:2368/ghost/assets/ghost-192fee3b46a193df1e65c49a67a7d694.js"></script>
 </body>
 </html>

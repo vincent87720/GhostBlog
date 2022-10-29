@@ -82,9 +82,9 @@
 }
     </script>
 
-    <meta name="generator" content="Ghost 5.20" />
+    <meta name="generator" content="Ghost 5.21" />
     <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html" />
-    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.15/umd/portal.min.js" data-ghost="http://localhost:2368/" data-key="5230415085a98103bb9daaa3d3" data-api="http://localhost:2368/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.19/umd/portal.min.js" data-ghost="http://localhost:2368/" data-key="5230415085a98103bb9daaa3d3" data-api="http://localhost:2368/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
 .gh-post-upgrade-cta {
     display: flex;
     flex-direction: column;
@@ -193,7 +193,7 @@
 		<div class="archive archive-tag box archive-box">
 			<span class="archive-info">
 				<span class="archive-type">Topic</span>
-				<span class="archive-count">1 Post</span>
+				<span class="archive-count">2 Posts</span>
 			</span>
 			<h2 class="archive-title">PostgreSQL</h2>
 		</div>
@@ -215,6 +215,23 @@
 </nav>
 
 </div>
+
+
+<article class="post tag-postgresql">
+	<div class="inner">
+		<div class="box post-box">
+			<h2 class="post-title"><a href="../../postgresql-write-timestamp-on-update/index.html">[PostgreSQL]執行UPDATE時自動記錄更新時間</a></h2>
+			<span class="post-meta">
+				By
+				<a href="../../author/katsuobushi/index.html">Katsuobushi</a>
+				in <a class="post-meta-tag" href="index.html">PostgreSQL</a>
+				on
+				<time datetime="30-07-2022">30 Jul 2022</time>
+			</span>
+			<p class="post-excerpt">若需要用到「依照更新順序排列資料」功能時，則會需要在表格被變動時在某個欄位紀錄該筆資料的變更時間以進行排序，這篇筆記在table中新增update_at欄位並使用TRIGGER及FUNCTION對其進行更新，以達成在更新紀錄時自動記錄更新時間的功能&hellip;</p>
+		</div>
+	</div>
+</article>
 
 
 <article class="post tag-csharp tag-nuget tag-postgresql">

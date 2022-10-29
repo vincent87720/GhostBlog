@@ -3,7 +3,7 @@
 ## Environment
 - Node.js: v16.13.0
 - Ghost-CLI version: 1.23.1
-- Ghost version: 5.20.0
+- Ghost version: 5.21.0
 
 ## 啟動流程
 

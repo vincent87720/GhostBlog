@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>[Golang]Golang函式</title>
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<script>
+			var siteUrl = 'http://127.0.0.1:2368';
+	</script>
+
+	<script>
+			var localTheme = localStorage.getItem('attila_theme');
+			switch (localTheme) {
+					case 'dark':
+							document.documentElement.classList.add('theme-dark');
+							break;
+					case 'light':
+							document.documentElement.classList.add('theme-light');
+							break;
+					default:
+							break;
+			}
+	</script>
+
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
+	<meta name="description" content="Golang基礎 - 函式" />
+    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
+    <link rel="canonical" href="index.html" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="amp/index.html" />
+    
+    <meta property="og:site_name" content="柴魚筆記本" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="[Golang]Golang函式" />
+    <meta property="og:description" content="Golang基礎 - 函式" />
+    <meta property="og:url" content="http://127.0.0.1:2368/golang-function/" />
+    <meta property="og:image" content="http://127.0.0.1:2368/content/images/2019/12/golang-long.jpeg" />
+    <meta property="article:published_time" content="2019-12-21T12:49:49.000Z" />
+    <meta property="article:modified_time" content="2020-10-27T18:30:58.000Z" />
+    <meta property="article:tag" content="golang" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[Golang]Golang函式" />
+    <meta name="twitter:description" content="Golang基礎 - 函式" />
+    <meta name="twitter:url" content="http://127.0.0.1:2368/golang-function/" />
+    <meta name="twitter:image" content="http://127.0.0.1:2368/content/images/2019/12/golang-long.jpeg" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Katsuobushi" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="golang" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="515" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "http://127.0.0.1:2368/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://127.0.0.1:2368/content/images/2019/12/dog-breeder-small.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://127.0.0.1:2368/content/images/2022/10/dog-breeder-round.svg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "http://127.0.0.1:2368/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "[Golang]Golang函式",
+    "url": "http://127.0.0.1:2368/golang-function/",
+    "datePublished": "2019-12-21T12:49:49.000Z",
+    "dateModified": "2020-10-27T18:30:58.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://127.0.0.1:2368/content/images/2019/12/golang-long.jpeg",
+        "width": 2000,
+        "height": 515
+    },
+    "keywords": "golang",
+    "description": "Golang基礎 - 函式",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://127.0.0.1:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.21" />
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.19/umd/portal.min.js" data-ghost="http://127.0.0.1:2368/" data-key="5230415085a98103bb9daaa3d3" data-api="http://127.0.0.1:2368/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="http://127.0.0.1:2368/" crossorigin="anonymous"></script>
+    <script defer src="../public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
+    <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+</head>
+
+<body class="post-template tag-golang">
+
+	<div class="nav-header">
+		<nav class="nav-wrapper" aria-label="Main">
+				<ul>
+		<li class="nav-home"><a href="../index.html"><span>Home</span></a></li>
+		<li class="nav-author"><a href="../author/katsuobushi/index.html"><span>Author</span></a></li>
+		<li class="nav-tags"><a href="../tags/index.html"><span>Tags</span></a></li>
+		<li class="nav-golang"><a href="../tag/golang/index.html"><span>Golang</span></a></li>
+</ul>
+
+				<ul class="nav-meta">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>
+		</nav>
+
+		<div class="nav-wrapper-control">
+			<div class="inner">
+				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="nav-close" role="button" aria-label="Close"></div>
+
+	<section class="page-wrapper">
+
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header class="post-header  has-cover ">
+	<div class="inner">
+		<span class="post-info">
+			<span class="post-type">Article</span>
+			<span class="post-count">golang</span>
+		</span>
+		<h1 class="post-title">[Golang]Golang函式</h1>
+		<div class="post-meta">
+			<div class="post-meta-avatars">
+					<figure class="post-meta-avatar avatar">
+						<a href="../author/katsuobushi/index.html" class="author-avatar">
+								<img class="author-profile-image" src="../content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
+						</a>
+					</figure>
+			</div>
+			<h4 class="post-meta-author"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+			<time datetime="21-12-2019">21 Dec 2019</time> &bull; 2 min read
+		</div>
+		<div class="post-cover cover">
+			<img
+			srcset="../content/images/size/w320/2019/12/golang-long.jpeg 320w,
+             ../content/images/size/w640/2019/12/golang-long.jpeg 640w,
+            ../content/images/size/w960/2019/12/golang-long.jpeg 960w,
+           ../content/images/size/w1920/2019/12/golang-long.jpeg 1920w"
+      src="../content/images/size/w1920/2019/12/golang-long.jpeg"
+			alt="[Golang]Golang函式" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-golang">
+		<div class="inner">
+
+			<section class="post-content">
+				<p></p><h3 id="-">基本用法</h3><p>最基本的用法為使用func作為宣告函式的關鍵字，後面接上函式名稱(test)及回傳值(string)，這裡要注意的是必須指定回傳型態，否則會跳出錯誤訊息"too many arguments to return"</p><!--kg-card-begin: markdown--><pre><code>func test() string{
+    return &quot;Hello&quot; 
+}
+
+func main(){
+    fmt.Println(test())
+}
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello
+</code></pre>
+<!--kg-card-end: markdown--><h3 id="--1">多個回傳值</h3><p>golang可以一次回傳多個值，在呼叫的地方必須使用多個變數接收傳回來的值</p><!--kg-card-begin: markdown--><pre><code>func test() (string,string){
+    return &quot;Hello&quot;,&quot;katsuobushi&quot;
+}
+
+func main(){
+    hlo,name := test()
+    fmt.Println(hlo , name)
+}
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello katsuobushi
+</code></pre>
+<!--kg-card-end: markdown--><h3 id="--2">傳入參數</h3><p>在函式名稱後的括號內加入一個或多個"<strong>變數名稱 變數型態"</strong>，以傳入參數</p><!--kg-card-begin: markdown--><pre><code>func foo(name string,age int){
+    fmt.Println(name,age)
+}
+
+func main(){
+    foo(&quot;katsuobushi&quot;,100)
+}
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;katsuobushi 100
+</code></pre>
+<!--kg-card-end: markdown--><h3 id="--3">為回傳值命名</h3><p>可為回傳變數命名(宣告變數)，在回傳時可直接呼叫<strong>return</strong>就可以了</p><!--kg-card-begin: markdown--><pre><code>func foo(str string) (returnStr string) {
+    returnStr = str
+    return
+}
+
+func main() {
+    fmt.Println(foo(&quot;Hello&quot;))
+}
+</code></pre>
+<!--kg-card-end: markdown--><!--kg-card-begin: markdown--><pre><code>&gt;Hello
+</code></pre>
+<!--kg-card-end: markdown--><h3 id="--4">類別的方法</h3><p>這個應該歸在類別裡介紹，但自己曾經搞混過所以在這裡註記下，這是類別裡宣告方法的方式，在函式的前面加上<strong>"(變數名稱 *類別)"</strong>，即表示宣告該類別的一個方法</p><p>在方法中使用<strong>變數名稱.方法</strong>或<strong>變數名稱.屬性</strong>表示存取呼叫該方法的物件(本例為co物件)的方法或屬性</p><p>假設使用co物件呼叫setCourse方法，則在setCourse方法裡的c即代表co物件，而c.courseID就代表co物件裡的courseID屬性</p><!--kg-card-begin: markdown--><pre><code>type course struct {
+    courseID      string
+    courseTeacher string
+}
+
+func (c *course) setCourse(id string, teacher string) {
+    c.courseID = id
+    c.courseTeacher = teacher
+}
+
+func (c *course) print() {
+    fmt.Println(c.courseID, c.courseTeacher)
+}
+
+func main() {
+    var co course
+    co.setCourse(&quot;3452&quot;, &quot;GolangProgramming&quot;)
+    co.print()
+}
+</code></pre>
+<!--kg-card-end: markdown-->
+			</section>
+
+			<section class="post-footer">
+
+				<div class="post-share">
+					<span class="post-info-label">Share</span>
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=[Golang]Golang函式&url=http://127.0.0.1:2368/golang-function/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:2368/golang-function/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://127.0.0.1:2368/golang-function//&amp;title=[Golang]Golang函式" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+						<i class="icon icon-linkedin" aria-hidden="true"></i>
+					</a>
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=[Golang]Golang函式&amp;body=http://127.0.0.1:2368/golang-function/">
+						<i class="icon icon-mail" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Topic</span>
+					<a href="../tag/golang/index.html">golang</a>
+				</aside>
+
+			</section>
+
+			<section class="post-full-comments">
+				<script src="https://utteranc.es/client.js"
+					repo="vincent87720/BlogComments"
+					issue-term="pathname"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+				</script>
+			</section>
+
+
+
+
+			<aside class="post-nav">
+
+					<a class="post-nav-next" href="../golang-kill-goroutine/index.html">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-left" aria-label="Next post"></i>
+							<h2 class="post-nav-title">[Golang]從外部中斷Goroutine</h2>
+							<p class="post-nav-excerpt">想要從外部終止一個正在執行中或無限迴圈的goroutine，必須使用channel將中斷訊息傳入使之中斷&hellip;</p>
+							<p class="post-nav-meta"><time datetime="24-12-2019">24 Dec 2019</time></p>
+						</section>
+					</a>
+
+					<a class="post-nav-prev" href="../wildcard-mask/index.html">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
+							<h2 class="post-nav-title">計算Wildcard Mask</h2>
+							<p class="post-nav-excerpt">在設置ACL(Access Control List)時，會用到Wildcard Mask標示在範圍內的IP位址，這篇筆記記錄如何使用wildcard mask計算IP範圍的起點及終點&hellip;</p>
+							<p class="post-nav-meta"><time datetime="14-12-2019">14 Dec 2019</time></p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+		<div class="nav-footer">
+			<nav class="nav-wrapper" aria-label="Footer">
+				<span class="nav-copy">柴魚筆記本 &copy; 2022  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<ul>
+		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
+		<li class="nav-lao-jian-bao-ji-suan-cheng-shi"><a href="https://vincent87720.github.io/lhipcp/"><span>勞健保計算程式</span></a></li>
+</ul>
+
+				<span class="nav-credits">Published with <a href="https://ghost.org">Ghost</a> &bull; Theme <a href="https://github.com/zutrinken/attila">Attila</a> &bull; <a class="menu-item js-theme" href="index.html#" data-system="System theme" data-dark="Dark theme" data-light="Light theme"><span class="theme-icon"></span><span class="theme-text">System theme</span> </a> </span>
+			</nav>
+		</div>
+
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+
+  });
+</script>
+
+
+	
+
+</body>
+</html>

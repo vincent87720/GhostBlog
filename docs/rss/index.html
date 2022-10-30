@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>http://127.0.0.1:2368/</link><image><url>http://127.0.0.1:2368/favicon.png</url><title>柴魚筆記本</title><link>http://127.0.0.1:2368/</link></image><generator>Ghost 5.21</generator><lastBuildDate>Sun, 30 Oct 2022 12:14:58 GMT</lastBuildDate><atom:link href="http://127.0.0.1:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[使用QUASAR在表單送出時滾動到錯誤欄位]]></title><description><![CDATA[表單submit時會希望能讓頁面自動滾動到元素位置，使用q-form的validation-error事件搭配滾動來達成此效果]]></description><link>http://127.0.0.1:2368/quasar-scroll-to-field-on-validation-error/</link><guid isPermaLink="false">635cfeb06c901d4844747e97</guid><category><![CDATA[Quasar]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:42:51 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2022/10/Quasar.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2022/10/Quasar.png" alt="&#x4F7F;&#x7528;QUASAR&#x5728;&#x8868;&#x55AE;&#x9001;&#x51FA;&#x6642;&#x6EFE;&#x52D5;&#x5230;&#x932F;&#x8AA4;&#x6B04;&#x4F4D;"><p>&#x8868;&#x55AE;submit&#x6642;&#x6703;&#x5E0C;&#x671B;&#x80FD;&#x8B93;&#x9801;&#x9762;&#x81EA;&#x52D5;&#x6EFE;&#x52D5;&#x5230;&#x5143;&#x7D20;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F7F;&#x7528;q-form&#x7684;validation-error&#x4E8B;&#x4EF6;&#x642D;&#x914D;&#x6EFE;&#x52D5;&#x4F86;&#x9054;&#x6210;&#x6B64;&#x6548;&#x679C;</p>
+<h2 id="q-form%E7%9A%84validation-error%E4%BA%8B%E4%BB%B6">q-form&#x7684;validation-error&#x4E8B;&#x4EF6;</h2>
+<pre><code class="language-htmlmixed">&lt;template&gt;
+    &lt;q-form 
+    @submit=&quot;gotoNext&quot;
+    @validation-error=&quot;onValidationError&quot;
+    &gt;
+        &lt;q-input 
+        v-model=&quot;username&quot;
+        :rules=&quot;[idRequiredRule]&quot;
+        lazy-rules=&quot;ondemand&quot;
+        &gt;&lt;/q-input&gt;
+    &lt;/q-form&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    
+import { scroll } from &quot;quasar&quot;;
+const {getScrollTarget, setVerticalScrollPosition} = scroll;
+    
+/* eslint-disable*/
+onValidationError(ref: any) {
+    
+}
+/* eslint-enable*/
+&lt;/script&gt;
+
+&lt;!-- &#x82E5;&#x4F7F;&#x7528;Typescript&#x7121;&#x6CD5;&#x4F7F;&#x7528;any&#x7684;&#x8A71;&#x53EF;&#x4EE5;&#x7528;eslint-disable&#x8DF3;&#x904E;&#x6AA2;&#x67E5; --&gt;
+&lt;script lang=&quot;ts&quot;&gt;
+    
+import { scroll } from &quot;quasar&quot;;
+const {getScrollTarget, setVerticalScrollPosition} = scroll;
+    
+/* eslint-disable*/
+onValidationError(ref: any) {
+    
+}
+/* eslint-enable*/
+&lt;/script&gt;
+</code></pre>
+<p>q-form&#x63D0;&#x4F9B;validation-error&#x4E8B;&#x4EF6;&#xFF0C;&#x7576;submit&#x4E14;&#x8868;&#x55AE;&#x5167;&#x7684;&#x6B04;&#x4F4D;&#x6709;&#x932F;&#x8AA4;&#x6642;&#xFF0C;&#x6703;&#x56DE;&#x50B3;&#x7B2C;&#x4E00;&#x500B;&#x6709;&#x932F;&#x8AA4;&#x7684;&#x5143;&#x7D20;</p>
+<h2 id="%E5%8F%96%E5%BE%97%E8%88%87%E9%A0%81%E9%9D%A2%E9%A0%82%E9%83%A8%E7%9A%84%E8%B7%9D%E9%9B%A2">&#x53D6;&#x5F97;&#x8207;&#x9801;&#x9762;&#x9802;&#x90E8;&#x7684;&#x8DDD;&#x96E2;</h2>
+<pre><code class="language-typescript">onValidationError(ref: any) {
+    var el = ref.$el;
+    
+    var offset = el.getBoundingClientRect().top + window.pageYOffset;
+    
+    var duration = 200;
+    
+    setVerticalScrollPosition(getScrollTarget(el), offset, duration);
+}
+</code></pre>
+<p>&#x9996;&#x5148;&#x4F7F;&#x7528;<code>ref.$el</code>&#x53D6;&#x5F97;&#x5143;&#x7D20;</p>
+<p><img src="http://127.0.0.1:2368/content/images/2022/10/o7tjfGz.png" alt="&#x4F7F;&#x7528;QUASAR&#x5728;&#x8868;&#x55AE;&#x9001;&#x51FA;&#x6642;&#x6EFE;&#x52D5;&#x5230;&#x932F;&#x8AA4;&#x6B04;&#x4F4D;" loading="lazy"><br>
+&#x5716;&#x7247;&#x53D6;&#x81EA;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">Element.getBoundingClientRect() - Web APIs | MDN</a></p>
+<p>&#x63A5;&#x8457;&#x4F7F;&#x7528;getBoundingClientRect()&#x53D6;&#x5F97;&#x5143;&#x7D20;&#x8207;viewport&#x7684;&#x8DDD;&#x96E2;</p>
+<p>window.pageYOffset&#x70BA;&#x76EE;&#x524D;&#x6EFE;&#x52D5;&#x7684;&#x9AD8;&#x5EA6;</p>
+<p>&#x5169;&#x8005;&#x76F8;&#x52A0;&#x5373;&#x662F;&#x5143;&#x7D20;&#x9AD8;&#x5EA6;</p>
+<p>&#x6700;&#x5F8C;&#x4F7F;&#x7528;getScrollTarget&#x53CA;setVerticalScrollPosition&#x8A2D;&#x5B9A;&#x6EFE;&#x52D5;&#x76EE;&#x6A19;&#x3001;&#x4F4D;&#x7F6E;&#x53CA;&#x6642;&#x9593;</p>
+<h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">Element.getBoundingClientRect() - Web APIs | MDN</a><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset">Window.pageYOffset - Web APIs | MDN</a><br>
+<a href="https://stackoverflow.com/questions/71650521/autoscroll-to-empty-but-required-q-input-field-in-a-form-with-validation-quasar">autoscroll to empty but required q-input field in a form with validation Quasar 2.5.5 &amp; Vuejs3</a><br>
+<a href="https://github.com/znlbwo/study/issues/10">&#x83B7;&#x53D6;&#x5143;&#x7D20;&#x8DDD;&#x79BB;&#x9875;&#x9762;&#x9876;&#x90E8;&#x7684;&#x8DDD;&#x79BB; &#xB7; Issue #10 &#xB7; znlbwo/study</a><br>
+<a href="https://quasar.dev/quasar-utils/scrolling-utils#scrolling-to-an-element">Scrolling Utils | Quasar Framework</a></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Python取得打包成binary後的路徑]]></title><description><![CDATA[使用pyinstaller打包後的執行檔在執行時有可能會發生實際執行的檔案位於Temporary內的情況，這時就必須用以下方法取得實際exe檔案所在的路徑]]></description><link>http://127.0.0.1:2368/python-get-binary-path/</link><guid isPermaLink="false">635cfda26c901d4844747e89</guid><category><![CDATA[python]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:18:38 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2022/10/python-logo.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2022/10/python-logo.jpg" alt="Python&#x53D6;&#x5F97;&#x6253;&#x5305;&#x6210;binary&#x5F8C;&#x7684;&#x8DEF;&#x5F91;"><p>&#x4F7F;&#x7528;pyinstaller&#x6253;&#x5305;&#x5F8C;&#x7684;&#x57F7;&#x884C;&#x6A94;&#x5728;&#x57F7;&#x884C;&#x6642;&#x6709;&#x53EF;&#x80FD;&#x6703;&#x767C;&#x751F;&#x5BE6;&#x969B;&#x57F7;&#x884C;&#x7684;&#x6A94;&#x6848;&#x4F4D;&#x65BC;Temporary&#x5167;&#x7684;&#x60C5;&#x6CC1;&#xFF0C;&#x9019;&#x6642;&#x5C31;&#x5FC5;&#x9808;&#x7528;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x53D6;&#x5F97;&#x5BE6;&#x969B;exe&#x6A94;&#x6848;&#x6240;&#x5728;&#x7684;&#x8DEF;&#x5F91;</p>
+<h2 id="%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95">&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;</h2>
+<pre><code class="language-python">import sys
+import os
+
+path_current_dir = os.path.dirname(sys.argv[0])
+
+print(sys.argv[0]) 
+print(path_current_dir)
+</code></pre>
+<h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
+<p><a href="https://syachiku.net/python%E3%82%92exe%E3%81%97%E3%81%9F%E9%9A%9B%E3%81%AB%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E5%AE%9F%E8%A1%8C%E3%83%91%E3%82%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/">Python&#x3092;exe&#x3057;&#x305F;&#x969B;&#x306B;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x5B9F;&#x884C;&#x30D1;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x65B9;&#x6CD5;</a></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Pipe]]></title><description><![CDATA[pipe()用於在兩個有關係的process（通常是父子或是兄弟process）之間通信
+假設有A和B兩個process，pipe()建立之後可以用A讀或寫經由pipe傳送到B的寫或讀]]></description><link>http://127.0.0.1:2368/pipe/</link><guid isPermaLink="false">635cfc2d6c901d4844747e7d</guid><category><![CDATA[generalKnowledge]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:15:36 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2022/10/diana-Ynq3Wve3SOA-unsplash_pipe.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2022/10/diana-Ynq3Wve3SOA-unsplash_pipe.jpeg" alt="Pipe"><p>pipe()&#x7528;&#x65BC;&#x5728;&#x5169;&#x500B;&#x6709;&#x95DC;&#x4FC2;&#x7684;process&#xFF08;&#x901A;&#x5E38;&#x662F;&#x7236;&#x5B50;&#x6216;&#x662F;&#x5144;&#x5F1F;process&#xFF09;&#x4E4B;&#x9593;&#x901A;&#x4FE1;<br>
+&#x5047;&#x8A2D;&#x6709;A&#x548C;B&#x5169;&#x500B;process&#xFF0C;pipe()&#x5EFA;&#x7ACB;&#x4E4B;&#x5F8C;&#x53EF;&#x4EE5;&#x7528;A&#x8B80;&#x6216;&#x5BEB;&#x7D93;&#x7531;pipe&#x50B3;&#x9001;&#x5230;B&#x7684;&#x5BEB;&#x6216;&#x8B80;</p>
+<pre><code class="language-cpp">#include &lt;unistd.h&gt;
+int pipe(int pipefd[2]);
+</code></pre>
+<p>&#x4F7F;&#x7528;pipefd&#x8868;&#x793A;&#x8B80;&#x6216;&#x5BEB;&#xFF0C;pipefd[0]&#x7528;&#x65BC;&#x8B80;&#xFF0C;pipefd[1]&#x7528;&#x65BC;&#x5BEB;</p>
+<p>&#x5728;&#x5EFA;&#x7ACB;&#x7BA1;&#x9053;&#x4E4B;&#x5F8C;&#x9700;&#x8981;fork&#x51FA;&#x4E00;&#x500B;process&#xFF0C;&#x6240;&#x4EE5;&#x76EE;&#x524D;&#x6709;&#x7236;process&#x53CA;fork&#x51FA;&#x4F86;&#x7684;&#x5B50;process<br>
+&#x63A5;&#x8457;&#x5229;&#x7528;cpid&#x5224;&#x65B7;&#x54EA;&#x500B;process&#x662F;&#x7236;process&#x54EA;&#x500B;&#x662F;&#x5B50;process<br>
+&#x7576;&#x7236;process&#x7684;&#x5BEB;&#x7AEF;&#x9700;&#x8981;&#x4F7F;&#x7528;stdout&#x5BEB;&#x51FA;&#x6578;&#x64DA;&#x7D66;&#x5B50;process&#x7684;&#x8B80;&#x7AEF;&#x8B80;&#x53D6;&#x6642;&#xFF0C;&#x9019;&#x6642;&#x9700;&#x8981;&#x5C07;&#x7236;process&#x6C92;&#x6709;&#x7528;&#x5230;&#x7684;&#x8B80;&#x7AEF;&#x53CA;&#x5B50;process&#x6C92;&#x7528;&#x5230;&#x7684;&#x5BEB;&#x7AEF;&#x95DC;&#x9589;<br>
+&#x63A5;&#x8457;&#x5C31;&#x662F;&#x5728;&#x7236;process&#x4F7F;&#x7528;write&#xFF0C;&#x53CA;&#x5728;&#x5B50;process&#x4F7F;&#x7528;read&#xFF0C;&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x7236;&#x5B50;process&#x4E4B;&#x9593;&#x7684;&#x901A;&#x4FE1;</p>
+<pre><code class="language-cpp">#include &lt;sys/wait.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;string.h&gt;
+#include &lt;errno.h&gt;
+
+int main(int argc, char* argv[])
+{
+    int pipefd[2];
+    pid_t cpid;
+    char buf[128];
+    int readlen;
+
+
+    if (argc != 2) {
+        fprintf(stderr, &quot;Usage: %s &lt;string&gt;\n&quot;, argv[0]);
+        return -1;
+    }
+
+    if (pipe(pipefd) &lt; 0) {
+        fprintf(stderr, &quot;pipe: %s\n&quot;, strerror(errno));
+        return -1;
+    }
+
+    cpid = fork();
+
+    if (cpid &lt; 0) {
+        fprintf(stderr, &quot;fork: %s\n&quot;, strerror(errno));
+        return -1;
+    }
+
+    if (0 == cpid) { /* &#x5B50;&#x9032;&#x7A0B; */
+        close(pipefd[1]); /* &#x5B50;&#x9032;&#x7A0B;&#x95DC;&#x9589;&#x5BEB;&#x7AEF; */
+        readlen = read(pipefd[0], buf,
+                       128); //&#x5B50;&#x9032;&#x7A0B;&#x963B;&#x585E;&#x5728;&#x8B80;&#x4E0A;&#xFF0C;&#x7B49;&#x5F85;&#x7236;&#x9032;&#x7A0B;&#x5BEB;
+
+        if (readlen &lt; 0) {
+            fprintf(stderr, &quot;read: %s\n&quot;, strerror(errno));
+            return -1;
+        }
+
+        write(STDOUT_FILENO, buf, readlen);
+        write(STDOUT_FILENO, &quot;\n&quot;, 1);
+        close(pipefd[0]); //&#x8B80;&#x5B8C;&#x4E4B;&#x5F8C;&#x95DC;&#x9589;&#x8B80;&#x63CF;&#x8FF0;&#x7B26;
+        return 0;
+    } else { /* &#x7236;&#x9032;&#x7A0B; */
+        close(pipefd[0]); /*&#x7236;&#x9032;&#x7A0B;&#x95DC;&#x9589;&#x6C92;&#x7528;&#x7684;&#x8B80;&#x7AEF; */
+        sleep(2);
+        write(pipefd[1], argv[1], strlen(argv[1])); //&#x7236;&#x9032;&#x7A0B;&#x958B;&#x59CB;&#x5BEB;
+        close(pipefd[1]); /* &#x7236;&#x9032;&#x7A0B;&#x95DC;&#x9589;&#x5BEB;&#x63CF;&#x8FF0;&#x7B26; */
+        wait(NULL); /* &#x7236;&#x9032;&#x7A0B;&#x7B49;&#x5F85;&#x5B50;&#x9032;&#x7A0B;&#x9000;&#x51FA;&#xFF0C;&#x56DE;&#x6536;&#x5B50;&#x9032;&#x7A0B;&#x8CC7;&#x6E90; */
+        return 0;
+    }
+}
+</code></pre>
+<h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
+<p><a href="https://www.cntofu.com/book/46/linux_system/pipehe_fifo.md">pipe&#x548C;FIFO</a></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Interprocess Communication (IPC)]]></title><description><![CDATA[行程間通訊有兩種方式，分別是Shared Memory Method和Message passing]]></description><link>http://127.0.0.1:2368/interprocess-communication/</link><guid isPermaLink="false">635cfb2e6c901d4844747e6e</guid><category><![CDATA[generalKnowledge]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:09:26 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2022/10/communication-4871245.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2022/10/communication-4871245.jpg" alt="Interprocess Communication (IPC)"><p>&#x884C;&#x7A0B;&#x9593;&#x901A;&#x8A0A;&#x6709;&#x5169;&#x7A2E;&#x65B9;&#x5F0F;&#xFF0C;&#x5206;&#x5225;&#x662F;Shared Memory Method&#x548C;Message passing</p>
+<blockquote>
+<p>&#x4E0D;&#x8981;&#x901A;&#x904E;&#x5171;&#x4EAB;&#x8A18;&#x61B6;&#x9AD4;&#x6765;&#x901A;&#x4FE1;&#xFF0C;&#x800C;&#x61C9;&#x8A72;&#x901A;&#x904E;&#x901A;&#x4FE1;&#x6765;&#x5171;&#x4EAB;&#x8A18;&#x61B6;&#x9AD4;</p>
+</blockquote>
+<h2 id="shared-memory-method">Shared Memory Method</h2>
+<ul>
+<li>&#x70BA;&#x5169;&#x500B;&#x884C;&#x7A0B;&#x4E4B;&#x9593;&#x900F;&#x904E;&#x4E00;&#x584A;&#x5171;&#x540C;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x50B3;&#x905E;&#x8A0A;&#x606F;&#x8CC7;&#x6599;</li>
+<li>&#x5206;&#x70BA;&#x6709;&#x9650;&#x5236;&#x5927;&#x5C0F;&#x7684;buffer&#x53CA;&#x7121;&#x9650;&#x5236;&#x5927;&#x5C0F;&#x7684;buffer</li>
+<li>&#x82E5;&#x958B;&#x59CB;&#x53CA;&#x7D50;&#x675F;&#x90FD;&#x6307;&#x5411;&#x540C;&#x4E00;&#x500B;&#x6A19;&#x7C64;&#x5247;&#x70BA;&#x7121;&#x5927;&#x5C0F;&#x9650;&#x5236;buffer</li>
+</ul>
+<h2 id="message-passing">Message Passing</h2>
+<ul>
+<li>&#x70BA;&#x5169;&#x500B;&#x884C;&#x7A0B;&#x4E4B;&#x9593;&#x900F;&#x904E;kernel&#x50B3;&#x905E;&#x8A0A;&#x8A0A;&#x606F;&#x8CC7;&#x6599;</li>
+<li>&#x8A0A;&#x606F;&#x53EF;&#x4EE5;&#x5206;&#x70BA;header&#x548C;body&#x5169;&#x500B;&#x90E8;&#x5206;&#xFF0C;header&#x7528;&#x4F86;&#x5132;&#x5B58;&#x8A0A;&#x606F;&#x7A2E;&#x985E;&#x3001;&#x76EE;&#x6A19;ID&#x3001;&#x8A0A;&#x606F;&#x9577;&#x5EA6;&#x548C;&#x63A7;&#x5236;&#x8CC7;&#x8A0A;&#xFF0C;&#x63A7;&#x5236;&#x8CC7;&#x8A0A;&#x5305;&#x542B;&#x50CF;&#x662F;&#x7576;&#x8D85;&#x904E;buffer&#x8A72;&#x5982;&#x4F55;&#x8655;&#x7406;&#x7684;&#x8CC7;&#x8A0A;&#x3001;&#x5E8F;&#x865F;&#x53CA;&#x512A;&#x5148;&#x9806;&#x5E8F;&#xFF0C;&#x4E14;&#x4E00;&#x822C;&#x4F86;&#x8AAA;&#x4F7F;&#x7528;FIFO</li>
+<li>&#x8A0A;&#x606F;&#x50B3;&#x9001;&#x6709;&#x5206;&#x70BA;&#x540C;&#x6B65;&#x53CA;&#x975E;&#x540C;&#x6B65;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x7A2E;&#x6392;&#x5217;&#x7D44;&#x5408;
+<ul>
+<li>Blocking send and blocking receive</li>
+<li>Non-blocking send and Non-blocking receive</li>
+<li>Non-blocking send and Blocking receive (Mostly used)</li>
+</ul>
+</li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Memory management]]></title><description><![CDATA[<!--kg-card-begin: markdown--><h2 id="stack">Stack</h2>
+<ul>
+<li>&#x5728;&#x5F80;stack&#x5132;&#x5B58;&#x8CC7;&#x6599;&#x6642;&#x4E0D;&#x9700;&#x67E5;&#x627E;&#xFF0C;&#x50C5;&#x9700;&#x5132;&#x5B58;&#x5728;&#x6700;&#x4E0A;&#x9762;&#x7684;&#x5340;&#x584A;&#x5373;&#x53EF;&#xFF0C;&#x975E;&#x5E38;&#x5FEB;&#x901F;</li>
+<li>&#x4EFB;&#x4F55;&#x8981;&#x5B58;&#x5728;stack&#x7684;&#x8CC7;&#x6599;&#x5FC5;&#x9808;&#x6709;&#x9650;&#x4E14;&#x975C;&#x614B;&#xFF08;&#x8CC7;</li></ul>]]></description><link>http://127.0.0.1:2368/memory-management/</link><guid isPermaLink="false">635cf8c16c901d4844747e61</guid><category><![CDATA[generalKnowledge]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:05:33 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2022/10/ron-dyar-V29UWcALNko-unsplash_memory.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><h2 id="stack">Stack</h2>
+<ul>
+<li>&#x5728;&#x5F80;stack&#x5132;&#x5B58;&#x8CC7;&#x6599;&#x6642;&#x4E0D;&#x9700;&#x67E5;&#x627E;&#xFF0C;&#x50C5;&#x9700;&#x5132;&#x5B58;&#x5728;&#x6700;&#x4E0A;&#x9762;&#x7684;&#x5340;&#x584A;&#x5373;&#x53EF;&#xFF0C;&#x975E;&#x5E38;&#x5FEB;&#x901F;</li>
+<li>&#x4EFB;&#x4F55;&#x8981;&#x5B58;&#x5728;stack&#x7684;&#x8CC7;&#x6599;&#x5FC5;&#x9808;&#x6709;&#x9650;&#x4E14;&#x975C;&#x614B;&#xFF08;&#x8CC7;&#x6599;&#x5927;&#x5C0F;&#x5FC5;&#x9808;&#x5728;&#x7DE8;&#x8B6F;&#x6642;&#x5C31;&#x77E5;&#x9053;&#xFF09;</li>
+<li>&#x51FD;&#x5F0F;&#x7684;&#x57F7;&#x884C;&#x8CC7;&#x6599;&#x5132;&#x5B58;&#x5728;stack frames&#xFF08;actual execution stack&#xFF09;&#xFF0C;&#x6BCF;&#x500B;&#x51FD;&#x5F0F;&#x6703;&#x6709;&#x81EA;&#x5DF1;&#x7684;frame&#x5340;&#x584A;&#xFF0C;&#x7576;&#x51FD;&#x5F0F;&#x5167;&#x5BA3;&#x544A;&#x65B0;&#x8B8A;&#x6578;&#x6642;&#x6703;&#x5C07;&#x8CC7;&#x6599;&#x63A8;&#x5230;&#x6700;&#x4E0A;&#x9762;&#x7684;&#x5340;&#x584A;&#x3002;&#x7576;&#x6BCF;&#x500B;&#x51FD;&#x5F0F;&#x7D50;&#x675F;&#x6642;&#xFF0C;&#x6703;&#x6E05;&#x9664;&#x6700;&#x4E0A;&#x9762;&#x7684;&#x5340;&#x584A;&#xFF0C;&#x6240;&#x6709;&#x88AB;&#x63A8;&#x9001;&#x5230;&#x8A72;&#x5340;&#x584A;&#x7684;&#x8B8A;&#x6578;&#x5C07;&#x88AB;&#x6E05;&#x9664;&#x3002;</li>
+<li>&#x6BCF;&#x500B;thread&#x53EF;&#x4EE5;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x500B;stack</li>
+<li>&#x5132;&#x5B58;&#x5728;stack&#x4E0A;&#x7684;&#x8CC7;&#x6599;&#x7531;OS&#x64CD;&#x4F5C;&#xFF0C;&#x975E;&#x5E38;&#x7C21;&#x55AE;&#x660E;&#x77AD;</li>
+<li>&#x5132;&#x5B58;&#x5728;stack&#x4E0A;&#x7684;&#x8CC7;&#x6599;&#x70BA;&#x5340;&#x57DF;&#x8B8A;&#x6578;&#xFF08;&#x8CC7;&#x6599;&#x578B;&#x614B;&#x3001;primitives&#x6216;primitive constants&#xFF09;&#x3001;&#x6307;&#x6A19;&#x53CA;function frames</li>
+<li>&#x7576;stack&#x7684;size&#x592A;&#x5927;&#x6642;&#x6703;&#x9047;&#x5230;stack overflow errors</li>
+<li>&#x5927;&#x591A;&#x6578;&#x7684;&#x8A9E;&#x8A00;&#x5C0D;&#x65BC;&#x53EF;&#x4EE5;&#x5132;&#x5B58;&#x5728;stack&#x7684;&#x8CC7;&#x6599;&#x662F;&#x6709;&#x9650;&#x5236;&#x7684;</li>
+</ul>
+<h2 id="heap">Heap</h2>
+<ul>
+<li>&#x8207;stack&#x4E0D;&#x4E00;&#x6A23;&#xFF0C;Heap&#x9700;&#x8981;&#x4F7F;&#x7528;&#x6307;&#x6A19;&#x5C0B;&#x627E;&#x8CC7;&#x6599;</li>
+<li>&#x6BD4;&#x8D77;stack&#xFF0C;&#x5C0B;&#x627E;&#x8CC7;&#x6599;&#x7684;&#x901F;&#x5EA6;&#x7A0D;&#x6162;&#xFF0C;&#x4F46;&#x53EF;&#x4EE5;&#x5B58;&#x653E;&#x66F4;&#x5927;&#x91CF;&#x7684;&#x8CC7;&#x6599;</li>
+<li>&#x52D5;&#x614B;&#x5927;&#x5C0F;&#x7684;&#x8CC7;&#x6599;&#x53EF;&#x4EE5;&#x5B58;&#x653E;&#x5728;Heap</li>
+<li>&#x5728;&#x540C;&#x500B;APP&#x4E2D;Heap&#x5171;&#x4EAB;&#x65BC;threads&#x4E4B;&#x9593;</li>
+<li>&#x56E0;&#x70BA;&#x5176;&#x52D5;&#x614B;&#x7684;&#x7279;&#x6027;&#x4F7F;&#x5F97;&#x6BD4;&#x8F03;&#x96E3;&#x7DAD;&#x8B77;&#x548C;&#x7BA1;&#x7406;&#xFF0C;&#x9019;&#x4E5F;&#x662F;&#x70BA;&#x4EC0;&#x9EBC;&#x6703;&#x6709;&#x4E9B;&#x8A9E;&#x8A00;&#x6703;&#x6709;&#x81EA;&#x52D5;&#x8A18;&#x61B6;&#x9AD4;&#x7BA1;&#x7406;&#x7684;&#x529F;&#x80FD;</li>
+<li>&#x5132;&#x5B58;&#x5728;Heap&#x4E2D;&#x7684;&#x6709;&#x5168;&#x57DF;&#x8B8A;&#x6578;&#x3001;reference types&#xFF08;objects, strings, maps&#x548C;&#x5176;&#x4ED6;&#x8F03;&#x8907;&#x96DC;&#x7684;&#x8CC7;&#x6599;&#x7D50;&#x69CB;&#xFF09;</li>
+<li>&#x5982;&#x679C;APP&#x4F7F;&#x7528;&#x6BD4;&#x88AB;&#x5206;&#x914D;&#x9084;&#x8981;&#x591A;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x5C31;&#x6703;&#x767C;&#x751F;out of memory errors</li>
+<li>&#x901A;&#x5E38;&#x6C92;&#x6709;&#x9650;&#x5236;&#x53EF;&#x4EE5;&#x5B58;&#x5728;Heap&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x4E0D;&#x904E;&#x4E5F;&#x662F;&#x8981;&#x770B;&#x8A72;&#x61C9;&#x7528;&#x7A0B;&#x5F0F;&#x88AB;&#x5206;&#x914D;&#x5230;&#x591A;&#x5C11;&#x8A18;&#x61B6;&#x9AD4;</li>
+</ul>
+<h2 id="garbage-collection%EF%BC%88gc%EF%BC%89">Garbage Collection&#xFF08;GC&#xFF09;</h2>
+<img src="http://127.0.0.1:2368/content/images/2022/10/ron-dyar-V29UWcALNko-unsplash_memory.jpeg" alt="Memory management"><p>&#x6709;&#x5206;&#x5169;&#x7A2E;</p>
+<ul>
+<li>Mark &amp; Sweep GC</li>
+<li>Reference counting GC</li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[ElasticSearch簡介]]></title><description><![CDATA[ElasticSearch是一個開源的且基於Lucene的全文搜尋引擎，其封裝Lucene並提供REST API，讓使用者可以更容易操作及使用。]]></description><link>http://127.0.0.1:2368/elasticsearch-intro/</link><guid isPermaLink="false">635cf62e6c901d4844747e4b</guid><category><![CDATA[Elasticsearch]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 09:54:55 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2022/10/daniel-lerman-fr3YLb9UHSQ-unsplash_search.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2022/10/daniel-lerman-fr3YLb9UHSQ-unsplash_search.jpeg" alt="ElasticSearch&#x7C21;&#x4ECB;"><p>ElasticSearch&#x662F;&#x4E00;&#x500B;&#x958B;&#x6E90;&#x7684;&#x4E14;&#x57FA;&#x65BC;Lucene&#x7684;&#x5168;&#x6587;&#x641C;&#x5C0B;&#x5F15;&#x64CE;&#xFF0C;&#x5176;&#x5C01;&#x88DD;Lucene&#x4E26;&#x63D0;&#x4F9B;REST API&#xFF0C;&#x8B93;&#x4F7F;&#x7528;&#x8005;&#x53EF;&#x4EE5;&#x66F4;&#x5BB9;&#x6613;&#x64CD;&#x4F5C;&#x53CA;&#x4F7F;&#x7528;&#x3002;</p>
+<h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
+<ul>
+<li>macOS Monterey 12.4</li>
+<li>elasticsearch 8.2.3</li>
+<li>medcl/elasticsearch-analysis-ik 8.2.3</li>
+</ul>
+<h2 id="%E5%AE%89%E8%A3%9D">&#x5B89;&#x88DD;</h2>
+<p>&#x5230;<a href="https://www.elastic.co/downloads/elasticsearch">elasticsearch&#x5B98;&#x7DB2;</a>&#x4E0B;&#x8F09;mac&#x7248;&#x672C;&#x7684;&#x58D3;&#x7E2E;&#x6A94;&#xFF0C;&#x89E3;&#x58D3;&#x7E2E;&#x5F8C;&#x57F7;&#x884C;<code>bin/elasticsearch</code>&#x6A94;&#x6848;&#xFF0C;elasticsearch&#x4FBF;&#x6703;&#x555F;&#x52D5;&#x4E26;&#x5728;port9200&#x63D0;&#x4F9B;&#x670D;&#x52D9;</p>
+<p>&#x767C;&#x9001;GET&#x8ACB;&#x6C42;&#x5230;9200port&#x6E2C;&#x8A66;&#x670D;&#x52D9;&#x72C0;&#x614B;</p>
+<pre><code class="language-bash">$ curl localhost:9200
+</code></pre>
+<h3 id="%E5%AE%89%E5%85%A8%E6%80%A7%E5%95%8F%E9%A1%8C">&#x5B89;&#x5168;&#x6027;&#x554F;&#x984C;</h3>
+<p>:::warning<br>
+[WARN ][o.e.x.s.t.n.SecurityNetty4HttpServerTransport] [userde-MacBook-Pro.local] received plaintext http traffic on an https channel, closing connection Netty4HttpChannel{localAddress=/[0:0:0:0:0:0:0:1]:9200, remoteAddress=/[0:0:0:0:0:0:0:1]:52561}<br>
+:::<br>
+&#x82E5;&#x51FA;&#x73FE;&#x4EE5;&#x4E0A;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x6642;&#x53EF;&#x4EE5;&#x5148;&#x66AB;&#x6642;&#x5148;&#x5C07;elasticsearch.yaml&#x4E2D;&#x7684;<code>xpack.security.enabled</code>&#x7684;&#x9078;&#x9805;&#x8A2D;&#x70BA;false&#xFF0C;&#x6E2C;&#x8A66;&#x5B8C;&#x7562;&#x5F8C;&#x52D9;&#x5FC5;&#x6062;&#x5FA9;&#x70BA;true&#x4E26;&#x9032;&#x884C;&#x6B63;&#x78BA;&#x7684;&#x5B89;&#x5168;&#x6027;&#x8A2D;&#x5B9A;</p>
+<h3 id="%E5%AE%8C%E6%88%90">&#x5B8C;&#x6210;</h3>
+<p>&#x82E5;&#x7CFB;&#x7D71;&#x6B63;&#x5E38;&#x6703;&#x8FD4;&#x56DE;&#x4E0B;&#x5217;&#x8A0A;&#x606F;</p>
+<pre><code class="language-bash">#&#x8FD4;&#x56DE;&#x7D50;&#x679C;
+{
+  &quot;name&quot; : &quot;userde-MacBook-Pro.local&quot;,
+  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
+  &quot;cluster_uuid&quot; : &quot;dx3b4E2jR_OjrKtB-ZMAlw&quot;,
+  &quot;version&quot; : {
+    &quot;number&quot; : &quot;8.2.3&quot;,
+    &quot;build_flavor&quot; : &quot;default&quot;,
+    &quot;build_type&quot; : &quot;tar&quot;,
+    &quot;build_hash&quot; : &quot;9905bfb62a3f0b044948376b4f607f70a8a151b4&quot;,
+    &quot;build_date&quot; : &quot;2022-06-08T22:21:36.455508792Z&quot;,
+    &quot;build_snapshot&quot; : false,
+    &quot;lucene_version&quot; : &quot;9.1.0&quot;,
+    &quot;minimum_wire_compatibility_version&quot; : &quot;7.17.0&quot;,
+    &quot;minimum_index_compatibility_version&quot; : &quot;7.0.0&quot;
+  },
+  &quot;tagline&quot; : &quot;You Know, for Search&quot;
+}
+
+</code></pre>
+<h2 id="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">&#x57FA;&#x672C;&#x6982;&#x5FF5;</h2>
+<p>ElasticSearch&#x7684;&#x6700;&#x9AD8;&#x55AE;&#x4F4D;&#x662F;Index&#xFF0C;&#x76F8;&#x7576;&#x65BC;&#x8CC7;&#x6599;&#x5EAB;&#x3002;&#x5728;Index&#x4E0B;&#x6703;&#x6709;&#x5F88;&#x591A;Document&#xFF0C;&#x4E00;&#x500B;&#x8A18;&#x9304;&#x7A31;&#x70BA;&#x4E00;&#x500B;Document&#xFF0C;Index&#x5305;&#x542B;&#x4E86;&#x591A;&#x500B;Document&#x3002;</p>
+<h3 id="index">Index</h3>
+<ul>
+<li>&#x70BA;ElasticSearch&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x55AE;&#x4F4D;</li>
+<li>&#x76F8;&#x7576;&#x65BC;&#x4E00;&#x500B;&#x8CC7;&#x6599;&#x5EAB;</li>
+<li>Index&#x7684;&#x540D;&#x7A31;&#x5FC5;&#x9808;&#x662F;&#x5C0F;&#x5BEB;</li>
+</ul>
+<h3 id="document">Document</h3>
+<ul>
+<li>Document&#x70BA;&#x4E00;&#x689D;&#x8A18;&#x9304;&#xFF0C;Index&#x4E0B;&#x53EF;&#x4EE5;&#x5B58;&#x653E;&#x591A;&#x500B;Document</li>
+<li>&#x6BCF;&#x500B;Document&#x7684;&#x7D50;&#x69CB;&#x53EF;&#x4EE5;&#x4E0D;&#x540C;&#xFF0C;&#x4F46;&#x6700;&#x597D;&#x4E00;&#x6A23;&#xFF0C;&#x4EE5;&#x63D0;&#x9AD8;&#x641C;&#x5C0B;&#x901F;&#x5EA6;</li>
+</ul>
+<h2 id="index%E6%93%8D%E4%BD%9C">Index&#x64CD;&#x4F5C;</h2>
+<h3 id="%E6%96%B0%E5%A2%9Eindex">&#x65B0;&#x589E;Index</h3>
+<pre><code class="language-bash"># &#x65B0;&#x589E;&#x4E00;&#x500B;&#x540D;&#x7A31;&#x70BA;customers&#x7684;Index
+$ curl -X PUT &apos;localhost:9200/customers&apos;
+</code></pre>
+<pre><code class="language-bash">#&#x8FD4;&#x56DE;&#x7D50;&#x679C;
+{
+    &quot;acknowledged&quot;:true,
+    &quot;shards_acknowledged&quot;:true,
+    &quot;index&quot;:&quot;customers&quot;
+}
+</code></pre>
+<p>&#x82E5;&#x6210;&#x529F;ElasticSearch&#x6703;&#x8FD4;&#x56DE;acknowledged&#x70BA;true&#x7684;&#x8A0A;&#x606F;</p>
+<h3 id="%E5%88%AA%E9%99%A4index">&#x522A;&#x9664;Index</h3>
+<pre><code class="language-bash"># &#x522A;&#x9664;&#x540D;&#x7A31;&#x70BA;customers&#x7684;Index
+$ curl -X DELETE &apos;localhost:9200/customers&apos;
+</code></pre>
+<pre><code class="language-bash">#&#x8FD4;&#x56DE;&#x7D50;&#x679C;
+{
+    &quot;acknowledged&quot;:true
+}
+</code></pre>
+<p>&#x82E5;&#x6210;&#x529F;&#x4E00;&#x6A23;&#x6703;&#x8FD4;&#x56DE;acknowledged&#x70BA;true&#x7684;&#x8A0A;&#x606F;</p>
+<h2 id="%E5%88%86%E8%A9%9E">&#x5206;&#x8A5E;</h2>
+<h3 id="%E5%AE%89%E8%A3%9D%E5%88%86%E8%A9%9E%E6%8F%92%E4%BB%B6">&#x5B89;&#x88DD;&#x5206;&#x8A5E;&#x63D2;&#x4EF6;</h3>
+<p>&#x5728;&#x4F7F;&#x7528;&#x5168;&#x6587;&#x641C;&#x7D22;&#x6642;&#x82E5;&#x6709;&#x4F7F;&#x7528;&#x4E2D;&#x6587;&#x5167;&#x5BB9;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x9700;&#x8981;&#x5B89;&#x88DD;&#x4E2D;&#x6587;&#x5206;&#x8A5E;&#x63D2;&#x4EF6;<br>
+:::warning<br>
+&#x5206;&#x8A5E;&#x63D2;&#x4EF6;&#x7684;&#x7248;&#x672C;&#x865F;&#x5FC5;&#x9808;&#x8207;ElasticSearch&#x76F8;&#x540C;&#xFF0C;&#x5426;&#x5247;&#x7121;&#x6CD5;&#x6307;&#x5B9A;&#x5206;&#x8A5E;&#x63D2;&#x4EF6;&#x4E26;&#x4E14;&#x6703;&#x8DF3;&#x51FA;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#xFF08;Failed to parse mapping: analyzer [ik_max_word] has not been configured in mappings&#xFF09;<br>
+:::</p>
+<pre><code class="language-bash!">$ ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v8.2.3/elasticsearch-analysis-ik-8.2.3.zip
+</code></pre>
+<p>&#x5C07;&#x4E0A;&#x9762;&#x6307;&#x4EE4;&#x7684;&#x7248;&#x672C;&#x865F;&#x63DB;&#x6210;&#x8207;ElasticSearch&#x76F8;&#x5C0D;&#x61C9;&#x7684;&#x7248;&#x672C;&#x865F;&#x5373;&#x53EF;&#x5B89;&#x88DD;<br>
+&#x5B89;&#x88DD;&#x5B8C;&#x6703;&#x986F;&#x793A;&#x5B89;&#x88DD;&#x6210;&#x529F;&#x8A0A;&#x606F;&#xFF0C;&#x91CD;&#x65B0;&#x958B;&#x555F;ElasticSearch&#x5373;&#x53EF;<br>
+<img src="http://127.0.0.1:2368/content/images/2022/10/pEabu3Q.png" alt="ElasticSearch&#x7C21;&#x4ECB;" loading="lazy"></p>
+<pre><code>-&gt; Installed analysis-ik
+-&gt; Please restart Elasticsearch to activate any plugins installed
+</code></pre>
+<h3 id="%E8%A8%AD%E5%AE%9A%E5%88%86%E8%A9%9E">&#x8A2D;&#x5B9A;&#x5206;&#x8A5E;</h3>
+<p>&#x5728;&#x8A2D;&#x5B9A;&#x4E2D;&#x6587;&#x5206;&#x8A5E;&#xFF08;medcl/elasticsearch-analysis-ik&#xFF09;&#x4E4B;&#x524D;&#x5FC5;&#x9808;&#x8981;&#x5148;&#x5B89;&#x88DD;&#x63D2;&#x4EF6;<br>
+&#x50C5;&#x4F7F;&#x7528;&#x82F1;&#x6587;&#x5206;&#x8A5E;&#x7684;&#x8A71;&#x4E0D;&#x9700;&#x8981;&#x5B89;&#x88DD;&#x63D2;&#x4EF6;&#xFF0C;&#x76F4;&#x63A5;&#x5728;<code>analyzer</code>&#x548C;<code>search_analyzer</code>&#x66FF;&#x63DB;&#x6210;&#x5167;&#x5EFA;&#x7684;<code>standard</code>&#x5373;&#x53EF;</p>
+<pre><code class="language-bash">$ curl \
+-H &quot;Content-Type: application/json&quot; \
+-X PUT &apos;localhost:9200/customers&apos; \
+-d &apos;
+{
+    &quot;mappings&quot;: 
+    {
+        &quot;properties&quot;: {
+            &quot;name&quot;: 
+            {
+                &quot;type&quot;: &quot;text&quot;, 
+                &quot;analyzer&quot;: &quot;ik_max_word&quot;,
+                &quot;search_analyzer&quot;: &quot;ik_max_word&quot;
+            },
+            &quot;address&quot;: 
+            {
+                &quot;type&quot;:&quot;text&quot;, 
+                &quot;analyzer&quot;: &quot;ik_max_word&quot;,
+                &quot;search_analyzer&quot;: &quot;ik_max_word&quot;
+            },
+            &quot;room&quot;: 
+            {
+                &quot;type&quot;: &quot;text&quot;, 
+                &quot;analyzer&quot;: &quot;ik_max_word&quot;,
+                &quot;search_analyzer&quot;: &quot;ik_max_word&quot;
+            }
+        }
+    }
+}&apos;
+</code></pre>
+<pre><code class="language-bash"># &#x8FD4;&#x56DE;&#x7D50;&#x679C;
+{&quot;acknowledged&quot;:true,&quot;shards_acknowledged&quot;:true,&quot;index&quot;:&quot;customers&quot;}
+</code></pre>
+<h2 id="document%E6%93%8D%E4%BD%9C">Document&#x64CD;&#x4F5C;</h2>
+<h3 id="%E6%96%B0%E5%A2%9Edocument">&#x65B0;&#x589E;Document</h3>
+<pre><code class="language-bash">$ curl \
+-H &quot;Content-Type: application/json&quot; \
+-X POST &apos;localhost:9200/customers/_doc/1&apos; \
+-d &apos;
+{
+  &quot;name&quot;: &quot;&#x7530;&#x4E2D;&#x592A;&#x90CE;2&quot;,
+  &quot;address&quot;: &quot;&#x5317;&#x6D77;&#x9053;&#x5BA4;&#x862D;&#x5E02;&#x6C34;&#x5143;&#x753A;57-8&quot;,
+  &quot;room&quot;: &quot;A303&quot;
+}&apos;
+</code></pre>
+<pre><code class="language-bash"># &#x8FD4;&#x56DE;&#x7D50;&#x679C;
+{
+    &quot;_index&quot;:&quot;customers&quot;,
+    &quot;_id&quot;:&quot;1&quot;,
+    &quot;_version&quot;:1,
+    &quot;result&quot;:&quot;created&quot;,
+    &quot;_shards&quot;:{&quot;total&quot;:2,&quot;successful&quot;:1,&quot;failed&quot;:0},
+    &quot;_seq_no&quot;:0,
+    &quot;_primary_term&quot;:1
+}
+</code></pre>
+<h3 id="%E5%88%AA%E9%99%A4document">&#x522A;&#x9664;Document</h3>
+<pre><code class="language-bash"># &#x522A;&#x9664;&#x540D;&#x7A31;&#x70BA;customers&#x7684;Index
+$ curl -X DELETE &apos;localhost:9200/customers/_doc/1&apos;
+</code></pre>
+<pre><code class="language-bash">#&#x8FD4;&#x56DE;&#x7D50;&#x679C;
+{
+    &quot;_index&quot;:&quot;customers&quot;,
+    &quot;_id&quot;:&quot;1&quot;,&quot;_version&quot;:2,
+    &quot;result&quot;:&quot;deleted&quot;,
+    &quot;_shards&quot;:
+    {
+        &quot;total&quot;:2,
+        &quot;successful&quot;:1,
+        &quot;failed&quot;:0
+    },
+    &quot;_seq_no&quot;:2,
+    &quot;_primary_term&quot;:1
+}
+</code></pre>
+<p>&#x82E5;&#x6210;&#x529F;&#x4E00;&#x6A23;&#x6703;&#x8FD4;&#x56DE;&#x6210;&#x529F;&#x8A0A;&#x606F;</p>
+<h2 id="%E6%9F%A5%E8%A9%A2%E6%93%8D%E4%BD%9C">&#x67E5;&#x8A62;&#x64CD;&#x4F5C;</h2>
+<h3 id="%E6%9F%A5%E8%A9%A2%E6%89%80%E6%9C%89document">&#x67E5;&#x8A62;&#x6240;&#x6709;Document</h3>
+<p>&#x4F7F;&#x7528;GET&#x65B9;&#x6CD5;&#x4E26;&#x5728;Index&#x5F8C;&#x65B9;&#x52A0;&#x4E0A;_search&#x67E5;&#x8A62;&#x6240;&#x6709;Document</p>
+<pre><code class="language-bash">$ curl &apos;localhost:9200/customers/_search&apos;
+</code></pre>
+<h3 id="%E6%9F%A5%E8%A9%A2%E7%89%B9%E5%AE%9Adocument">&#x67E5;&#x8A62;&#x7279;&#x5B9A;Document</h3>
+<p>&#x4F7F;&#x7528;GET&#x65B9;&#x6CD5;&#x4E26;&#x52A0;&#x4E0A;Document&#x7684;id&#xFF0C;&#x4EE5;&#x67E5;&#x627E;&#x7279;&#x5B9A;id&#x7684;&#x8CC7;&#x8A0A;</p>
+<pre><code class="language-bash">$ curl &apos;localhost:9200/customers/_doc/1?pretty=true&apos;
+</code></pre>
+<h3 id="%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2">&#x5168;&#x6587;&#x641C;&#x7D22;</h3>
+<p>&#x4F7F;&#x7528;GET&#x65B9;&#x6CD5;&#x4E26;&#x4F7F;&#x7528;query&#x3001;match&#x7B49;&#x95DC;&#x9375;&#x5B57;&#x53CA;&#x8981;&#x67E5;&#x627E;&#x7684;&#x6B04;&#x4F4D;&#x53CA;&#x5167;&#x5BB9;&#x9032;&#x884C;&#x67E5;&#x8A62;</p>
+<pre><code class="language-bash">$ curl \
+-H &quot;Content-Type: application/json&quot; \
+-X GET &apos;localhost:9200/customers/_search&apos;  -d &apos;
+{
+  &quot;query&quot; : { &quot;match&quot; : { &quot;address&quot; : &quot;44&quot; }}
+}&apos;
+</code></pre>
+<h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
+<ul>
+<li><a href="https://www.ruanyifeng.com/blog/2017/08/elasticsearch.html">&#x5168;&#x6587;&#x641C;&#x7D22;&#x5F15;&#x64CE; Elasticsearch &#x5165;&#x95E8;&#x6559;&#x7A0B;</a></li>
+<li><a href="https://www.elastic.co/blog/a-practical-introduction-to-elasticsearch">A Practical Introduction to Elasticsearch</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[PostgreSQL]執行UPDATE時自動記錄更新時間]]></title><description><![CDATA[若需要用到「依照更新順序排列資料」功能時，則會需要在表格被變動時在某個欄位紀錄該筆資料的變更時間以進行排序，這篇筆記在table中新增update_at欄位並使用TRIGGER及FUNCTION對其進行更新，以達成在更新紀錄時自動記錄更新時間的功能]]></description><link>http://127.0.0.1:2368/postgresql-write-timestamp-on-update/</link><guid isPermaLink="false">635cf0c86c901d4844747e39</guid><category><![CDATA[PostgreSQL]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 30 Jul 2022 09:22:00 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2022/10/jan-antonin-kolar-lRoX0shwjUQ-unsplash_database.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2022/10/jan-antonin-kolar-lRoX0shwjUQ-unsplash_database.jpeg" alt="[PostgreSQL]&#x57F7;&#x884C;UPDATE&#x6642;&#x81EA;&#x52D5;&#x8A18;&#x9304;&#x66F4;&#x65B0;&#x6642;&#x9593;"><p>&#x82E5;&#x9700;&#x8981;&#x7528;&#x5230;&#x300C;&#x4F9D;&#x7167;&#x66F4;&#x65B0;&#x9806;&#x5E8F;&#x6392;&#x5217;&#x8CC7;&#x6599;&#x300D;&#x529F;&#x80FD;&#x6642;&#xFF0C;&#x5247;&#x6703;&#x9700;&#x8981;&#x5728;&#x8868;&#x683C;&#x88AB;&#x8B8A;&#x52D5;&#x6642;&#x5728;&#x67D0;&#x500B;&#x6B04;&#x4F4D;&#x7D00;&#x9304;&#x8A72;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x8B8A;&#x66F4;&#x6642;&#x9593;&#x4EE5;&#x9032;&#x884C;&#x6392;&#x5E8F;&#xFF0C;&#x9019;&#x7BC7;&#x7B46;&#x8A18;&#x5728;table&#x4E2D;&#x65B0;&#x589E;update_at&#x6B04;&#x4F4D;&#x4E26;&#x4F7F;&#x7528;TRIGGER&#x53CA;FUNCTION&#x5C0D;&#x5176;&#x9032;&#x884C;&#x66F4;&#x65B0;&#xFF0C;&#x4EE5;&#x9054;&#x6210;&#x5728;&#x66F4;&#x65B0;&#x7D00;&#x9304;&#x6642;&#x81EA;&#x52D5;&#x8A18;&#x9304;&#x66F4;&#x65B0;&#x6642;&#x9593;&#x7684;&#x529F;&#x80FD;</p>
+<h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
+<ul>
+<li>macOS Big Sur 11.6.5</li>
+<li>PostgreSQL 14</li>
+</ul>
+<h2 id="%E5%BB%BA%E7%AB%8B%E6%9B%B4%E6%96%B0%E5%87%BD%E5%BC%8F">&#x5EFA;&#x7ACB;&#x66F4;&#x65B0;&#x51FD;&#x5F0F;</h2>
+<p>&#x8981;&#x66F4;&#x65B0;&#x6642;&#x9593;&#x6B04;&#x4F4D;&#x5C31;&#x5FC5;&#x9808;&#x6709;&#x4E00;&#x500B;&#x51FD;&#x5F0F;&#x8CA0;&#x8CAC;&#x6B64;&#x5DE5;&#x4F5C;&#xFF0C;&#x65B0;&#x589E;&#x4E00;&#x500B;&#x51FD;&#x5F0F;&#xFF0C;&#x7576;&#x88AB;&#x547C;&#x53EB;&#x6642;&#x5C31;&#x6703;&#x8FD4;&#x56DE;&#x76EE;&#x524D;&#x7684;&#x6642;&#x9593;&#xFF0C;&#x4EE5;&#x9054;&#x6210;&#x66F4;&#x65B0;&#x6642;&#x9593;&#x7684;&#x76EE;&#x7684;</p>
+<pre><code class="language-sql">CREATE OR REPLACE FUNCTION update_modified_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.update_at = now();
+    RETURN NEW;
+END;
+$$ language &apos;plpgsql&apos;;
+</code></pre>
+<h2 id="%E5%BB%BA%E7%AB%8B%E8%B3%87%E6%96%99%E8%A1%A8">&#x5EFA;&#x7ACB;&#x8CC7;&#x6599;&#x8868;</h2>
+<p>&#x5728;&#x5EFA;&#x7ACB;&#x8CC7;&#x6599;&#x8868;&#x6642;&#x9700;&#x8981;&#x5728;&#x8CC7;&#x6599;&#x8868;&#x4E2D;&#x65B0;&#x589E;&#x4E00;&#x500B;update_at&#x8A18;&#x9304;&#x66F4;&#x65B0;&#x6642;&#x9593;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x77E5;&#x9053;&#x5EFA;&#x7ACB;&#x6642;&#x9593;&#x4E5F;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;create_at&#x6B04;&#x4F4D;&#x9806;&#x4FBF;&#x8A18;&#x9304;&#x5EFA;&#x7ACB;&#x6642;&#x9593;</p>
+<pre><code class="language-sql">CREATE TABLE product (
+    product_id BIGSERIAL PRIMARY KEY,--&#x5546;&#x54C1;&#x7DE8;&#x865F;
+    product_name VARCHAR(256) NOT NULL,--&#x5546;&#x54C1;&#x540D;&#x7A31;
+    stocks INTEGER NOT NULL,--&#x5EAB;&#x5B58;
+    create_at timestamp(6) default current_timestamp,--&#x5EFA;&#x7ACB;&#x6642;&#x9593;
+    update_at timestamp(6) default current_timestamp,--&#x66F4;&#x65B0;&#x6642;&#x9593;
+);
+</code></pre>
+<p>&#x4EE5;product&#x8CC7;&#x6599;&#x8868;&#x70BA;&#x4F8B;&#xFF0C;&#x9700;&#x5728;&#x8CC7;&#x6599;&#x8868;&#x4E2D;&#x65B0;&#x589E;&#x8CC7;&#x6599;&#x578B;&#x614B;&#x70BA;<code>timestamp(6)</code>&#x7684;create_at&#x53CA;update_at&#x6B04;&#x4F4D;&#x3002;&#x5F8C;&#x9762;&#x7684;<code>default current_timestamp</code>&#x53C3;&#x6578;&#x53EF;&#x4EE5;&#x5728;&#x8CC7;&#x6599;&#x8868;&#x65B0;&#x589E;&#x8CC7;&#x6599;&#x6642;&#x5C31;&#x5BEB;&#x5165;&#x76EE;&#x524D;&#x7684;&#x6642;&#x9593;&#xFF0C;&#x4EE5;&#x6B63;&#x78BA;&#x8A18;&#x9304;create_at&#x7684;&#x6578;&#x503C;&#xFF0C;&#x800C;update_at&#x5247;&#x6703;&#x5728;&#x66F4;&#x65B0;&#x8CC7;&#x6599;&#x6642;&#x88AB;&#x6539;&#x8B8A;</p>
+<h2 id="%E5%BB%BA%E7%AB%8B%E8%A7%B8%E7%99%BC%E5%99%A8">&#x5EFA;&#x7ACB;&#x89F8;&#x767C;&#x5668;</h2>
+<p>&#x7576;&#x51FD;&#x5F0F;&#x53CA;&#x6B04;&#x4F4D;&#x90FD;&#x6E96;&#x5099;&#x597D;&#x5F8C;&#xFF0C;&#x9700;&#x8981;&#x5728;&#x57F7;&#x884C;UPDATE&#x8A9E;&#x53E5;&#x6642;&#x89F8;&#x767C;&#x525B;&#x624D;&#x5EFA;&#x7ACB;&#x597D;&#x7684;update_modified_column&#x51FD;&#x5F0F;&#x3002;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x540D;&#x7A31;&#x70BA;product_update_at&#x7684;TRIGGER&#xFF0C;&#x7576;product&#x8CC7;&#x6599;&#x8868;&#x7684;&#x67D0;&#x500B;&#x8CC7;&#x6599;&#x88AB;&#x66F4;&#x65B0;&#x6642;&#x5C31;&#x81EA;&#x52D5;&#x57F7;&#x884C;update_modified_column&#x51FD;&#x5F0F;&#xFF0C;&#x81EA;&#x52D5;&#x66F4;&#x65B0;&#x8A72;&#x7B46;&#x8CC7;&#x6599;&#x7684;update_at&#x6B04;&#x4F4D;&#x3002;</p>
+<pre><code class="language-sql">CREATE TRIGGER product_update_at BEFORE UPDATE ON product FOR EACH ROW EXECUTE PROCEDURE update_modified_column();
+</code></pre>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named 'XXX'.錯誤]]></title><description><![CDATA[使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行`manage.exe runserver --noreload`指令時發生*ModuleNotFoundError: No module named 'XXX'.* 錯誤]]></description><link>http://127.0.0.1:2368/python-shi-yong-pyinstallerda-bao-djangozhuan-an-fa-sheng-modulenotfounderror-no-module-named-xxx-cuo-wu/</link><guid isPermaLink="false">635a816a57207246b927a8bd</guid><category><![CDATA[python]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Wed, 24 Nov 2021 15:39:29 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2021/11/python-logo-1.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2021/11/python-logo-1.jpg" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;ModuleNotFoundError: No module named &apos;XXX&apos;.&#x932F;&#x8AA4;"><p><img src="http://127.0.0.1:2368/content/images/2021/11/0.0-1.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;ModuleNotFoundError: No module named &apos;XXX&apos;.&#x932F;&#x8AA4;" loading="lazy"></p>
+<p>&#x4F7F;&#x7528;pyinstaller&#x5C07;manage.py&#x6253;&#x5305;&#x5F8C;&#x6703;&#x7522;&#x751F;manage.exe&#x53EF;&#x57F7;&#x884C;&#x6A94;&#xFF0C;&#x5728;&#x57F7;&#x884C;<code>manage.exe runserver --noreload</code>&#x6307;&#x4EE4;&#x6642;&#x767C;&#x751F;<em>ModuleNotFoundError: No module named &apos;XXX&apos;.</em> &#x932F;&#x8AA4;</p>
+<h2 id>&#x74B0;&#x5883;</h2>
+<ul>
+<li>Windows10 x64 20H2</li>
+<li>Python 3.9.7</li>
+<li>Django 3.2.7</li>
+<li>pyinstaller 4.7</li>
+</ul>
+<h2 id>&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;</h2>
+<p>&#x5148;&#x524D;&#x4F7F;&#x7528;<code>pyinstaller -F .\manage.py</code>&#x76F4;&#x63A5;&#x6253;&#x5305;&#x7522;&#x751F;exe&#x6A94;&#x6848;&#xFF0C;&#x4F46;&#x662F;&#x56E0;&#x70BA;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x63D0;&#x793A;&#x7F3A;&#x5C11;&#x6A21;&#x7D44;&#xFF0C;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;&#x662F;&#x5C07;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x986F;&#x793A;&#x7684;&#x6A21;&#x7D44;&#x624B;&#x52D5;&#x52A0;&#x5165;&#x5230;hiddenimports&#x4E2D;</p>
+<p>&#x9996;&#x5148;&#x4F7F;&#x7528;<code>pyi-makespec -F .\manage.py</code>&#x6307;&#x4EE4;&#x7522;&#x751F;spec&#x6A94;&#xFF0C;&#x5728;&#x6A94;&#x6848;&#x88E1;&#x7684;hiddenimports&#x4E2D;&#x52A0;&#x5165;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x6240;&#x63D0;&#x793A;&#x7684;&#x6A21;&#x7D44;&#x540D;&#x7A31;<br>
+<img src="http://127.0.0.1:2368/content/images/2021/11/0.1-1.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;ModuleNotFoundError: No module named &apos;XXX&apos;.&#x932F;&#x8AA4;" loading="lazy"></p>
+<p><img src="http://127.0.0.1:2368/content/images/2021/11/0.2.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;ModuleNotFoundError: No module named &apos;XXX&apos;.&#x932F;&#x8AA4;" loading="lazy"></p>
+<p>&#x63A5;&#x8457;&#x4F7F;&#x7528;<code>pyinstaller -F .\manage.spec</code>&#x6307;&#x4EE4;&#x5C07;spec&#x6A94;&#x6848;&#x6253;&#x5305;&#x6210;exe&#x6A94;&#xFF0C;&#x518D;&#x6B21;&#x4F7F;&#x7528;<code>manage.exe runserver --noreload</code>&#x6307;&#x4EE4;&#x57F7;&#x884C;&#x986F;&#x793A;&#x5DF2;&#x53EF;&#x6B63;&#x5E38;&#x904B;&#x4F5C;</p>
+<p><img src="http://127.0.0.1:2368/content/images/2021/11/0.3.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;ModuleNotFoundError: No module named &apos;XXX&apos;.&#x932F;&#x8AA4;" loading="lazy"></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Python]使用Pyinstaller打包Django專案發生"RuntimeError: Script runserver does not exist."錯誤]]></title><description><![CDATA[使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行`manage.exe runserver`指令時發生*RuntimeError: Script runserver does not exist.* 錯誤]]></description><link>http://127.0.0.1:2368/python-pyinstaller-django-runserver-does-not-exist-error/</link><guid isPermaLink="false">635a816a57207246b927a8bc</guid><category><![CDATA[python]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Wed, 24 Nov 2021 15:35:58 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2021/11/python-logo.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2021/11/python-logo.jpg" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;&quot;RuntimeError: Script runserver does not exist.&quot;&#x932F;&#x8AA4;"><p><img src="http://127.0.0.1:2368/content/images/2021/11/0.0.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;&quot;RuntimeError: Script runserver does not exist.&quot;&#x932F;&#x8AA4;" loading="lazy"><br>
+&#x4F7F;&#x7528;pyinstaller&#x5C07;manage.py&#x6253;&#x5305;&#x5F8C;&#x6703;&#x7522;&#x751F;manage.exe&#x53EF;&#x57F7;&#x884C;&#x6A94;&#xFF0C;&#x5728;&#x57F7;&#x884C;<code>manage.exe runserver</code>&#x6307;&#x4EE4;&#x6642;&#x767C;&#x751F;<em>RuntimeError: Script runserver does not exist.</em> &#x932F;&#x8AA4;</p>
+<h2 id>&#x74B0;&#x5883;</h2>
+<ul>
+<li>Windows10 x64 20H2</li>
+<li>Python 3.9.7</li>
+<li>Django 3.2.7</li>
+<li>pyinstaller 4.7</li>
+</ul>
+<h2 id>&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;</h2>
+<p>&#x5C07;&#x6307;&#x4EE4;&#x52A0;&#x4E0A; <code>--noreload</code> &#x53C3;&#x6578;&#xFF0C;&#x4F7F;&#x7528;&#x6307;&#x4EE4;<code>manage.exe runserver --noreload</code>&#x5373;&#x53EF;&#x89E3;&#x6C7A;&#x9019;&#x500B;&#x932F;&#x8AA4;</p>
+<p><img src="http://127.0.0.1:2368/content/images/2021/11/0.1.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;&quot;RuntimeError: Script runserver does not exist.&quot;&#x932F;&#x8AA4;" loading="lazy"></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Network]TCP 三方交握]]></title><description><![CDATA[三方交握(Three-Way Handshake)是TCP(Transmission Control Protocol)在傳送資料前的一個儀式，用來確認雙方都有收到訊息並建立連線]]></description><link>http://127.0.0.1:2368/tcp-three-way-handshake/</link><guid isPermaLink="false">635a816a57207246b927a8bb</guid><category><![CDATA[network]]></category><category><![CDATA[TCP]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 22 Jul 2021 15:29:27 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2021/07/communication-4871245.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2021/07/communication-4871245.jpg" alt="[Network]TCP &#x4E09;&#x65B9;&#x4EA4;&#x63E1;"><p>&#x4E09;&#x65B9;&#x4EA4;&#x63E1;(Three-Way Handshake)&#x662F;TCP(Transmission Control Protocol)&#x5728;&#x50B3;&#x9001;&#x8CC7;&#x6599;&#x524D;&#x7684;&#x4E00;&#x500B;&#x5100;&#x5F0F;&#xFF0C;&#x7528;&#x4F86;&#x78BA;&#x8A8D;&#x96D9;&#x65B9;&#x90FD;&#x6709;&#x6536;&#x5230;&#x8A0A;&#x606F;&#x4E26;&#x5EFA;&#x7ACB;&#x9023;&#x7DDA;</p>
+<p>&#x800C;&#x5728;&#x89E3;&#x91CB;&#x4E09;&#x65B9;&#x4EA4;&#x63E1;&#x4E4B;&#x524D;&#xFF0C;&#x5148;&#x4F86;&#x770B;&#x770B;&#x4E09;&#x65B9;&#x4EA4;&#x63E1;&#x6703;&#x7528;&#x5230;&#x7684;&#x4E09;&#x500B;&#x6982;&#x5FF5;&#xFF1A;&#x8ACB;&#x6C42;&#x3001;&#x78BA;&#x8A8D;&#x548C;&#x540C;&#x6B65;</p>
+<h2 id>&#x8ACB;&#x6C42;/&#x78BA;&#x8A8D;</h2>
+<p>&#x5047;&#x8A2D;&#x6709;A&#x548C;B&#x5169;&#x53F0;&#x96FB;&#x8166;&#xFF0C;A&#x96FB;&#x8166;&#x8981;&#x50B3;&#x9001;&#x5C01;&#x5305;&#x7D66;B&#x96FB;&#x8166;&#xFF0C;&#x70BA;&#x4E86;&#x78BA;&#x8A8D;B&#x96FB;&#x8166;&#x662F;&#x5426;&#x6536;&#x5230;&#x5C01;&#x5305;&#xFF0C;B&#x96FB;&#x8166;&#x5728;&#x6536;&#x5230;A&#x50B3;&#x904E;&#x4F86;&#x7684;&#x5C01;&#x5305;&#x4E4B;&#x5F8C;&#x6703;&#x8FD4;&#x56DE;&#x4E00;&#x500B;&#x78BA;&#x8A8D;(Acknowledgment,ACK)&#x5C01;&#x5305;&#xFF0C;&#x4EE5;&#x544A;&#x77E5;A&#x96FB;&#x8166;&#x5DF2;&#x7D93;&#x6709;&#x6536;&#x5230;&#x5C01;&#x5305;&#x4E86;&#xFF0C;&#x6B65;&#x9A5F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li>A&#x96FB;&#x8166;&#x50B3;&#x9001;&#x5C01;&#x5305;&#x7D66;B&#x96FB;&#x8166;</li>
+<li>B&#x96FB;&#x8166;&#x56DE;&#x50B3;&#x4E00;&#x500B;&#x5E36;&#x6709;ACK&#x6B04;&#x4F4D;&#x8CC7;&#x8A0A;&#x7684;&#x5C01;&#x5305;&#x7D66;A&#x96FB;&#x8166;</li>
+</ol>
+<p>&#x9019;&#x53EF;&#x4EE5;&#x4F7F;TCP&#x8B8A;&#x6210;&#x53EF;&#x9760;&#x7684;&#x50B3;&#x8F38;&#xFF0C;&#x4F46;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x500B;&#x554F;&#x984C;&#x51FA;&#x73FE;&#x4E86;&#xFF0C;&#x82E5;A&#x96FB;&#x8166;&#x5411;B&#x96FB;&#x8166;&#x767C;&#x9001;&#x591A;&#x500B;&#x5C01;&#x5305;&#xFF0C;B&#x96FB;&#x8166;&#x7167;&#x6A23;&#x9001;&#x56DE;&#x591A;&#x500B;ACK&#x5C01;&#x5305;&#x7D66;A&#x96FB;&#x8166;&#xFF0C;A&#x96FB;&#x8166;&#x5C07;&#x6703;&#x7121;&#x6CD5;&#x5F97;&#x77E5;&#x9019;&#x4E9B;ACK&#x662F;&#x5C0D;&#x61C9;&#x5230;&#x54EA;&#x500B;&#x5DF2;&#x767C;&#x9001;&#x7684;&#x5C01;&#x5305;&#xFF0C;&#x5C31;&#x6703;&#x4E0D;&#x77E5;&#x9053;&#x54EA;&#x500B;&#x5C0D;&#x65B9;&#x5DF2;&#x7D93;&#x6536;&#x5230;&#xFF0C;&#x800C;&#x54EA;&#x500B;&#x5C0D;&#x65B9;&#x6C92;&#x6536;&#x5230;&#xFF0C;&#x9019;&#x6642;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x7528;&#x5E8F;&#x5217;&#x865F;(sequence number,SEQ)&#x4F86;&#x89E3;&#x6C7A;&#x9019;&#x500B;&#x554F;&#x984C;&#x3002;</p>
+<h2 id>&#x5E8F;&#x5217;&#x865F;</h2>
+<p>&#x4F46;&#x662F;&#x9019;&#x908A;&#x53C8;&#x9047;&#x5230;&#x4E00;&#x500B;&#x554F;&#x984C;&#x4E86;&#xFF0C;&#x56E0;&#x70BA;A&#x96FB;&#x8166;&#x548C;B&#x96FB;&#x8166;&#x7684;&#x8D77;&#x59CB;&#x5E8F;&#x5217;&#x865F;&#x4E0D;&#x4E00;&#x5B9A;&#x6703;&#x4E00;&#x6A23;&#xFF0C;&#x6240;&#x4EE5;A&#x96FB;&#x8166;&#x767C;&#x9001;&#x51FA;&#x53BB;&#x7684;&#x5C01;&#x5305;&#x7684;&#x5E8F;&#x5217;&#x865F;&#x4E0D;&#x7B49;&#x65BC;B&#x96FB;&#x8166;&#x767C;&#x9001;&#x51FA;&#x53BB;&#x7684;&#x5C01;&#x5305;&#x7684;ACK&#x7684;&#x5E8F;&#x865F;&#xFF0C;&#x4F8B;&#x5982;A&#x96FB;&#x8166;&#x521D;&#x59CB;&#x5E8F;&#x5217;&#x865F;&#x70BA;7&#xFF0C;B&#x96FB;&#x8166;&#x521D;&#x59CB;&#x5E8F;&#x5217;&#x865F;&#x70BA;1000&#x3002;&#x6240;&#x4EE5;&#x5728;&#x958B;&#x59CB;&#x50B3;&#x9001;&#x5C01;&#x5305;&#x524D;AB&#x96D9;&#x65B9;&#x6703;&#x9032;&#x884C;&#x540C;&#x6B65;(synchronization)&#x4F86;&#x78BA;&#x8A8D;&#x5F7C;&#x6B64;&#x7684;&#x521D;&#x59CB;&#x5E8F;&#x5217;&#x865F;(Initial Sequence Number,ISN)&#x662F;&#x591A;&#x5C11;&#xFF0C;&#x4EE5;&#x4F5C;&#x70BA;&#x5F8C;&#x7E8C;&#x5728;&#x6536;&#x5230;&#x8ACB;&#x6C42;&#x5F8C;&#x8981;&#x767C;&#x9001;&#x78BA;&#x8A8D;&#x5C01;&#x5305;&#x6642;&#xFF0C;&#x53EF;&#x4EE5;&#x78BA;&#x8A8D;&#x5C0D;&#x65B9;&#x7684;&#x5E8F;&#x865F;&#x662F;&#x5426;&#x6B63;&#x78BA;&#x3002;</p>
+<h2 id>&#x540C;&#x6B65;</h2>
+<p>&#x540C;&#x6B65;&#x70BA;&#x540C;&#x6B65;&#x5E8F;&#x5217;&#x865F;(Synchronize sequence numbers,SYN)&#xFF0C;&#x7528;&#x610F;&#x5C31;&#x662F;&#x5728;&#x65BC;&#x78BA;&#x8A8D;&#x5F7C;&#x6B64;&#x7684;&#x521D;&#x59CB;&#x5E8F;&#x5217;&#x865F;&#xFF0C;&#x5047;&#x8A2D;A&#x96FB;&#x8166;&#x7684;&#x521D;&#x59CB;&#x5E8F;&#x5217;&#x865F;&#x662F;7&#xFF0C;B&#x96FB;&#x8166;&#x7684;&#x521D;&#x59CB;&#x5E8F;&#x5217;&#x865F;&#x662F;1000&#xFF0C;&#x540C;&#x6B65;&#x7684;&#x6B65;&#x9A5F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li>A&#x96FB;&#x8166;&#x50B3;&#x9001;SYN&#x70BA;7&#x7684;&#x5C01;&#x5305;&#x7D66;B</li>
+<li>B&#x96FB;&#x8166;&#x6536;&#x5230;A&#x96FB;&#x8166;&#x50B3;&#x9001;SYN&#x70BA;7&#x7684;&#x5C01;&#x5305;&#xFF0C;&#x56DE;&#x50B3;ACK&#x70BA;8(7+1=8)&#x7684;&#x5C01;&#x5305;&#x7D66;A&#x96FB;&#x8166;</li>
+<li>B&#x96FB;&#x8166;&#x50B3;&#x9001;SYN&#x70BA;1000&#x7684;&#x5C01;&#x5305;&#x7D66;A</li>
+<li>A&#x96FB;&#x8166;&#x6536;&#x5230;B&#x96FB;&#x8166;&#x50B3;&#x9001;SYN&#x70BA;1000&#x7684;&#x5C01;&#x5305;&#xFF0C;A&#x96FB;&#x8166;&#x56DE;&#x50B3;ACK&#x70BA;1001(1000+1)&#x7684;&#x5C01;&#x5305;&#x7D66;B&#x96FB;&#x8166;</li>
+</ol>
+<h2 id>&#x4E09;&#x65B9;&#x4EA4;&#x63E1;</h2>
+<p>&#x5982;&#x6B64;&#x4E00;&#x4F86;&#x96D9;&#x65B9;&#x4FBF;&#x77E5;&#x9053;&#x5F7C;&#x6B64;&#x7684;&#x521D;&#x59CB;&#x5E8F;&#x5217;&#x865F;&#x4E86;&#xFF0C;&#x800C;&#x5C07;&#x56DB;&#x500B;&#x6B65;&#x9A5F;&#x4E2D;&#x7684;2&#x548C;3&#x5408;&#x4F75;&#x6210;&#x4E00;&#x500B;&#x5C01;&#x5305;&#x4FBF;&#x662F;&#x6211;&#x5011;&#x4FD7;&#x7A31;&#x7684;&#x4E09;&#x65B9;&#x4EA4;&#x63E1;</p>
+<ol>
+<li>A&#x96FB;&#x8166;&#x50B3;&#x9001;SYN&#x7D66;B&#x96FB;&#x8166;</li>
+<li>B&#x96FB;&#x8166;&#x6536;&#x5230;A&#x96FB;&#x8166;&#x50B3;&#x9001;&#x7684;SYN&#xFF0C;&#x50B3;&#x56DE;SYN+ACK&#x7D66;A&#x96FB;&#x8166;</li>
+<li>A&#x96FB;&#x8166;&#x9001;&#x56DE;ACK&#x7D66;B&#x96FB;&#x8166;</li>
+</ol>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Pattern]REST API 設計規範]]></title><description><![CDATA[REST是一種架構風格，類似設計模式，使用一些原則規範應用程式的設計]]></description><link>http://127.0.0.1:2368/pattern-rest-api-design/</link><guid isPermaLink="false">635a816a57207246b927a8ba</guid><category><![CDATA[Pattern]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 14 Jun 2021 09:20:00 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg" alt="[Pattern]REST API &#x8A2D;&#x8A08;&#x898F;&#x7BC4;"><p>REST&#x662F;&#x4E00;&#x7A2E;&#x67B6;&#x69CB;&#x98A8;&#x683C;&#xFF0C;&#x985E;&#x4F3C;&#x8A2D;&#x8A08;&#x6A21;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x4E00;&#x4E9B;&#x539F;&#x5247;&#x898F;&#x7BC4;&#x61C9;&#x7528;&#x7A0B;&#x5F0F;&#x7684;&#x8A2D;&#x8A08;&#xFF0C;&#x4EE5;&#x4E0B;&#x70BA;REST&#x98A8;&#x683C;&#x7684;&#x4E00;&#x4E9B;&#x7279;&#x5FB5;</p>
+<h2 id>&#x4F7F;&#x7528;&#x540D;&#x8A5E;&#x800C;&#x975E;&#x52D5;&#x8A5E;</h2>
+<p>&#x7576;&#x6211;&#x5011;&#x60F3;&#x8981;&#x8A2D;&#x8A08;&#x4E00;&#x500B;&#x5B78;&#x751F;&#x7684;API&#x6642;&#xFF0C;&#x61C9;&#x4F7F;&#x7528;&#x540D;&#x8A5E;&#x9032;&#x884C;&#x5B9A;&#x7FA9;</p>
+<pre><code class="language-javascript">//&#x9019;&#x662F;&#x5C0D;&#x7684;
+/students/1
+</code></pre>
+<p>&#x800C;&#x975E;&#x4F7F;&#x7528;&#x52D5;&#x8A5E;&#x5B9A;&#x7FA9;</p>
+<pre><code class="language-javascript">//&#x9019;&#x662F;&#x932F;&#x7684;
+/getStudent/1
+</code></pre>
+<h2 id>&#x4F7F;&#x7528;&#x8907;&#x6578;&#x540D;&#x8A5E;</h2>
+<p>&#x4E0D;&#x5340;&#x5206;&#x55AE;&#x8907;&#x6578;&#xFF0C;&#x5168;&#x90E8;&#x4F7F;&#x7528;&#x8907;&#x6578;&#x5B9A;&#x7FA9;</p>
+<pre><code class="language-javascript">//&#x9019;&#x662F;&#x5C0D;&#x7684;
+/students
+</code></pre>
+<p>&#x4E0D;&#x4F7F;&#x7528;&#x55AE;&#x6578;&#x5B9A;&#x7FA9;</p>
+<pre><code class="language-javascript">//&#x9019;&#x662F;&#x932F;&#x7684;
+/student
+</code></pre>
+<h2 id>&#x4F7F;&#x7528;&#x5B50;&#x8CC7;&#x6E90;&#x8868;&#x9054;&#x8CC7;&#x6E90;&#x9593;&#x7684;&#x95DC;&#x4FC2;</h2>
+<p>&#x4EE5;&#x53D6;&#x5F97;&#x6240;&#x6709;&#x8CC7;&#x6E90;&#x8207;&#x7279;&#x5B9A;&#x8CC7;&#x6E90;&#x70BA;&#x4F8B;</p>
+<pre><code class="language-javascript">//&#x9019;&#x662F;&#x5C0D;&#x7684;
+/students //&#x53D6;&#x5F97;&#x6240;&#x6709;&#x5B78;&#x751F;
+/students/1 //&#x53D6;&#x5F97;&#x7279;&#x5B9A;&#x5B78;&#x751F;
+</code></pre>
+<p>&#x547C;&#x61C9;&#x5230;&#x4F7F;&#x7528;&#x8907;&#x6578;&#x540D;&#x8A5E;&#x5B9A;&#x7FA9;API&#xFF0C;&#x53D6;&#x5F97;&#x7279;&#x5B9A;&#x8CC7;&#x6E90;&#x6642;&#x4E0D;&#x4F7F;&#x7528;&#x55AE;&#x6578;&#x8868;&#x9054;&#xFF0C;&#x800C;&#x662F;&#x4F7F;&#x7528;&#x5B50;&#x8CC7;&#x6E90;&#x65B9;&#x5F0F;&#x5B9A;&#x7FA9;</p>
+<pre><code class="language-javascript">//&#x9019;&#x662F;&#x932F;&#x7684;
+/students //&#x53D6;&#x5F97;&#x6240;&#x6709;&#x5B78;&#x751F;
+/student/1 //&#x53D6;&#x5F97;&#x7279;&#x5B9A;&#x5B78;&#x751F;
+</code></pre>
+<h2 id="get">&#x4F7F;&#x7528;GET&#x4EE5;&#x5916;&#x7684;&#x65B9;&#x6CD5;&#x6539;&#x8B8A;&#x8CC7;&#x6E90;&#x72C0;&#x614B;</h2>
+<p>&#x8981;&#x6539;&#x8B8A;&#x8CC7;&#x6E90;&#x72C0;&#x614B;&#x61C9;&#x4F7F;&#x7528;GET&#x4EE5;&#x5916;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;POST&#x3001;PUT&#x6216;DELETE&#x7B49;</p>
+<pre><code class="language-javascript">//&#x9019;&#x662F;&#x5C0D;&#x7684;
+POST /students/1/activate
+</code></pre>
+<p>&#x4E0D;&#x4F7F;&#x7528;GET&#x9032;&#x884C;&#x4FEE;&#x6539;</p>
+<pre><code class="language-javascript">//&#x9019;&#x662F;&#x932F;&#x7684;
+GET /students/1/activate
+</code></pre>
+<h2 id="httpheader">&#x4F7F;&#x7528;HTTP header&#x5B9A;&#x7FA9;&#x683C;&#x5F0F;</h2>
+<ul>
+<li>Content-Type&#x5B9A;&#x7FA9;&#x8ACB;&#x6C42;&#x683C;&#x5F0F;</li>
+<li>Accept&#x5B9A;&#x7FA9;&#x63A5;&#x6536;&#x5C0D;&#x61C9;&#x7684;&#x683C;&#x5F0F;&#x5217;&#x8868;</li>
+</ul>
+<h2 id="hateoas">&#x4F7F;&#x7528;HATEOAS&#x7D04;&#x675F;</h2>
+<p>&#x7528;&#x6236;&#x7AEF;&#x53EF;&#x4EE5;&#x5728;&#x4F3A;&#x670D;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x5167;&#x5BB9;&#x4E2D;&#x52D5;&#x614B;&#x7684;&#x53D6;&#x5F97;URI&#x7684;&#x8CC7;&#x8A0A;&#xFF0C;&#x518D;&#x4F7F;&#x7528;&#x53D6;&#x5F97;&#x7684;URI&#x8CC7;&#x8A0A;&#x9001;&#x51FA;&#x8ACB;&#x6C42;</p>
+<h2 id>&#x63D0;&#x4F9B;&#x904E;&#x6FFE;&#x3001;&#x6392;&#x5E8F;&#x3001;&#x6B04;&#x4F4D;&#x9078;&#x64C7;&#x3001;&#x5206;&#x9801;</h2>
+<h3 id>&#x904E;&#x6FFE;</h3>
+<pre><code class="language-javascript">GET /students?gender=male
+GET /students?age&lt;=18
+</code></pre>
+<h3 id>&#x6392;&#x5E8F;</h3>
+<pre><code class="language-javascript">GET /students?sort=-age,+id
+</code></pre>
+<h3 id>&#x6B04;&#x4F4D;&#x9078;&#x64C7;</h3>
+<pre><code class="language-javascript">GET /students?fields=id,name,age,gender
+</code></pre>
+<h3 id>&#x5206;&#x9801;</h3>
+<pre><code class="language-javascript">GET /students?offset=10&amp;limit=5 //&#x53D6;&#x5F97;&#x5B78;&#x751F;&#x7B2C;20&#x500B;&#x4E4B;&#x5F8C;&#x7684;5&#x500B;&#x5B78;&#x751F;
+</code></pre>
+<h2 id>&#x4F7F;&#x7528;&#x7248;&#x672C;</h2>
+<p>&#x4F7F;&#x7528;&#x7248;&#x672C;&#x7DE8;&#x865F;&#x5C07;API&#x7248;&#x672C;&#x5316;&#xFF0C;&#x63D0;&#x4F9B;&#x5F48;&#x6027;</p>
+<pre><code class="language-javascript">/yourService/api/v1
+</code></pre>
+<h2 id="httpstatuscode">&#x4F7F;&#x7528;HTTP Status Code&#x9032;&#x884C;&#x932F;&#x8AA4;&#x8655;&#x7406;</h2>
+<p>&#x6BCF;&#x500B;&#x932F;&#x8AA4;&#x90FD;&#x9808;&#x8FD4;&#x56DE;&#x4E00;&#x500B;payload&#xFF0C;&#x4E0D;&#x53EF;&#x50C5;&#x8FD4;&#x56DE;&#x932F;&#x8AA4;&#x72C0;&#x614B;&#x78BC;(500 Internal Server Error)</p>
+<pre><code class="language-json">{
+    &quot;errors&quot;:[
+        {
+            &quot;userMessage&quot;:&quot;Sorry, the requested resource dose not exists.&quot;,
+            &quot;internalMessage&quot;:&quot;Student not found&quot;,
+            &quot;code&quot;:&quot;34&quot;
+        }
+    ]
+}
+</code></pre>
+<h2 id>&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
+<ul>
+<li>&#x5DE8;&#x578B;&#x516C;&#x53F8;&#x7684;&#x7DB2;&#x8DEF;&#x67B6;&#x69CB;&#xFF1A;&#x5206;&#x6563;&#x662F;&#x7CFB;&#x7D71;&#x5167;&#x90E8;&#x89E3;&#x5BC6;/&#x67F3;&#x5049;&#x885B;</li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Golang]MySQL Error 1040: Too Many Connections 錯誤處理]]></title><description><![CDATA[前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。]]></description><link>http://127.0.0.1:2368/golang-mysql-error-1040/</link><guid isPermaLink="false">635a816a57207246b927a8b9</guid><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 08 Jun 2021 16:09:52 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2021/06/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2021/06/golang-long.jpeg" alt="[Golang]MySQL Error 1040: Too Many Connections &#x932F;&#x8AA4;&#x8655;&#x7406;"><p>&#x524D;&#x9663;&#x5B50;&#x5BEB;&#x4E86;&#x4E00;&#x500B;golang&#x7A0B;&#x5F0F;&#x7528;&#x4F86;&#x4E0A;&#x50B3;&#x8CC7;&#x6599;&#x5230;MySQL&#xFF0C;&#x8D77;&#x521D;&#x7A0B;&#x5F0F;&#x904B;&#x4F5C;&#x90FD;&#x975E;&#x5E38;&#x826F;&#x597D;&#xFF0C;&#x904E;&#x4E86;&#x4E00;&#x9663;&#x5B50;&#x958B;&#x59CB;&#x51FA;&#x73FE;&#x4EE3;&#x865F;&#x70BA;1040&#x7684;Too Many Connections&#x932F;&#x8AA4;&#xFF0C;&#x6211;&#x5011;&#x4E00;&#x8D77;&#x4F86;&#x770B;&#x770B;&#x767C;&#x751F;&#x4E86;&#x751A;&#x9EBC;&#x4E8B;&#x3002;</p>
+<h2 id="mysql">&#x67E5;&#x770B;MySQL&#x7684;&#x9023;&#x7DDA;&#x6578;&#x91CF;</h2>
+<p>&#x5728;MySQL&#x4E0B;SQL&#x67E5;&#x8A62;</p>
+<pre><code class="language-sql">SHOW STATUS LIKE &apos;%connected&apos;;
+</code></pre>
+<p>&#x67E5;&#x8A62;&#x7D50;&#x679C;&#x5982;&#x4E0B;</p>
+<table>
+<thead>
+<tr>
+<th>Variable_name</th>
+<th style="text-align:left">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slaves_connected</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td>Threads_connected</td>
+<td style="text-align:left">151</td>
+</tr>
+</tbody>
+</table>
+<p>&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x767C;&#x73FE;&#x5230;Threads_connected&#x5DF2;&#x7D93;&#x5230;&#x9054;151&#x4E86;&#xFF0C;MySQL&#x9810;&#x8A2D;&#x7684;&#x6700;&#x5927;&#x5141;&#x8A31;&#x9023;&#x7DDA;&#x6578;&#x91CF;&#x70BA;151&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x6307;&#x4EE4;&#x67E5;&#x8A62;&#x6700;&#x5927;&#x5141;&#x8A31;&#x9023;&#x7DDA;&#x6578;&#x91CF;</p>
+<pre><code class="language-sql">SHOW VARIABLES LIKE &apos;max_connections&apos;;
+</code></pre>
+<h2 id>&#x6AA2;&#x67E5;&#x7A0B;&#x5F0F;&#x78BC;</h2>
+<p>&#x5F8C;&#x4F86;&#x6AA2;&#x67E5;&#x7A0B;&#x5F0F;&#x78BC;&#x767C;&#x73FE;&#x5728;database/sql&#x9019;&#x500B;package&#x6709;&#x5169;&#x500B;struct&#xFF0C;&#x4E00;&#x500B;&#x662F;DB&#xFF0C;&#x53E6;&#x4E00;&#x500B;&#x662F;Conn&#xFF0C;&#x6211;&#x5C07;DB&#x7269;&#x4EF6;&#x7684;&#x9023;&#x7DDA;&#x95DC;&#x6389;&#x800C;&#x6C92;&#x6709;&#x95DC;&#x9589;Conn&#x7269;&#x4EF6;&#x7684;&#xFF0C;&#x5C0E;&#x81F4;&#x9023;&#x7DDA;&#x6578;&#x4E00;&#x76F4;&#x589E;&#x52A0;&#xFF0C;&#x9020;&#x6210;1040&#x932F;&#x8AA4;&#x3002;</p>
+<h3 id>&#x932F;&#x8AA4;&#x7A0B;&#x5F0F;&#x78BC;&#x7BC4;&#x4F8B;</h3>
+<pre><code class="language-go">db, err := sql.Open(&quot;mysql&quot;, &quot;user:password@tcp(127.0.0.1)/testdb?charset=utf8&quot;)
+if err != nil {
+    fmt.Println(err)
+}
+defer db.Close()
+
+_, err = db.Query(&quot;call SP(?,?,?,?)&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;)
+if err != nil {
+    fmt.Println(err)
+}
+</code></pre>
+<p>&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E0A;&#x9762;&#x95DC;&#x9589;&#x7684;&#x662F;db.Close()&#xFF0C;&#x9019;&#x6A23;&#x4E26;&#x4E0D;&#x80FD;&#x6B63;&#x78BA;&#x95DC;&#x9589;&#x9023;&#x7DDA;&#xFF0C;&#x5FC5;&#x9808;&#x95DC;&#x9589;db.Query&#x7684;&#x9023;&#x7DDA;&#x624D;&#x80FD;&#x6B63;&#x78BA;&#x7684;&#x964D;&#x4F4E;&#x9023;&#x7DDA;&#x5361;&#x4F4F;&#x7684;&#x6578;&#x91CF;</p>
+<h3 id>&#x4FEE;&#x6B63;&#x7A0B;&#x5F0F;&#x78BC;&#x7BC4;&#x4F8B;</h3>
+<pre><code class="language-go">db, err := sql.Open(&quot;mysql&quot;, &quot;user:password@tcp(127.0.0.1)/testdb?charset=utf8&quot;)
+if err != nil {
+    fmt.Println(err)
+}
+defer db.Close()
+
+conn, err := db.Query(&quot;call SP(?,?,?,?)&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;)
+if err != nil {
+    fmt.Println(err)
+}
+defer conn.Close()
+
+</code></pre>
+<h2 id>&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
+<ul>
+<li><a href="https://stackoverflow.com/questions/39452555/is-it-normal-to-have-these-many-connections-in-mysql">stackoverflow - Is it normal to have these many connections in MySQL?</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Zsh]更改Ubuntu終端機樣式]]></title><description><![CDATA[近期無意間在網路上發現Bullet Train這個theme，一下子就被燒到了，覺得非常好看，於是決定來將自己的terminal也改成那樣子，提昇~~爽度~~工作效率]]></description><link>http://127.0.0.1:2368/zsh-ubuntu-init/</link><guid isPermaLink="false">635a816a57207246b927a8b8</guid><category><![CDATA[zsh]]></category><category><![CDATA[Ubuntu]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 04 Jun 2021 16:32:31 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2021/06/2021-06-05-00-26-14-------1.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2021/06/2021-06-05-00-26-14-------1.png" alt="[Zsh]&#x66F4;&#x6539;Ubuntu&#x7D42;&#x7AEF;&#x6A5F;&#x6A23;&#x5F0F;"><p>&#x8FD1;&#x671F;&#x7121;&#x610F;&#x9593;&#x5728;&#x7DB2;&#x8DEF;&#x4E0A;&#x767C;&#x73FE;<a href="https://github.com/caiogondim/bullet-train.zsh">Bullet Train</a>&#x9019;&#x500B;theme&#xFF0C;&#x4E00;&#x4E0B;&#x5B50;&#x5C31;&#x88AB;&#x71D2;&#x5230;&#x4E86;&#xFF0C;&#x89BA;&#x5F97;&#x975E;&#x5E38;&#x597D;&#x770B;&#xFF0C;&#x65BC;&#x662F;&#x6C7A;&#x5B9A;&#x4F86;&#x5C07;&#x81EA;&#x5DF1;&#x7684;terminal&#x4E5F;&#x6539;&#x6210;&#x90A3;&#x6A23;&#x5B50;&#xFF0C;&#x63D0;&#x6607;<s>&#x723D;&#x5EA6;</s>&#x5DE5;&#x4F5C;&#x6548;&#x7387;</p>
+<h2 id>&#x74B0;&#x5883;</h2>
+<ul>
+<li>Ubuntu 20.04.2LTS</li>
+</ul>
+<h2 id>&#x5B89;&#x88DD;</h2>
+<p>&#x66F4;&#x65B0;&#x5957;&#x4EF6;&#x6E05;&#x55AE;</p>
+<pre><code class="language-shell">$ sudo apt-get update #&#x66F4;&#x65B0;&#x5957;&#x4EF6;&#x6E05;&#x55AE;
+$ sudo apt-get upgrade #&#x6839;&#x64DA;&#x5DF2;&#x7D93;&#x66F4;&#x65B0;&#x7684;&#x5957;&#x4EF6;&#x6E05;&#x55AE;&#xFF0C;&#x6BD4;&#x5C0D;&#x662F;&#x5426;&#x66F4;&#x65B0;&#x5957;&#x4EF6;
+</code></pre>
+<p>&#x5B89;&#x88DD;Zsh</p>
+<pre><code class="language-shell">$ sudo apt-get install zsh
+</code></pre>
+<p>&#x67E5;&#x770B;Zsh&#x662F;&#x5426;&#x6210;&#x529F;&#x5B89;&#x88DD;</p>
+<pre><code class="language-shell">$ cat /etc/shells
+</code></pre>
+<p>&#x5B89;&#x88DD;oh-my-zsh</p>
+<pre><code class="language-shell">$ sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
+</code></pre>
+<p>&#x5B89;&#x88DD;&#x5B8C;&#x6703;&#x986F;&#x793A;oh-my-zsh&#x7684;&#x6B61;&#x8FCE;&#x756B;&#x9762;</p>
+<h2 id>&#x4FEE;&#x6539;&#x8A2D;&#x5B9A;</h2>
+<p>&#x76EE;&#x524D;&#x9810;&#x8A2D;&#x7684;&#x9084;&#x662F;Bash Shell&#xFF0C;&#x8981;&#x5C07;&#x5B83;&#x6539;&#x6210;Zsh</p>
+<pre><code class="language-shell">$ chsh -s /bin/zsh
+</code></pre>
+<p>&#x4FEE;&#x6539;&#x5B8C;&#x6210;&#x5F8C;&#x9808;&#x91CD;&#x65B0;&#x767B;&#x5165;</p>
+<h2 id="theme">&#x5B89;&#x88DD;Theme</h2>
+<p>&#x524D;&#x5F80;<a href="https://github.com/caiogondim/bullet-train.zsh">Bullet train</a>&#x4E0B;&#x8F09;<a href="https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme">&#x4E3B;&#x984C;</a></p>
+<p>&#x5C07;&#x4E0B;&#x8F09;&#x597D;&#x7684;&#x4E3B;&#x984C;<strong>bullet-train.zsh-theme</strong>&#x653E;&#x5165;<code>.oh-my-zsh/themes</code>&#x76EE;&#x9304;&#x5167;</p>
+<p>&#x63A5;&#x8457;&#x7DE8;&#x8F2F;<code>~/.zshrc</code>&#xFF0C;&#x5C07;<strong>ZSH_THEME</strong>&#x8A2D;&#x5B9A;&#x70BA;&quot;bullet-train&quot;</p>
+<h2 id="powerline">&#x5B89;&#x88DD;powerline</h2>
+<pre><code class="language-shell">$ sudo apt-get install powerline
+$ sudo apt-get install fonts-powerline
+</code></pre>
+<h2 id="melso">&#x5B89;&#x88DD;Melso&#x5B57;&#x578B;</h2>
+<pre><code class="language-shell">$ git clone https://github.com/powerline/fonts.git --depth=1
+$ cd fonts 
+$ ./install.sh
+</code></pre>
+<p>&#x53F3;&#x9375;&#x9EDE;&#x9078;Terminal&gt;&#x504F;&#x597D;&#x8A2D;&#x5B9A;&gt;&#x6587;&#x5B57;&gt;&#x81EA;&#x8A02;&#x5B57;&#x578B;&#xFF0C;&#x9078;&#x64C7;<strong>Meslo LG S for Powerline Bold</strong>&#x66F4;&#x6539;&#x5B57;&#x578B;</p>
+<h2 id>&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
+<ul>
+<li><a href="https://medium.com/@wifferlin0505/%E5%9C%A8-ubuntu-16-04-lts-%E4%B8%AD%E5%AE%89%E8%A3%9D%E4%BD%BF%E7%94%A8-oh-my-zsh-cf92203ca8a2">&#x5728; Ubuntu 18.04 LTS / 16.04 LTS &#x4E2D;&#x5B89;&#x88DD;&#x4F7F;&#x7528; Oh-My-Zsh</a></li>
+<li><a href="https://medium.com/@hazelwu/%E7%94%A8oh-my-zsh%E6%8A%8Aiterm%E8%AE%8A%E7%BE%8E%E7%BE%8E-8a18daa8eac">&#x7528;Oh My Zsh&#x628A;iTerm&#x8B8A;&#x7F8E;&#x7F8E;</a></li>
+<li><a href="https://github.com/caiogondim/bullet-train.zsh">Github - Bullet Train for oh-my-zsh</a></li>
+<li><a href="https://github.com/powerline/fonts">Github - Powerline fonts</a></li>
+<li><a href="https://github.com/agnoster/agnoster-zsh-theme">agnoster.zsh-theme</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[ESP8266]ESP-01韌體燒錄]]></title><description><![CDATA[在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟]]></description><link>http://127.0.0.1:2368/flash-firmware-on-esp01/</link><guid isPermaLink="false">635a816a57207246b927a8b7</guid><category><![CDATA[ESP8266]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 22 Feb 2021 13:42:24 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2021/02/pexels-skitterphoto-1448561.jpg" medium="image"/><content:encoded><![CDATA[<img src="http://127.0.0.1:2368/content/images/2021/02/pexels-skitterphoto-1448561.jpg" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;"><p>&#x5728;&#x4F7F;&#x7528;ESP8266&#x6709;&#x6642;&#x6703;&#x9047;&#x5230;&#x5169;&#x7A2E;&#x60C5;&#x6CC1;&#xFF0C;&#x539F;&#x5EE0;&#x51FA;&#x8CA8;&#x7684;&#x97CC;&#x9AD4;&#x602A;&#x602A;&#x7684;&#x5C0E;&#x81F4;&#x7121;&#x6CD5;&#x4F7F;&#x7528;AT&#x6307;&#x4EE4;&#x8DDF;ESP8266&#x6E9D;&#x901A;&#xFF0C;&#x6216;&#x662F;&#x5DF2;&#x7D93;&#x628A;&#x81EA;&#x5DF1;&#x7684;&#x7A0B;&#x5F0F;&#x71D2;&#x9032;&#x53BB;&#x4E4B;&#x5F8C;&#x53C8;&#x60F3;&#x91CD;&#x65B0;&#x4F7F;&#x7528;AT&#x6307;&#x4EE4;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x9019;&#x6642;&#x5019;&#x5C31;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x71D2;&#x9304;&#x97CC;&#x9AD4;&#xFF0C;&#x9019;&#x7BC7;&#x7B46;&#x8A18;&#x7D00;&#x9304;&#x4F7F;&#x7528;ESP-01&#x4F5C;&#x70BA;&#x7BC4;&#x4F8B;&#x7684;&#x97CC;&#x9AD4;&#x71D2;&#x9304;&#x53CA;AT&#x6307;&#x4EE4;&#x9A57;&#x8B49;&#x6B65;&#x9A5F;</p><!--kg-card-begin: markdown--><h2 id>&#x6750;&#x6599;</h2>
+<h3 id>&#x786C;&#x9AD4;</h3>
+<ul>
+<li>ESP-01s</li>
+<li>ESP-01&#x71D2;&#x9304;&#x5668;</li>
+</ul>
+<h3 id>&#x8EDF;&#x9AD4;</h3>
+<ul>
+<li>Flash Download Tools (ESP8266 &amp; ESP32 &amp; ESP32-S2) V3.8.5</li>
+<li>RealTerm 2.0.0.70</li>
+</ul>
+<h3 id="sdk">SDK</h3>
+<ul>
+<li>ESP8266 NONOS SDK V3.0.4</li>
+</ul>
+<h3 id="at">AT&#x6307;&#x4EE4;&#x96C6;(&#x542B;&#x97CC;&#x9AD4;&#x71D2;&#x9304;&#x4F4D;&#x5740;&#x8AAA;&#x660E;)</h3>
+<ul>
+<li>ESP8266 Non-OS AT Instruction Set V3.0.3</li>
+</ul>
+<h2 id>&#x6E96;&#x5099;&#x6240;&#x9700;&#x8EDF;&#x9AD4;&#x53CA;&#x97CC;&#x9AD4;</h2>
+<p>&#x9EDE;&#x64CA;&#x4E0B;&#x65B9;&#x9023;&#x7D50;&#x4E0B;&#x8F09;&#x71D2;&#x9304;&#x5DE5;&#x5177;&#x3001;&#x97CC;&#x9AD4;&#x53CA;&#x6307;&#x4EE4;&#x96C6;</p>
+<ul>
+<li><a href="https://www.espressif.com/en/support/download/sdks-demos">ESP8266 NONOS SDK</a></li>
+<li><a href="https://www.espressif.com/en/support/download/other-tools">Flash Download Tools</a></li>
+<li><a href="https://www.espressif.com/en/support/documents/technical-documents">ESP8266 Non-OS AT Instruction Set</a></li>
+</ul>
+<h2 id="esp01">&#x9023;&#x63A5;ESP-01</h2>
+<p>&#x5C07;ESP-01&#x63D2;&#x5728;&#x71D2;&#x9304;&#x5668;&#x4E0A;&#xFF0C;&#x4E26;&#x5C07;&#x71D2;&#x9304;&#x5668;&#x63D2;&#x5165;USB Port<br>
+&#x63A5;&#x8457;&#x6309;&#x4E0B;<code>Windows&#x9375;+R</code>&#xFF0C;&#x8F38;&#x5165;<strong>devmgmt.msc</strong>&#x6309;&#x4E0B;&#x78BA;&#x5B9A;&#xFF0C;&#x9032;&#x5165;&#x88DD;&#x7F6E;&#x7BA1;&#x7406;&#x54E1;&#x67E5;&#x770B;&#x71D2;&#x9304;&#x5668;&#x7684;COM Port(&#x7BC4;&#x4F8B;&#x70BA;COM7)<br>
+<img src="http://127.0.0.1:2368/content/images/2021/02/1.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<h2 id>&#x8A2D;&#x5B9A;&#x71D2;&#x9304;&#x8CC7;&#x8A0A;</h2>
+<p>&#x9EDE;&#x64CA;<code>flash_download_tool_3.8.5.exe</code>&#x57F7;&#x884C;&#x71D2;&#x9304;&#x7A0B;&#x5F0F;<br>
+<img src="http://127.0.0.1:2368/content/images/2021/02/2.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p>&#x9078;&#x64C7;<code>Developer Mode</code><br>
+<img src="http://127.0.0.1:2368/content/images/2021/02/3.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p>&#x9078;&#x64C7;<code>ESP8266 DownloadTool</code><br>
+<img src="http://127.0.0.1:2368/content/images/2021/02/4.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p>&#x97CC;&#x9AD4;&#x71D2;&#x9304;&#x4F4D;&#x5740;&#x8868;&#x5728;<code>AT&#x6307;&#x4EE4;&#x96C6;</code>&#x88E1;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#xFF0C;&#x5728;<strong>1.2. Downloading AT Firmware into the Flash</strong>&#x88E1;&#x7684;<strong>1.2.4. 8 Mbit Flash</strong>&#x6709;&#x8A73;&#x7D30;&#x8AAA;&#x660E;<br>
+<img src="http://127.0.0.1:2368/content/images/2021/02/5.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p><img src="http://127.0.0.1:2368/content/images/2021/02/6.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p>&#x89E3;&#x58D3;&#x7E2E;&#x5DF2;&#x7D93;&#x4E0B;&#x8F09;&#x597D;&#x7684;<code>ESP8266_NONOS_SDK-3.0.4</code>&#x6A94;&#x6848;&#xFF0C;&#x5728;&#x88E1;&#x9762;&#x5C0B;&#x627E;bin&#x8CC7;&#x6599;&#x593E;&#xFF0C;&#x88E1;&#x9762;&#x7684;&#x6A94;&#x6848;&#x5C31;&#x662F;&#x71D2;&#x9304;&#x6240;&#x9700;&#x7684;&#x6A94;&#x6848;&#xFF0C;&#x4F9D;&#x7167;&#x97CC;&#x9AD4;&#x71D2;&#x9304;&#x4F4D;&#x5740;&#x8868;&#x9032;&#x884C;&#x8A2D;&#x5B9A;&#xFF0C;&#x5C07;&#x7279;&#x5B9A;&#x6A94;&#x6848;&#x5C0D;&#x4E0A;&#x76F8;&#x5C0D;&#x7684;&#x4F4D;&#x5740;&#xFF0C;&#x4E26;&#x5C07;&#x5DE6;&#x908A;&#x65B9;&#x683C;&#x6253;&#x52FE;</p>
+<p><code>FLASH SIZE</code>&#x8A18;&#x5F97;&#x8981;&#x6539;&#x70BA;8Mbit(ESP-01&#x7684;Flash size&#x70BA;1MB&#xFF0C;&#x4E5F;&#x5C31;&#x662F;8Mbit)</p>
+<p>&#x53F3;&#x4E0B;&#x89D2;&#x7684;COM&#x9078;&#x55AE;&#x9078;&#x64C7;&#x525B;&#x624D;&#x5728;&#x88DD;&#x7F6E;&#x7BA1;&#x7406;&#x54E1;&#x770B;&#x5230;&#x7684;COM Port&#x7DE8;&#x865F;</p>
+<p>BAUD&#x8A2D;&#x70BA;<strong>115200</strong></p>
+<p><img src="http://127.0.0.1:2368/content/images/2021/02/7.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<h2 id>&#x57F7;&#x884C;&#x97CC;&#x9AD4;&#x71D2;&#x9304;&#x7A0B;&#x5F0F;</h2>
+<p>&#x8A2D;&#x5B9A;&#x5B8C;&#x6210;&#x4E4B;&#x5F8C;&#x6309;&#x4E0B;<code>START</code>&#x6309;&#x9215;&#x4FBF;&#x53EF;&#x958B;&#x59CB;&#x9032;&#x884C;&#x71D2;&#x9304;</p>
+<p>&#x82E5;&#x6709;&#x6293;&#x5230;ESP-01&#x6703;&#x986F;&#x793A;<strong>Download&#x4E0B;&#x8F09;&#x4E2D;...</strong>&#xFF0C;&#x5F8C;&#x9762;&#x7684;&#x65B9;&#x683C;&#x4E5F;&#x6703;&#x986F;&#x793A;ESP-01&#x7684;MAC&#x4F4D;&#x5740;</p>
+<p><img src="http://127.0.0.1:2368/content/images/2021/02/8.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p>&#x82E5;&#x71D2;&#x9304;&#x6210;&#x529F;&#x6703;&#x986F;&#x793A;<strong>FINISH&#x5B8C;&#x6210;</strong></p>
+<p><img src="http://127.0.0.1:2368/content/images/2021/02/9.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<h2 id>&#x6AA2;&#x67E5;&#x71D2;&#x9304;&#x72C0;&#x614B;</h2>
+<p>&#x958B;&#x555F;RealTerm&#x7D42;&#x7AEF;&#x6A5F;&#x7A0B;&#x5F0F;</p>
+<p>&#x5728;<strong>Display</strong>&#x9801;&#x7C64;&#x8A2D;&#x5B9A;Display As <strong>Ansi</strong><br>
+<img src="http://127.0.0.1:2368/content/images/2021/02/10.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p>&#x5728;<strong>Port</strong>&#x9801;&#x7C64;&#x8A2D;&#x5B9A;</p>
+<ul>
+<li>Baud&#x70BA;<strong>115200</strong>(&#x82E5;&#x7121;&#x56DE;&#x61C9;&#x53EF;&#x5617;&#x8A66;&#x5176;&#x4ED6;BaudRate)</li>
+<li>Port&#x70BA;USB&#x71D2;&#x9304;&#x5668;&#x7684;COM Port&#x7DE8;&#x865F;(&#x53EF;&#x81F3;&#x88DD;&#x7F6E;&#x7BA1;&#x7406;&#x54E1;&#x78BA;&#x8A8D;&#xFF0C;&#x6216;&#x79FB;&#x9664;&#x88DD;&#x7F6E;&#x5F8C;&#x91CD;&#x65B0;&#x63D2;&#x4E0A;&#x4EE5;&#x4FBF;&#x78BA;&#x8A8D;)</li>
+<li>&#x91CD;&#x65B0;&#x6309;&#x58D3;Open&#x6309;&#x9215;&#xFF0C;&#x78BA;&#x8A8D;&#x70BA;&#x58D3;&#x4E0B;&#x72C0;&#x614B;(&#x6709;&#x4EFB;&#x4F55;&#x66F4;&#x6539;&#x90FD;&#x53EF;&#x4EE5;&#x91CD;&#x65B0;&#x6309;&#x58D3;&#xFF0C;&#x78BA;&#x4FDD;&#x72C0;&#x614B;&#x6709;&#x88AB;&#x6539;&#x8B8A;)</li>
+<li>&#x78BA;&#x8A8D;&#x53F3;&#x4E0B;&#x89D2;&#x72C0;&#x614B;&#x662F;&#x5426;&#x6B63;&#x78BA;</li>
+</ul>
+<p><img src="http://127.0.0.1:2368/content/images/2021/02/11.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p>&#x5728;<strong>Send</strong>&#x9801;&#x7C64;<strong>&#x52FE;&#x9078;EOL&#x7684;&#x524D;&#x5169;&#x500B;</strong>&#xFF0C;&#x8F38;&#x5165;&#x8981;&#x50B3;&#x9001;&#x7684;&#x6307;&#x4EE4;&#x5F8C;&#x6309;&#x4E0B;Send ASCII&#x5373;&#x53EF;&#x50B3;&#x9001;&#x6307;&#x4EE4;</p>
+<ul>
+<li>AT - &#x6E2C;&#x8A66;AT&#x662F;&#x5426;&#x5DF2;&#x555F;&#x52D5;</li>
+<li>AT+GMR - &#x67E5;&#x8A62;AT&#x53CA;SDK&#x7684;&#x7248;&#x672C;&#x8CC7;&#x8A0A;</li>
+</ul>
+<p><img src="http://127.0.0.1:2368/content/images/2021/02/12.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p><img src="http://127.0.0.1:2368/content/images/2021/02/13.png" alt="[ESP8266]ESP-01&#x97CC;&#x9AD4;&#x71D2;&#x9304;" loading="lazy"></p>
+<p>&#x82E5;&#x9001;&#x51FA;&#x6307;&#x4EE4;AT&#x6709;&#x8FD4;&#x56DE;OK&#xFF0C;&#x4E14;&#x9001;&#x51FA;&#x6307;&#x4EE4;AT+GMR&#x6709;&#x8FD4;&#x56DE;&#x7248;&#x672C;&#x8CC7;&#x8A0A;&#x4FBF;&#x53EF;&#x958B;&#x59CB;&#x4F7F;&#x7528;ESP-01&#x4E86;</p>
+<h2 id>&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
+<p><a href="https://www.espressif.com/en">ESPRESSIF</a><br>
+<a href="https://www.espressif.com/en/support/download/sdks-demos">ESP8266 NONOS SDK</a><br>
+<a href="https://www.espressif.com/en/support/download/other-tools">Flash Download Tools</a><br>
+<a href="https://www.espressif.com/en/support/documents/technical-documents">ESP8266 Non-OS AT Instruction Set</a><br>
+<a href="https://laoweizz.blogspot.com/2017/02/esp8266-esp-01s-01-usb-ttl-esp6288-wifi.html">ESP8266 ESP-01s&#x6E2C;&#x8A66;(01)&#x5229;&#x7528;USB &#x8F49;TTL&#x6A21;&#x7D44;</a></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[IDE]在Visual Studio Code中使用MSYS作為終端機]]></title><description><![CDATA[因為需要用到Makefile的緣故，而windows沒有提供相關的功能，所以希望能夠把Visual studio code預設的powershell改為MSYS作為終端機，便於make指令的操作]]></description><link>http://127.0.0.1:2368/ide-vscode-terminal-using-msys/</link><guid isPermaLink="false">635a816a57207246b927a8b6</guid><category><![CDATA[VisualStudioCode]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 21 Jan 2021 10:59:50 GMT</pubDate><media:content url="http://127.0.0.1:2368/content/images/2021/01/visualStudioCode.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="http://127.0.0.1:2368/content/images/2021/01/visualStudioCode.png" alt="[IDE]&#x5728;Visual Studio Code&#x4E2D;&#x4F7F;&#x7528;MSYS&#x4F5C;&#x70BA;&#x7D42;&#x7AEF;&#x6A5F;"><p>&#x56E0;&#x70BA;&#x9700;&#x8981;&#x7528;&#x5230;Makefile&#x7684;&#x7DE3;&#x6545;&#xFF0C;&#x800C;windows&#x6C92;&#x6709;&#x63D0;&#x4F9B;&#x76F8;&#x95DC;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x6240;&#x4EE5;&#x5E0C;&#x671B;&#x80FD;&#x5920;&#x628A;Visual studio code&#x9810;&#x8A2D;&#x7684;powershell&#x6539;&#x70BA;MSYS&#x4F5C;&#x70BA;&#x7D42;&#x7AEF;&#x6A5F;&#xFF0C;&#x4FBF;&#x65BC;make&#x6307;&#x4EE4;&#x7684;&#x64CD;&#x4F5C;</p>
+<h2 id>&#x74B0;&#x5883;</h2>
+<ul>
+<li>Windows10 x64 2004</li>
+<li>MSYS2</li>
+<li>Visual Studio Code 1.52.1</li>
+</ul>
+<h2 id="visualstudiocodesettingsjson">&#x958B;&#x555F;Visual studio code&#x7684;settings.json</h2>
+<h3 id>&#x958B;&#x555F;&#x8A2D;&#x5B9A;&#x4ECB;&#x9762;</h3>
+<h4 id="1">&#x65B9;&#x6CD5;1 : &#x4F7F;&#x7528;&#x9078;&#x55AE;&#x958B;&#x555F;</h4>
+<p>&#x9EDE;&#x9078;&#x5DE6;&#x4E0A;&#x89D2;&#x7684;File &gt; Preferences &gt; Settings<br>
+<img src="http://127.0.0.1:2368/content/images/2021/01/1.png" alt="[IDE]&#x5728;Visual Studio Code&#x4E2D;&#x4F7F;&#x7528;MSYS&#x4F5C;&#x70BA;&#x7D42;&#x7AEF;&#x6A5F;" loading="lazy"></p>
+<h4 id="2">&#x65B9;&#x6CD5;2 : &#x4F7F;&#x7528;&#x5FEB;&#x6377;&#x9375;&#x958B;&#x555F;</h4>
+<p>&#x9EDE;&#x64CA;&#x7A7A;&#x767D;&#x8655;&#x4E26;&#x6309;&#x4E0B;&#x5FEB;&#x6377;&#x9375;<code>ctrl</code>+<code>,</code></p>
+<h3 id="settingsjson">&#x8A2D;&#x5B9A;settings.json</h3>
+<p>&#x9EDE;&#x9078;&#x53F3;&#x4E0A;&#x89D2;&#x7684;OpenSettings(JSON)&#x6309;&#x9215;<br>
+<img src="http://127.0.0.1:2368/content/images/2021/01/2.png" alt="[IDE]&#x5728;Visual Studio Code&#x4E2D;&#x4F7F;&#x7528;MSYS&#x4F5C;&#x70BA;&#x7D42;&#x7AEF;&#x6A5F;" loading="lazy"></p>
+<h3 id>&#x5728;&#x5927;&#x62EC;&#x865F;&#x4E2D;&#x52A0;&#x5165;&#x4EE5;&#x4E0B;&#x8A2D;&#x5B9A;</h3>
+<pre><code class="language-json">    &quot;terminal.integrated.shell.windows&quot;: &quot;C:\\msys64\\usr\\bin\\bash.exe&quot;,
+    &quot;terminal.integrated.shellArgs.windows&quot;: [&quot;--login&quot;, &quot;-i&quot;],
+</code></pre>
+<p><em>&#x6CE8;&#x610F;! &quot;terminal.integrated.shell.windows&quot;&#x8A2D;&#x5B9A;&#x7684;&#x8DEF;&#x5F91;&#x9700;&#x4F9D;&#x7167;&#x81EA;&#x5DF1;&#x96FB;&#x8166;&#x4E0A;MSYS&#x7684;&#x8DEF;&#x5F91;&#x9032;&#x884C;&#x8A2D;&#x5B9A;</em><br>
+<img src="http://127.0.0.1:2368/content/images/2021/01/3.png" alt="[IDE]&#x5728;Visual Studio Code&#x4E2D;&#x4F7F;&#x7528;MSYS&#x4F5C;&#x70BA;&#x7D42;&#x7AEF;&#x6A5F;" loading="lazy"></p>
+<h3 id>&#x5B8C;&#x6210;</h3>
+<p>&#x4FEE;&#x6539;&#x5F8C;&#x91CD;&#x65B0;&#x958B;&#x555F;&#x7D42;&#x7AEF;&#x6A5F;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;MSYS2&#x4F5C;&#x70BA;&#x7D42;&#x7AEF;&#x6A5F;&#x4E86;<br>
+<img src="http://127.0.0.1:2368/content/images/2021/01/4.png" alt="[IDE]&#x5728;Visual Studio Code&#x4E2D;&#x4F7F;&#x7528;MSYS&#x4F5C;&#x70BA;&#x7D42;&#x7AEF;&#x6A5F;" loading="lazy"></p>
+<!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

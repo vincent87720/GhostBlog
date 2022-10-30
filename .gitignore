@@ -1,3 +1,4 @@
 .DS_Store
 .ghostpid
 node_modules
+logs

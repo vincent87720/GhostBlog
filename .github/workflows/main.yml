@@ -14,7 +14,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.13.0
-          cache: npm
+
+      - name: Checkout Branch
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git config user.name "$(git log -n 1 --pretty=format:%an)"
+          git config user.email "$(git log -n 1 --pretty=format:%ae)"
+          git fetch
+          git branch -d deploy || :
+          git checkout --orphan deploy
+          git status
 
       - name: Install ghost
         run: npm install -g ghost-cli@1.23.1
@@ -27,5 +36,13 @@ jobs:
 
       - name: Export content
         run: make build
-        
-        
+
+      - name: Deploy
+        run: |
+          git status
+          git reset .
+          git status
+          git add docs
+          git status
+          git commit -m "Deploy: workflow auto deploy"
+          git push -f origin deploy

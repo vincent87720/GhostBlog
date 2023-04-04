@@ -2,3 +2,4 @@
 .ghostpid
 node_modules
 logs
+versions

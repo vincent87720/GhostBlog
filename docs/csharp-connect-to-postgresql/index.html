@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>[C#]使用Npgsql連接到PostgreSQL server</title>
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<script>
+			var siteUrl = 'http://localhost:2368';
+	</script>
+
+	<script>
+			var localTheme = localStorage.getItem('attila_theme');
+			switch (localTheme) {
+					case 'dark':
+							document.documentElement.classList.add('theme-dark');
+							break;
+					case 'light':
+							document.documentElement.classList.add('theme-light');
+							break;
+					default:
+							break;
+			}
+	</script>
+
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
+	<link rel="icon" href="http://localhost:2368/content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
+    <link rel="canonical" href="http://localhost:2368/csharp-connect-to-postgresql/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="http://localhost:2368/csharp-connect-to-postgresql/amp/" />
+    
+    <meta property="og:site_name" content="柴魚筆記本" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="[C#]使用Npgsql連接到PostgreSQL server" />
+    <meta property="og:description" content="環境
+
+
+ * Windows 10 x64
+ * Visual Studio Community 2019 v16.2.2
+ * Npgsql v4.1.4
+
+
+
+安裝
+
+
+開啟visual studio後點選&quot;工具-&gt;NuGet套件管理員-&gt;管理方案的NuGet套件&quot;
+
+
+
+點選Npgsql，勾選右方會執行到此套件的專案，再點選安裝
+
+
+
+按確定進行安裝
+
+
+
+
+
+建立連線
+
+
+設定好host post username password database等連線資訊後，使用NpgsqlConnection建立一個新連線，再使用Open()方法開啟連線
+
+
+class Program
+{
+    
+    static void Main(string[] args)
+    {
+        string host &#x3D; &quot;localhost&quot;;
+        string port &#x3D; &quot;5432&quot;;
+        string username &#x3D; &quot;postgres&quot;" />
+    <meta property="og:url" content="http://localhost:2368/csharp-connect-to-postgresql/" />
+    <meta property="og:image" content="http://localhost:2368/content/images/2020/09/dotNET.png" />
+    <meta property="article:published_time" content="2020-09-02T20:21:06.000Z" />
+    <meta property="article:modified_time" content="2020-09-02T20:22:00.000Z" />
+    <meta property="article:tag" content="C#" />
+    <meta property="article:tag" content="NuGet" />
+    <meta property="article:tag" content="PostgreSQL" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[C#]使用Npgsql連接到PostgreSQL server" />
+    <meta name="twitter:description" content="環境
+
+
+ * Windows 10 x64
+ * Visual Studio Community 2019 v16.2.2
+ * Npgsql v4.1.4
+
+
+
+安裝
+
+
+開啟visual studio後點選&quot;工具-&gt;NuGet套件管理員-&gt;管理方案的NuGet套件&quot;
+
+
+
+點選Npgsql，勾選右方會執行到此套件的專案，再點選安裝
+
+
+
+按確定進行安裝
+
+
+
+
+
+建立連線
+
+
+設定好host post username password database等連線資訊後，使用NpgsqlConnection建立一個新連線，再使用Open()方法開啟連線
+
+
+class Program
+{
+    
+    static void Main(string[] args)
+    {
+        string host &#x3D; &quot;localhost&quot;;
+        string port &#x3D; &quot;5432&quot;;
+        string username &#x3D; &quot;postgres&quot;" />
+    <meta name="twitter:url" content="http://localhost:2368/csharp-connect-to-postgresql/" />
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2020/09/dotNET.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Katsuobushi" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="C#, NuGet, PostgreSQL" />
+    <meta property="og:image:width" content="1366" />
+    <meta property="og:image:height" content="768" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "http://localhost:2368/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2022/10/dog-breeder-round.svg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "http://localhost:2368/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "[C#]使用Npgsql連接到PostgreSQL server",
+    "url": "http://localhost:2368/csharp-connect-to-postgresql/",
+    "datePublished": "2020-09-02T20:21:06.000Z",
+    "dateModified": "2020-09-02T20:22:00.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2020/09/dotNET.png",
+        "width": 1366,
+        "height": 768
+    },
+    "keywords": "C#, NuGet, PostgreSQL",
+    "description": "環境\n\n\n * Windows 10 x64\n * Visual Studio Community 2019 v16.2.2\n * Npgsql v4.1.4\n\n\n\n安裝\n\n\n開啟visual studio後點選&quot;工具-&gt;NuGet套件管理員-&gt;管理方案的NuGet套件&quot;\n\n\n\n點選Npgsql，勾選右方會執行到此套件的專案，再點選安裝\n\n\n\n按確定進行安裝\n\n\n\n\n\n建立連線\n\n\n設定好host post username password database等連線資訊後，使用NpgsqlConnection建立一個新連線，再使用Open()方法開啟連線\n\n\nclass Program\n{\n    \n    static void Main(string[] args)\n    {\n        string host &#x3D; &quot;localhost&quot;;\n        string port &#x3D; &quot;5432&quot;;\n        string username &#x3D; &quot;postgres&quot;;\n        string password &#x3D; &quot;password&quot;;\n        strin",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.38" />
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="http://localhost:2368/rss/" />
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.25/umd/portal.min.js" data-ghost="http://localhost:2368/" data-key="5230415085a98103bb9daaa3d3" data-api="http://localhost:2368/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="http://localhost:2368/" crossorigin="anonymous"></script>
+    <link href="http://localhost:2368/webmentions/receive/" rel="webmention" />
+    <script defer src="../public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
+    <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+</head>
+
+<body class="post-template tag-csharp tag-nuget tag-postgresql">
+
+	<div class="nav-header">
+		<nav class="nav-wrapper" aria-label="Main">
+				<ul>
+		<li class="nav-home"><a href="http://localhost:2368/"><span>Home</span></a></li>
+		<li class="nav-author"><a href="http://localhost:2368/author/katsuobushi/"><span>Author</span></a></li>
+		<li class="nav-tags"><a href="http://localhost:2368/tags/"><span>Tags</span></a></li>
+		<li class="nav-golang"><a href="http://localhost:2368/tag/golang/"><span>Golang</span></a></li>
+</ul>
+
+				<ul class="nav-meta">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>
+		</nav>
+
+		<div class="nav-wrapper-control">
+			<div class="inner">
+				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="nav-close" role="button" aria-label="Close"></div>
+
+	<section class="page-wrapper">
+
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header class="post-header  has-cover ">
+	<div class="inner">
+		<span class="post-info">
+			<span class="post-type">Article</span>
+			<span class="post-count">C#</span>
+		</span>
+		<h1 class="post-title">[C#]使用Npgsql連接到PostgreSQL server</h1>
+		<div class="post-meta">
+			<div class="post-meta-avatars">
+					<figure class="post-meta-avatar avatar">
+						<a href="../author/katsuobushi/index.html" class="author-avatar">
+								<img class="author-profile-image" src="../content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
+						</a>
+					</figure>
+			</div>
+			<h4 class="post-meta-author"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+			<time datetime="03-09-2020">03 Sep 2020</time> &bull; 3 min read
+		</div>
+		<div class="post-cover cover">
+			<img
+			srcset="../content/images/size/w320/2020/09/dotNET.png 320w,
+             ../content/images/size/w640/2020/09/dotNET.png 640w,
+            ../content/images/size/w960/2020/09/dotNET.png 960w,
+           ../content/images/size/w1920/2020/09/dotNET.png 1920w"
+      src="../content/images/size/w1920/2020/09/dotNET.png"
+			alt="[C#]使用Npgsql連接到PostgreSQL server" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-csharp tag-nuget tag-postgresql">
+		<div class="inner">
+
+			<section class="post-content">
+				<!--kg-card-begin: markdown--><h2 id>環境</h2>
+<ul>
+<li>Windows 10 x64</li>
+<li>Visual Studio Community 2019 v16.2.2</li>
+<li>Npgsql v4.1.4</li>
+</ul>
+<h2 id>安裝</h2>
+<p>開啟visual studio後點選&quot;<strong>工具</strong>-&gt;<strong>NuGet套件管理員</strong>-&gt;<strong>管理方案的NuGet套件</strong>&quot;<br>
+<img src="http://localhost:2368/content/images/2020/09/1.png" alt="1" loading="lazy"><br>
+點選Npgsql，勾選右方會執行到此套件的專案，再點選安裝<br>
+<img src="http://localhost:2368/content/images/2020/09/2.png" alt="2" loading="lazy"><br>
+按確定進行安裝<br>
+<img src="http://localhost:2368/content/images/2020/09/3.png" alt="3" loading="lazy"></p>
+<h2 id>建立連線</h2>
+<p>設定好<code>host</code> <code>post</code> <code>username</code> <code>password</code> <code>database</code>等連線資訊後，使用<code>NpgsqlConnection</code>建立一個新連線，再使用Open()方法開啟連線</p>
+<pre><code class="language-csharp">class Program
+{
+    
+    static void Main(string[] args)
+    {
+        string host = &quot;localhost&quot;;
+        string port = &quot;5432&quot;;
+        string username = &quot;postgres&quot;;
+        string password = &quot;password&quot;;
+        string database = &quot;postgis&quot;;
+        string connStr = $&quot;Host={host};Port={port};Username={username};Password={password};Database={database};&quot;;
+        using (NpgsqlConnection pgconn = new NpgsqlConnection(connStr))
+        {
+            pgconn.Open();
+        }
+
+    }
+}
+</code></pre>
+<h2 id>執行查詢</h2>
+<h3 id="npgsqldatareader">方法一：使用NpgsqlDataReader讀取資料</h3>
+<p>執行查詢必須用到先前建立好的連線和即將要執行的查詢式</p>
+<pre><code class="language-csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        ExecuteQuery(&quot;SELECT id,x,y FROM users;&quot;);
+    }
+    
+    public static void ExecuteQuery(string sqlstr)
+    {
+        using (var pgconn = new NpgsqlConnection(connStr))
+        {
+            pgconn.Open();
+            using (var cmd = new NpgsqlCommand(sqlstr, pgconn))
+            {
+                using (var reader = cmd.ExecuteReader())//使用NpgsqlDataReader讀取資料
+                {
+                    while (reader.Read())//讀取下一列直到沒有數值
+                    {
+                        Console.Write(reader.GetInt32(0));//0代表該列第0行的值，也就是對應到查詢式中的id
+                        Console.Write(reader.GetDouble(1));//1代表該列第1行的值，也就是對應到查詢式中的x
+                        Console.WriteLine(reader.GetDouble(2));//2代表該列第2行的值，也就是對應到查詢式中的y
+                    }
+                }
+            }
+        }
+    }
+    private static string host = &quot;localhost&quot;;
+    private static string port = &quot;5432&quot;;
+    private static string username = &quot;postgres&quot;;
+    private static string password = &quot;password&quot;;
+    private static string database = &quot;postgis&quot;;
+    private static string connStr = $&quot;Host={host};Port={port};Username={username};Password={password};Database={database};&quot;;
+}
+</code></pre>
+<h3 id="npgsqldataadapterdatatable">方法二：使用NpgsqlDataAdapter將資料放入DataTable</h3>
+<pre><code class="language-csharp">class Program
+{
+    static void Main(string[] args)
+    {
+        DataTable dt = ExecuteQuery(&quot;SELECT id,x,y FROM sptable;&quot;);
+
+        foreach (DataRow row in dt.Rows)
+        {
+            Console.WriteLine(&quot;{0} {1} {2}&quot;, row[0], row[1], row[2]);//輸出該行的0,1,2個值，分別為id,x,y的值
+        }
+    }
+    public static DataTable ExecuteQuery(string sqlstr)
+    {
+        using (NpgsqlConnection pgconn = new NpgsqlConnection(connStr))
+        {
+            pgconn.Open();
+
+            DataTable dt = new DataTable();//建立一個DataTable
+
+            try
+            {
+                using (NpgsqlDataAdapter sqladap = new NpgsqlDataAdapter(sqlstr, pgconn))
+                {
+                    sqladap.Fill(dt);//使用NpgsqlDataAdapter將資料放入DataTable中
+                }
+                return dt;//返回DataTable
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return dt;
+            }
+        }
+    }
+    private static string host = &quot;localhost&quot;;
+    private static string port = &quot;5432&quot;;
+    private static string username = &quot;postgres&quot;;
+    private static string password = &quot;password&quot;;
+    private static string database = &quot;postgis&quot;;
+    private static string connStr = $&quot;Host={host};Port={port};Username={username};Password={password};Database={database};&quot;;
+}
+</code></pre>
+<!--kg-card-end: markdown-->
+			</section>
+
+			<section class="post-footer">
+
+				<div class="post-share">
+					<span class="post-info-label">Share</span>
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=[C#]使用Npgsql連接到PostgreSQL server&url=http://localhost:2368/csharp-connect-to-postgresql/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/csharp-connect-to-postgresql/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:2368/csharp-connect-to-postgresql//&amp;title=[C#]使用Npgsql連接到PostgreSQL server" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+						<i class="icon icon-linkedin" aria-hidden="true"></i>
+					</a>
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=[C#]使用Npgsql連接到PostgreSQL server&amp;body=http://localhost:2368/csharp-connect-to-postgresql/">
+						<i class="icon icon-mail" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Topic</span>
+					<a href="../tag/csharp/index.html">C#</a> <a href="../tag/nuget/index.html">NuGet</a> <a href="../tag/postgresql/index.html">PostgreSQL</a>
+				</aside>
+
+			</section>
+
+			<section class="post-full-comments">
+				<script src="https://utteranc.es/client.js"
+					repo="vincent87720/BlogComments"
+					issue-term="pathname"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+				</script>
+			</section>
+
+
+
+
+			<aside class="post-nav">
+
+					<a class="post-nav-next" href="../vue-vuecli-init/index.html">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-left" aria-label="Next post"></i>
+							<h2 class="post-nav-title">[Vue]使用Vue CLI建立專案</h2>
+							<p class="post-nav-excerpt">在之前的課堂裡，我們都是直接開一個html檔案然後把vue寫在裡頭，這次助教介紹了Vue CLI，Vue CLI是一個官方出的工具，可以直接開一個測試用的伺服器，讓開發更方便，並且可以將程式碼打包，方便某些情況下的部屬&hellip;</p>
+							<p class="post-nav-meta"><time datetime="28-10-2020">28 Oct 2020</time></p>
+						</section>
+					</a>
+
+					<a class="post-nav-prev" href="../golang-sort-traditionalchinese/index.html">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
+							<h2 class="post-nav-title">[Golang]使用筆畫排序中文字</h2>
+							<p class="post-nav-excerpt">有次嘗試要使用筆劃排序中文姓名時，直接使用sort包進行排序，但發現結果並不是照著筆劃排序，查了點資料發現原來和UTF-8、Big5兩種編碼有極大的關係&hellip;</p>
+							<p class="post-nav-meta"><time datetime="01-09-2020">01 Sep 2020</time></p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+		<div class="nav-footer">
+			<nav class="nav-wrapper" aria-label="Footer">
+				<span class="nav-copy">柴魚筆記本 &copy; 2023  <a class="nav-rss" title="RSS" href="http://localhost:2368/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<ul>
+		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
+		<li class="nav-lao-jian-bao-ji-suan-cheng-shi"><a href="https://vincent87720.github.io/lhipcp/"><span>勞健保計算程式</span></a></li>
+</ul>
+
+				<span class="nav-credits">Published with <a href="https://ghost.org">Ghost</a> &bull; Theme <a href="https://github.com/zutrinken/attila">Attila</a> &bull; <a class="menu-item js-theme" href="index.html#" data-system="System theme" data-dark="Dark theme" data-light="Light theme"><span class="theme-icon"></span><span class="theme-text">System theme</span> </a> </span>
+			</nav>
+		</div>
+
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+
+  });
+</script>
+
+
+	
+
+</body>
+</html>

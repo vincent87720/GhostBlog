@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>使用QUASAR在表單送出時滾動到錯誤欄位</title>
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<script>
+			var siteUrl = 'http://localhost:2368';
+	</script>
+
+	<script>
+			var localTheme = localStorage.getItem('attila_theme');
+			switch (localTheme) {
+					case 'dark':
+							document.documentElement.classList.add('theme-dark');
+							break;
+					case 'light':
+							document.documentElement.classList.add('theme-light');
+							break;
+					default:
+							break;
+			}
+	</script>
+
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
+	<meta name="description" content="表單submit時會希望能讓頁面自動滾動到元素位置，使用q-form的validation-error事件搭配滾動來達成此效果" />
+    <link rel="icon" href="http://localhost:2368/content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
+    <link rel="canonical" href="http://localhost:2368/quasar-scroll-to-field-on-validation-error/" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="amphtml" href="http://localhost:2368/quasar-scroll-to-field-on-validation-error/amp/" />
+    
+    <meta property="og:site_name" content="柴魚筆記本" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="使用QUASAR在表單送出時滾動到錯誤欄位" />
+    <meta property="og:description" content="表單submit時會希望能讓頁面自動滾動到元素位置，使用q-form的validation-error事件搭配滾動來達成此效果" />
+    <meta property="og:url" content="http://localhost:2368/quasar-scroll-to-field-on-validation-error/" />
+    <meta property="og:image" content="http://localhost:2368/content/images/2022/10/Quasar.png" />
+    <meta property="article:published_time" content="2022-10-29T10:42:51.000Z" />
+    <meta property="article:modified_time" content="2022-10-29T10:42:51.000Z" />
+    <meta property="article:tag" content="Quasar" />
+    <meta property="article:tag" content="JavaScript" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="使用QUASAR在表單送出時滾動到錯誤欄位" />
+    <meta name="twitter:description" content="表單submit時會希望能讓頁面自動滾動到元素位置，使用q-form的validation-error事件搭配滾動來達成此效果" />
+    <meta name="twitter:url" content="http://localhost:2368/quasar-scroll-to-field-on-validation-error/" />
+    <meta name="twitter:image" content="http://localhost:2368/content/images/2022/10/Quasar.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="Katsuobushi" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Quasar, JavaScript" />
+    <meta property="og:image:width" content="2000" />
+    <meta property="og:image:height" content="515" />
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "http://localhost:2368/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2019/12/dog-breeder-small.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "http://localhost:2368/content/images/2022/10/dog-breeder-round.svg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "http://localhost:2368/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "使用QUASAR在表單送出時滾動到錯誤欄位",
+    "url": "http://localhost:2368/quasar-scroll-to-field-on-validation-error/",
+    "datePublished": "2022-10-29T10:42:51.000Z",
+    "dateModified": "2022-10-29T10:42:51.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "http://localhost:2368/content/images/2022/10/Quasar.png",
+        "width": 2000,
+        "height": 515
+    },
+    "keywords": "Quasar, JavaScript",
+    "description": "表單submit時會希望能讓頁面自動滾動到元素位置，使用q-form的validation-error事件搭配滾動來達成此效果",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "http://localhost:2368/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.38" />
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="http://localhost:2368/rss/" />
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.25/umd/portal.min.js" data-ghost="http://localhost:2368/" data-key="5230415085a98103bb9daaa3d3" data-api="http://localhost:2368/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="http://localhost:2368/" crossorigin="anonymous"></script>
+    <link href="http://localhost:2368/webmentions/receive/" rel="webmention" />
+    <script defer src="../public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
+    <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+</head>
+
+<body class="post-template tag-quasar tag-javascript">
+
+	<div class="nav-header">
+		<nav class="nav-wrapper" aria-label="Main">
+				<ul>
+		<li class="nav-home"><a href="http://localhost:2368/"><span>Home</span></a></li>
+		<li class="nav-author"><a href="http://localhost:2368/author/katsuobushi/"><span>Author</span></a></li>
+		<li class="nav-tags"><a href="http://localhost:2368/tags/"><span>Tags</span></a></li>
+		<li class="nav-golang"><a href="http://localhost:2368/tag/golang/"><span>Golang</span></a></li>
+</ul>
+
+				<ul class="nav-meta">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>
+		</nav>
+
+		<div class="nav-wrapper-control">
+			<div class="inner">
+				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="nav-close" role="button" aria-label="Close"></div>
+
+	<section class="page-wrapper">
+
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header class="post-header  has-cover ">
+	<div class="inner">
+		<span class="post-info">
+			<span class="post-type">Article</span>
+			<span class="post-count">Quasar</span>
+		</span>
+		<h1 class="post-title">使用QUASAR在表單送出時滾動到錯誤欄位</h1>
+		<div class="post-meta">
+			<div class="post-meta-avatars">
+					<figure class="post-meta-avatar avatar">
+						<a href="../author/katsuobushi/index.html" class="author-avatar">
+								<img class="author-profile-image" src="../content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
+						</a>
+					</figure>
+			</div>
+			<h4 class="post-meta-author"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+			<time datetime="29-10-2022">29 Oct 2022</time> &bull; 2 min read
+		</div>
+		<div class="post-cover cover">
+			<img
+			srcset="../content/images/size/w320/2022/10/Quasar.png 320w,
+             ../content/images/size/w640/2022/10/Quasar.png 640w,
+            ../content/images/size/w960/2022/10/Quasar.png 960w,
+           ../content/images/size/w1920/2022/10/Quasar.png 1920w"
+      src="../content/images/size/w1920/2022/10/Quasar.png"
+			alt="使用QUASAR在表單送出時滾動到錯誤欄位" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-quasar tag-javascript">
+		<div class="inner">
+
+			<section class="post-content">
+				<!--kg-card-begin: markdown--><p>表單submit時會希望能讓頁面自動滾動到元素位置，使用q-form的validation-error事件搭配滾動來達成此效果</p>
+<h2 id="q-form%E7%9A%84validation-error%E4%BA%8B%E4%BB%B6">q-form的validation-error事件</h2>
+<pre><code class="language-htmlmixed">&lt;template&gt;
+    &lt;q-form 
+    @submit=&quot;gotoNext&quot;
+    @validation-error=&quot;onValidationError&quot;
+    &gt;
+        &lt;q-input 
+        v-model=&quot;username&quot;
+        :rules=&quot;[idRequiredRule]&quot;
+        lazy-rules=&quot;ondemand&quot;
+        &gt;&lt;/q-input&gt;
+    &lt;/q-form&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    
+import { scroll } from &quot;quasar&quot;;
+const {getScrollTarget, setVerticalScrollPosition} = scroll;
+    
+/* eslint-disable*/
+onValidationError(ref: any) {
+    
+}
+/* eslint-enable*/
+&lt;/script&gt;
+
+&lt;!-- 若使用Typescript無法使用any的話可以用eslint-disable跳過檢查 --&gt;
+&lt;script lang=&quot;ts&quot;&gt;
+    
+import { scroll } from &quot;quasar&quot;;
+const {getScrollTarget, setVerticalScrollPosition} = scroll;
+    
+/* eslint-disable*/
+onValidationError(ref: any) {
+    
+}
+/* eslint-enable*/
+&lt;/script&gt;
+</code></pre>
+<p>q-form提供validation-error事件，當submit且表單內的欄位有錯誤時，會回傳第一個有錯誤的元素</p>
+<h2 id="%E5%8F%96%E5%BE%97%E8%88%87%E9%A0%81%E9%9D%A2%E9%A0%82%E9%83%A8%E7%9A%84%E8%B7%9D%E9%9B%A2">取得與頁面頂部的距離</h2>
+<pre><code class="language-typescript">onValidationError(ref: any) {
+    var el = ref.$el;
+    
+    var offset = el.getBoundingClientRect().top + window.pageYOffset;
+    
+    var duration = 200;
+    
+    setVerticalScrollPosition(getScrollTarget(el), offset, duration);
+}
+</code></pre>
+<p>首先使用<code>ref.$el</code>取得元素</p>
+<p><img src="http://localhost:2368/content/images/2022/10/o7tjfGz.png" alt="o7tjfGz" loading="lazy"><br>
+圖片取自<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect?ref=chai-yu-bi-ji-ben">Element.getBoundingClientRect() - Web APIs | MDN</a></p>
+<p>接著使用getBoundingClientRect()取得元素與viewport的距離</p>
+<p>window.pageYOffset為目前滾動的高度</p>
+<p>兩者相加即是元素高度</p>
+<p>最後使用getScrollTarget及setVerticalScrollPosition設定滾動目標、位置及時間</p>
+<h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">參考資料</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect?ref=chai-yu-bi-ji-ben">Element.getBoundingClientRect() - Web APIs | MDN</a><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset?ref=chai-yu-bi-ji-ben">Window.pageYOffset - Web APIs | MDN</a><br>
+<a href="https://stackoverflow.com/questions/71650521/autoscroll-to-empty-but-required-q-input-field-in-a-form-with-validation-quasar?ref=chai-yu-bi-ji-ben">autoscroll to empty but required q-input field in a form with validation Quasar 2.5.5 &amp; Vuejs3</a><br>
+<a href="https://github.com/znlbwo/study/issues/10?ref=chai-yu-bi-ji-ben">获取元素距离页面顶部的距离 · Issue #10 · znlbwo/study</a><br>
+<a href="https://quasar.dev/quasar-utils/scrolling-utils?ref=chai-yu-bi-ji-ben#scrolling-to-an-element">Scrolling Utils | Quasar Framework</a></p>
+<!--kg-card-end: markdown-->
+			</section>
+
+			<section class="post-footer">
+
+				<div class="post-share">
+					<span class="post-info-label">Share</span>
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=使用QUASAR在表單送出時滾動到錯誤欄位&url=http://localhost:2368/quasar-scroll-to-field-on-validation-error/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:2368/quasar-scroll-to-field-on-validation-error/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http://localhost:2368/quasar-scroll-to-field-on-validation-error//&amp;title=使用QUASAR在表單送出時滾動到錯誤欄位" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+						<i class="icon icon-linkedin" aria-hidden="true"></i>
+					</a>
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=使用QUASAR在表單送出時滾動到錯誤欄位&amp;body=http://localhost:2368/quasar-scroll-to-field-on-validation-error/">
+						<i class="icon icon-mail" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Topic</span>
+					<a href="../tag/quasar/index.html">Quasar</a> <a href="../tag/javascript/index.html">JavaScript</a>
+				</aside>
+
+			</section>
+
+			<section class="post-full-comments">
+				<script src="https://utteranc.es/client.js"
+					repo="vincent87720/BlogComments"
+					issue-term="pathname"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+				</script>
+			</section>
+
+
+
+
+			<aside class="post-nav">
+
+					<a class="post-nav-next" href="../docker-buildx/index.html">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-left" aria-label="Next post"></i>
+							<h2 class="post-nav-title">Docker buildx</h2>
+							<p class="post-nav-excerpt">Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。&hellip;</p>
+							<p class="post-nav-meta"><time datetime="10-02-2023">10 Feb 2023</time></p>
+						</section>
+					</a>
+
+					<a class="post-nav-prev" href="../python-get-binary-path/index.html">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
+							<h2 class="post-nav-title">Python取得打包成binary後的路徑</h2>
+							<p class="post-nav-excerpt">使用pyinstaller打包後的執行檔在執行時有可能會發生實際執行的檔案位於Temporary內的情況，這時就必須用以下方法取得實際exe檔案所在的路徑&hellip;</p>
+							<p class="post-nav-meta"><time datetime="29-10-2022">29 Oct 2022</time></p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+		<div class="nav-footer">
+			<nav class="nav-wrapper" aria-label="Footer">
+				<span class="nav-copy">柴魚筆記本 &copy; 2023  <a class="nav-rss" title="RSS" href="http://localhost:2368/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<ul>
+		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
+		<li class="nav-lao-jian-bao-ji-suan-cheng-shi"><a href="https://vincent87720.github.io/lhipcp/"><span>勞健保計算程式</span></a></li>
+</ul>
+
+				<span class="nav-credits">Published with <a href="https://ghost.org">Ghost</a> &bull; Theme <a href="https://github.com/zutrinken/attila">Attila</a> &bull; <a class="menu-item js-theme" href="index.html#" data-system="System theme" data-dark="Dark theme" data-light="Light theme"><span class="theme-icon"></span><span class="theme-text">System theme</span> </a> </span>
+			</nav>
+		</div>
+
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+
+  });
+</script>
+
+
+	
+
+</body>
+</html>

@@ -53,7 +53,7 @@ setConfig:
 exportContent:
 	mkdir -p docs
 	rm -rf docs/*
-	wget --mirror --convert-links --page-requisites -nH --no-parent -P docs http://127.0.0.1:2368/ || :
+	wget --mirror --convert-links --page-requisites -nH --no-parent -P docs http://localhost:2368/ || :
 
 .PHONY: replaceContent
 replaceContent:

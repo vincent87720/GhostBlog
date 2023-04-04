@@ -12,6 +12,7 @@ while(<FILE>){
   $cnt += ($_ =~ s/jpeg[a-z]+/jpeg/ig);
   $cnt += ($_ =~ s/png[a-z]+/png/ig);
   $cnt += ($_ =~ s/svg[a-z]+/svg/ig);
+  $cnt += ($_ =~ s/http:\/\/localhost:2368/https:\/\/vincent87720.github.io\/Blog/ig);
   $data .= $_;
 }
  

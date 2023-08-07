@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Docker buildx</title>
+	<title>比較JavaScript中assign與replace的差異</title>
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -42,33 +42,156 @@
 				}
 			</style>
 
-	<meta name="description" content="Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。" />
-    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
+	<link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
     <link rel="canonical" href="index.html" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="amphtml" href="amp/index.html" />
     
     <meta property="og:site_name" content="柴魚筆記本" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Docker buildx" />
-    <meta property="og:description" content="Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。" />
-    <meta property="og:url" content="https://vincent87720.github.io/Blog/docker-buildx/" />
-    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2023/02/docker.jpg" />
-    <meta property="article:published_time" content="2023-02-09T16:09:53.000Z" />
-    <meta property="article:modified_time" content="2023-02-09T16:09:53.000Z" />
-    <meta property="article:tag" content="Docker" />
+    <meta property="og:title" content="比較JavaScript中assign與replace的差異" />
+    <meta property="og:description" content="assign
+
+
+
+功能
+
+
+assign可以讓window載入並顯示URL指定的文件
+
+
+
+語法
+
+
+window.location.assign(&quot;http://test.com&quot;);
+
+
+
+
+與assign相同功用的用法
+
+
+window.location&#x3D;&quot;http://test.com&quot;
+window.location.href&#x3D;&quot;http://test.com&quot;
+location&#x3D;&quot;http://test.com&quot;
+location.href&#x3D;&quot;http://test.com&quot;
+
+
+
+
+使用時機
+
+
+ * 希望在跳轉頁面後可以返回上一頁
+
+
+
+replace
+
+
+
+功能
+
+
+replace會使用URL指定的文件置換掉目前的頁面
+
+
+
+語法
+
+
+window.location.replace(&quot;http://test.com&quot;);
+
+
+
+
+使用時機
+
+
+ * 希望頁面重新載入而不是重新提交一次
+ * 不應該重複觸發的頁面，例如：
+   
+   * 金流付錢頁面，付款後replace回原本的頁面，減少使用者返回上一頁造成錯誤的機會" />
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/difference-between-assign-and-replace-in-javascript/" />
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-1.png" />
+    <meta property="article:published_time" content="2023-08-07T16:25:04.000Z" />
+    <meta property="article:modified_time" content="2023-08-07T16:25:04.000Z" />
+    <meta property="article:tag" content="JavaScript" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Docker buildx" />
-    <meta name="twitter:description" content="Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。" />
-    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/docker-buildx/" />
-    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2023/02/docker.jpg" />
+    <meta name="twitter:title" content="比較JavaScript中assign與replace的差異" />
+    <meta name="twitter:description" content="assign
+
+
+
+功能
+
+
+assign可以讓window載入並顯示URL指定的文件
+
+
+
+語法
+
+
+window.location.assign(&quot;http://test.com&quot;);
+
+
+
+
+與assign相同功用的用法
+
+
+window.location&#x3D;&quot;http://test.com&quot;
+window.location.href&#x3D;&quot;http://test.com&quot;
+location&#x3D;&quot;http://test.com&quot;
+location.href&#x3D;&quot;http://test.com&quot;
+
+
+
+
+使用時機
+
+
+ * 希望在跳轉頁面後可以返回上一頁
+
+
+
+replace
+
+
+
+功能
+
+
+replace會使用URL指定的文件置換掉目前的頁面
+
+
+
+語法
+
+
+window.location.replace(&quot;http://test.com&quot;);
+
+
+
+
+使用時機
+
+
+ * 希望頁面重新載入而不是重新提交一次
+ * 不應該重複觸發的頁面，例如：
+   
+   * 金流付錢頁面，付款後replace回原本的頁面，減少使用者返回上一頁造成錯誤的機會" />
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/difference-between-assign-and-replace-in-javascript/" />
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-1.png" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Katsuobushi" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Docker" />
+    <meta name="twitter:data2" content="JavaScript" />
     <meta property="og:image:width" content="2000" />
-    <meta property="og:image:height" content="1125" />
+    <meta property="og:image:height" content="500" />
     
     <script type="application/ld+json">
 {
@@ -97,18 +220,18 @@
         "url": "https://vincent87720.github.io/Blog/author/katsuobushi/",
         "sameAs": []
     },
-    "headline": "Docker buildx",
-    "url": "https://vincent87720.github.io/Blog/docker-buildx/",
-    "datePublished": "2023-02-09T16:09:53.000Z",
-    "dateModified": "2023-02-09T16:09:53.000Z",
+    "headline": "比較JavaScript中assign與replace的差異",
+    "url": "https://vincent87720.github.io/Blog/difference-between-assign-and-replace-in-javascript/",
+    "datePublished": "2023-08-07T16:25:04.000Z",
+    "dateModified": "2023-08-07T16:25:04.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "https://vincent87720.github.io/Blog/content/images/2023/02/docker.jpg",
+        "url": "https://vincent87720.github.io/Blog/content/images/2023/08/javascript-1.png",
         "width": 2000,
-        "height": 1125
+        "height": 500
     },
-    "keywords": "Docker",
-    "description": "Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。",
+    "keywords": "JavaScript",
+    "description": "assign\n\n\n\n功能\n\n\nassign可以讓window載入並顯示URL指定的文件\n\n\n\n語法\n\n\nwindow.location.assign(&quot;http://test.com&quot;);\n\n\n\n\n與assign相同功用的用法\n\n\nwindow.location&#x3D;&quot;http://test.com&quot;\nwindow.location.href&#x3D;&quot;http://test.com&quot;\nlocation&#x3D;&quot;http://test.com&quot;\nlocation.href&#x3D;&quot;http://test.com&quot;\n\n\n\n\n使用時機\n\n\n * 希望在跳轉頁面後可以返回上一頁\n\n\n\nreplace\n\n\n\n功能\n\n\nreplace會使用URL指定的文件置換掉目前的頁面\n\n\n\n語法\n\n\nwindow.location.replace(&quot;http://test.com&quot;);\n\n\n\n\n使用時機\n\n\n * 希望頁面重新載入而不是重新提交一次\n * 不應該重複觸發的頁面，例如：\n   \n   * 金流付錢頁面，付款後replace回原本的頁面，減少使用者返回上一頁造成錯誤的機會\n   \n\n\n\n差異\n\n\nreplace和ass",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://vincent87720.github.io/Blog/"
@@ -189,7 +312,7 @@
     <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
 </head>
 
-<body class="post-template tag-docker">
+<body class="post-template tag-javascript">
 
 	<div class="nav-header">
 		<nav class="nav-wrapper" aria-label="Main">
@@ -231,9 +354,9 @@
 	<div class="inner">
 		<span class="post-info">
 			<span class="post-type">Article</span>
-			<span class="post-count">Docker</span>
+			<span class="post-count">JavaScript</span>
 		</span>
-		<h1 class="post-title">Docker buildx</h1>
+		<h1 class="post-title">比較JavaScript中assign與replace的差異</h1>
 		<div class="post-meta">
 			<div class="post-meta-avatars">
 					<figure class="post-meta-avatar avatar">
@@ -243,58 +366,64 @@
 					</figure>
 			</div>
 			<h4 class="post-meta-author"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
-			<time datetime="10-02-2023">10 Feb 2023</time> &bull; 2 min read
+			<time datetime="08-08-2023">08 Aug 2023</time> &bull; 1 min read
 		</div>
 		<div class="post-cover cover">
 			<img
-			srcset="../content/images/size/w320/2023/02/docker.jpg 320w,
-             ../content/images/size/w640/2023/02/docker.jpg 640w,
-            ../content/images/size/w960/2023/02/docker.jpg 960w,
-           ../content/images/size/w1920/2023/02/docker.jpg 1920w"
-      src="../content/images/size/w1920/2023/02/docker.jpg"
-			alt="Docker buildx" />
+			srcset="../content/images/size/w320/2023/08/javascript-1.png 320w,
+             ../content/images/size/w640/2023/08/javascript-1.png 640w,
+            ../content/images/size/w960/2023/08/javascript-1.png 960w,
+           ../content/images/size/w1920/2023/08/javascript-1.png 1920w"
+      src="../content/images/size/w1920/2023/08/javascript-1.png"
+			alt="比較JavaScript中assign與replace的差異" />
 		</div>
 	</div>
 </header>
 
 <main class="content" role="main">
-	<article class="post tag-docker">
+	<article class="post tag-javascript">
 		<div class="inner">
 
 			<section class="post-content">
-				<!--kg-card-begin: markdown--><p>Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息<code>standard_init_linux.go:230: exec user process caused: exec format error</code>，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。</p>
-<h2 id="%E7%92%B0%E5%A2%83">環境</h2>
-<p>建置環境</p>
-<ul>
-<li>macOS Ventura 13.0(Apple M1 Pro)</li>
-<li>Docker 20.10.21</li>
-</ul>
-<p>部署環境</p>
-<ul>
-<li>Synology DSM 7.1.1(INTEL Celeron J4125)</li>
-<li>Docker 20.10.3</li>
-</ul>
-<h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">使用方法</h2>
-<p>要使用buildx建立多平台的映像檔，首先需要建立builder，並使用<code>--platform</code>參數帶入目標平台字串，即可建立多平台映像檔。</p>
-<h3 id="%E5%BB%BA%E7%AB%8Bbuilder">建立builder</h3>
-<p>建立並使用名稱為multiarch的builder</p>
-<pre><code>docker buildx create --name multiarch --use
+				<!--kg-card-begin: markdown--><h2 id="assign">assign</h2>
+<h3 id="%E5%8A%9F%E8%83%BD">功能</h3>
+<p>assign可以讓window載入並顯示URL指定的文件</p>
+<h3 id="%E8%AA%9E%E6%B3%95">語法</h3>
+<pre><code class="language-javascript">window.location.assign(&quot;http://test.com&quot;);
 </code></pre>
-<p>使用<code>docker buildx ls</code>可列出目前的builder</p>
-<h3 id="%E5%BB%BA%E7%BD%AE%E4%B8%A6%E4%B8%8A%E5%82%B3">建置並上傳</h3>
-<pre><code>docker buildx build --rm --push\
-    --platform linux/amd64,linux/arm64 \
-    -t DOCKERHUB的使用者名稱/映像檔名稱:映像檔tag \
-    -f 要用來進行建置的Dockerfile .
+<h3 id="%E8%88%87assign%E7%9B%B8%E5%90%8C%E5%8A%9F%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95">與assign相同功用的用法</h3>
+<pre><code class="language-javascript">window.location=&quot;http://test.com&quot;
+window.location.href=&quot;http://test.com&quot;
+location=&quot;http://test.com&quot;
+location.href=&quot;http://test.com&quot;
 </code></pre>
-<p>執行<code>docker buildx build</code>進行建置<br>
-<code>--rm</code>參數可以在執行結束後移除容器<br>
-<code>--push</code>參數可以在建置完成時推送映像檔到DockerHub<br>
-<code>--platform</code>參數指定目標平台，本次使用<strong>linux/amd64</strong>及<strong>linux/arm64</strong>作為目標平台<br>
-<code>-t</code>參數指定映像檔及映像檔標籤<br>
-<code>-f</code>參數指定要用來進行建置的Dockerfile</p>
-<p>建置完成後前往DockerHub可以看到剛才指定平台的映像檔已成功建置並上傳<br>
-<img src="../content/images/2023/02/---2023-02-09---10.42.41.png" alt="---2023-02-09---10.42.41" loading="lazy"></p>
+<h3 id="%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F">使用時機</h3>
+<ul>
+<li>希望在跳轉頁面後可以返回上一頁</li>
+</ul>
+<h2 id="replace">replace</h2>
+<h3 id="%E5%8A%9F%E8%83%BD">功能</h3>
+<p>replace會使用URL指定的文件置換掉目前的頁面</p>
+<h3 id="%E8%AA%9E%E6%B3%95">語法</h3>
+<pre><code class="language-javascript">window.location.replace(&quot;http://test.com&quot;);
+</code></pre>
+<h3 id="%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F">使用時機</h3>
+<ul>
+<li>希望頁面重新載入而不是重新提交一次</li>
+<li>不應該重複觸發的頁面，例如：
+<ul>
+<li>金流付錢頁面，付款後replace回原本的頁面，減少使用者返回上一頁造成錯誤的機會</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E5%B7%AE%E7%95%B0">差異</h2>
+<p>replace和assign的差異在於replace不會在session history中紀錄目前的頁面，replace後將無法回到上一頁，若在replace過後按下上一頁則會回到上上個瀏覽的頁面</p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">參考資料</h6>
+<ul>
+<li><a href="https://ithelp.ithome.com.tw/articles/10190062?ref=chai-yu-bi-ji-ben">Javascript 頁面跳轉、刷新、重定向的幾種方式</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/assign?ref=chai-yu-bi-ji-ben">location: assign() method - Web APIs | MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/replace?ref=chai-yu-bi-ji-ben">location: replace() method - Web APIs | MDN</a></li>
+</ul>
 <!--kg-card-end: markdown-->
 			</section>
 
@@ -302,23 +431,23 @@
 
 				<div class="post-share">
 					<span class="post-info-label">Share</span>
-					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=Docker buildx&url=https://vincent87720.github.io/Blog/docker-buildx/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=比較JavaScript中assign與replace的差異&url=https://vincent87720.github.io/Blog/difference-between-assign-and-replace-in-javascript/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
 						<i class="icon icon-twitter" aria-hidden="true"></i>
 					</a>
-					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/Blog/docker-buildx/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/Blog/difference-between-assign-and-replace-in-javascript/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
 						<i class="icon icon-facebook" aria-hidden="true"></i>
 					</a>
-					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/Blog/docker-buildx//&amp;title=Docker buildx" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/Blog/difference-between-assign-and-replace-in-javascript//&amp;title=比較JavaScript中assign與replace的差異" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
 						<i class="icon icon-linkedin" aria-hidden="true"></i>
 					</a>
-					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=Docker buildx&amp;body=https://vincent87720.github.io/Blog/docker-buildx/">
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=比較JavaScript中assign與replace的差異&amp;body=https://vincent87720.github.io/Blog/difference-between-assign-and-replace-in-javascript/">
 						<i class="icon icon-mail" aria-hidden="true"></i>
 					</a>
 				</div>
 
 				<aside class="post-tags">
 					<span class="post-info-label">Topic</span>
-					<a href="../tag/docker/index.html">Docker</a>
+					<a href="../tag/javascript/index.html">JavaScript</a>
 				</aside>
 
 			</section>
@@ -338,43 +467,13 @@
 
 			<aside class="post-nav">
 
-					<a class="post-nav-next" href="../difference-between-assign-and-replace-in-javascript/index.html">
-						<section class="post-nav-teaser">
-							<i class="icon icon-arrow-left" aria-label="Next post"></i>
-							<h2 class="post-nav-title">比較JavaScript中assign與replace的差異</h2>
-							<p class="post-nav-excerpt">assign
 
-
-
-功能
-
-
-assign可以讓window載入並顯示URL指定的文件
-
-
-
-語法
-
-
-window.location.assign("http://test.com");
-
-
-
-
-與assign相同功用的用法
-
-
-window.&hellip;</p>
-							<p class="post-nav-meta"><time datetime="08-08-2023">08 Aug 2023</time></p>
-						</section>
-					</a>
-
-					<a class="post-nav-prev" href="../quasar-scroll-to-field-on-validation-error/index.html">
+					<a class="post-nav-prev" href="../docker-buildx/index.html">
 						<section class="post-nav-teaser">
 							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
-							<h2 class="post-nav-title">使用QUASAR在表單送出時滾動到錯誤欄位</h2>
-							<p class="post-nav-excerpt">表單submit時會希望能讓頁面自動滾動到元素位置，使用q-form的validation-error事件搭配滾動來達成此效果&hellip;</p>
-							<p class="post-nav-meta"><time datetime="29-10-2022">29 Oct 2022</time></p>
+							<h2 class="post-nav-title">Docker buildx</h2>
+							<p class="post-nav-excerpt">Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。&hellip;</p>
+							<p class="post-nav-meta"><time datetime="10-02-2023">10 Feb 2023</time></p>
 						</section>
 					</a>
 				<div class="clear"></div>

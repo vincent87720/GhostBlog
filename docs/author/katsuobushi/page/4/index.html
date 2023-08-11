@@ -159,7 +159,7 @@
 		<div class="archive archive-author box archive-box">
 			<span class="archive-info">
 				<span class="archive-type">Author</span>
-				<span class="archive-count">38 Posts</span>
+				<span class="archive-count">39 Posts</span>
 			</span>
 			<figure class="archive-avatar avatar">
 					<img src="../../../../content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
@@ -199,6 +199,62 @@
 </nav>
 
 </div>
+
+
+<article class="post tag-csharp tag-nuget tag-postgresql">
+	<div class="inner">
+		<div class="box post-box">
+			<h2 class="post-title"><a href="../../../../csharp-connect-to-postgresql/index.html">[C#]使用Npgsql連接到PostgreSQL server</a></h2>
+			<span class="post-meta">
+				By
+				<a href="../../index.html">Katsuobushi</a>
+				in <a class="post-meta-tag" href="../../../../tag/csharp/index.html">C#</a>
+				on
+				<time datetime="03-09-2020">03 Sep 2020</time>
+			</span>
+			<p class="post-excerpt">環境
+
+
+ * Windows 10 x64
+ * Visual Studio Community 2019 v16.2.2
+ * Npgsql v4.1.4
+
+
+
+安裝
+
+
+開啟visual studio後點選"工具->NuGet套件管理員->管理方案的NuGet套件"
+
+
+
+點選Npgsql，勾選右方會執行到此套件的專案，再點選安裝
+
+
+
+按確定進行安裝
+
+
+
+
+
+建立連線
+
+
+設定好host post username password database等連線資訊後，使用NpgsqlConnection建立一個新連線，再使用Open()方法開啟連線
+
+
+class Program
+{
+    
+    static void Main(string[] args)
+    {
+        string host = "localhost";
+        string port = "5432";
+        string username = "postgres"&hellip;</p>
+		</div>
+	</div>
+</article>
 
 
 <article class="post tag-golang">
@@ -315,23 +371,6 @@
 				<time datetime="27-01-2020">27 Jan 2020</time>
 			</span>
 			<p class="post-excerpt">在golang裡可使用channel在多個執行緒與主程式之間傳送資料，channel可設定不同型態的buffer，並指定緩衝區大小&hellip;</p>
-		</div>
-	</div>
-</article>
-
-
-<article class="post tag-golang tag-golangpackage">
-	<div class="inner">
-		<div class="box post-box">
-			<h2 class="post-title"><a href="../../../../golang-package-excelize/index.html">[GolangPackage]Excel的讀寫與操作</a></h2>
-			<span class="post-meta">
-				By
-				<a href="../../index.html">Katsuobushi</a>
-				in <a class="post-meta-tag" href="../../../../tag/golang/index.html">golang</a>
-				on
-				<time datetime="26-01-2020">26 Jan 2020</time>
-			</span>
-			<p class="post-excerpt">excelize是一個能夠讀寫excel的package，可讀入或寫入指定位置的資料及更改樣式，適用於批量產生excel檔案及資料處理&hellip;</p>
 		</div>
 	</div>
 </article>

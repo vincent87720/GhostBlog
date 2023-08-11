@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Fri, 11 Aug 2023 08:36:31 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias "vue" to "vue/dist/vue.esm-bundler.js".]]></title><description><![CDATA[從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。]]></description><link>https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/</link><guid isPermaLink="false">64d5f2755c5ac00001391bc4</guid><category><![CDATA[Vue]]></category><category><![CDATA[Webpack]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 11 Aug 2023 08:36:07 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" alt="Vue3&#x932F;&#x8AA4;&#x8A0A;&#x606F; Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;."><p>&#x5F9E;&#x539F;&#x672C;&#x7528;CDN&#x8F09;&#x5165;Vue&#xFF0C;&#x8F49;&#x63DB;&#x70BA;&#x7528;npm&#x8F09;&#x5165;&#x4E26;&#x7528;webpack&#x6253;&#x5305;&#x7684;&#x904E;&#x7A0B;&#x4E2D;&#x767C;&#x751F;&#x4E86;&#x932F;&#x8AA4;&#xFF0C;&#x539F;&#x56E0;&#x8207;Vue&#x7684;&#x4F7F;&#x7528;&#x74B0;&#x5883;&#x6709;&#x95DC;&#x3002;</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Fri, 11 Aug 2023 09:08:21 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Webpack設定多個entry及output]]></title><description><![CDATA[預設的Webpack使用單一entry及output，若需要多個entry及output可以在webpack.config.js中加入一個函式取得目錄內的所有檔案，將所有檔案加入至entry中。]]></description><link>https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output/</link><guid isPermaLink="false">64d5f976e17ae60001fb7389</guid><category><![CDATA[Webpack]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 11 Aug 2023 09:07:59 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/webpack.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/webpack.png" alt="Webpack&#x8A2D;&#x5B9A;&#x591A;&#x500B;entry&#x53CA;output"><p>&#x9810;&#x8A2D;&#x7684;Webpack&#x4F7F;&#x7528;&#x55AE;&#x4E00;entry&#x53CA;output&#xFF0C;&#x82E5;&#x9700;&#x8981;&#x591A;&#x500B;entry&#x53CA;output&#x53EF;&#x4EE5;&#x5728;<code>webpack.config.js</code>&#x4E2D;&#x52A0;&#x5165;&#x4E00;&#x500B;&#x51FD;&#x5F0F;&#x53D6;&#x5F97;&#x76EE;&#x9304;&#x5167;&#x7684;&#x6240;&#x6709;&#x6A94;&#x6848;&#xFF0C;&#x5C07;&#x6240;&#x6709;&#x6A94;&#x6848;&#x52A0;&#x5165;&#x81F3;entry&#x4E2D;&#x3002;</p>
+<h2 id="%E5%AE%89%E8%A3%9D%E4%B8%A6%E8%BC%89%E5%85%A5glob">&#x5B89;&#x88DD;&#x4E26;&#x8F09;&#x5165;glob</h2>
+<pre><code class="language-shell">npm install glob
+</code></pre>
+<h2 id="%E5%9C%A8webpackconfigjs%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%8F%96%E5%BE%97%E6%AA%94%E6%A1%88%E5%87%BD%E5%BC%8F">&#x5728;webpack.config.js&#x4E2D;&#x52A0;&#x5165;&#x53D6;&#x5F97;&#x6A94;&#x6848;&#x51FD;&#x5F0F;</h2>
+<pre><code class="language-javascript">const glob = require(&quot;glob&quot;);
+
+const getEntry = () =&gt; {
+    const entry = {};
+    glob.sync(&apos;./src/js/*.js&apos;).forEach((name) =&gt; {
+        const start = name.indexOf(&apos;src/js/&apos;) + 7; //&#x524D;&#x9762;&#x8DEF;&#x5F91;&#x5171;8&#x500B;&#x4F4D;&#x5143;&#x7684;&#x5B57;&#x4E32;
+        const end = name.length - 3; //&#x6E1B;&#x53BB;&#x9644;&#x6A94;&#x540D;.js
+        const eArr = [];
+        const n = name.slice(start, end); //&#x53D6;&#x5F97;js&#x7684;&#x540D;&#x7A31;
+        eArr.push(&quot;./&quot;+name); //push&#x81F3;&#x9663;&#x5217;&#x4E2D;
+        entry[n] = eArr;
+    });
+    return entry;
+};
+</code></pre>
+<h2 id="%E5%9C%A8entry%E5%8F%8Aoutput%E5%8A%A0%E5%85%A5%E6%AA%94%E6%A1%88%E8%B3%87%E8%A8%8A">&#x5728;entry&#x53CA;output&#x52A0;&#x5165;&#x6A94;&#x6848;&#x8CC7;&#x8A0A;</h2>
+<pre><code class="language-javascript">const path = require(&apos;path&apos;);
+
+module.exports = {
+    entry: getEntry(),//&#x547C;&#x53EB;getEntry&#x51FD;&#x5F0F;&#x53D6;&#x5F97;&#x6A94;&#x6848;&#x8CC7;&#x8A0A;
+    output: {
+        path: path.resolve(__dirname, &apos;wwwroot&apos;),
+        filename: &apos;./js/[name].min.js&apos;,//&#x8A2D;&#x5B9A;&#x8F38;&#x51FA;&#x6A94;&#x6848;&#x540D;&#x7A31;
+    },
+    mode: &apos;development&apos;,
+}
+</code></pre>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://medium.com/anna-hsaio-%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC%E8%A8%98/webpack-%E6%95%99%E5%AD%B8-webpack%E5%A4%9A%E5%85%A5%E5%8F%A3-%E5%A4%9A%E5%87%BA%E5%8F%A3%E9%85%8D%E7%BD%AE-b15a1a2fd74a?ref=chai-yu-bi-ji-ben">Webpack&#xFF5C;&#x6559;&#x5B78;&#xFF1A;webpack&#x591A;&#x5165;&#x53E3;/&#x591A;&#x51FA;&#x53E3;&#x914D;&#x7F6E;</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias "vue" to "vue/dist/vue.esm-bundler.js".]]></title><description><![CDATA[從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。]]></description><link>https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/</link><guid isPermaLink="false">64d5f2755c5ac00001391bc4</guid><category><![CDATA[Vue]]></category><category><![CDATA[Webpack]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 11 Aug 2023 08:36:07 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" alt="Vue3&#x932F;&#x8AA4;&#x8A0A;&#x606F; Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;."><p>&#x5F9E;&#x539F;&#x672C;&#x7528;CDN&#x8F09;&#x5165;Vue&#xFF0C;&#x8F49;&#x63DB;&#x70BA;&#x7528;npm&#x8F09;&#x5165;&#x4E26;&#x7528;webpack&#x6253;&#x5305;&#x7684;&#x904E;&#x7A0B;&#x4E2D;&#x767C;&#x751F;&#x4E86;&#x932F;&#x8AA4;&#xFF0C;&#x539F;&#x56E0;&#x8207;Vue&#x7684;&#x4F7F;&#x7528;&#x74B0;&#x5883;&#x6709;&#x95DC;&#x3002;</p>
 <h2 id="%E5%8E%9F%E5%9B%A0">&#x539F;&#x56E0;</h2>
 <p>Vue&#x4F9D;&#x64DA;&#x4E0D;&#x540C;&#x7684;&#x74B0;&#x5883;&#x6703;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;Vue&#x6A94;&#x6848;&#xFF0C;&#x4EE5;<code>vue.esm-bundler</code>&#x70BA;&#x4F8B;&#xFF0C;esm&#x4EE3;&#x8868;&#x7684;&#x662F;&#x5728;&#x7A0B;&#x5F0F;&#x78BC;&#x4E2D;&#x6709;&#x4F7F;&#x7528;ESModule&#xFF0C;&#x800C;bundler&#x4EE3;&#x8868;&#x7684;&#x662F;&#x7D66;webpack&#x7B49;&#x6253;&#x5305;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x7684;&#x3002;</p>
 <h2 id="%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F">&#x89E3;&#x6C7A;&#x65B9;&#x5F0F;</h2>
@@ -660,84 +696,4 @@ $$ language &apos;plpgsql&apos;;
 <li>B&#x96FB;&#x8166;&#x6536;&#x5230;A&#x96FB;&#x8166;&#x50B3;&#x9001;&#x7684;SYN&#xFF0C;&#x50B3;&#x56DE;SYN+ACK&#x7D66;A&#x96FB;&#x8166;</li>
 <li>A&#x96FB;&#x8166;&#x9001;&#x56DE;ACK&#x7D66;B&#x96FB;&#x8166;</li>
 </ol>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Pattern]REST API 設計規範]]></title><description><![CDATA[REST是一種架構風格，類似設計模式，使用一些原則規範應用程式的設計]]></description><link>https://vincent87720.github.io/Blog/pattern-rest-api-design/</link><guid isPermaLink="false">635a816a57207246b927a8ba</guid><category><![CDATA[Pattern]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 14 Jun 2021 09:20:00 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2021/06/Vector-Computer-Pattern-Computer-Seamless-Background-Stock.jpg" alt="[Pattern]REST API &#x8A2D;&#x8A08;&#x898F;&#x7BC4;"><p>REST&#x662F;&#x4E00;&#x7A2E;&#x67B6;&#x69CB;&#x98A8;&#x683C;&#xFF0C;&#x985E;&#x4F3C;&#x8A2D;&#x8A08;&#x6A21;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x4E00;&#x4E9B;&#x539F;&#x5247;&#x898F;&#x7BC4;&#x61C9;&#x7528;&#x7A0B;&#x5F0F;&#x7684;&#x8A2D;&#x8A08;&#xFF0C;&#x4EE5;&#x4E0B;&#x70BA;REST&#x98A8;&#x683C;&#x7684;&#x4E00;&#x4E9B;&#x7279;&#x5FB5;</p>
-<h2 id>&#x4F7F;&#x7528;&#x540D;&#x8A5E;&#x800C;&#x975E;&#x52D5;&#x8A5E;</h2>
-<p>&#x7576;&#x6211;&#x5011;&#x60F3;&#x8981;&#x8A2D;&#x8A08;&#x4E00;&#x500B;&#x5B78;&#x751F;&#x7684;API&#x6642;&#xFF0C;&#x61C9;&#x4F7F;&#x7528;&#x540D;&#x8A5E;&#x9032;&#x884C;&#x5B9A;&#x7FA9;</p>
-<pre><code class="language-javascript">//&#x9019;&#x662F;&#x5C0D;&#x7684;
-/students/1
-</code></pre>
-<p>&#x800C;&#x975E;&#x4F7F;&#x7528;&#x52D5;&#x8A5E;&#x5B9A;&#x7FA9;</p>
-<pre><code class="language-javascript">//&#x9019;&#x662F;&#x932F;&#x7684;
-/getStudent/1
-</code></pre>
-<h2 id>&#x4F7F;&#x7528;&#x8907;&#x6578;&#x540D;&#x8A5E;</h2>
-<p>&#x4E0D;&#x5340;&#x5206;&#x55AE;&#x8907;&#x6578;&#xFF0C;&#x5168;&#x90E8;&#x4F7F;&#x7528;&#x8907;&#x6578;&#x5B9A;&#x7FA9;</p>
-<pre><code class="language-javascript">//&#x9019;&#x662F;&#x5C0D;&#x7684;
-/students
-</code></pre>
-<p>&#x4E0D;&#x4F7F;&#x7528;&#x55AE;&#x6578;&#x5B9A;&#x7FA9;</p>
-<pre><code class="language-javascript">//&#x9019;&#x662F;&#x932F;&#x7684;
-/student
-</code></pre>
-<h2 id>&#x4F7F;&#x7528;&#x5B50;&#x8CC7;&#x6E90;&#x8868;&#x9054;&#x8CC7;&#x6E90;&#x9593;&#x7684;&#x95DC;&#x4FC2;</h2>
-<p>&#x4EE5;&#x53D6;&#x5F97;&#x6240;&#x6709;&#x8CC7;&#x6E90;&#x8207;&#x7279;&#x5B9A;&#x8CC7;&#x6E90;&#x70BA;&#x4F8B;</p>
-<pre><code class="language-javascript">//&#x9019;&#x662F;&#x5C0D;&#x7684;
-/students //&#x53D6;&#x5F97;&#x6240;&#x6709;&#x5B78;&#x751F;
-/students/1 //&#x53D6;&#x5F97;&#x7279;&#x5B9A;&#x5B78;&#x751F;
-</code></pre>
-<p>&#x547C;&#x61C9;&#x5230;&#x4F7F;&#x7528;&#x8907;&#x6578;&#x540D;&#x8A5E;&#x5B9A;&#x7FA9;API&#xFF0C;&#x53D6;&#x5F97;&#x7279;&#x5B9A;&#x8CC7;&#x6E90;&#x6642;&#x4E0D;&#x4F7F;&#x7528;&#x55AE;&#x6578;&#x8868;&#x9054;&#xFF0C;&#x800C;&#x662F;&#x4F7F;&#x7528;&#x5B50;&#x8CC7;&#x6E90;&#x65B9;&#x5F0F;&#x5B9A;&#x7FA9;</p>
-<pre><code class="language-javascript">//&#x9019;&#x662F;&#x932F;&#x7684;
-/students //&#x53D6;&#x5F97;&#x6240;&#x6709;&#x5B78;&#x751F;
-/student/1 //&#x53D6;&#x5F97;&#x7279;&#x5B9A;&#x5B78;&#x751F;
-</code></pre>
-<h2 id="get">&#x4F7F;&#x7528;GET&#x4EE5;&#x5916;&#x7684;&#x65B9;&#x6CD5;&#x6539;&#x8B8A;&#x8CC7;&#x6E90;&#x72C0;&#x614B;</h2>
-<p>&#x8981;&#x6539;&#x8B8A;&#x8CC7;&#x6E90;&#x72C0;&#x614B;&#x61C9;&#x4F7F;&#x7528;GET&#x4EE5;&#x5916;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4F8B;&#x5982;POST&#x3001;PUT&#x6216;DELETE&#x7B49;</p>
-<pre><code class="language-javascript">//&#x9019;&#x662F;&#x5C0D;&#x7684;
-POST /students/1/activate
-</code></pre>
-<p>&#x4E0D;&#x4F7F;&#x7528;GET&#x9032;&#x884C;&#x4FEE;&#x6539;</p>
-<pre><code class="language-javascript">//&#x9019;&#x662F;&#x932F;&#x7684;
-GET /students/1/activate
-</code></pre>
-<h2 id="httpheader">&#x4F7F;&#x7528;HTTP header&#x5B9A;&#x7FA9;&#x683C;&#x5F0F;</h2>
-<ul>
-<li>Content-Type&#x5B9A;&#x7FA9;&#x8ACB;&#x6C42;&#x683C;&#x5F0F;</li>
-<li>Accept&#x5B9A;&#x7FA9;&#x63A5;&#x6536;&#x5C0D;&#x61C9;&#x7684;&#x683C;&#x5F0F;&#x5217;&#x8868;</li>
-</ul>
-<h2 id="hateoas">&#x4F7F;&#x7528;HATEOAS&#x7D04;&#x675F;</h2>
-<p>&#x7528;&#x6236;&#x7AEF;&#x53EF;&#x4EE5;&#x5728;&#x4F3A;&#x670D;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x5167;&#x5BB9;&#x4E2D;&#x52D5;&#x614B;&#x7684;&#x53D6;&#x5F97;URI&#x7684;&#x8CC7;&#x8A0A;&#xFF0C;&#x518D;&#x4F7F;&#x7528;&#x53D6;&#x5F97;&#x7684;URI&#x8CC7;&#x8A0A;&#x9001;&#x51FA;&#x8ACB;&#x6C42;</p>
-<h2 id>&#x63D0;&#x4F9B;&#x904E;&#x6FFE;&#x3001;&#x6392;&#x5E8F;&#x3001;&#x6B04;&#x4F4D;&#x9078;&#x64C7;&#x3001;&#x5206;&#x9801;</h2>
-<h3 id>&#x904E;&#x6FFE;</h3>
-<pre><code class="language-javascript">GET /students?gender=male
-GET /students?age&lt;=18
-</code></pre>
-<h3 id>&#x6392;&#x5E8F;</h3>
-<pre><code class="language-javascript">GET /students?sort=-age,+id
-</code></pre>
-<h3 id>&#x6B04;&#x4F4D;&#x9078;&#x64C7;</h3>
-<pre><code class="language-javascript">GET /students?fields=id,name,age,gender
-</code></pre>
-<h3 id>&#x5206;&#x9801;</h3>
-<pre><code class="language-javascript">GET /students?offset=10&amp;limit=5 //&#x53D6;&#x5F97;&#x5B78;&#x751F;&#x7B2C;20&#x500B;&#x4E4B;&#x5F8C;&#x7684;5&#x500B;&#x5B78;&#x751F;
-</code></pre>
-<h2 id>&#x4F7F;&#x7528;&#x7248;&#x672C;</h2>
-<p>&#x4F7F;&#x7528;&#x7248;&#x672C;&#x7DE8;&#x865F;&#x5C07;API&#x7248;&#x672C;&#x5316;&#xFF0C;&#x63D0;&#x4F9B;&#x5F48;&#x6027;</p>
-<pre><code class="language-javascript">/yourService/api/v1
-</code></pre>
-<h2 id="httpstatuscode">&#x4F7F;&#x7528;HTTP Status Code&#x9032;&#x884C;&#x932F;&#x8AA4;&#x8655;&#x7406;</h2>
-<p>&#x6BCF;&#x500B;&#x932F;&#x8AA4;&#x90FD;&#x9808;&#x8FD4;&#x56DE;&#x4E00;&#x500B;payload&#xFF0C;&#x4E0D;&#x53EF;&#x50C5;&#x8FD4;&#x56DE;&#x932F;&#x8AA4;&#x72C0;&#x614B;&#x78BC;(500 Internal Server Error)</p>
-<pre><code class="language-json">{
-    &quot;errors&quot;:[
-        {
-            &quot;userMessage&quot;:&quot;Sorry, the requested resource dose not exists.&quot;,
-            &quot;internalMessage&quot;:&quot;Student not found&quot;,
-            &quot;code&quot;:&quot;34&quot;
-        }
-    ]
-}
-</code></pre>
-<h2 id>&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
-<ul>
-<li>&#x5DE8;&#x578B;&#x516C;&#x53F8;&#x7684;&#x7DB2;&#x8DEF;&#x67B6;&#x69CB;&#xFF1A;&#x5206;&#x6563;&#x662F;&#x7CFB;&#x7D71;&#x5167;&#x90E8;&#x89E3;&#x5BC6;/&#x67F3;&#x5049;&#x885B;</li>
-</ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

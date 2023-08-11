@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;.</title>
+	<title>Webpack設定多個entry及output</title>
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -42,7 +42,7 @@
 				}
 			</style>
 
-	<meta name="description" content="從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。" />
+	<meta name="description" content="預設的Webpack使用單一entry及output，若需要多個entry及output可以在webpack.config.js中加入一個函式取得目錄內的所有檔案，將所有檔案加入至entry中。" />
     <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
     <link rel="canonical" href="index.html" />
     <meta name="referrer" content="no-referrer-when-downgrade" />
@@ -50,26 +50,25 @@
     
     <meta property="og:site_name" content="柴魚筆記本" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;." />
-    <meta property="og:description" content="從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。" />
-    <meta property="og:url" content="https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/" />
-    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" />
-    <meta property="article:published_time" content="2023-08-11T08:36:07.000Z" />
-    <meta property="article:modified_time" content="2023-08-11T08:36:07.000Z" />
-    <meta property="article:tag" content="Vue" />
+    <meta property="og:title" content="Webpack設定多個entry及output" />
+    <meta property="og:description" content="預設的Webpack使用單一entry及output，若需要多個entry及output可以在webpack.config.js中加入一個函式取得目錄內的所有檔案，將所有檔案加入至entry中。" />
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output/" />
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2023/08/webpack.png" />
+    <meta property="article:published_time" content="2023-08-11T09:07:59.000Z" />
+    <meta property="article:modified_time" content="2023-08-11T09:07:59.000Z" />
     <meta property="article:tag" content="Webpack" />
     
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;." />
-    <meta name="twitter:description" content="從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。" />
-    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/" />
-    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" />
+    <meta name="twitter:title" content="Webpack設定多個entry及output" />
+    <meta name="twitter:description" content="預設的Webpack使用單一entry及output，若需要多個entry及output可以在webpack.config.js中加入一個函式取得目錄內的所有檔案，將所有檔案加入至entry中。" />
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output/" />
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2023/08/webpack.png" />
     <meta name="twitter:label1" content="Written by" />
     <meta name="twitter:data1" content="Katsuobushi" />
     <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Vue, Webpack" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta name="twitter:data2" content="Webpack" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="599" />
     
     <script type="application/ld+json">
 {
@@ -98,18 +97,18 @@
         "url": "https://vincent87720.github.io/Blog/author/katsuobushi/",
         "sameAs": []
     },
-    "headline": "Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;.",
-    "url": "https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/",
-    "datePublished": "2023-08-11T08:36:07.000Z",
-    "dateModified": "2023-08-11T08:36:07.000Z",
+    "headline": "Webpack設定多個entry及output",
+    "url": "https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output/",
+    "datePublished": "2023-08-11T09:07:59.000Z",
+    "dateModified": "2023-08-11T09:07:59.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg",
-        "width": 1200,
-        "height": 630
+        "url": "https://vincent87720.github.io/Blog/content/images/2023/08/webpack.png",
+        "width": 1400,
+        "height": 599
     },
-    "keywords": "Vue, Webpack",
-    "description": "從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。",
+    "keywords": "Webpack",
+    "description": "預設的Webpack使用單一entry及output，若需要多個entry及output可以在webpack.config.js中加入一個函式取得目錄內的所有檔案，將所有檔案加入至entry中。",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https://vincent87720.github.io/Blog/"
@@ -190,7 +189,7 @@
     <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
 </head>
 
-<body class="post-template tag-vue tag-webpack">
+<body class="post-template tag-webpack">
 
 	<div class="nav-header">
 		<nav class="nav-wrapper" aria-label="Main">
@@ -232,9 +231,9 @@
 	<div class="inner">
 		<span class="post-info">
 			<span class="post-type">Article</span>
-			<span class="post-count">Vue</span>
+			<span class="post-count">Webpack</span>
 		</span>
-		<h1 class="post-title">Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;.</h1>
+		<h1 class="post-title">Webpack設定多個entry及output</h1>
 		<div class="post-meta">
 			<div class="post-meta-avatars">
 					<figure class="post-meta-avatar avatar">
@@ -248,39 +247,56 @@
 		</div>
 		<div class="post-cover cover">
 			<img
-			srcset="../content/images/size/w320/2023/08/vue.jpg 320w,
-             ../content/images/size/w640/2023/08/vue.jpg 640w,
-            ../content/images/size/w960/2023/08/vue.jpg 960w,
-           ../content/images/size/w1920/2023/08/vue.jpg 1920w"
-      src="../content/images/size/w1920/2023/08/vue.jpg"
-			alt="Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;." />
+			srcset="../content/images/size/w320/2023/08/webpack.png 320w,
+             ../content/images/size/w640/2023/08/webpack.png 640w,
+            ../content/images/size/w960/2023/08/webpack.png 960w,
+           ../content/images/size/w1920/2023/08/webpack.png 1920w"
+      src="../content/images/size/w1920/2023/08/webpack.png"
+			alt="Webpack設定多個entry及output" />
 		</div>
 	</div>
 </header>
 
 <main class="content" role="main">
-	<article class="post tag-vue tag-webpack">
+	<article class="post tag-webpack">
 		<div class="inner">
 
 			<section class="post-content">
-				<!--kg-card-begin: markdown--><p>從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。</p>
-<h2 id="%E5%8E%9F%E5%9B%A0">原因</h2>
-<p>Vue依據不同的環境會需要使用不同的Vue檔案，以<code>vue.esm-bundler</code>為例，esm代表的是在程式碼中有使用ESModule，而bundler代表的是給webpack等打包工具使用的。</p>
-<h2 id="%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F">解決方式</h2>
-<p>在webpack的webpack.config.js中，使用下列程式碼將<code>vue.esm-bundler</code>指定別名為vue即可解決該問題</p>
-<pre><code class="language-javascript">module.exports = {
-    ...
-    resolve: {
-        alias: {
-            vue: 'vue/dist/vue.esm-bundler.js'
-        }
-    }
-    ...
+				<!--kg-card-begin: markdown--><p>預設的Webpack使用單一entry及output，若需要多個entry及output可以在<code>webpack.config.js</code>中加入一個函式取得目錄內的所有檔案，將所有檔案加入至entry中。</p>
+<h2 id="%E5%AE%89%E8%A3%9D%E4%B8%A6%E8%BC%89%E5%85%A5glob">安裝並載入glob</h2>
+<pre><code class="language-shell">npm install glob
+</code></pre>
+<h2 id="%E5%9C%A8webpackconfigjs%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%8F%96%E5%BE%97%E6%AA%94%E6%A1%88%E5%87%BD%E5%BC%8F">在webpack.config.js中加入取得檔案函式</h2>
+<pre><code class="language-javascript">const glob = require(&quot;glob&quot;);
+
+const getEntry = () =&gt; {
+    const entry = {};
+    glob.sync('./src/js/*.js').forEach((name) =&gt; {
+        const start = name.indexOf('src/js/') + 7; //前面路徑共8個位元的字串
+        const end = name.length - 3; //減去附檔名.js
+        const eArr = [];
+        const n = name.slice(start, end); //取得js的名稱
+        eArr.push(&quot;./&quot;+name); //push至陣列中
+        entry[n] = eArr;
+    });
+    return entry;
+};
+</code></pre>
+<h2 id="%E5%9C%A8entry%E5%8F%8Aoutput%E5%8A%A0%E5%85%A5%E6%AA%94%E6%A1%88%E8%B3%87%E8%A8%8A">在entry及output加入檔案資訊</h2>
+<pre><code class="language-javascript">const path = require('path');
+
+module.exports = {
+    entry: getEntry(),//呼叫getEntry函式取得檔案資訊
+    output: {
+        path: path.resolve(__dirname, 'wwwroot'),
+        filename: './js/[name].min.js',//設定輸出檔案名稱
+    },
+    mode: 'development',
 }
 </code></pre>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">參考資料</h6>
 <ul>
-<li><a href="https://developer.aliyun.com/article/1138888?ref=chai-yu-bi-ji-ben">vue3 使用第三方插件问题 bundler to alias “vue“ to “vue/dist/vue.esm-bundler.js</a></li>
+<li><a href="https://medium.com/anna-hsaio-%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC%E8%A8%98/webpack-%E6%95%99%E5%AD%B8-webpack%E5%A4%9A%E5%85%A5%E5%8F%A3-%E5%A4%9A%E5%87%BA%E5%8F%A3%E9%85%8D%E7%BD%AE-b15a1a2fd74a?ref=chai-yu-bi-ji-ben">Webpack｜教學：webpack多入口/多出口配置</a></li>
 </ul>
 <!--kg-card-end: markdown-->
 			</section>
@@ -289,23 +305,23 @@
 
 				<div class="post-share">
 					<span class="post-info-label">Share</span>
-					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;.&url=https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=Webpack設定多個entry及output&url=https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
 						<i class="icon icon-twitter" aria-hidden="true"></i>
 					</a>
-					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
 						<i class="icon icon-facebook" aria-hidden="true"></i>
 					</a>
-					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler//&amp;title=Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;." onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output//&amp;title=Webpack設定多個entry及output" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
 						<i class="icon icon-linkedin" aria-hidden="true"></i>
 					</a>
-					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;.&amp;body=https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/">
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=Webpack設定多個entry及output&amp;body=https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output/">
 						<i class="icon icon-mail" aria-hidden="true"></i>
 					</a>
 				</div>
 
 				<aside class="post-tags">
 					<span class="post-info-label">Topic</span>
-					<a href="../tag/vue/index.html">Vue</a> <a href="../tag/webpack/index.html">Webpack</a>
+					<a href="../tag/webpack/index.html">Webpack</a>
 				</aside>
 
 			</section>
@@ -325,23 +341,13 @@
 
 			<aside class="post-nav">
 
-					<a class="post-nav-next" href="../webpack-multiple-entry-and-output/index.html">
-						<section class="post-nav-teaser">
-							<i class="icon icon-arrow-left" aria-label="Next post"></i>
-							<h2 class="post-nav-title">Webpack設定多個entry及output</h2>
-							<p class="post-nav-excerpt">預設的Webpack使用單一entry及output，若需要多個entry及output可以在webpack.config.js中加入一個函式取得目錄內的所有檔案，將所有檔案加入至entry中。&hellip;</p>
-							<p class="post-nav-meta"><time datetime="11-08-2023">11 Aug 2023</time></p>
-						</section>
-					</a>
 
-					<a class="post-nav-prev" href="../exception-handling-with-middleware-in-aspnet-core/index.html">
+					<a class="post-nav-prev" href="../vue3-webpack-import-vue-esm-bundler/index.html">
 						<section class="post-nav-teaser">
 							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
-							<h2 class="post-nav-title">ASP.NET Core使用Middleware進行例外處理</h2>
-							<p class="post-nav-excerpt">當API被呼叫且發生例外時，不太會希望預設的錯誤訊息被傳回給使用者，在C#中可以使用try catch攔截錯誤訊息。
-
-但在每個可能會發生錯誤的地方都加上try catch相當繁瑣，使用Middleware可以捕捉錯誤訊息，並在返回給使用者之前統一處理，不僅可以節省開發時間，還能將錯誤訊息攔截，避免洩漏過多內部訊息給使用者，提高安全性。&hellip;</p>
-							<p class="post-nav-meta"><time datetime="09-08-2023">09 Aug 2023</time></p>
+							<h2 class="post-nav-title">Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;.</h2>
+							<p class="post-nav-excerpt">從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。&hellip;</p>
+							<p class="post-nav-meta"><time datetime="11-08-2023">11 Aug 2023</time></p>
 						</section>
 					</a>
 				<div class="clear"></div>

@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Tue, 08 Aug 2023 17:38:38 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[ASP.NET Core使用Middleware進行例外處理]]></title><description><![CDATA[當API被呼叫且發生例外時，不太會希望預設的錯誤訊息被傳回給使用者，在C#中可以使用try catch攔截錯誤訊息。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式 • 軟體 • 攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Fri, 11 Aug 2023 08:36:31 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias "vue" to "vue/dist/vue.esm-bundler.js".]]></title><description><![CDATA[從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。]]></description><link>https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/</link><guid isPermaLink="false">64d5f2755c5ac00001391bc4</guid><category><![CDATA[Vue]]></category><category><![CDATA[Webpack]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 11 Aug 2023 08:36:07 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" alt="Vue3&#x932F;&#x8AA4;&#x8A0A;&#x606F; Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;."><p>&#x5F9E;&#x539F;&#x672C;&#x7528;CDN&#x8F09;&#x5165;Vue&#xFF0C;&#x8F49;&#x63DB;&#x70BA;&#x7528;npm&#x8F09;&#x5165;&#x4E26;&#x7528;webpack&#x6253;&#x5305;&#x7684;&#x904E;&#x7A0B;&#x4E2D;&#x767C;&#x751F;&#x4E86;&#x932F;&#x8AA4;&#xFF0C;&#x539F;&#x56E0;&#x8207;Vue&#x7684;&#x4F7F;&#x7528;&#x74B0;&#x5883;&#x6709;&#x95DC;&#x3002;</p>
+<h2 id="%E5%8E%9F%E5%9B%A0">&#x539F;&#x56E0;</h2>
+<p>Vue&#x4F9D;&#x64DA;&#x4E0D;&#x540C;&#x7684;&#x74B0;&#x5883;&#x6703;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;Vue&#x6A94;&#x6848;&#xFF0C;&#x4EE5;<code>vue.esm-bundler</code>&#x70BA;&#x4F8B;&#xFF0C;esm&#x4EE3;&#x8868;&#x7684;&#x662F;&#x5728;&#x7A0B;&#x5F0F;&#x78BC;&#x4E2D;&#x6709;&#x4F7F;&#x7528;ESModule&#xFF0C;&#x800C;bundler&#x4EE3;&#x8868;&#x7684;&#x662F;&#x7D66;webpack&#x7B49;&#x6253;&#x5305;&#x5DE5;&#x5177;&#x4F7F;&#x7528;&#x7684;&#x3002;</p>
+<h2 id="%E8%A7%A3%E6%B1%BA%E6%96%B9%E5%BC%8F">&#x89E3;&#x6C7A;&#x65B9;&#x5F0F;</h2>
+<p>&#x5728;webpack&#x7684;webpack.config.js&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;&#x4E0B;&#x5217;&#x7A0B;&#x5F0F;&#x78BC;&#x5C07;<code>vue.esm-bundler</code>&#x6307;&#x5B9A;&#x5225;&#x540D;&#x70BA;vue&#x5373;&#x53EF;&#x89E3;&#x6C7A;&#x8A72;&#x554F;&#x984C;</p>
+<pre><code class="language-javascript">module.exports = {
+    ...
+    resolve: {
+        alias: {
+            vue: &apos;vue/dist/vue.esm-bundler.js&apos;
+        }
+    }
+    ...
+}
+</code></pre>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://developer.aliyun.com/article/1138888?ref=chai-yu-bi-ji-ben">vue3 &#x4F7F;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x63D2;&#x4EF6;&#x95EE;&#x9898; bundler to alias &#x201C;vue&#x201C; to &#x201C;vue/dist/vue.esm-bundler.js</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[ASP.NET Core使用Middleware進行例外處理]]></title><description><![CDATA[當API被呼叫且發生例外時，不太會希望預設的錯誤訊息被傳回給使用者，在C#中可以使用try catch攔截錯誤訊息。
 
 但在每個可能會發生錯誤的地方都加上try catch相當繁瑣，使用Middleware可以捕捉錯誤訊息，並在返回給使用者之前統一處理，不僅可以節省開發時間，還能將錯誤訊息攔截，避免洩漏過多內部訊息給使用者，提高安全性。]]></description><link>https://vincent87720.github.io/Blog/exception-handling-with-middleware-in-aspnet-core/</link><guid isPermaLink="false">64d27827aaa179000118761d</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 08 Aug 2023 17:18:11 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/dotNET_purple.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/dotNET_purple.png" alt="ASP.NET Core&#x4F7F;&#x7528;Middleware&#x9032;&#x884C;&#x4F8B;&#x5916;&#x8655;&#x7406;"><p>&#x7576;API&#x88AB;&#x547C;&#x53EB;&#x4E14;&#x767C;&#x751F;&#x4F8B;&#x5916;&#x6642;&#xFF0C;&#x4E0D;&#x592A;&#x6703;&#x5E0C;&#x671B;&#x9810;&#x8A2D;&#x7684;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x88AB;&#x50B3;&#x56DE;&#x7D66;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x5728;C#&#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;try catch&#x6514;&#x622A;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x3002;</p>
 <p>&#x4F46;&#x5728;&#x6BCF;&#x500B;&#x53EF;&#x80FD;&#x6703;&#x767C;&#x751F;&#x932F;&#x8AA4;&#x7684;&#x5730;&#x65B9;&#x90FD;&#x52A0;&#x4E0A;try catch&#x76F8;&#x7576;&#x7E41;&#x7463;&#xFF0C;&#x4F7F;&#x7528;Middleware&#x53EF;&#x4EE5;&#x6355;&#x6349;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#xFF0C;&#x4E26;&#x5728;&#x8FD4;&#x56DE;&#x7D66;&#x4F7F;&#x7528;&#x8005;&#x4E4B;&#x524D;&#x7D71;&#x4E00;&#x8655;&#x7406;&#xFF0C;&#x4E0D;&#x50C5;&#x53EF;&#x4EE5;&#x7BC0;&#x7701;&#x958B;&#x767C;&#x6642;&#x9593;&#xFF0C;&#x9084;&#x80FD;&#x5C07;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x6514;&#x622A;&#xFF0C;&#x907F;&#x514D;&#x6D29;&#x6F0F;&#x904E;&#x591A;&#x5167;&#x90E8;&#x8A0A;&#x606F;&#x7D66;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x63D0;&#x9AD8;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
@@ -720,65 +739,5 @@ GET /students?age&lt;=18
 <h2 id>&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
 <ul>
 <li>&#x5DE8;&#x578B;&#x516C;&#x53F8;&#x7684;&#x7DB2;&#x8DEF;&#x67B6;&#x69CB;&#xFF1A;&#x5206;&#x6563;&#x662F;&#x7CFB;&#x7D71;&#x5167;&#x90E8;&#x89E3;&#x5BC6;/&#x67F3;&#x5049;&#x885B;</li>
-</ul>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Golang]MySQL Error 1040: Too Many Connections 錯誤處理]]></title><description><![CDATA[前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。]]></description><link>https://vincent87720.github.io/Blog/golang-mysql-error-1040/</link><guid isPermaLink="false">635a816a57207246b927a8b9</guid><category><![CDATA[golang]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 08 Jun 2021 16:09:52 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2021/06/golang-long.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2021/06/golang-long.jpeg" alt="[Golang]MySQL Error 1040: Too Many Connections &#x932F;&#x8AA4;&#x8655;&#x7406;"><p>&#x524D;&#x9663;&#x5B50;&#x5BEB;&#x4E86;&#x4E00;&#x500B;golang&#x7A0B;&#x5F0F;&#x7528;&#x4F86;&#x4E0A;&#x50B3;&#x8CC7;&#x6599;&#x5230;MySQL&#xFF0C;&#x8D77;&#x521D;&#x7A0B;&#x5F0F;&#x904B;&#x4F5C;&#x90FD;&#x975E;&#x5E38;&#x826F;&#x597D;&#xFF0C;&#x904E;&#x4E86;&#x4E00;&#x9663;&#x5B50;&#x958B;&#x59CB;&#x51FA;&#x73FE;&#x4EE3;&#x865F;&#x70BA;1040&#x7684;Too Many Connections&#x932F;&#x8AA4;&#xFF0C;&#x6211;&#x5011;&#x4E00;&#x8D77;&#x4F86;&#x770B;&#x770B;&#x767C;&#x751F;&#x4E86;&#x751A;&#x9EBC;&#x4E8B;&#x3002;</p>
-<h2 id="mysql">&#x67E5;&#x770B;MySQL&#x7684;&#x9023;&#x7DDA;&#x6578;&#x91CF;</h2>
-<p>&#x5728;MySQL&#x4E0B;SQL&#x67E5;&#x8A62;</p>
-<pre><code class="language-sql">SHOW STATUS LIKE &apos;%connected&apos;;
-</code></pre>
-<p>&#x67E5;&#x8A62;&#x7D50;&#x679C;&#x5982;&#x4E0B;</p>
-<table>
-<thead>
-<tr>
-<th>Variable_name</th>
-<th style="text-align:left">Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Slaves_connected</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td>Threads_connected</td>
-<td style="text-align:left">151</td>
-</tr>
-</tbody>
-</table>
-<p>&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x767C;&#x73FE;&#x5230;Threads_connected&#x5DF2;&#x7D93;&#x5230;&#x9054;151&#x4E86;&#xFF0C;MySQL&#x9810;&#x8A2D;&#x7684;&#x6700;&#x5927;&#x5141;&#x8A31;&#x9023;&#x7DDA;&#x6578;&#x91CF;&#x70BA;151&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x6307;&#x4EE4;&#x67E5;&#x8A62;&#x6700;&#x5927;&#x5141;&#x8A31;&#x9023;&#x7DDA;&#x6578;&#x91CF;</p>
-<pre><code class="language-sql">SHOW VARIABLES LIKE &apos;max_connections&apos;;
-</code></pre>
-<h2 id>&#x6AA2;&#x67E5;&#x7A0B;&#x5F0F;&#x78BC;</h2>
-<p>&#x5F8C;&#x4F86;&#x6AA2;&#x67E5;&#x7A0B;&#x5F0F;&#x78BC;&#x767C;&#x73FE;&#x5728;database/sql&#x9019;&#x500B;package&#x6709;&#x5169;&#x500B;struct&#xFF0C;&#x4E00;&#x500B;&#x662F;DB&#xFF0C;&#x53E6;&#x4E00;&#x500B;&#x662F;Conn&#xFF0C;&#x6211;&#x5C07;DB&#x7269;&#x4EF6;&#x7684;&#x9023;&#x7DDA;&#x95DC;&#x6389;&#x800C;&#x6C92;&#x6709;&#x95DC;&#x9589;Conn&#x7269;&#x4EF6;&#x7684;&#xFF0C;&#x5C0E;&#x81F4;&#x9023;&#x7DDA;&#x6578;&#x4E00;&#x76F4;&#x589E;&#x52A0;&#xFF0C;&#x9020;&#x6210;1040&#x932F;&#x8AA4;&#x3002;</p>
-<h3 id>&#x932F;&#x8AA4;&#x7A0B;&#x5F0F;&#x78BC;&#x7BC4;&#x4F8B;</h3>
-<pre><code class="language-go">db, err := sql.Open(&quot;mysql&quot;, &quot;user:password@tcp(127.0.0.1)/testdb?charset=utf8&quot;)
-if err != nil {
-    fmt.Println(err)
-}
-defer db.Close()
-
-_, err = db.Query(&quot;call SP(?,?,?,?)&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;)
-if err != nil {
-    fmt.Println(err)
-}
-</code></pre>
-<p>&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4E0A;&#x9762;&#x95DC;&#x9589;&#x7684;&#x662F;db.Close()&#xFF0C;&#x9019;&#x6A23;&#x4E26;&#x4E0D;&#x80FD;&#x6B63;&#x78BA;&#x95DC;&#x9589;&#x9023;&#x7DDA;&#xFF0C;&#x5FC5;&#x9808;&#x95DC;&#x9589;db.Query&#x7684;&#x9023;&#x7DDA;&#x624D;&#x80FD;&#x6B63;&#x78BA;&#x7684;&#x964D;&#x4F4E;&#x9023;&#x7DDA;&#x5361;&#x4F4F;&#x7684;&#x6578;&#x91CF;</p>
-<h3 id>&#x4FEE;&#x6B63;&#x7A0B;&#x5F0F;&#x78BC;&#x7BC4;&#x4F8B;</h3>
-<pre><code class="language-go">db, err := sql.Open(&quot;mysql&quot;, &quot;user:password@tcp(127.0.0.1)/testdb?charset=utf8&quot;)
-if err != nil {
-    fmt.Println(err)
-}
-defer db.Close()
-
-conn, err := db.Query(&quot;call SP(?,?,?,?)&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;)
-if err != nil {
-    fmt.Println(err)
-}
-defer conn.Close()
-
-</code></pre>
-<h2 id>&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
-<ul>
-<li><a href="https://stackoverflow.com/questions/39452555/is-it-normal-to-have-these-many-connections-in-mysql?ref=chai-yu-bi-ji-ben">stackoverflow - Is it normal to have these many connections in MySQL?</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

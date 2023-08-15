@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Mon, 14 Aug 2023 17:55:59 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[叢集索引與非叢集索引]]></title><description><![CDATA[通常資料庫在尋找資料是逐行檢查，看看每一筆資料是否符合條件，若符合則拿出，不符合就往下一筆直到結束，稱為Full table scan。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Tue, 15 Aug 2023 06:26:43 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[ASP.NET中RenderSection的作用]]></title><description><![CDATA[專案中的各個Page會被插入到_Layout.cshtml裡@RenderBody()的位置，與主版面整合。若Page中的某段程式不想被放在body內時，可以使用Section及RenderSection改變程式碼在_Layout.cshtml中的插入位置。]]></description><link>https://vincent87720.github.io/Blog/aspnet-core-render-section/</link><guid isPermaLink="false">64db19c5e17ae60001fb73af</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 15 Aug 2023 06:25:07 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/dotNET_purple-2.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/dotNET_purple-2.png" alt="ASP.NET&#x4E2D;RenderSection&#x7684;&#x4F5C;&#x7528;"><p>&#x5C08;&#x6848;&#x4E2D;&#x7684;&#x5404;&#x500B;Page&#x6703;&#x88AB;&#x63D2;&#x5165;&#x5230;_Layout.cshtml&#x88E1;@RenderBody()&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x8207;&#x4E3B;&#x7248;&#x9762;&#x6574;&#x5408;&#x3002;&#x82E5;Page&#x4E2D;&#x7684;&#x67D0;&#x6BB5;&#x7A0B;&#x5F0F;&#x4E0D;&#x60F3;&#x88AB;&#x653E;&#x5728;body&#x5167;&#x6642;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Section&#x53CA;RenderSection&#x6539;&#x8B8A;&#x7A0B;&#x5F0F;&#x78BC;&#x5728;_Layout.cshtml&#x4E2D;&#x7684;&#x63D2;&#x5165;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x672C;&#x6B21;&#x7684;&#x4F7F;&#x7528;&#x60C5;&#x5883;&#x662F;&#x60F3;&#x8981;&#x5728;&#x9801;&#x9762;&#x4E2D;&#x52A0;&#x5165;JavaScript&#x6A94;&#x6848;&#xFF0C;&#x4F46;&#x60F3;&#x8981;&#x8B93;&#x4ED6;&#x5728;_Layout.cshtml&#x7684;&#x6700;&#x5C3E;&#x7AEF;&#x624D;&#x88AB;&#x8B80;&#x53D6;&#xFF0C;&#x6545;&#x4F7F;&#x7528;Section&#x53CA;RenderSection&#x6539;&#x8B8A;&#x7A0B;&#x5F0F;&#x78BC;&#x7684;&#x63D2;&#x5165;&#x4F4D;&#x7F6E;&#x3002;</p>
+<h2 id="%E5%BB%BA%E7%AB%8Bsection%E5%8D%80%E5%A1%8A">&#x5EFA;&#x7ACB;Section&#x5340;&#x584A;</h2>
+<p>&#x5728;<code>Index.cshtml</code>&#x4E2D;&#x52A0;&#x5165;Section&#x5340;&#x584A;&#xFF0C;&#x5C07;&#x8981;&#x63D2;&#x5165;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;&#x653E;&#x5728;&#x5927;&#x62EC;&#x5F27;&#x4E2D;</p>
+<pre><code class="language-csharp">&lt;div id=&quot;index&quot;&gt;
+    &lt;section class=&quot;section&quot;&gt;
+    ...
+    &lt;/section&gt;
+&lt;/div&gt;
+
+@section Scripts {
+    &lt;script type=&quot;module&quot; src=&quot;~/js/Index.min.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+}
+
+</code></pre>
+<p>@section&#x5F8C;&#x9762;&#x7684;Scripts&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x7FA9;&#x540D;&#x7A31;&#xFF0C;&#x5FC5;&#x9808;&#x5C0D;&#x61C9;&#x5230;RenderSection&#x51FD;&#x5F0F;&#x5167;&#x50B3;&#x5165;&#x7684;&#x540D;&#x7A31;</p>
+<h2 id="%E4%BD%BF%E7%94%A8rendersection%E6%8F%92%E5%85%A5%E7%A8%8B%E5%BC%8F%E7%A2%BC">&#x4F7F;&#x7528;RenderSection&#x63D2;&#x5165;&#x7A0B;&#x5F0F;&#x78BC;</h2>
+<p>&#x5728;<code>_Layout.cshtml</code>&#x4E2D;&#x9078;&#x64C7;&#x4E00;&#x500B;&#x98A8;&#x6C34;&#x5BF6;&#x5730;&#x5C07;RenderSection&#x52A0;&#x5165;&#x7A0B;&#x5F0F;&#x4E2D;&#xFF0C;&#x7528;&#x4EE5;&#x63D2;&#x5165;&#x5728;Section&#x4E2D;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;</p>
+<pre><code class="language-csharp">&lt;body&gt;
+    &lt;div id=&quot;app&quot;&gt;
+        &lt;header class=&quot;header&quot;&gt;
+        ...
+        &lt;/header&gt;
+    &lt;/div&gt;
+    @RenderBody()
+
+    &lt;script type=&quot;module&quot; src=&quot;~/js/App.min.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+    @RenderSection(&quot;Scripts&quot;, required: false)
+&lt;/body&gt;
+
+</code></pre>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://ithelp.ithome.com.tw/articles/10159990?ref=chai-yu-bi-ji-ben">&#x8A8D;&#x8B58;View - View&#x7684;&#x7A2E;&#x985E;</a></li>
+<li><a href="http://white1027.blogspot.com/2013/10/mvc-razor-rendersection.html?ref=chai-yu-bi-ji-ben">[MVC] Razor @RenderSection &#x4F7F;&#x7528;&#x5FC3;&#x5F97;</a></li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-7.0&amp;ref=chai-yu-bi-ji-ben">Layout in ASP.NET Core</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[叢集索引與非叢集索引]]></title><description><![CDATA[通常資料庫在尋找資料是逐行檢查，看看每一筆資料是否符合條件，若符合則拿出，不符合就往下一筆直到結束，稱為Full table scan。
 
 隨著資料量越來越大，查找的時間也會跟著變慢，使用Index可以加快查詢速度。]]></description><link>https://vincent87720.github.io/Blog/clustered-and-nonclustered-indexes/</link><guid isPermaLink="false">64da6975e17ae60001fb739e</guid><category><![CDATA[Database]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 14 Aug 2023 17:53:35 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/jan-antonin-kolar-lRoX0shwjUQ-unsplash_database.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/jan-antonin-kolar-lRoX0shwjUQ-unsplash_database.jpeg" alt="&#x53E2;&#x96C6;&#x7D22;&#x5F15;&#x8207;&#x975E;&#x53E2;&#x96C6;&#x7D22;&#x5F15;"><p>&#x901A;&#x5E38;&#x8CC7;&#x6599;&#x5EAB;&#x5728;&#x5C0B;&#x627E;&#x8CC7;&#x6599;&#x662F;&#x9010;&#x884C;&#x6AA2;&#x67E5;&#xFF0C;&#x770B;&#x770B;&#x6BCF;&#x4E00;&#x7B46;&#x8CC7;&#x6599;&#x662F;&#x5426;&#x7B26;&#x5408;&#x689D;&#x4EF6;&#xFF0C;&#x82E5;&#x7B26;&#x5408;&#x5247;&#x62FF;&#x51FA;&#xFF0C;&#x4E0D;&#x7B26;&#x5408;&#x5C31;&#x5F80;&#x4E0B;&#x4E00;&#x7B46;&#x76F4;&#x5230;&#x7D50;&#x675F;&#xFF0C;&#x7A31;&#x70BA;Full table scan&#x3002;</p>
 <p>&#x96A8;&#x8457;&#x8CC7;&#x6599;&#x91CF;&#x8D8A;&#x4F86;&#x8D8A;&#x5927;&#xFF0C;&#x67E5;&#x627E;&#x7684;&#x6642;&#x9593;&#x4E5F;&#x6703;&#x8DDF;&#x8457;&#x8B8A;&#x6162;&#xFF0C;&#x4F7F;&#x7528;Index&#x53EF;&#x4EE5;&#x52A0;&#x5FEB;&#x67E5;&#x8A62;&#x901F;&#x5EA6;&#x3002;</p>
@@ -694,16 +731,4 @@ $$ language &apos;plpgsql&apos;;
 <p><img src="https://vincent87720.github.io/Blog/content/images/2021/11/0.2.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;ModuleNotFoundError: No module named &apos;XXX&apos;.&#x932F;&#x8AA4;" loading="lazy"></p>
 <p>&#x63A5;&#x8457;&#x4F7F;&#x7528;<code>pyinstaller -F .\manage.spec</code>&#x6307;&#x4EE4;&#x5C07;spec&#x6A94;&#x6848;&#x6253;&#x5305;&#x6210;exe&#x6A94;&#xFF0C;&#x518D;&#x6B21;&#x4F7F;&#x7528;<code>manage.exe runserver --noreload</code>&#x6307;&#x4EE4;&#x57F7;&#x884C;&#x986F;&#x793A;&#x5DF2;&#x53EF;&#x6B63;&#x5E38;&#x904B;&#x4F5C;</p>
 <p><img src="https://vincent87720.github.io/Blog/content/images/2021/11/0.3.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;ModuleNotFoundError: No module named &apos;XXX&apos;.&#x932F;&#x8AA4;" loading="lazy"></p>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[[Python]使用Pyinstaller打包Django專案發生"RuntimeError: Script runserver does not exist."錯誤]]></title><description><![CDATA[使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行`manage.exe runserver`指令時發生*RuntimeError: Script runserver does not exist.* 錯誤]]></description><link>https://vincent87720.github.io/Blog/python-pyinstaller-django-runserver-does-not-exist-error/</link><guid isPermaLink="false">635a816a57207246b927a8bc</guid><category><![CDATA[python]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Wed, 24 Nov 2021 15:35:58 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2021/11/python-logo.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2021/11/python-logo.jpg" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;&quot;RuntimeError: Script runserver does not exist.&quot;&#x932F;&#x8AA4;"><p><img src="https://vincent87720.github.io/Blog/content/images/2021/11/0.0.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;&quot;RuntimeError: Script runserver does not exist.&quot;&#x932F;&#x8AA4;" loading="lazy"><br>
-&#x4F7F;&#x7528;pyinstaller&#x5C07;manage.py&#x6253;&#x5305;&#x5F8C;&#x6703;&#x7522;&#x751F;manage.exe&#x53EF;&#x57F7;&#x884C;&#x6A94;&#xFF0C;&#x5728;&#x57F7;&#x884C;<code>manage.exe runserver</code>&#x6307;&#x4EE4;&#x6642;&#x767C;&#x751F;<em>RuntimeError: Script runserver does not exist.</em> &#x932F;&#x8AA4;</p>
-<h2 id>&#x74B0;&#x5883;</h2>
-<ul>
-<li>Windows10 x64 20H2</li>
-<li>Python 3.9.7</li>
-<li>Django 3.2.7</li>
-<li>pyinstaller 4.7</li>
-</ul>
-<h2 id>&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;</h2>
-<p>&#x5C07;&#x6307;&#x4EE4;&#x52A0;&#x4E0A; <code>--noreload</code> &#x53C3;&#x6578;&#xFF0C;&#x4F7F;&#x7528;&#x6307;&#x4EE4;<code>manage.exe runserver --noreload</code>&#x5373;&#x53EF;&#x89E3;&#x6C7A;&#x9019;&#x500B;&#x932F;&#x8AA4;</p>
-<p><img src="https://vincent87720.github.io/Blog/content/images/2021/11/0.1.png" alt="[Python]&#x4F7F;&#x7528;Pyinstaller&#x6253;&#x5305;Django&#x5C08;&#x6848;&#x767C;&#x751F;&quot;RuntimeError: Script runserver does not exist.&quot;&#x932F;&#x8AA4;" loading="lazy"></p>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

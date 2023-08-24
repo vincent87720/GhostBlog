@@ -1,4 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Thu, 17 Aug 2023 16:38:20 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[HTTP header Content-Disposition]]></title><description><![CDATA[Content-Disposition包含兩種類型，分別是inline 和 attachment，用於指定下載的行為]]></description><link>https://vincent87720.github.io/Blog/http-header-content-disposition/</link><guid isPermaLink="false">64de4be0f1c6660001711fc3</guid><category><![CDATA[HTTP]]></category><category><![CDATA[network]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 17 Aug 2023 16:37:55 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/communication-4871245.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/communication-4871245.jpg" alt="HTTP header Content-Disposition"><p>Content-Disposition&#x5305;&#x542B;&#x5169;&#x7A2E;&#x985E;&#x578B;&#xFF0C;&#x5206;&#x5225;&#x662F;inline &#x548C; attachment&#xFF0C;&#x7528;&#x65BC;&#x6307;&#x5B9A;&#x4E0B;&#x8F09;&#x7684;&#x884C;&#x70BA;</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Thu, 24 Aug 2023 18:50:45 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Model Binding in ASP.NET Core]]></title><description><![CDATA[Controller會處理來自用戶端的HTTP Request，請求中會有一些資訊來往，這些資料會需要經過型別轉換、檢查必填、最大長度及正確性等步驟後我們才能使用，若手動處理這些步驟將會非常繁瑣。
+ASP.NET提供Model Binding的功能，可以處理來自使用者請求中的資料，將其綁定到指定型態的資料上，省去繁複的處理程序並提高正確性。]]></description><link>https://vincent87720.github.io/Blog/model-binding-in-asp-net-core/</link><guid isPermaLink="false">64e7a2daf1c6660001711fd6</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 24 Aug 2023 18:38:03 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint.png" alt="Model Binding in ASP.NET Core"><p>Controller&#x6703;&#x8655;&#x7406;&#x4F86;&#x81EA;&#x7528;&#x6236;&#x7AEF;&#x7684;HTTP Request&#xFF0C;&#x8ACB;&#x6C42;&#x4E2D;&#x6703;&#x6709;&#x4E00;&#x4E9B;&#x8CC7;&#x8A0A;&#x4F86;&#x5F80;&#xFF0C;&#x9019;&#x4E9B;&#x8CC7;&#x6599;&#x6703;&#x9700;&#x8981;&#x7D93;&#x904E;&#x578B;&#x5225;&#x8F49;&#x63DB;&#x3001;&#x6AA2;&#x67E5;&#x5FC5;&#x586B;&#x3001;&#x6700;&#x5927;&#x9577;&#x5EA6;&#x53CA;&#x6B63;&#x78BA;&#x6027;&#x7B49;&#x6B65;&#x9A5F;&#x5F8C;&#x6211;&#x5011;&#x624D;&#x80FD;&#x4F7F;&#x7528;&#xFF0C;&#x82E5;&#x624B;&#x52D5;&#x8655;&#x7406;&#x9019;&#x4E9B;&#x6B65;&#x9A5F;&#x5C07;&#x6703;&#x975E;&#x5E38;&#x7E41;&#x7463;&#x3002;<br>
+ASP.NET&#x63D0;&#x4F9B;Model Binding&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x8655;&#x7406;&#x4F86;&#x81EA;&#x4F7F;&#x7528;&#x8005;&#x8ACB;&#x6C42;&#x4E2D;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x5C07;&#x5176;&#x7D81;&#x5B9A;&#x5230;&#x6307;&#x5B9A;&#x578B;&#x614B;&#x7684;&#x8CC7;&#x6599;&#x4E0A;&#xFF0C;&#x7701;&#x53BB;&#x7E41;&#x8907;&#x7684;&#x8655;&#x7406;&#x7A0B;&#x5E8F;&#x4E26;&#x63D0;&#x9AD8;&#x6B63;&#x78BA;&#x6027;&#x3002;</p>
+<p>Model Binding&#x53EF;&#x4EE5;&#x5C07;HTTP requests&#x7684;&#x8CC7;&#x6599;&#x8F49;&#x70BA;&#x6307;&#x5B9A;&#x7684;&#x8CC7;&#x6599;&#x578B;&#x614B;</p>
+<ul>
+<li>&#x8F49;&#x63DB;&#x591A;&#x500B;&#x4F86;&#x6E90;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x4F8B;&#x5982;route data&#x3001;form fields&#x6216;query strings&#x7B49;</li>
+<li>&#x5C07;&#x5B57;&#x4E32;&#x8F49;&#x70BA;.NET&#x7684;&#x985E;&#x5225;</li>
+</ul>
+<h2 id="apicontroller%E5%B1%AC%E6%80%A7">ApiController&#x5C6C;&#x6027;</h2>
+<p>&#x5728;&#x958B;&#x59CB;&#x4ECB;&#x7D39;&#x7D81;&#x5B9A;&#x524D;&#x5148;&#x4ECB;&#x7D39;ApiController&#x9019;&#x500B;&#x5C6C;&#x6027;</p>
+<p>&#x82E5;&#x5728;Controller&#x4E2D;&#x5957;&#x7528;[ApiController]&#x9019;&#x500B;&#x5C6C;&#x6027;&#x5F8C;&#x6703;&#x5E36;&#x4F86;&#x4EE5;&#x4E0B;&#x5F71;&#x97FF;&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x4E00;&#x500B;&#x8207;&#x7D81;&#x5B9A;&#x6709;&#x95DC;</p>
+<ul>
+<li>&#x5FC5;&#x9808;&#x8981;&#x4F7F;&#x7528;&#x5C6C;&#x6027;&#x8DEF;&#x7531;(Attribute Routing)</li>
+<li>&#x81EA;&#x52D5;&#x56DE;&#x61C9;HTTP 400</li>
+<li>&#x81EA;&#x52D5;&#x5957;&#x7528;Model Binding&#x7684;&#x9810;&#x8A2D;&#x898F;&#x5247;&#xFF0C;&#x9810;&#x8A2D;&#x898F;&#x5247;&#x5305;&#x542B;&#xFF1A;
+<ul>
+<li>&#x82E5;HTTP&#x662F;Request&#x8907;&#x96DC;&#x6A21;&#x578B;&#xFF0C;&#x5247;&#x9810;&#x8A2D;&#x6703;&#x81EA;&#x52D5;&#x5957;&#x7528;[FromBody]&#x5C6C;&#x6027;</li>
+<li>&#x82E5;HTTP&#x662F;Request&#x7C21;&#x55AE;&#x6A21;&#x578B;&#xFF0C;&#x5247;&#x9810;&#x8A2D;&#x6703;&#x81EA;&#x52D5;&#x5957;&#x7528;[FromQuery]&#x5C6C;&#x6027;</li>
+<li>&#x82E5;&#x53C3;&#x6578;&#x5305;&#x542B;IFormFile&#x6216;IFormFileCollection&#x6703;&#x81EA;&#x52D5;&#x63A8;&#x65B7;content-type&#x70BA;<code>multipart/form-data</code>&#xFF0C;&#x4E26;&#x81EA;&#x52D5;&#x5957;&#x7528;[FromForm]&#x5C6C;&#x6027;</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E9%A0%90%E8%A8%AD%E7%B6%81%E5%AE%9A%E4%BE%86%E6%BA%90%E5%8F%8A%E9%A0%86%E5%BA%8F">&#x9810;&#x8A2D;&#x7D81;&#x5B9A;&#x4F86;&#x6E90;&#x53CA;&#x9806;&#x5E8F;</h2>
+<ol>
+<li>Form fields</li>
+<li>Request body</li>
+<li>Route data</li>
+<li>Query string parameters</li>
+<li>Uploaded files&#xFF08;&#x50C5;&#x6703;&#x7D81;&#x5B9A;&#x5230;IFormFile&#x6216;IEnumerable&lt;IFormFile&gt;&#x985E;&#x5225;&#x7684;&#x5BE6;&#x9AD4;&#xFF09;</li>
+</ol>
+<h2 id="%E6%8C%87%E5%AE%9A%E7%B6%81%E5%AE%9A%E4%BE%86%E6%BA%90">&#x6307;&#x5B9A;&#x7D81;&#x5B9A;&#x4F86;&#x6E90;</h2>
+<ul>
+<li>[FromBody]&#xFF1A;Requet body&#x53D6;&#x503C;&#x4E26;&#x5957;&#x7528;&#x5728;&#x8907;&#x96DC;&#x6A21;&#x578B;&#x4E0A;</li>
+<li>[FromRoute]&#xFF1A;&#x5F9E;&#x8DEF;&#x7531;&#x8CC7;&#x6599;&#x53D6;&#x503C;</li>
+<li>[FromQuery]&#xFF1A;&#x5F9E;Query string&#x4E2D;&#x53D6;&#x503C;</li>
+<li>[FromHeader]&#xFF1A;&#x5F9E;HTTP&#x6A19;&#x982D;&#x53D6;&#x5F97;&#x503C;</li>
+<li>[FromForm]&#xFF1A;&#x5F9E;Request body&#x53D6;&#x503C;&#xFF0C;&#x53EA;&#x6703;&#x5957;&#x7528;&#x5728;IFormFile &#x6216; IFormFileCollection &#x4E0A;</li>
+</ul>
+<h2 id="%E7%B6%81%E5%AE%9A%E6%96%B9%E5%BC%8F">&#x7D81;&#x5B9A;&#x65B9;&#x5F0F;</h2>
+<h3 id="%E7%B6%81%E5%AE%9A%E8%87%B3%E5%8F%83%E6%95%B8">&#x7D81;&#x5B9A;&#x81F3;&#x53C3;&#x6578;</h3>
+<pre><code class="language-csharp">public Task&lt;IActionResult&gt; Create([FromBody]CreateTodoRequestModel request)
+</code></pre>
+<pre><code class="language-csharp">public class CreateTodoRequestModel
+{
+    public string Text { get; set; }
+}
+</code></pre>
+<h3 id="%E7%B6%81%E5%AE%9A%E8%87%B3%E9%A1%9E%E5%88%A5%E5%B1%AC%E6%80%A7">&#x7D81;&#x5B9A;&#x81F3;&#x985E;&#x5225;&#x5C6C;&#x6027;</h3>
+<pre><code class="language-csharp">public Task&lt;IActionResult&gt; Create(CreateTodoRequestModel request)
+</code></pre>
+<pre><code class="language-csharp">public class CreateTodoRequestModel
+{
+    [FromBody]
+    public string Text { get; set; }
+}
+</code></pre>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://learn.microsoft.com/zh-tw/aspnet/core/mvc/models/model-binding?view=aspnetcore-3.1&amp;ref=chai-yu-bi-ji-ben">ASP.NET Core &#x4E2D;&#x7684;&#x8CC7;&#x6599;&#x7E6B;&#x7D50;</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10244545?ref=chai-yu-bi-ji-ben">[Day12] &#x6A21;&#x578B;&#x7E6B;&#x7D50;&#x8207;&#x9A57;&#x8B49; - &#x6211;&#x8207; ASP.NET Core 3 &#x7684; 30&#x5929;</a></li>
+<li><a href="https://www.gss.com.tw/blog/asp-net-core-model-binding-1?ref=chai-yu-bi-ji-ben">ASP.NET Core Model Binding &#x6B7B;&#x6D3B;&#x7D81;&#x4E0D;&#x4E0A; - 1</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/aspnet/core/web-api/?view=aspnetcore-3.1&amp;ref=chai-yu-bi-ji-ben#apicontroller-attribute-2">ApiController &#x5C6C;&#x6027;</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[HTTP header Content-Disposition]]></title><description><![CDATA[Content-Disposition包含兩種類型，分別是inline 和 attachment，用於指定下載的行為]]></description><link>https://vincent87720.github.io/Blog/http-header-content-disposition/</link><guid isPermaLink="false">64de4be0f1c6660001711fc3</guid><category><![CDATA[HTTP]]></category><category><![CDATA[network]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 17 Aug 2023 16:37:55 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/communication-4871245.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/communication-4871245.jpg" alt="HTTP header Content-Disposition"><p>Content-Disposition&#x5305;&#x542B;&#x5169;&#x7A2E;&#x985E;&#x578B;&#xFF0C;&#x5206;&#x5225;&#x662F;inline &#x548C; attachment&#xFF0C;&#x7528;&#x65BC;&#x6307;&#x5B9A;&#x4E0B;&#x8F09;&#x7684;&#x884C;&#x70BA;</p>
 <h3 id="inline">inline</h3>
 <p>&#x4F7F;&#x7528;inline&#x6703;&#x76F4;&#x63A5;&#x5C07;&#x6A94;&#x6848;&#x986F;&#x793A;&#x5728;&#x700F;&#x89BD;&#x5668;&#x4E2D;&#xFF0C;&#x9810;&#x8A2D;&#x884C;&#x70BA;&#x4E5F;&#x662F;inline</p>
 <pre><code>Content-Disposition: inline
@@ -158,7 +221,7 @@ public class TeaShop{
 <li><a href="https://medium.com/wenchin-rolls-around/%E6%B7%BA%E5%85%A5%E6%B7%BA%E5%87%BA-dependency-injection-ea672ba033ca?ref=chai-yu-bi-ji-ben">&#x6DFA;&#x5165;&#x6DFA;&#x51FA; Dependency Injection</a></li>
 <li><a href="https://learn.microsoft.com/zh-tw/dotnet/core/extensions/dependency-injection?ref=chai-yu-bi-ji-ben">.NET &#x76F8;&#x4F9D;&#x6027;&#x63D2;&#x5165;</a></li>
 </ul>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[ASP.NET中RenderSection的作用]]></title><description><![CDATA[專案中的各個Page會被插入到_Layout.cshtml裡@RenderBody()的位置，與主版面整合。若Page中的某段程式不想被放在body內時，可以使用Section及RenderSection改變程式碼在_Layout.cshtml中的插入位置。]]></description><link>https://vincent87720.github.io/Blog/aspnet-core-render-section/</link><guid isPermaLink="false">64db19c5e17ae60001fb73af</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 15 Aug 2023 06:25:07 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/dotNET_purple-2.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/dotNET_purple-2.png" alt="ASP.NET&#x4E2D;RenderSection&#x7684;&#x4F5C;&#x7528;"><p>&#x5C08;&#x6848;&#x4E2D;&#x7684;&#x5404;&#x500B;Page&#x6703;&#x88AB;&#x63D2;&#x5165;&#x5230;_Layout.cshtml&#x88E1;@RenderBody()&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x8207;&#x4E3B;&#x7248;&#x9762;&#x6574;&#x5408;&#x3002;&#x82E5;Page&#x4E2D;&#x7684;&#x67D0;&#x6BB5;&#x7A0B;&#x5F0F;&#x4E0D;&#x60F3;&#x88AB;&#x653E;&#x5728;body&#x5167;&#x6642;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Section&#x53CA;RenderSection&#x6539;&#x8B8A;&#x7A0B;&#x5F0F;&#x78BC;&#x5728;_Layout.cshtml&#x4E2D;&#x7684;&#x63D2;&#x5165;&#x4F4D;&#x7F6E;&#x3002;</p>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[ASP.NET中RenderSection的作用]]></title><description><![CDATA[專案中的各個Page會被插入到_Layout.cshtml裡@RenderBody()的位置，與主版面整合。若Page中的某段程式不想被放在body內時，可以使用Section及RenderSection改變程式碼在_Layout.cshtml中的插入位置。]]></description><link>https://vincent87720.github.io/Blog/aspnet-core-render-section/</link><guid isPermaLink="false">64db19c5e17ae60001fb73af</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 15 Aug 2023 06:25:07 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint-1.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint-1.png" alt="ASP.NET&#x4E2D;RenderSection&#x7684;&#x4F5C;&#x7528;"><p>&#x5C08;&#x6848;&#x4E2D;&#x7684;&#x5404;&#x500B;Page&#x6703;&#x88AB;&#x63D2;&#x5165;&#x5230;_Layout.cshtml&#x88E1;@RenderBody()&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x8207;&#x4E3B;&#x7248;&#x9762;&#x6574;&#x5408;&#x3002;&#x82E5;Page&#x4E2D;&#x7684;&#x67D0;&#x6BB5;&#x7A0B;&#x5F0F;&#x4E0D;&#x60F3;&#x88AB;&#x653E;&#x5728;body&#x5167;&#x6642;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Section&#x53CA;RenderSection&#x6539;&#x8B8A;&#x7A0B;&#x5F0F;&#x78BC;&#x5728;_Layout.cshtml&#x4E2D;&#x7684;&#x63D2;&#x5165;&#x4F4D;&#x7F6E;&#x3002;</p>
 <p>&#x672C;&#x6B21;&#x7684;&#x4F7F;&#x7528;&#x60C5;&#x5883;&#x662F;&#x60F3;&#x8981;&#x5728;&#x9801;&#x9762;&#x4E2D;&#x52A0;&#x5165;JavaScript&#x6A94;&#x6848;&#xFF0C;&#x4F46;&#x60F3;&#x8981;&#x8B93;&#x4ED6;&#x5728;_Layout.cshtml&#x7684;&#x6700;&#x5C3E;&#x7AEF;&#x624D;&#x88AB;&#x8B80;&#x53D6;&#xFF0C;&#x6545;&#x4F7F;&#x7528;Section&#x53CA;RenderSection&#x6539;&#x8B8A;&#x7A0B;&#x5F0F;&#x78BC;&#x7684;&#x63D2;&#x5165;&#x4F4D;&#x7F6E;&#x3002;</p>
 <h2 id="%E5%BB%BA%E7%AB%8Bsection%E5%8D%80%E5%A1%8A">&#x5EFA;&#x7ACB;Section&#x5340;&#x584A;</h2>
 <p>&#x5728;<code>Index.cshtml</code>&#x4E2D;&#x52A0;&#x5165;Section&#x5340;&#x584A;&#xFF0C;&#x5C07;&#x8981;&#x63D2;&#x5165;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;&#x653E;&#x5728;&#x5927;&#x62EC;&#x5F27;&#x4E2D;</p>
@@ -288,7 +351,7 @@ module.exports = {
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[ASP.NET Core使用Middleware進行例外處理]]></title><description><![CDATA[當API被呼叫且發生例外時，不太會希望預設的錯誤訊息被傳回給使用者，在C#中可以使用try catch攔截錯誤訊息。
 
-但在每個可能會發生錯誤的地方都加上try catch相當繁瑣，使用Middleware可以捕捉錯誤訊息，並在返回給使用者之前統一處理，不僅可以節省開發時間，還能將錯誤訊息攔截，避免洩漏過多內部訊息給使用者，提高安全性。]]></description><link>https://vincent87720.github.io/Blog/exception-handling-with-middleware-in-aspnet-core/</link><guid isPermaLink="false">64d27827aaa179000118761d</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 08 Aug 2023 17:18:11 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/dotNET_purple.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/dotNET_purple.png" alt="ASP.NET Core&#x4F7F;&#x7528;Middleware&#x9032;&#x884C;&#x4F8B;&#x5916;&#x8655;&#x7406;"><p>&#x7576;API&#x88AB;&#x547C;&#x53EB;&#x4E14;&#x767C;&#x751F;&#x4F8B;&#x5916;&#x6642;&#xFF0C;&#x4E0D;&#x592A;&#x6703;&#x5E0C;&#x671B;&#x9810;&#x8A2D;&#x7684;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x88AB;&#x50B3;&#x56DE;&#x7D66;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x5728;C#&#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;try catch&#x6514;&#x622A;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x3002;</p>
+但在每個可能會發生錯誤的地方都加上try catch相當繁瑣，使用Middleware可以捕捉錯誤訊息，並在返回給使用者之前統一處理，不僅可以節省開發時間，還能將錯誤訊息攔截，避免洩漏過多內部訊息給使用者，提高安全性。]]></description><link>https://vincent87720.github.io/Blog/exception-handling-with-middleware-in-aspnet-core/</link><guid isPermaLink="false">64d27827aaa179000118761d</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 08 Aug 2023 17:18:11 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint-2.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint-2.png" alt="ASP.NET Core&#x4F7F;&#x7528;Middleware&#x9032;&#x884C;&#x4F8B;&#x5916;&#x8655;&#x7406;"><p>&#x7576;API&#x88AB;&#x547C;&#x53EB;&#x4E14;&#x767C;&#x751F;&#x4F8B;&#x5916;&#x6642;&#xFF0C;&#x4E0D;&#x592A;&#x6703;&#x5E0C;&#x671B;&#x9810;&#x8A2D;&#x7684;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x88AB;&#x50B3;&#x56DE;&#x7D66;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x5728;C#&#x4E2D;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;try catch&#x6514;&#x622A;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x3002;</p>
 <p>&#x4F46;&#x5728;&#x6BCF;&#x500B;&#x53EF;&#x80FD;&#x6703;&#x767C;&#x751F;&#x932F;&#x8AA4;&#x7684;&#x5730;&#x65B9;&#x90FD;&#x52A0;&#x4E0A;try catch&#x76F8;&#x7576;&#x7E41;&#x7463;&#xFF0C;&#x4F7F;&#x7528;Middleware&#x53EF;&#x4EE5;&#x6355;&#x6349;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#xFF0C;&#x4E26;&#x5728;&#x8FD4;&#x56DE;&#x7D66;&#x4F7F;&#x7528;&#x8005;&#x4E4B;&#x524D;&#x7D71;&#x4E00;&#x8655;&#x7406;&#xFF0C;&#x4E0D;&#x50C5;&#x53EF;&#x4EE5;&#x7BC0;&#x7701;&#x958B;&#x767C;&#x6642;&#x9593;&#xFF0C;&#x9084;&#x80FD;&#x5C07;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x6514;&#x622A;&#xFF0C;&#x907F;&#x514D;&#x6D29;&#x6F0F;&#x904E;&#x591A;&#x5167;&#x90E8;&#x8A0A;&#x606F;&#x7D66;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x63D0;&#x9AD8;&#x5B89;&#x5168;&#x6027;&#x3002;</p>
 <h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
 <ul>
@@ -652,196 +715,5 @@ int main(int argc, char* argv[])
 <ul>
 <li>Mark &amp; Sweep GC</li>
 <li>Reference counting GC</li>
-</ul>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[ElasticSearch簡介]]></title><description><![CDATA[ElasticSearch是一個開源的且基於Lucene的全文搜尋引擎，其封裝Lucene並提供REST API，讓使用者可以更容易操作及使用。]]></description><link>https://vincent87720.github.io/Blog/elasticsearch-intro/</link><guid isPermaLink="false">635cf62e6c901d4844747e4b</guid><category><![CDATA[Elasticsearch]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 09:54:55 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2022/10/daniel-lerman-fr3YLb9UHSQ-unsplash_search.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2022/10/daniel-lerman-fr3YLb9UHSQ-unsplash_search.jpeg" alt="ElasticSearch&#x7C21;&#x4ECB;"><p>ElasticSearch&#x662F;&#x4E00;&#x500B;&#x958B;&#x6E90;&#x7684;&#x4E14;&#x57FA;&#x65BC;Lucene&#x7684;&#x5168;&#x6587;&#x641C;&#x5C0B;&#x5F15;&#x64CE;&#xFF0C;&#x5176;&#x5C01;&#x88DD;Lucene&#x4E26;&#x63D0;&#x4F9B;REST API&#xFF0C;&#x8B93;&#x4F7F;&#x7528;&#x8005;&#x53EF;&#x4EE5;&#x66F4;&#x5BB9;&#x6613;&#x64CD;&#x4F5C;&#x53CA;&#x4F7F;&#x7528;&#x3002;</p>
-<h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
-<ul>
-<li>macOS Monterey 12.4</li>
-<li>elasticsearch 8.2.3</li>
-<li>medcl/elasticsearch-analysis-ik 8.2.3</li>
-</ul>
-<h2 id="%E5%AE%89%E8%A3%9D">&#x5B89;&#x88DD;</h2>
-<p>&#x5230;<a href="https://www.elastic.co/downloads/elasticsearch?ref=chai-yu-bi-ji-ben">elasticsearch&#x5B98;&#x7DB2;</a>&#x4E0B;&#x8F09;mac&#x7248;&#x672C;&#x7684;&#x58D3;&#x7E2E;&#x6A94;&#xFF0C;&#x89E3;&#x58D3;&#x7E2E;&#x5F8C;&#x57F7;&#x884C;<code>bin/elasticsearch</code>&#x6A94;&#x6848;&#xFF0C;elasticsearch&#x4FBF;&#x6703;&#x555F;&#x52D5;&#x4E26;&#x5728;port9200&#x63D0;&#x4F9B;&#x670D;&#x52D9;</p>
-<p>&#x767C;&#x9001;GET&#x8ACB;&#x6C42;&#x5230;9200port&#x6E2C;&#x8A66;&#x670D;&#x52D9;&#x72C0;&#x614B;</p>
-<pre><code class="language-bash">$ curl localhost:9200
-</code></pre>
-<h3 id="%E5%AE%89%E5%85%A8%E6%80%A7%E5%95%8F%E9%A1%8C">&#x5B89;&#x5168;&#x6027;&#x554F;&#x984C;</h3>
-<p>:::warning<br>
-[WARN ][o.e.x.s.t.n.SecurityNetty4HttpServerTransport] [userde-MacBook-Pro.local] received plaintext http traffic on an https channel, closing connection Netty4HttpChannel{localAddress=/[0:0:0:0:0:0:0:1]:9200, remoteAddress=/[0:0:0:0:0:0:0:1]:52561}<br>
-:::<br>
-&#x82E5;&#x51FA;&#x73FE;&#x4EE5;&#x4E0A;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#x6642;&#x53EF;&#x4EE5;&#x5148;&#x66AB;&#x6642;&#x5148;&#x5C07;elasticsearch.yaml&#x4E2D;&#x7684;<code>xpack.security.enabled</code>&#x7684;&#x9078;&#x9805;&#x8A2D;&#x70BA;false&#xFF0C;&#x6E2C;&#x8A66;&#x5B8C;&#x7562;&#x5F8C;&#x52D9;&#x5FC5;&#x6062;&#x5FA9;&#x70BA;true&#x4E26;&#x9032;&#x884C;&#x6B63;&#x78BA;&#x7684;&#x5B89;&#x5168;&#x6027;&#x8A2D;&#x5B9A;</p>
-<h3 id="%E5%AE%8C%E6%88%90">&#x5B8C;&#x6210;</h3>
-<p>&#x82E5;&#x7CFB;&#x7D71;&#x6B63;&#x5E38;&#x6703;&#x8FD4;&#x56DE;&#x4E0B;&#x5217;&#x8A0A;&#x606F;</p>
-<pre><code class="language-bash">#&#x8FD4;&#x56DE;&#x7D50;&#x679C;
-{
-  &quot;name&quot; : &quot;userde-MacBook-Pro.local&quot;,
-  &quot;cluster_name&quot; : &quot;elasticsearch&quot;,
-  &quot;cluster_uuid&quot; : &quot;dx3b4E2jR_OjrKtB-ZMAlw&quot;,
-  &quot;version&quot; : {
-    &quot;number&quot; : &quot;8.2.3&quot;,
-    &quot;build_flavor&quot; : &quot;default&quot;,
-    &quot;build_type&quot; : &quot;tar&quot;,
-    &quot;build_hash&quot; : &quot;9905bfb62a3f0b044948376b4f607f70a8a151b4&quot;,
-    &quot;build_date&quot; : &quot;2022-06-08T22:21:36.455508792Z&quot;,
-    &quot;build_snapshot&quot; : false,
-    &quot;lucene_version&quot; : &quot;9.1.0&quot;,
-    &quot;minimum_wire_compatibility_version&quot; : &quot;7.17.0&quot;,
-    &quot;minimum_index_compatibility_version&quot; : &quot;7.0.0&quot;
-  },
-  &quot;tagline&quot; : &quot;You Know, for Search&quot;
-}
-
-</code></pre>
-<h2 id="%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">&#x57FA;&#x672C;&#x6982;&#x5FF5;</h2>
-<p>ElasticSearch&#x7684;&#x6700;&#x9AD8;&#x55AE;&#x4F4D;&#x662F;Index&#xFF0C;&#x76F8;&#x7576;&#x65BC;&#x8CC7;&#x6599;&#x5EAB;&#x3002;&#x5728;Index&#x4E0B;&#x6703;&#x6709;&#x5F88;&#x591A;Document&#xFF0C;&#x4E00;&#x500B;&#x8A18;&#x9304;&#x7A31;&#x70BA;&#x4E00;&#x500B;Document&#xFF0C;Index&#x5305;&#x542B;&#x4E86;&#x591A;&#x500B;Document&#x3002;</p>
-<h3 id="index">Index</h3>
-<ul>
-<li>&#x70BA;ElasticSearch&#x4E2D;&#x7684;&#x6700;&#x9AD8;&#x55AE;&#x4F4D;</li>
-<li>&#x76F8;&#x7576;&#x65BC;&#x4E00;&#x500B;&#x8CC7;&#x6599;&#x5EAB;</li>
-<li>Index&#x7684;&#x540D;&#x7A31;&#x5FC5;&#x9808;&#x662F;&#x5C0F;&#x5BEB;</li>
-</ul>
-<h3 id="document">Document</h3>
-<ul>
-<li>Document&#x70BA;&#x4E00;&#x689D;&#x8A18;&#x9304;&#xFF0C;Index&#x4E0B;&#x53EF;&#x4EE5;&#x5B58;&#x653E;&#x591A;&#x500B;Document</li>
-<li>&#x6BCF;&#x500B;Document&#x7684;&#x7D50;&#x69CB;&#x53EF;&#x4EE5;&#x4E0D;&#x540C;&#xFF0C;&#x4F46;&#x6700;&#x597D;&#x4E00;&#x6A23;&#xFF0C;&#x4EE5;&#x63D0;&#x9AD8;&#x641C;&#x5C0B;&#x901F;&#x5EA6;</li>
-</ul>
-<h2 id="index%E6%93%8D%E4%BD%9C">Index&#x64CD;&#x4F5C;</h2>
-<h3 id="%E6%96%B0%E5%A2%9Eindex">&#x65B0;&#x589E;Index</h3>
-<pre><code class="language-bash"># &#x65B0;&#x589E;&#x4E00;&#x500B;&#x540D;&#x7A31;&#x70BA;customers&#x7684;Index
-$ curl -X PUT &apos;localhost:9200/customers&apos;
-</code></pre>
-<pre><code class="language-bash">#&#x8FD4;&#x56DE;&#x7D50;&#x679C;
-{
-    &quot;acknowledged&quot;:true,
-    &quot;shards_acknowledged&quot;:true,
-    &quot;index&quot;:&quot;customers&quot;
-}
-</code></pre>
-<p>&#x82E5;&#x6210;&#x529F;ElasticSearch&#x6703;&#x8FD4;&#x56DE;acknowledged&#x70BA;true&#x7684;&#x8A0A;&#x606F;</p>
-<h3 id="%E5%88%AA%E9%99%A4index">&#x522A;&#x9664;Index</h3>
-<pre><code class="language-bash"># &#x522A;&#x9664;&#x540D;&#x7A31;&#x70BA;customers&#x7684;Index
-$ curl -X DELETE &apos;localhost:9200/customers&apos;
-</code></pre>
-<pre><code class="language-bash">#&#x8FD4;&#x56DE;&#x7D50;&#x679C;
-{
-    &quot;acknowledged&quot;:true
-}
-</code></pre>
-<p>&#x82E5;&#x6210;&#x529F;&#x4E00;&#x6A23;&#x6703;&#x8FD4;&#x56DE;acknowledged&#x70BA;true&#x7684;&#x8A0A;&#x606F;</p>
-<h2 id="%E5%88%86%E8%A9%9E">&#x5206;&#x8A5E;</h2>
-<h3 id="%E5%AE%89%E8%A3%9D%E5%88%86%E8%A9%9E%E6%8F%92%E4%BB%B6">&#x5B89;&#x88DD;&#x5206;&#x8A5E;&#x63D2;&#x4EF6;</h3>
-<p>&#x5728;&#x4F7F;&#x7528;&#x5168;&#x6587;&#x641C;&#x7D22;&#x6642;&#x82E5;&#x6709;&#x4F7F;&#x7528;&#x4E2D;&#x6587;&#x5167;&#x5BB9;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x9700;&#x8981;&#x5B89;&#x88DD;&#x4E2D;&#x6587;&#x5206;&#x8A5E;&#x63D2;&#x4EF6;<br>
-:::warning<br>
-&#x5206;&#x8A5E;&#x63D2;&#x4EF6;&#x7684;&#x7248;&#x672C;&#x865F;&#x5FC5;&#x9808;&#x8207;ElasticSearch&#x76F8;&#x540C;&#xFF0C;&#x5426;&#x5247;&#x7121;&#x6CD5;&#x6307;&#x5B9A;&#x5206;&#x8A5E;&#x63D2;&#x4EF6;&#x4E26;&#x4E14;&#x6703;&#x8DF3;&#x51FA;&#x932F;&#x8AA4;&#x8A0A;&#x606F;&#xFF08;Failed to parse mapping: analyzer [ik_max_word] has not been configured in mappings&#xFF09;<br>
-:::</p>
-<pre><code class="language-bash!">$ ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v8.2.3/elasticsearch-analysis-ik-8.2.3.zip
-</code></pre>
-<p>&#x5C07;&#x4E0A;&#x9762;&#x6307;&#x4EE4;&#x7684;&#x7248;&#x672C;&#x865F;&#x63DB;&#x6210;&#x8207;ElasticSearch&#x76F8;&#x5C0D;&#x61C9;&#x7684;&#x7248;&#x672C;&#x865F;&#x5373;&#x53EF;&#x5B89;&#x88DD;<br>
-&#x5B89;&#x88DD;&#x5B8C;&#x6703;&#x986F;&#x793A;&#x5B89;&#x88DD;&#x6210;&#x529F;&#x8A0A;&#x606F;&#xFF0C;&#x91CD;&#x65B0;&#x958B;&#x555F;ElasticSearch&#x5373;&#x53EF;<br>
-<img src="https://vincent87720.github.io/Blog/content/images/2022/10/pEabu3Q.png" alt="ElasticSearch&#x7C21;&#x4ECB;" loading="lazy"></p>
-<pre><code>-&gt; Installed analysis-ik
--&gt; Please restart Elasticsearch to activate any plugins installed
-</code></pre>
-<h3 id="%E8%A8%AD%E5%AE%9A%E5%88%86%E8%A9%9E">&#x8A2D;&#x5B9A;&#x5206;&#x8A5E;</h3>
-<p>&#x5728;&#x8A2D;&#x5B9A;&#x4E2D;&#x6587;&#x5206;&#x8A5E;&#xFF08;medcl/elasticsearch-analysis-ik&#xFF09;&#x4E4B;&#x524D;&#x5FC5;&#x9808;&#x8981;&#x5148;&#x5B89;&#x88DD;&#x63D2;&#x4EF6;<br>
-&#x50C5;&#x4F7F;&#x7528;&#x82F1;&#x6587;&#x5206;&#x8A5E;&#x7684;&#x8A71;&#x4E0D;&#x9700;&#x8981;&#x5B89;&#x88DD;&#x63D2;&#x4EF6;&#xFF0C;&#x76F4;&#x63A5;&#x5728;<code>analyzer</code>&#x548C;<code>search_analyzer</code>&#x66FF;&#x63DB;&#x6210;&#x5167;&#x5EFA;&#x7684;<code>standard</code>&#x5373;&#x53EF;</p>
-<pre><code class="language-bash">$ curl \
--H &quot;Content-Type: application/json&quot; \
--X PUT &apos;localhost:9200/customers&apos; \
--d &apos;
-{
-    &quot;mappings&quot;: 
-    {
-        &quot;properties&quot;: {
-            &quot;name&quot;: 
-            {
-                &quot;type&quot;: &quot;text&quot;, 
-                &quot;analyzer&quot;: &quot;ik_max_word&quot;,
-                &quot;search_analyzer&quot;: &quot;ik_max_word&quot;
-            },
-            &quot;address&quot;: 
-            {
-                &quot;type&quot;:&quot;text&quot;, 
-                &quot;analyzer&quot;: &quot;ik_max_word&quot;,
-                &quot;search_analyzer&quot;: &quot;ik_max_word&quot;
-            },
-            &quot;room&quot;: 
-            {
-                &quot;type&quot;: &quot;text&quot;, 
-                &quot;analyzer&quot;: &quot;ik_max_word&quot;,
-                &quot;search_analyzer&quot;: &quot;ik_max_word&quot;
-            }
-        }
-    }
-}&apos;
-</code></pre>
-<pre><code class="language-bash"># &#x8FD4;&#x56DE;&#x7D50;&#x679C;
-{&quot;acknowledged&quot;:true,&quot;shards_acknowledged&quot;:true,&quot;index&quot;:&quot;customers&quot;}
-</code></pre>
-<h2 id="document%E6%93%8D%E4%BD%9C">Document&#x64CD;&#x4F5C;</h2>
-<h3 id="%E6%96%B0%E5%A2%9Edocument">&#x65B0;&#x589E;Document</h3>
-<pre><code class="language-bash">$ curl \
--H &quot;Content-Type: application/json&quot; \
--X POST &apos;localhost:9200/customers/_doc/1&apos; \
--d &apos;
-{
-  &quot;name&quot;: &quot;&#x7530;&#x4E2D;&#x592A;&#x90CE;2&quot;,
-  &quot;address&quot;: &quot;&#x5317;&#x6D77;&#x9053;&#x5BA4;&#x862D;&#x5E02;&#x6C34;&#x5143;&#x753A;57-8&quot;,
-  &quot;room&quot;: &quot;A303&quot;
-}&apos;
-</code></pre>
-<pre><code class="language-bash"># &#x8FD4;&#x56DE;&#x7D50;&#x679C;
-{
-    &quot;_index&quot;:&quot;customers&quot;,
-    &quot;_id&quot;:&quot;1&quot;,
-    &quot;_version&quot;:1,
-    &quot;result&quot;:&quot;created&quot;,
-    &quot;_shards&quot;:{&quot;total&quot;:2,&quot;successful&quot;:1,&quot;failed&quot;:0},
-    &quot;_seq_no&quot;:0,
-    &quot;_primary_term&quot;:1
-}
-</code></pre>
-<h3 id="%E5%88%AA%E9%99%A4document">&#x522A;&#x9664;Document</h3>
-<pre><code class="language-bash"># &#x522A;&#x9664;&#x540D;&#x7A31;&#x70BA;customers&#x7684;Index
-$ curl -X DELETE &apos;localhost:9200/customers/_doc/1&apos;
-</code></pre>
-<pre><code class="language-bash">#&#x8FD4;&#x56DE;&#x7D50;&#x679C;
-{
-    &quot;_index&quot;:&quot;customers&quot;,
-    &quot;_id&quot;:&quot;1&quot;,&quot;_version&quot;:2,
-    &quot;result&quot;:&quot;deleted&quot;,
-    &quot;_shards&quot;:
-    {
-        &quot;total&quot;:2,
-        &quot;successful&quot;:1,
-        &quot;failed&quot;:0
-    },
-    &quot;_seq_no&quot;:2,
-    &quot;_primary_term&quot;:1
-}
-</code></pre>
-<p>&#x82E5;&#x6210;&#x529F;&#x4E00;&#x6A23;&#x6703;&#x8FD4;&#x56DE;&#x6210;&#x529F;&#x8A0A;&#x606F;</p>
-<h2 id="%E6%9F%A5%E8%A9%A2%E6%93%8D%E4%BD%9C">&#x67E5;&#x8A62;&#x64CD;&#x4F5C;</h2>
-<h3 id="%E6%9F%A5%E8%A9%A2%E6%89%80%E6%9C%89document">&#x67E5;&#x8A62;&#x6240;&#x6709;Document</h3>
-<p>&#x4F7F;&#x7528;GET&#x65B9;&#x6CD5;&#x4E26;&#x5728;Index&#x5F8C;&#x65B9;&#x52A0;&#x4E0A;_search&#x67E5;&#x8A62;&#x6240;&#x6709;Document</p>
-<pre><code class="language-bash">$ curl &apos;localhost:9200/customers/_search&apos;
-</code></pre>
-<h3 id="%E6%9F%A5%E8%A9%A2%E7%89%B9%E5%AE%9Adocument">&#x67E5;&#x8A62;&#x7279;&#x5B9A;Document</h3>
-<p>&#x4F7F;&#x7528;GET&#x65B9;&#x6CD5;&#x4E26;&#x52A0;&#x4E0A;Document&#x7684;id&#xFF0C;&#x4EE5;&#x67E5;&#x627E;&#x7279;&#x5B9A;id&#x7684;&#x8CC7;&#x8A0A;</p>
-<pre><code class="language-bash">$ curl &apos;localhost:9200/customers/_doc/1?pretty=true&apos;
-</code></pre>
-<h3 id="%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2">&#x5168;&#x6587;&#x641C;&#x7D22;</h3>
-<p>&#x4F7F;&#x7528;GET&#x65B9;&#x6CD5;&#x4E26;&#x4F7F;&#x7528;query&#x3001;match&#x7B49;&#x95DC;&#x9375;&#x5B57;&#x53CA;&#x8981;&#x67E5;&#x627E;&#x7684;&#x6B04;&#x4F4D;&#x53CA;&#x5167;&#x5BB9;&#x9032;&#x884C;&#x67E5;&#x8A62;</p>
-<pre><code class="language-bash">$ curl \
--H &quot;Content-Type: application/json&quot; \
--X GET &apos;localhost:9200/customers/_search&apos;  -d &apos;
-{
-  &quot;query&quot; : { &quot;match&quot; : { &quot;address&quot; : &quot;44&quot; }}
-}&apos;
-</code></pre>
-<h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
-<ul>
-<li><a href="https://www.ruanyifeng.com/blog/2017/08/elasticsearch.html?ref=chai-yu-bi-ji-ben">&#x5168;&#x6587;&#x641C;&#x7D22;&#x5F15;&#x64CE; Elasticsearch &#x5165;&#x95E8;&#x6559;&#x7A0B;</a></li>
-<li><a href="https://www.elastic.co/blog/a-practical-introduction-to-elasticsearch?ref=chai-yu-bi-ji-ben">A Practical Introduction to Elasticsearch</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

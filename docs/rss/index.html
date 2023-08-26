@@ -1,4 +1,57 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Thu, 24 Aug 2023 18:50:45 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Model Binding in ASP.NET Core]]></title><description><![CDATA[Controller會處理來自用戶端的HTTP Request，請求中會有一些資訊來往，這些資料會需要經過型別轉換、檢查必填、最大長度及正確性等步驟後我們才能使用，若手動處理這些步驟將會非常繁瑣。
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Sat, 26 Aug 2023 17:49:04 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Validation attributes in ASP.NET Core]]></title><description><![CDATA[ASP.NET Core 裡的 Validation attributes 用於設定欄位的規則，當收到 HTTP 請求時依照規則檢查請求的資料是否符合 Validation attributes 設定的規則，以此過濾掉不符合規則的請求。]]></description><link>https://vincent87720.github.io/Blog/validation-attributes-in-asp-net-core/</link><guid isPermaLink="false">64ea33b4f1c6660001712009</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 26 Aug 2023 17:36:06 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/jason-dent-3wPJxh-piRw-unsplash.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/jason-dent-3wPJxh-piRw-unsplash.jpg" alt="Validation attributes in ASP.NET Core"><p>ASP.NET Core &#x88E1;&#x7684; Validation attributes &#x7528;&#x65BC;&#x8A2D;&#x5B9A;&#x6B04;&#x4F4D;&#x7684;&#x898F;&#x5247;&#xFF0C;&#x7576;&#x6536;&#x5230; HTTP &#x8ACB;&#x6C42;&#x6642;&#x4F9D;&#x7167;&#x898F;&#x5247;&#x6AA2;&#x67E5;&#x8ACB;&#x6C42;&#x7684;&#x8CC7;&#x6599;&#x662F;&#x5426;&#x7B26;&#x5408; Validation attributes &#x8A2D;&#x5B9A;&#x7684;&#x898F;&#x5247;&#xFF0C;&#x4EE5;&#x6B64;&#x904E;&#x6FFE;&#x6389;&#x4E0D;&#x7B26;&#x5408;&#x898F;&#x5247;&#x7684;&#x8ACB;&#x6C42;&#x3002;</p>
+<h2 id="%E8%87%AA%E5%8B%95%E5%9B%9E%E8%A6%86%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF">&#x81EA;&#x52D5;&#x56DE;&#x8986;&#x932F;&#x8AA4;&#x8A0A;&#x606F;</h2>
+<p>&#x5728; Web API controllers &#x4E2D;&#x52A0;&#x5165;<code>[ApiController]</code>&#x5C6C;&#x6027;&#x53EF;&#x4EE5;&#x8B93;&#x6211;&#x5011;&#x514D;&#x53BB;&#x8A2D;&#x5B9A;<code>ModelState.IsValid</code>&#x7684;&#x6B65;&#x9A5F;</p>
+<pre><code class="language-csharp">using Microsoft.AspNetCore.Mvc;
+
+namespace todoAPP.Controllers
+{
+    [ApiController]
+    public class TodoListController : Controller
+    {
+        ...
+    }
+}
+</code></pre>
+<h2 id="%E5%85%A7%E5%BB%BA%E7%9A%84validation-attributes">&#x5167;&#x5EFA;&#x7684;Validation attributes</h2>
+<p><code>[ValidateNever]</code>&#xFF1A;&#x4E0D;&#x9A57;&#x8B49;&#x8A72;&#x985E;&#x5225;&#x5C6C;&#x6027;<br>
+<code>[CreditCard]</code>&#xFF1A;&#x9A57;&#x8B49;&#x662F;&#x5426;&#x7B26;&#x5408;&#x4FE1;&#x7528;&#x5361;&#x5361;&#x865F;&#x898F;&#x5247;<br>
+<code>[Compare]</code>&#xFF1A;&#x9A57;&#x8B49;&#x5169;&#x500B;&#x6B04;&#x4F4D;&#x662F;&#x5426;&#x76F8;&#x7B26;</p>
+<pre><code class="language-csharp">using System.ComponentModel.DataAnnotations;
+
+public class RegisterRequestModel
+{
+    public string Password { get; set; }
+
+    //&#x8207;Password&#x6B04;&#x4F4D;&#x6BD4;&#x5C0D;&#xFF0C;&#x82E5;&#x4E0D;&#x76F8;&#x7B26;&#x5247;&#x56DE;&#x8986;&#x932F;&#x8AA4;
+    [Compare(&quot;Password&quot;)]
+    public string ConfirmPassword { get; set; }
+}
+</code></pre>
+<p><code>[EmailAddress]</code>&#xFF1A;&#x9A57;&#x8B49;&#x662F;&#x5426;&#x7B26;&#x5408;E-mail&#x683C;&#x5F0F;<br>
+<code>[Phone]</code>&#xFF1A;&#x9A57;&#x8B49;&#x662F;&#x5426;&#x7B26;&#x5408;&#x96FB;&#x8A71;&#x865F;&#x78BC;&#x683C;&#x5F0F;<br>
+<code>[Range]</code>: &#x9A57;&#x8B49;&#x662F;&#x5426;&#x5728;&#x6578;&#x503C;&#x5340;&#x9593;&#x5167;<br>
+<code>[RegularExpression]</code>: &#x9A57;&#x8B49;&#x662F;&#x5426;&#x7B26;&#x5408;&#x6B63;&#x898F;&#x8868;&#x9054;&#x5F0F;<br>
+<code>[Required]</code>: &#x9A57;&#x8B49;&#x6B04;&#x4F4D;&#x6709;&#x503C;&#x4E14;&#x4E0D;&#x662F;null<br>
+<code>[StringLength]</code>: &#x9A57;&#x8B49;&#x5B57;&#x4E32;&#x9577;&#x5EA6;&#x4E0D;&#x8D85;&#x904E;&#x6307;&#x5B9A;&#x5B57;&#x6578;<br>
+<code>[MaxLength]</code>&#xFF1A;&#x9A57;&#x8B49;&#x5B57;&#x4E32;&#x9577;&#x5EA6;&#x4E0D;&#x53EF;&#x8D85;&#x904E;&#x6307;&#x5B9A;&#x5B57;&#x6578;</p>
+<pre><code class="language-csharp">using System.ComponentModel.DataAnnotations;
+
+public class RegisterRequestModel
+{
+    [MaxLength(50)]
+    public string Username { get; set; }
+}
+</code></pre>
+<p><code>[Url]</code>: &#x9A57;&#x8B49;&#x662F;&#x5426;&#x7B26;&#x5408;URL&#x683C;&#x5F0F;<br>
+<code>[Remote]</code>: &#x5F9E;client&#x547C;&#x53EB;server&#x7684;&#x65B9;&#x6CD5;&#x9A57;&#x8B49;&#x4F7F;&#x7528;&#x8005;&#x8F38;&#x5165;</p>
+<p>&#x66F4;&#x591A;&#x9A57;&#x8B49;&#x5C6C;&#x6027;&#x8ACB;&#x53C3;&#x8003;&#x5FAE;&#x8EDF;&#x7684;<a href="https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0&amp;ref=chai-yu-bi-ji-ben">DataAnnotations</a></p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-6.0&amp;ref=chai-yu-bi-ji-ben">Model validation in ASP.NET Core MVC and Razor Pages</a></li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0&amp;ref=chai-yu-bi-ji-ben#apicontroller-attribute-1">ApiController attribute</a></li>
+<li><a href="https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0&amp;ref=chai-yu-bi-ji-ben">System.ComponentModel.DataAnnotations Namespace</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Model Binding in ASP.NET Core]]></title><description><![CDATA[Controller會處理來自用戶端的HTTP Request，請求中會有一些資訊來往，這些資料會需要經過型別轉換、檢查必填、最大長度及正確性等步驟後我們才能使用，若手動處理這些步驟將會非常繁瑣。
 ASP.NET提供Model Binding的功能，可以處理來自使用者請求中的資料，將其綁定到指定型態的資料上，省去繁複的處理程序並提高正確性。]]></description><link>https://vincent87720.github.io/Blog/model-binding-in-asp-net-core/</link><guid isPermaLink="false">64e7a2daf1c6660001711fd6</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 24 Aug 2023 18:38:03 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint.png" alt="Model Binding in ASP.NET Core"><p>Controller&#x6703;&#x8655;&#x7406;&#x4F86;&#x81EA;&#x7528;&#x6236;&#x7AEF;&#x7684;HTTP Request&#xFF0C;&#x8ACB;&#x6C42;&#x4E2D;&#x6703;&#x6709;&#x4E00;&#x4E9B;&#x8CC7;&#x8A0A;&#x4F86;&#x5F80;&#xFF0C;&#x9019;&#x4E9B;&#x8CC7;&#x6599;&#x6703;&#x9700;&#x8981;&#x7D93;&#x904E;&#x578B;&#x5225;&#x8F49;&#x63DB;&#x3001;&#x6AA2;&#x67E5;&#x5FC5;&#x586B;&#x3001;&#x6700;&#x5927;&#x9577;&#x5EA6;&#x53CA;&#x6B63;&#x78BA;&#x6027;&#x7B49;&#x6B65;&#x9A5F;&#x5F8C;&#x6211;&#x5011;&#x624D;&#x80FD;&#x4F7F;&#x7528;&#xFF0C;&#x82E5;&#x624B;&#x52D5;&#x8655;&#x7406;&#x9019;&#x4E9B;&#x6B65;&#x9A5F;&#x5C07;&#x6703;&#x975E;&#x5E38;&#x7E41;&#x7463;&#x3002;<br>
 ASP.NET&#x63D0;&#x4F9B;Model Binding&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4EE5;&#x8655;&#x7406;&#x4F86;&#x81EA;&#x4F7F;&#x7528;&#x8005;&#x8ACB;&#x6C42;&#x4E2D;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x5C07;&#x5176;&#x7D81;&#x5B9A;&#x5230;&#x6307;&#x5B9A;&#x578B;&#x614B;&#x7684;&#x8CC7;&#x6599;&#x4E0A;&#xFF0C;&#x7701;&#x53BB;&#x7E41;&#x8907;&#x7684;&#x8655;&#x7406;&#x7A0B;&#x5E8F;&#x4E26;&#x63D0;&#x9AD8;&#x6B63;&#x78BA;&#x6027;&#x3002;</p>
 <p>Model Binding&#x53EF;&#x4EE5;&#x5C07;HTTP requests&#x7684;&#x8CC7;&#x6599;&#x8F49;&#x70BA;&#x6307;&#x5B9A;&#x7684;&#x8CC7;&#x6599;&#x578B;&#x614B;</p>
@@ -684,36 +737,5 @@ int main(int argc, char* argv[])
 <li>Non-blocking send and Blocking receive (Mostly used)</li>
 </ul>
 </li>
-</ul>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Memory management]]></title><description><![CDATA[<!--kg-card-begin: markdown--><h2 id="stack">Stack</h2>
-<ul>
-<li>&#x5728;&#x5F80;stack&#x5132;&#x5B58;&#x8CC7;&#x6599;&#x6642;&#x4E0D;&#x9700;&#x67E5;&#x627E;&#xFF0C;&#x50C5;&#x9700;&#x5132;&#x5B58;&#x5728;&#x6700;&#x4E0A;&#x9762;&#x7684;&#x5340;&#x584A;&#x5373;&#x53EF;&#xFF0C;&#x975E;&#x5E38;&#x5FEB;&#x901F;</li>
-<li>&#x4EFB;&#x4F55;&#x8981;&#x5B58;&#x5728;stack&#x7684;&#x8CC7;&#x6599;&#x5FC5;&#x9808;&#x6709;&#x9650;&#x4E14;&#x975C;&#x614B;&#xFF08;&#x8CC7;</li></ul>]]></description><link>https://vincent87720.github.io/Blog/memory-management/</link><guid isPermaLink="false">635cf8c16c901d4844747e61</guid><category><![CDATA[generalKnowledge]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:05:33 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2022/10/ron-dyar-V29UWcALNko-unsplash_memory.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><h2 id="stack">Stack</h2>
-<ul>
-<li>&#x5728;&#x5F80;stack&#x5132;&#x5B58;&#x8CC7;&#x6599;&#x6642;&#x4E0D;&#x9700;&#x67E5;&#x627E;&#xFF0C;&#x50C5;&#x9700;&#x5132;&#x5B58;&#x5728;&#x6700;&#x4E0A;&#x9762;&#x7684;&#x5340;&#x584A;&#x5373;&#x53EF;&#xFF0C;&#x975E;&#x5E38;&#x5FEB;&#x901F;</li>
-<li>&#x4EFB;&#x4F55;&#x8981;&#x5B58;&#x5728;stack&#x7684;&#x8CC7;&#x6599;&#x5FC5;&#x9808;&#x6709;&#x9650;&#x4E14;&#x975C;&#x614B;&#xFF08;&#x8CC7;&#x6599;&#x5927;&#x5C0F;&#x5FC5;&#x9808;&#x5728;&#x7DE8;&#x8B6F;&#x6642;&#x5C31;&#x77E5;&#x9053;&#xFF09;</li>
-<li>&#x51FD;&#x5F0F;&#x7684;&#x57F7;&#x884C;&#x8CC7;&#x6599;&#x5132;&#x5B58;&#x5728;stack frames&#xFF08;actual execution stack&#xFF09;&#xFF0C;&#x6BCF;&#x500B;&#x51FD;&#x5F0F;&#x6703;&#x6709;&#x81EA;&#x5DF1;&#x7684;frame&#x5340;&#x584A;&#xFF0C;&#x7576;&#x51FD;&#x5F0F;&#x5167;&#x5BA3;&#x544A;&#x65B0;&#x8B8A;&#x6578;&#x6642;&#x6703;&#x5C07;&#x8CC7;&#x6599;&#x63A8;&#x5230;&#x6700;&#x4E0A;&#x9762;&#x7684;&#x5340;&#x584A;&#x3002;&#x7576;&#x6BCF;&#x500B;&#x51FD;&#x5F0F;&#x7D50;&#x675F;&#x6642;&#xFF0C;&#x6703;&#x6E05;&#x9664;&#x6700;&#x4E0A;&#x9762;&#x7684;&#x5340;&#x584A;&#xFF0C;&#x6240;&#x6709;&#x88AB;&#x63A8;&#x9001;&#x5230;&#x8A72;&#x5340;&#x584A;&#x7684;&#x8B8A;&#x6578;&#x5C07;&#x88AB;&#x6E05;&#x9664;&#x3002;</li>
-<li>&#x6BCF;&#x500B;thread&#x53EF;&#x4EE5;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x500B;stack</li>
-<li>&#x5132;&#x5B58;&#x5728;stack&#x4E0A;&#x7684;&#x8CC7;&#x6599;&#x7531;OS&#x64CD;&#x4F5C;&#xFF0C;&#x975E;&#x5E38;&#x7C21;&#x55AE;&#x660E;&#x77AD;</li>
-<li>&#x5132;&#x5B58;&#x5728;stack&#x4E0A;&#x7684;&#x8CC7;&#x6599;&#x70BA;&#x5340;&#x57DF;&#x8B8A;&#x6578;&#xFF08;&#x8CC7;&#x6599;&#x578B;&#x614B;&#x3001;primitives&#x6216;primitive constants&#xFF09;&#x3001;&#x6307;&#x6A19;&#x53CA;function frames</li>
-<li>&#x7576;stack&#x7684;size&#x592A;&#x5927;&#x6642;&#x6703;&#x9047;&#x5230;stack overflow errors</li>
-<li>&#x5927;&#x591A;&#x6578;&#x7684;&#x8A9E;&#x8A00;&#x5C0D;&#x65BC;&#x53EF;&#x4EE5;&#x5132;&#x5B58;&#x5728;stack&#x7684;&#x8CC7;&#x6599;&#x662F;&#x6709;&#x9650;&#x5236;&#x7684;</li>
-</ul>
-<h2 id="heap">Heap</h2>
-<ul>
-<li>&#x8207;stack&#x4E0D;&#x4E00;&#x6A23;&#xFF0C;Heap&#x9700;&#x8981;&#x4F7F;&#x7528;&#x6307;&#x6A19;&#x5C0B;&#x627E;&#x8CC7;&#x6599;</li>
-<li>&#x6BD4;&#x8D77;stack&#xFF0C;&#x5C0B;&#x627E;&#x8CC7;&#x6599;&#x7684;&#x901F;&#x5EA6;&#x7A0D;&#x6162;&#xFF0C;&#x4F46;&#x53EF;&#x4EE5;&#x5B58;&#x653E;&#x66F4;&#x5927;&#x91CF;&#x7684;&#x8CC7;&#x6599;</li>
-<li>&#x52D5;&#x614B;&#x5927;&#x5C0F;&#x7684;&#x8CC7;&#x6599;&#x53EF;&#x4EE5;&#x5B58;&#x653E;&#x5728;Heap</li>
-<li>&#x5728;&#x540C;&#x500B;APP&#x4E2D;Heap&#x5171;&#x4EAB;&#x65BC;threads&#x4E4B;&#x9593;</li>
-<li>&#x56E0;&#x70BA;&#x5176;&#x52D5;&#x614B;&#x7684;&#x7279;&#x6027;&#x4F7F;&#x5F97;&#x6BD4;&#x8F03;&#x96E3;&#x7DAD;&#x8B77;&#x548C;&#x7BA1;&#x7406;&#xFF0C;&#x9019;&#x4E5F;&#x662F;&#x70BA;&#x4EC0;&#x9EBC;&#x6703;&#x6709;&#x4E9B;&#x8A9E;&#x8A00;&#x6703;&#x6709;&#x81EA;&#x52D5;&#x8A18;&#x61B6;&#x9AD4;&#x7BA1;&#x7406;&#x7684;&#x529F;&#x80FD;</li>
-<li>&#x5132;&#x5B58;&#x5728;Heap&#x4E2D;&#x7684;&#x6709;&#x5168;&#x57DF;&#x8B8A;&#x6578;&#x3001;reference types&#xFF08;objects, strings, maps&#x548C;&#x5176;&#x4ED6;&#x8F03;&#x8907;&#x96DC;&#x7684;&#x8CC7;&#x6599;&#x7D50;&#x69CB;&#xFF09;</li>
-<li>&#x5982;&#x679C;APP&#x4F7F;&#x7528;&#x6BD4;&#x88AB;&#x5206;&#x914D;&#x9084;&#x8981;&#x591A;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x5C31;&#x6703;&#x767C;&#x751F;out of memory errors</li>
-<li>&#x901A;&#x5E38;&#x6C92;&#x6709;&#x9650;&#x5236;&#x53EF;&#x4EE5;&#x5B58;&#x5728;Heap&#x7684;&#x5927;&#x5C0F;&#xFF0C;&#x4E0D;&#x904E;&#x4E5F;&#x662F;&#x8981;&#x770B;&#x8A72;&#x61C9;&#x7528;&#x7A0B;&#x5F0F;&#x88AB;&#x5206;&#x914D;&#x5230;&#x591A;&#x5C11;&#x8A18;&#x61B6;&#x9AD4;</li>
-</ul>
-<h2 id="garbage-collection%EF%BC%88gc%EF%BC%89">Garbage Collection&#xFF08;GC&#xFF09;</h2>
-<img src="https://vincent87720.github.io/Blog/content/images/2022/10/ron-dyar-V29UWcALNko-unsplash_memory.jpeg" alt="Memory management"><p>&#x6709;&#x5206;&#x5169;&#x7A2E;</p>
-<ul>
-<li>Mark &amp; Sweep GC</li>
-<li>Reference counting GC</li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

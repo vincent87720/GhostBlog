@@ -6,32 +6,32 @@
 
     <title>[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named &#x27;XXX&#x27;.錯誤</title>
 
-    <meta name="description" content="使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行&#x60;manage.exe runserver --noreload&#x60;指令時發生*ModuleNotFoundError: No module named &#x27;XXX&#x27;.* 錯誤" />
-    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
-    <link rel="canonical" href="../index.html" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="description" content="使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行&#x60;manage.exe runserver --noreload&#x60;指令時發生*ModuleNotFoundError: No module named &#x27;XXX&#x27;.* 錯誤">
+    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     
-    <meta property="og:site_name" content="柴魚筆記本" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named &#x27;XXX&#x27;.錯誤" />
-    <meta property="og:description" content="使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行&#x60;manage.exe runserver --noreload&#x60;指令時發生*ModuleNotFoundError: No module named &#x27;XXX&#x27;.* 錯誤" />
-    <meta property="og:url" content="https://vincent87720.github.io/Blog/python-shi-yong-pyinstallerda-bao-djangozhuan-an-fa-sheng-modulenotfounderror-no-module-named-xxx-cuo-wu/" />
-    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2021/11/python-logo-1.jpg" />
-    <meta property="article:published_time" content="2021-11-24T15:39:29.000Z" />
-    <meta property="article:modified_time" content="2021-11-24T15:39:29.000Z" />
-    <meta property="article:tag" content="python" />
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named &#x27;XXX&#x27;.錯誤">
+    <meta property="og:description" content="使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行&#x60;manage.exe runserver --noreload&#x60;指令時發生*ModuleNotFoundError: No module named &#x27;XXX&#x27;.* 錯誤">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/python-shi-yong-pyinstallerda-bao-djangozhuan-an-fa-sheng-modulenotfounderror-no-module-named-xxx-cuo-wu/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2021/11/python-logo-1.jpg">
+    <meta property="article:published_time" content="2021-11-24T15:39:29.000Z">
+    <meta property="article:modified_time" content="2021-11-24T15:39:29.000Z">
+    <meta property="article:tag" content="python">
     
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named &#x27;XXX&#x27;.錯誤" />
-    <meta name="twitter:description" content="使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行&#x60;manage.exe runserver --noreload&#x60;指令時發生*ModuleNotFoundError: No module named &#x27;XXX&#x27;.* 錯誤" />
-    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/python-shi-yong-pyinstallerda-bao-djangozhuan-an-fa-sheng-modulenotfounderror-no-module-named-xxx-cuo-wu/" />
-    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2021/11/python-logo-1.jpg" />
-    <meta name="twitter:label1" content="Written by" />
-    <meta name="twitter:data1" content="Katsuobushi" />
-    <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="python" />
-    <meta property="og:image:width" content="1890" />
-    <meta property="og:image:height" content="800" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named &#x27;XXX&#x27;.錯誤">
+    <meta name="twitter:description" content="使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行&#x60;manage.exe runserver --noreload&#x60;指令時發生*ModuleNotFoundError: No module named &#x27;XXX&#x27;.* 錯誤">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/python-shi-yong-pyinstallerda-bao-djangozhuan-an-fa-sheng-modulenotfounderror-no-module-named-xxx-cuo-wu/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2021/11/python-logo-1.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="python">
+    <meta property="og:image:width" content="1890">
+    <meta property="og:image:height" content="800">
     
     <script type="application/ld+json">
 {
@@ -72,15 +72,12 @@
     },
     "keywords": "python",
     "description": "使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行&#x60;manage.exe runserver --noreload&#x60;指令時發生*ModuleNotFoundError: No module named &#x27;XXX&#x27;.* 錯誤",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://vincent87720.github.io/Blog/"
-    }
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/python-shi-yong-pyinstallerda-bao-djangozhuan-an-fa-sheng-modulenotfounderror-no-module-named-xxx-cuo-wu/"
 }
     </script>
 
-    <meta name="generator" content="Ghost 5.38" />
-    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html" />
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html">
 
     <style amp-custom>
     *,
@@ -1091,14 +1088,14 @@
 
                 <p></p>
 <p>使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行<code>manage.exe runserver --noreload</code>指令時發生<em>ModuleNotFoundError: No module named 'XXX'.</em> 錯誤</p>
-<h2 id>環境</h2>
+<h2>環境</h2>
 <ul>
 <li>Windows10 x64 20H2</li>
 <li>Python 3.9.7</li>
 <li>Django 3.2.7</li>
 <li>pyinstaller 4.7</li>
 </ul>
-<h2 id>解決方法</h2>
+<h2>解決方法</h2>
 <p>先前使用<code>pyinstaller -F .\manage.py</code>直接打包產生exe檔案，但是因為錯誤訊息提示缺少模組，其中一個解決方法是將錯誤訊息顯示的模組手動加入到hiddenimports中</p>
 <p>首先使用<code>pyi-makespec -F .\manage.py</code>指令產生spec檔，在檔案裡的hiddenimports中加入錯誤訊息所提示的模組名稱<br />
 </p>

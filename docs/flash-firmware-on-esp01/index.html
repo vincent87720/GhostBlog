@@ -42,33 +42,33 @@
 				}
 			</style>
 
-	<meta name="description" content="在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟" />
-    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
-    <link rel="canonical" href="index.html" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
-    <link rel="amphtml" href="amp/index.html" />
+	<meta name="description" content="在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟">
+    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
     
-    <meta property="og:site_name" content="柴魚筆記本" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="[ESP8266]ESP-01韌體燒錄" />
-    <meta property="og:description" content="在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟" />
-    <meta property="og:url" content="https://vincent87720.github.io/Blog/flash-firmware-on-esp01/" />
-    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2021/02/pexels-skitterphoto-1448561.jpg" />
-    <meta property="article:published_time" content="2021-02-22T13:42:24.000Z" />
-    <meta property="article:modified_time" content="2021-02-22T13:51:29.000Z" />
-    <meta property="article:tag" content="ESP8266" />
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[ESP8266]ESP-01韌體燒錄">
+    <meta property="og:description" content="在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/flash-firmware-on-esp01/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2021/02/pexels-skitterphoto-1448561.jpg">
+    <meta property="article:published_time" content="2021-02-22T13:42:24.000Z">
+    <meta property="article:modified_time" content="2021-02-22T13:51:29.000Z">
+    <meta property="article:tag" content="ESP8266">
     
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[ESP8266]ESP-01韌體燒錄" />
-    <meta name="twitter:description" content="在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟" />
-    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/flash-firmware-on-esp01/" />
-    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2021/02/pexels-skitterphoto-1448561.jpg" />
-    <meta name="twitter:label1" content="Written by" />
-    <meta name="twitter:data1" content="Katsuobushi" />
-    <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="ESP8266" />
-    <meta property="og:image:width" content="2000" />
-    <meta property="og:image:height" content="1323" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="[ESP8266]ESP-01韌體燒錄">
+    <meta name="twitter:description" content="在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/flash-firmware-on-esp01/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2021/02/pexels-skitterphoto-1448561.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="ESP8266">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="1323">
     
     <script type="application/ld+json">
 {
@@ -109,16 +109,13 @@
     },
     "keywords": "ESP8266",
     "description": "在使用ESP8266有時會遇到兩種情況，原廠出貨的韌體怪怪的導致無法使用AT指令跟ESP8266溝通，或是已經把自己的程式燒進去之後又想重新使用AT指令的功能，這時候就需要重新燒錄韌體，這篇筆記紀錄使用ESP-01作為範例的韌體燒錄及AT指令驗證步驟",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://vincent87720.github.io/Blog/"
-    }
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/flash-firmware-on-esp01/"
 }
     </script>
 
-    <meta name="generator" content="Ghost 5.38" />
-    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html" />
-    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.25/umd/portal.min.js" data-ghost="https://vincent87720.github.io/Blog/" data-key="5230415085a98103bb9daaa3d3" data-api="https://vincent87720.github.io/Blog/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.34/umd/portal.min.js" data-i18n="false" data-ghost="https://vincent87720.github.io/Blog/" data-key="5230415085a98103bb9daaa3d3" data-api="https://vincent87720.github.io/Blog/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
 .gh-post-upgrade-cta {
     display: flex;
     flex-direction: column;
@@ -183,7 +180,8 @@
     opacity: 0.92;
 }</style>
     <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://vincent87720.github.io/Blog/" crossorigin="anonymous"></script>
-    <link href="https://vincent87720.github.io/Blog/webmentions/receive/" rel="webmention" />
+    
+    <link href="https://vincent87720.github.io/Blog/webmentions/receive/" rel="webmention">
     <script defer src="../public/cards.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
     <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
@@ -284,9 +282,9 @@
 <h2 id>準備所需軟體及韌體</h2>
 <p>點擊下方連結下載燒錄工具、韌體及指令集</p>
 <ul>
-<li><a href="https://www.espressif.com/en/support/download/sdks-demos?ref=chai-yu-bi-ji-ben">ESP8266 NONOS SDK</a></li>
-<li><a href="https://www.espressif.com/en/support/download/other-tools?ref=chai-yu-bi-ji-ben">Flash Download Tools</a></li>
-<li><a href="https://www.espressif.com/en/support/documents/technical-documents?ref=chai-yu-bi-ji-ben">ESP8266 Non-OS AT Instruction Set</a></li>
+<li><a href="https://www.espressif.com/en/support/download/sdks-demos?ref=localhost">ESP8266 NONOS SDK</a></li>
+<li><a href="https://www.espressif.com/en/support/download/other-tools?ref=localhost">Flash Download Tools</a></li>
+<li><a href="https://www.espressif.com/en/support/documents/technical-documents?ref=localhost">ESP8266 Non-OS AT Instruction Set</a></li>
 </ul>
 <h2 id="esp01">連接ESP-01</h2>
 <p>將ESP-01插在燒錄器上，並將燒錄器插入USB Port<br>
@@ -334,11 +332,11 @@
 <p><img src="../content/images/2021/02/13.png" alt="13" loading="lazy"></p>
 <p>若送出指令AT有返回OK，且送出指令AT+GMR有返回版本資訊便可開始使用ESP-01了</p>
 <h2 id>參考資料</h2>
-<p><a href="https://www.espressif.com/en?ref=chai-yu-bi-ji-ben">ESPRESSIF</a><br>
-<a href="https://www.espressif.com/en/support/download/sdks-demos?ref=chai-yu-bi-ji-ben">ESP8266 NONOS SDK</a><br>
-<a href="https://www.espressif.com/en/support/download/other-tools?ref=chai-yu-bi-ji-ben">Flash Download Tools</a><br>
-<a href="https://www.espressif.com/en/support/documents/technical-documents?ref=chai-yu-bi-ji-ben">ESP8266 Non-OS AT Instruction Set</a><br>
-<a href="https://laoweizz.blogspot.com/2017/02/esp8266-esp-01s-01-usb-ttl-esp6288-wifi.html?ref=chai-yu-bi-ji-ben">ESP8266 ESP-01s測試(01)利用USB 轉TTL模組</a></p>
+<p><a href="https://www.espressif.com/en?ref=localhost">ESPRESSIF</a><br>
+<a href="https://www.espressif.com/en/support/download/sdks-demos?ref=localhost">ESP8266 NONOS SDK</a><br>
+<a href="https://www.espressif.com/en/support/download/other-tools?ref=localhost">Flash Download Tools</a><br>
+<a href="https://www.espressif.com/en/support/documents/technical-documents?ref=localhost">ESP8266 Non-OS AT Instruction Set</a><br>
+<a href="https://laoweizz.blogspot.com/2017/02/esp8266-esp-01s-01-usb-ttl-esp6288-wifi.html?ref=localhost">ESP8266 ESP-01s測試(01)利用USB 轉TTL模組</a></p>
 <!--kg-card-end: markdown-->
 			</section>
 

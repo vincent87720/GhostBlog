@@ -6,13 +6,13 @@
 
     <title>Memory management</title>
 
-    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
-    <link rel="canonical" href="../index.html" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     
-    <meta property="og:site_name" content="柴魚筆記本" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Memory management" />
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Memory management">
     <meta property="og:description" content="Stack
 
 
@@ -32,15 +32,15 @@ Heap
 
  * 與stack不一樣，Heap需要使用指標尋找資料
  * 比起stack，尋找資料的速度稍慢，但可以存放更大量的資料
- * 動態大小的資料可以存放" />
-    <meta property="og:url" content="https://vincent87720.github.io/Blog/memory-management/" />
-    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2022/10/ron-dyar-V29UWcALNko-unsplash_memory.jpeg" />
-    <meta property="article:published_time" content="2022-10-29T10:05:33.000Z" />
-    <meta property="article:modified_time" content="2022-10-29T10:05:33.000Z" />
-    <meta property="article:tag" content="generalKnowledge" />
+ * 動態大小的資料可以存放">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/memory-management/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2022/10/ron-dyar-V29UWcALNko-unsplash_memory.jpeg">
+    <meta property="article:published_time" content="2022-10-29T10:05:33.000Z">
+    <meta property="article:modified_time" content="2022-10-29T10:05:33.000Z">
+    <meta property="article:tag" content="generalKnowledge">
     
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Memory management" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Memory management">
     <meta name="twitter:description" content="Stack
 
 
@@ -60,15 +60,15 @@ Heap
 
  * 與stack不一樣，Heap需要使用指標尋找資料
  * 比起stack，尋找資料的速度稍慢，但可以存放更大量的資料
- * 動態大小的資料可以存放" />
-    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/memory-management/" />
-    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2022/10/ron-dyar-V29UWcALNko-unsplash_memory.jpeg" />
-    <meta name="twitter:label1" content="Written by" />
-    <meta name="twitter:data1" content="Katsuobushi" />
-    <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="generalKnowledge" />
-    <meta property="og:image:width" content="2000" />
-    <meta property="og:image:height" content="1405" />
+ * 動態大小的資料可以存放">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/memory-management/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2022/10/ron-dyar-V29UWcALNko-unsplash_memory.jpeg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="generalKnowledge">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="1405">
     
     <script type="application/ld+json">
 {
@@ -109,15 +109,12 @@ Heap
     },
     "keywords": "generalKnowledge",
     "description": "Stack\n\n\n * 在往stack儲存資料時不需查找，僅需儲存在最上面的區塊即可，非常快速\n * 任何要存在stack的資料必須有限且靜態（資料大小必須在編譯時就知道）\n * 函式的執行資料儲存在stack frames（actual execution stack），每個函式會有自己的frame區塊，當函式內宣告新變數時會將資料推到最上面的區塊。當每個函式結束時，會清除最上面的區塊，所有被推送到該區塊的變數將被清除。\n * 每個thread可以有自己的一個stack\n * 儲存在stack上的資料由OS操作，非常簡單明瞭\n * 儲存在stack上的資料為區域變數（資料型態、primitives或primitive constants）、指標及function frames\n * 當stack的size太大時會遇到stack overflow errors\n * 大多數的語言對於可以儲存在stack的資料是有限制的\n\n\n\nHeap\n\n\n * 與stack不一樣，Heap需要使用指標尋找資料\n * 比起stack，尋找資料的速度稍慢，但可以存放更大量的資料\n * 動態大小的資料可以存放",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://vincent87720.github.io/Blog/"
-    }
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/memory-management/"
 }
     </script>
 
-    <meta name="generator" content="Ghost 5.38" />
-    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html" />
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html">
 
     <style amp-custom>
     *,

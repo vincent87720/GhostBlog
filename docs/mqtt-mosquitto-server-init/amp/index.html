@@ -6,32 +6,32 @@
 
     <title>[MQTT]Mosquitto Server 安裝與啟動</title>
 
-    <meta name="description" content="在使用MQTT進行資料傳遞時，會需要一個代理人，也就是MQTT Broker，作為訂閱/發布的橋樑，Mosquitto Server是一個開源的MQTT的Server，本篇筆記紀錄在Windows下如何安裝並開啟MQTT Server" />
-    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
-    <link rel="canonical" href="../index.html" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="description" content="在使用MQTT進行資料傳遞時，會需要一個代理人，也就是MQTT Broker，作為訂閱/發布的橋樑，Mosquitto Server是一個開源的MQTT的Server，本篇筆記紀錄在Windows下如何安裝並開啟MQTT Server">
+    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     
-    <meta property="og:site_name" content="柴魚筆記本" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="[MQTT]Mosquitto Server 安裝與啟動" />
-    <meta property="og:description" content="在使用MQTT進行資料傳遞時，會需要一個代理人，也就是MQTT Broker，作為訂閱/發布的橋樑，Mosquitto Server是一個開源的MQTT的Server，本篇筆記紀錄在Windows下如何安裝並開啟MQTT Server" />
-    <meta property="og:url" content="https://vincent87720.github.io/Blog/mqtt-mosquitto-server-init/" />
-    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2020/11/MQTT.png" />
-    <meta property="article:published_time" content="2020-11-24T18:53:17.000Z" />
-    <meta property="article:modified_time" content="2020-11-24T18:53:17.000Z" />
-    <meta property="article:tag" content="mqtt" />
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[MQTT]Mosquitto Server 安裝與啟動">
+    <meta property="og:description" content="在使用MQTT進行資料傳遞時，會需要一個代理人，也就是MQTT Broker，作為訂閱/發布的橋樑，Mosquitto Server是一個開源的MQTT的Server，本篇筆記紀錄在Windows下如何安裝並開啟MQTT Server">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/mqtt-mosquitto-server-init/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2020/11/MQTT.png">
+    <meta property="article:published_time" content="2020-11-24T18:53:17.000Z">
+    <meta property="article:modified_time" content="2020-11-24T18:53:17.000Z">
+    <meta property="article:tag" content="mqtt">
     
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[MQTT]Mosquitto Server 安裝與啟動" />
-    <meta name="twitter:description" content="在使用MQTT進行資料傳遞時，會需要一個代理人，也就是MQTT Broker，作為訂閱/發布的橋樑，Mosquitto Server是一個開源的MQTT的Server，本篇筆記紀錄在Windows下如何安裝並開啟MQTT Server" />
-    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/mqtt-mosquitto-server-init/" />
-    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2020/11/MQTT.png" />
-    <meta name="twitter:label1" content="Written by" />
-    <meta name="twitter:data1" content="Katsuobushi" />
-    <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="mqtt" />
-    <meta property="og:image:width" content="2000" />
-    <meta property="og:image:height" content="500" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="[MQTT]Mosquitto Server 安裝與啟動">
+    <meta name="twitter:description" content="在使用MQTT進行資料傳遞時，會需要一個代理人，也就是MQTT Broker，作為訂閱/發布的橋樑，Mosquitto Server是一個開源的MQTT的Server，本篇筆記紀錄在Windows下如何安裝並開啟MQTT Server">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/mqtt-mosquitto-server-init/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2020/11/MQTT.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="mqtt">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="500">
     
     <script type="application/ld+json">
 {
@@ -72,15 +72,12 @@
     },
     "keywords": "mqtt",
     "description": "在使用MQTT進行資料傳遞時，會需要一個代理人，也就是MQTT Broker，作為訂閱/發布的橋樑，Mosquitto Server是一個開源的MQTT的Server，本篇筆記紀錄在Windows下如何安裝並開啟MQTT Server",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://vincent87720.github.io/Blog/"
-    }
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/mqtt-mosquitto-server-init/"
 }
     </script>
 
-    <meta name="generator" content="Ghost 5.38" />
-    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html" />
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html">
 
     <style amp-custom>
     *,
@@ -1089,15 +1086,15 @@
             </figure>
             <section class="post-content">
 
-                <p>在使用MQTT進行資料傳遞時，會需要一個代理人，也就是MQTT Broker，作為訂閱/發布的橋樑，Mosquitto Server是一個開源的MQTT的Server，本篇筆記紀錄在Windows下如何安裝並開啟MQTT Server</p><h2 id>環境</h2>
+                <p>在使用MQTT進行資料傳遞時，會需要一個代理人，也就是MQTT Broker，作為訂閱/發布的橋樑，Mosquitto Server是一個開源的MQTT的Server，本篇筆記紀錄在Windows下如何安裝並開啟MQTT Server</p><h2>環境</h2>
 <ul>
 <li>Windows10 x64 2004</li>
 <li>mosquitto-1.6.12a</li>
 </ul>
-<h2 id>下載</h2>
-<p>進入<a href="https://mosquitto.org/download/?ref=chai-yu-bi-ji-ben">Mosquitto-Download</a>下載頁面進行下載<br />
+<h2>下載</h2>
+<p>進入<a href="https://mosquitto.org/download/?ref=localhost">Mosquitto-Download</a>下載頁面進行下載<br />
 </p>
-<h2 id>安裝</h2>
+<h2>安裝</h2>
 <p>點擊已下載完成的安裝檔進行安裝<br />
 <br />
 <br />
@@ -1105,21 +1102,21 @@
 <br />
 安裝完成<br />
 </p>
-<h2 id>啟動</h2>
+<h2>啟動</h2>
 <p>使用<strong>工作管理員</strong>或<strong>執行</strong>開啟<strong>服務</strong>功能</p>
-<h3 id>使用工作管理員開啟服務</h3>
+<h3>使用工作管理員開啟服務</h3>
 <p>在開始列點選右鍵，點擊"工作管理員"以開啟<br />
 </p>
-<h3 id>使用執行開啟服務</h3>
+<h3>使用執行開啟服務</h3>
 <p>按下快捷鍵<code>windows+R</code>並輸入services.msc開啟服務功能<br />
 </p>
 <p>尋找mosquitto並點選右鍵啟動服務<br />
 <br />
 </p>
-<h2 id>查看伺服器狀態</h2>
+<h2>查看伺服器狀態</h2>
 <p>在終端機輸入<code>netstat -an</code>查看作用中的連線，以檢查伺服器是否正常運行<br />
 </p>
-<h2 id>在防火牆中開啟連接埠</h2>
+<h2>在防火牆中開啟連接埠</h2>
 <p>進入控制台 &gt; 系統及安全性 &gt; Windows Defender防火牆 &gt; 進階設定，或直接按下快捷鍵<code>windows+R</code>並輸入WF.msc，開啟<strong>具有進階安全性的 Windows Defender 防火牆</strong></p>
 <p>在<strong>輸入規則</strong>中點選新增規則<br />
 <br />
@@ -1131,7 +1128,7 @@
 <br />
 指定規則名稱<br />
 </p>
-<h2 id>安裝完成</h2>
+<h2>安裝完成</h2>
 <p>完成以上設定後就可以透過1883連接埠對MQTT Server進行連線啦</p>
 
 

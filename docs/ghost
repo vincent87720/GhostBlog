@@ -8,7 +8,7 @@
     <title>Ghost Admin</title>
 
     
-<meta name="ghost-admin/config/environment" content="%7B%22modulePrefix%22%3A%22ghost-admin%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22trailing-hash%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%2C%22Array%22%3Atrue%2C%22String%22%3Atrue%2C%22Function%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_JQUERY_INTEGRATION%22%3Atrue%2C%22_TEMPLATE_ONLY_GLIMMER_COMPONENTS%22%3Atrue%7D%2C%22APP%22%3A%7B%22version%22%3A%225.38%22%2C%22name%22%3A%22ghost-admin%22%7D%2C%22ember-simple-auth%22%3A%7B%7D%2C%22ember-websockets%22%3A%7B%22socketIO%22%3Atrue%7D%2C%22%40sentry%2Fember%22%3A%7B%22disablePerformance%22%3Atrue%2C%22sentry%22%3A%7B%7D%7D%2C%22ember-cli-mirage%22%3A%7B%22usingProxy%22%3Afalse%2C%22useDefaultPassthroughs%22%3Atrue%7D%2C%22exportApplicationGlobal%22%3Afalse%2C%22ember-load%22%3A%7B%22loadingIndicatorClass%22%3A%22ember-load-indicator%22%7D%7D" />
+<meta name="ghost-admin/config/environment" content="%7B%22modulePrefix%22%3A%22ghost-admin%22%2C%22environment%22%3A%22production%22%2C%22cdnUrl%22%3A%22%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22trailing-hash%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%2C%22Array%22%3Atrue%2C%22String%22%3Atrue%2C%22Function%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_JQUERY_INTEGRATION%22%3Atrue%2C%22_TEMPLATE_ONLY_GLIMMER_COMPONENTS%22%3Atrue%7D%2C%22APP%22%3A%7B%22version%22%3A%225.60%22%2C%22name%22%3A%22ghost-admin%22%7D%2C%22ember-simple-auth%22%3A%7B%7D%2C%22ember-websockets%22%3A%7B%22socketIO%22%3Atrue%7D%2C%22%40sentry%2Fember%22%3A%7B%22disablePerformance%22%3Atrue%2C%22sentry%22%3A%7B%7D%7D%2C%22ember-cli-mirage%22%3A%7B%22usingProxy%22%3Afalse%2C%22useDefaultPassthroughs%22%3Atrue%7D%2C%22exportApplicationGlobal%22%3Afalse%2C%22ember-load%22%3A%7B%22loadingIndicatorClass%22%3A%22ember-load-indicator%22%7D%7D" />
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="MobileOptimized" content="320" />
@@ -37,7 +37,7 @@
     </style>
 
     <link integrity="" rel="stylesheet" href="http://localhost:2368/ghost/assets/vendor-3e6947aa681f0fb82b193090e520dc73.css">
-    <link integrity="" rel="stylesheet" href="http://localhost:2368/ghost/assets/ghost-a9307c9cfe26a4bc621e02cd3bae421a.css" title="light">
+    <link integrity="" rel="stylesheet" href="http://localhost:2368/ghost/assets/ghost-c2c2b6cf53d999c72995cafa4166b9fb.css" title="light">
 
     
 </head>
@@ -46,7 +46,7 @@
     <div class="ember-load-indicator">
         <div class="gh-loading-content">
             <video width="100" height="100" loop autoplay muted playsinline preload="metadata" style="width: 100px; height: 100px;">
-                <source src="http://localhost:2368/ghost/assets/videos/logo-loader.mp4" type="video/mp4" />
+                <source src="http://localhost:2368/ghost/assets/videos/logo-loader-d91f93ba1dbf0f52a22815b5a571bd31.mp4" type="video/mp4" />
                 <div class="gh-loading-spinner"></div>
             </video>
         </div>
@@ -56,9 +56,9 @@
 
     <div id="ember-basic-dropdown-wormhole"></div>
 
-    <script src="http://localhost:2368/ghost/assets/vendor-b982e3bf1020bff77b2a3c44d5f59e55.js"></script>
-<script src="http://localhost:2368/ghost/assets/chunk.220.9ca2950240aba3fced21.js"></script>
-<script src="http://localhost:2368/ghost/assets/chunk.143.c6802c882a911797ce4f.js"></script>
-    <script src="http://localhost:2368/ghost/assets/ghost-35103ff053c43f1dfa7f35821c3c2412.js"></script>
+    <script src="http://localhost:2368/ghost/assets/vendor-fff5b0b3c122441beb3170947ae27b9d.js"></script>
+<script src="http://localhost:2368/ghost/assets/chunk.208.735d31e95ce6fbd467b8.js"></script>
+<script src="http://localhost:2368/ghost/assets/chunk.143.88cad5b682130d4a2e2e.js"></script>
+    <script src="http://localhost:2368/ghost/assets/ghost-fc7b85b759f27e607667914dcd685402.js"></script>
 </body>
 </html>

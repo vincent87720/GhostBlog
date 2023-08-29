@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>[Clover]Cannot install without ensuring the file system is read-write</title>
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
+
+	<script>
+			var siteUrl = 'https://vincent87720.github.io/Blog';
+	</script>
+
+	<script>
+			var localTheme = localStorage.getItem('attila_theme');
+			switch (localTheme) {
+					case 'dark':
+							document.documentElement.classList.add('theme-dark');
+							break;
+					case 'light':
+							document.documentElement.classList.add('theme-light');
+							break;
+					default:
+							break;
+			}
+	</script>
+
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
+	<meta name="description" content="在開啟Clover時會跳出&quot;Cannot install without ensuring the file system is read-write&quot;錯誤訊息">
+    <link rel="icon" href="https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="https://vincent87720.github.io/Blog/clover-package-err/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="https://vincent87720.github.io/Blog/clover-package-err/amp/">
+    
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[Clover]Cannot install without ensuring the file system is read-write">
+    <meta property="og:description" content="在開啟Clover時會跳出&quot;Cannot install without ensuring the file system is read-write&quot;錯誤訊息">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/clover-package-err/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2020/02/clover-1.png">
+    <meta property="article:published_time" content="2020-02-22T14:11:49.000Z">
+    <meta property="article:modified_time" content="2020-10-27T18:38:56.000Z">
+    <meta property="article:tag" content="clover">
+    <meta property="article:tag" content="hackintosh">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="[Clover]Cannot install without ensuring the file system is read-write">
+    <meta name="twitter:description" content="在開啟Clover時會跳出&quot;Cannot install without ensuring the file system is read-write&quot;錯誤訊息">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/clover-package-err/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2020/02/clover-1.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="clover, hackintosh">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="500">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "https://vincent87720.github.io/Blog/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/Blog/content/images/2022/10/dog-breeder-round.svg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "https://vincent87720.github.io/Blog/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "[Clover]Cannot install without ensuring the file system is read-write",
+    "url": "https://vincent87720.github.io/Blog/clover-package-err/",
+    "datePublished": "2020-02-22T14:11:49.000Z",
+    "dateModified": "2020-10-27T18:38:56.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://vincent87720.github.io/Blog/content/images/2020/02/clover-1.png",
+        "width": 2000,
+        "height": 500
+    },
+    "keywords": "clover, hackintosh",
+    "description": "在開啟Clover時會跳出&quot;Cannot install without ensuring the file system is read-write&quot;錯誤訊息",
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/clover-package-err/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="https://vincent87720.github.io/Blog/rss/">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.34/umd/portal.min.js" data-i18n="false" data-ghost="https://vincent87720.github.io/Blog/" data-key="5230415085a98103bb9daaa3d3" data-api="https://vincent87720.github.io/Blog/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://vincent87720.github.io/Blog/" crossorigin="anonymous"></script>
+    
+    <link href="https://vincent87720.github.io/Blog/webmentions/receive/" rel="webmention">
+    <script defer src="/public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/cards.min.css">
+    <script defer src="/public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+</head>
+
+<body class="post-template tag-clover tag-hackintosh">
+
+	<div class="nav-header">
+		<nav class="nav-wrapper" aria-label="Main">
+				<ul>
+		<li class="nav-home"><a href="https://vincent87720.github.io/Blog/"><span>Home</span></a></li>
+		<li class="nav-author"><a href="https://vincent87720.github.io/Blog/author/katsuobushi/"><span>Author</span></a></li>
+		<li class="nav-tags"><a href="https://vincent87720.github.io/Blog/tags/"><span>Tags</span></a></li>
+		<li class="nav-golang"><a href="https://vincent87720.github.io/Blog/tag/golang/"><span>Golang</span></a></li>
+</ul>
+
+				<ul class="nav-meta">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>
+		</nav>
+
+		<div class="nav-wrapper-control">
+			<div class="inner">
+				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="nav-close" role="button" aria-label="Close"></div>
+
+	<section class="page-wrapper">
+
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header class="post-header  has-cover ">
+	<div class="inner">
+		<span class="post-info">
+			<span class="post-type">Article</span>
+			<span class="post-count">clover</span>
+		</span>
+		<h1 class="post-title">[Clover]開啟Clover時顯示錯誤訊息：Cannot install without ensuring the file system is read-write</h1>
+		<div class="post-meta">
+			<div class="post-meta-avatars">
+					<figure class="post-meta-avatar avatar">
+						<a href="/author/katsuobushi/" class="author-avatar">
+								<img class="author-profile-image" src="/content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
+						</a>
+					</figure>
+			</div>
+			<h4 class="post-meta-author"><a href="/author/katsuobushi/">Katsuobushi</a></h4>
+			<time datetime="22-02-2020">22 Feb 2020</time> &bull; 1 min read
+		</div>
+		<div class="post-cover cover">
+			<img
+			srcset="/content/images/size/w320/2020/02/clover-1.png 320w,
+              /content/images/size/w640/2020/02/clover-1.png 640w,
+              /content/images/size/w960/2020/02/clover-1.png 960w,
+              /content/images/size/w1920/2020/02/clover-1.png 1920w"
+      src="/content/images/size/w1920/2020/02/clover-1.png"
+			alt="[Clover]開啟Clover時顯示錯誤訊息：Cannot install without ensuring the file system is read-write" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-clover tag-hackintosh">
+		<div class="inner">
+
+			<section class="post-content">
+				<figure class="kg-card kg-image-card"><img src="https://vincent87720.github.io/Blog/content/images/2020/02/errMsg.png" class="kg-image" alt loading="lazy"></figure><p></p><h2 id="-">版本</h2><p>OS：macOs Catalina  Version 10.15.3<br>Clover：Clover_v2.5k_r5104</p><hr><h2 id="--1">問題</h2><p>在開啟Clover時會跳出"Cannot install without ensuring the file system is read-write"錯誤訊息</p><hr><h2 id="--2">解決方法及步驟</h2><p>1.Click the Apple symbol in the Menu bar.<br>2.Click Restart…<br>3.Hold down Command-R to reboot into Recovery Mode.<br>4.Click Utilities.<br>5.Select Terminal.<br>6.Type csrutil disable.<br>7.Press Return or Enter on your keyboard.<br>8.Click the Apple symbol in the Menu bar.<br>9.Click Restart…</p><hr><h2 id="--3">參考資料</h2><figure class="kg-card kg-embed-card">
+    <blockquote class="reddit-card">
+      <a href="https://www.reddit.com/r/hackintosh/comments/d9pbhy/clover_cannot_install_wo_ensuring_file_system_is/?ref_source=embed&ref=share">Clover - Cannot Install w/o Ensuring File System is Read/Write</a> from
+      <a href="https://www.reddit.com/r/hackintosh/?ref=localhost">hackintosh</a>
+    </blockquote>
+    <script async src="https://embed.redditmedia.com/widgets/platform.js" charset="UTF-8"></script>
+</figure>
+			</section>
+
+			<section class="post-footer">
+
+				<div class="post-share">
+					<span class="post-info-label">Share</span>
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=[Clover]開啟Clover時顯示錯誤訊息：Cannot install without ensuring the file system is read-write&url=https://vincent87720.github.io/Blog/clover-package-err/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/Blog/clover-package-err/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/Blog/clover-package-err//&amp;title=[Clover]開啟Clover時顯示錯誤訊息：Cannot install without ensuring the file system is read-write" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+						<i class="icon icon-linkedin" aria-hidden="true"></i>
+					</a>
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=[Clover]開啟Clover時顯示錯誤訊息：Cannot install without ensuring the file system is read-write&amp;body=https://vincent87720.github.io/Blog/clover-package-err/">
+						<i class="icon icon-mail" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Topic</span>
+					<a href="/tag/clover/">clover</a> <a href="/tag/hackintosh/">hackintosh</a>
+				</aside>
+
+			</section>
+
+			<section class="post-full-comments">
+				<script src="https://utteranc.es/client.js"
+					repo="vincent87720/BlogComments"
+					issue-term="pathname"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+				</script>
+			</section>
+
+
+
+
+			<aside class="post-nav">
+
+					<a class="post-nav-next" href="/cpp-array-pointer-address/">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-left" aria-label="Next post"></i>
+							<h2 class="post-nav-title">[C++]陣列與指標的位址</h2>
+							<p class="post-nav-excerpt">C++陣列與指標的位址&hellip;</p>
+							<p class="post-nav-meta"><time datetime="18-03-2020">18 Mar 2020</time></p>
+						</section>
+					</a>
+
+					<a class="post-nav-prev" href="/golang-channel/">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
+							<h2 class="post-nav-title">[Golang]channel簡介</h2>
+							<p class="post-nav-excerpt">在golang裡可使用channel在多個執行緒與主程式之間傳送資料，channel可設定不同型態的buffer，並指定緩衝區大小&hellip;</p>
+							<p class="post-nav-meta"><time datetime="27-01-2020">27 Jan 2020</time></p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+		<div class="nav-footer">
+			<nav class="nav-wrapper" aria-label="Footer">
+				<span class="nav-copy">柴魚筆記本 &copy; 2023  <a class="nav-rss" title="RSS" href="https://vincent87720.github.io/Blog/rss/" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<ul>
+		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
+		<li class="nav-linkedin"><a href="https://www.linkedin.com/in/vincent87720/"><span>LinkedIn</span></a></li>
+</ul>
+
+				<span class="nav-credits">Published with <a href="https://ghost.org">Ghost</a> &bull; Theme <a href="https://github.com/zutrinken/attila">Attila</a> &bull; <a class="menu-item js-theme" href="#" data-system="System theme" data-dark="Dark theme" data-light="Light theme"><span class="theme-icon"></span><span class="theme-text">System theme</span> </a> </span>
+			</nav>
+		</div>
+
+	</section>
+
+	<script type="text/javascript" src="/assets/js/script.js"></script>
+
+	<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+
+  });
+</script>
+
+
+	
+
+</body>
+</html>

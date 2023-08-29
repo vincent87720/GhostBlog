@@ -6,32 +6,32 @@
 
     <title>Docker buildx</title>
 
-    <meta name="description" content="Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。" />
-    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
-    <link rel="canonical" href="../index.html" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="description" content="Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。">
+    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     
-    <meta property="og:site_name" content="柴魚筆記本" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Docker buildx" />
-    <meta property="og:description" content="Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。" />
-    <meta property="og:url" content="https://vincent87720.github.io/Blog/docker-buildx/" />
-    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2023/02/docker.jpg" />
-    <meta property="article:published_time" content="2023-02-09T16:09:53.000Z" />
-    <meta property="article:modified_time" content="2023-02-09T16:09:53.000Z" />
-    <meta property="article:tag" content="Docker" />
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Docker buildx">
+    <meta property="og:description" content="Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/docker-buildx/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2023/02/docker.jpg">
+    <meta property="article:published_time" content="2023-02-09T16:09:53.000Z">
+    <meta property="article:modified_time" content="2023-02-09T16:09:53.000Z">
+    <meta property="article:tag" content="Docker">
     
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Docker buildx" />
-    <meta name="twitter:description" content="Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。" />
-    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/docker-buildx/" />
-    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2023/02/docker.jpg" />
-    <meta name="twitter:label1" content="Written by" />
-    <meta name="twitter:data1" content="Katsuobushi" />
-    <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="Docker" />
-    <meta property="og:image:width" content="2000" />
-    <meta property="og:image:height" content="1125" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Docker buildx">
+    <meta name="twitter:description" content="Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/docker-buildx/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2023/02/docker.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Docker">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="1125">
     
     <script type="application/ld+json">
 {
@@ -72,15 +72,12 @@
     },
     "keywords": "Docker",
     "description": "Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://vincent87720.github.io/Blog/"
-    }
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/docker-buildx/"
 }
     </script>
 
-    <meta name="generator" content="Ghost 5.38" />
-    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html" />
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html">
 
     <style amp-custom>
     *,

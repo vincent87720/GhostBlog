@@ -1,4 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.38</generator><lastBuildDate>Sat, 26 Aug 2023 18:54:41 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Validation attributes in ASP.NET Core]]></title><description><![CDATA[ASP.NET Core 裡的 Validation attributes 用於設定欄位的規則，當收到 HTTP 請求時依照規則檢查請求的資料是否符合 Validation attributes 設定的規則，以此過濾掉不符合規則的請求。]]></description><link>https://vincent87720.github.io/Blog/validation-attributes-in-asp-net-core/</link><guid isPermaLink="false">64ea48dd4feca3000178b923</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 26 Aug 2023 18:51:08 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/jason-dent-3wPJxh-piRw-unsplash-1.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/jason-dent-3wPJxh-piRw-unsplash-1.jpg" alt="Validation attributes in ASP.NET Core"><p>ASP.NET Core &#x88E1;&#x7684; Validation attributes &#x7528;&#x65BC;&#x8A2D;&#x5B9A;&#x6B04;&#x4F4D;&#x7684;&#x898F;&#x5247;&#xFF0C;&#x7576;&#x6536;&#x5230; HTTP &#x8ACB;&#x6C42;&#x6642;&#x4F9D;&#x7167;&#x898F;&#x5247;&#x6AA2;&#x67E5;&#x8ACB;&#x6C42;&#x7684;&#x8CC7;&#x6599;&#x662F;&#x5426;&#x7B26;&#x5408; Validation attributes &#x8A2D;&#x5B9A;&#x7684;&#x898F;&#x5247;&#xFF0C;&#x4EE5;&#x6B64;&#x904E;&#x6FFE;&#x6389;&#x4E0D;&#x7B26;&#x5408;&#x898F;&#x5247;&#x7684;&#x8ACB;&#x6C42;&#x3002;</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.60</generator><lastBuildDate>Tue, 29 Aug 2023 05:57:50 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Promise in JavaScript]]></title><description><![CDATA[Promise是Javascript提供的建構函式，用於建構Promise物件，該物件會存放非同步事件的結果。]]></description><link>https://vincent87720.github.io/Blog/promise-in-javascript/</link><guid isPermaLink="false">64ed875555ef9900013f35f7</guid><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 29 Aug 2023 05:55:58 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-2.png" medium="image"/><content:encoded><![CDATA[<img src="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-2.png" alt="Promise in JavaScript"><p>Promise&#x662F;Javascript&#x63D0;&#x4F9B;&#x7684;&#x5EFA;&#x69CB;&#x51FD;&#x5F0F;&#xFF0C;&#x7528;&#x65BC;&#x5EFA;&#x69CB;Promise&#x7269;&#x4EF6;&#xFF0C;&#x8A72;&#x7269;&#x4EF6;&#x6703;&#x5B58;&#x653E;&#x975E;&#x540C;&#x6B65;&#x4E8B;&#x4EF6;&#x7684;&#x7D50;&#x679C;&#x3002;</p><h2 id="promise%E7%9A%84%E7%8B%80%E6%85%8B">Promise&#x7684;&#x72C0;&#x614B;</h2><p>Promise&#x5305;&#x542B;&#x4E09;&#x500B;&#x72C0;&#x614B;&#xFF0C;<code>pending</code>&#x3001;<code>fulfilled</code>&#x53CA;<code>rejected</code>&#xFF0C;&#x6BCF;&#x500B;Promise&#x7269;&#x4EF6;&#x50C5;&#x80FD;&#x4FDD;&#x5B58;&#x4E00;&#x7A2E;&#x72C0;&#x614B;&#xFF0C;&#x5728;&#x7D50;&#x679C;&#x5C1A;&#x672A;&#x51FA;&#x7210;&#x6642;&#x90FD;&#x662F;<code>pending</code>&#x72C0;&#x614B;&#xFF0C;&#x2CA;&#x4E00;&#x65E6;&#x8B8A;&#x70BA;<code>fulfilled</code>&#x6216;<code>rejected</code>&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x4E4B;&#x5F8C;&#x4FBF;&#x7121;&#x6CD5;&#x518D;&#x66F4;&#x6539;&#x72C0;&#x614B;&#x3002;</p><h2 id="promise%E7%89%A9%E4%BB%B6%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95">Promise&#x7269;&#x4EF6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;</h2><p>Promise&#x7269;&#x4EF6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x5305;&#x62EC;<code>then</code>&#x3001;<code>catch</code>&#x548C;<code>finally</code></p><h2 id="%E5%BB%BA%E7%AB%8Bpromise">&#x5EFA;&#x7ACB;Promise</h2><p>Promise&#x5728;&#x5EFA;&#x7ACB;&#x6642;&#x6703;&#x9700;&#x8981;&#x5E36;&#x5165;&#x4E00;&#x500B;&#x51FD;&#x5F0F;&#xFF0C;&#x51FD;&#x5F0F;&#x9700;&#x8981;&#x5E36;&#x5165;&#x5169;&#x500B;&#x53C3;&#x6578;&#xFF0C;&#x5206;&#x5225;&#x662F;<code>resolve</code>&#x548C;<code>reject</code></p><pre><code class="language-javascript">const p = new Promise(function(resolve, reject) { 
+    if(...){
+        resolve();//&#x7576;&#x4E8B;&#x4EF6;&#x5DF2;&#x7D93;&#x57F7;&#x884C;&#x5B8C;&#x7562;&#x4E14;&#x6210;&#x529F;&#x64CD;&#x4F5C;&#x6642;&#xFF0C;&#x547C;&#x53EB;&#x6B64;&#x51FD;&#x5F0F;
+    }
+    ...
+	reject();//&#x7576;&#x4E8B;&#x4EF6;&#x5DF2;&#x7D93;&#x57F7;&#x884C;&#x5B8C;&#x7562;&#x4F46;&#x64CD;&#x4F5C;&#x5931;&#x6557;&#x6642;&#xFF0C;&#x547C;&#x53EB;&#x6B64;&#x51FD;&#x5F0F;
+});
+</code></pre><h2 id="%E8%AE%80%E5%8F%96promise">&#x8B80;&#x53D6;Promise</h2><h3 id="%E6%96%B9%E6%B3%95%E4%B8%80">&#x65B9;&#x6CD5;&#x4E00;</h3><p>&#x5728;then&#x4E2D;&#x50B3;&#x5165;&#x5169;&#x500B;callback function&#xFF0C;&#x5206;&#x5225;&#x63A5;&#x6536;&#x6210;&#x529F;&#x8207;&#x5931;&#x6557;&#x7684;&#x7D50;&#x679C;</p><pre><code class="language-javascript">p.then((success) =&gt; {
+    console.log(success);
+}, (fail) =&gt; {
+    console.log(fail);
+})
+</code></pre><h3 id="%E6%96%B9%E6%B3%95%E4%BA%8C">&#x65B9;&#x6CD5;&#x4E8C;</h3><p>&#x4F7F;&#x7528;then&#x53D6;&#x5F97;&#x6210;&#x529F;&#x7684;&#x7D50;&#x679C;&#xFF0C;&#x4F7F;&#x7528;catch&#x53D6;&#x5F97;&#x5931;&#x6557;&#x7684;&#x7D50;&#x679C;&#xFF0C;&#x5927;&#x90E8;&#x5206;&#x958B;&#x767C;&#x8005;&#x7FD2;&#x6163;&#x4F7F;&#x7528;&#x6B64;&#x7A2E;&#x65B9;&#x5F0F;&#x8655;&#x7406;&#x7D50;&#x679C;</p><pre><code class="language-javascript">p.then(success =&gt; {
+    console.log(success);
+})
+// &#x5931;&#x6557;&#x7684;&#x884C;&#x70BA;&#x4E00;&#x5F8B;&#x4EA4;&#x7D66;&#x4E86; catch
+.catch(fail =&gt; {
+    console.log(fail);
+});
+</code></pre><h2 id="%E9%8F%88">&#x93C8;</h2><p>Promise&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x93C8;&#x7684;&#x6A5F;&#x5236;&#x4E32;&#x9023;&#x591A;&#x500B;Promise&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x907F;&#x514D;Callback Hell</p><pre><code class="language-javascript">p.then(success =&gt; {
+        ...
+    })
+    .then(success =&gt; {
+        ...
+    })
+    .then(success =&gt; {
+        ...
+    })
+    .catch(fail =&gt; {
+        ...
+        console.log(fail);
+    })
+</code></pre><h2 id="promise%E7%9A%84%E9%9D%9C%E6%85%8B%E6%96%B9%E6%B3%95">Promise&#x7684;&#x975C;&#x614B;&#x65B9;&#x6CD5;</h2><h3 id="promiseall">Promise.all</h3><p>Promise.all&#x53EF;&#x4EE5;&#x50B3;&#x5165;&#x591A;&#x500B;promise&#x505A;&#x70BA;&#x53C3;&#x6578;&#xFF0C;&#x9019;&#x500B;&#x65B9;&#x6CD5;&#x6703;&#x7B49;&#x5F85;&#x6240;&#x6709;promise&#x90FD;&#x88AB;&#x5B8C;&#x6210;&#x5F8C;&#x624D;&#x7E7C;&#x7E8C;&#x57F7;&#x884C;&#x3002;<br>&#x5728;&#x5BE6;&#x4F5C;&#x67D0;&#x529F;&#x80FD;&#x9700;&#x8981;&#x591A;&#x500B;API&#x7684;&#x8CC7;&#x6599;&#x90FD;&#x62FF;&#x5230;&#x624D;&#x80FD;&#x57F7;&#x884C;&#x6642;&#x5F88;&#x5BE6;&#x7528;&#x3002;</p><pre><code class="language-javascript">Promise.all([promise(test1), promise(test2), promise(test3)])
+.then(res =&gt; {
+    console.log(res);
+});
+</code></pre><h3 id="promiserace">Promise.race</h3><p>Promise.race&#x53EF;&#x4EE5;&#x50B3;&#x5165;&#x591A;&#x500B;promise&#x4F5C;&#x70BA;&#x53C3;&#x6578;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x53EA;&#x6703;&#x56DE;&#x50B3;&#x7B2C;&#x4E00;&#x500B;&#x57F7;&#x884C;&#x5B8C;&#x6210;&#x7684;promise</p><h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6><ul><li><a href="https://israynotarray.com/javascript/20211128/2950137358/?ref=localhost">JavaScript &#x4E2D;&#x7684; Promise &#x662F;&#x4EC0;&#x9EBC;&#xFF1F;&#x4EE5;&#x53CA;&#x70BA;&#x4EC0;&#x9EBC;&#x4F60;&#x8981;&#x61C2; Promise</a></li><li><a href="https://www.casper.tw/development/2020/02/16/all-new-promise/?ref=localhost">JavaScript Promise &#x5168;&#x4ECB;&#x7D39;</a></li><li><a href="https://hackmd.io/@Heidi-Liu/note-fetch-and-promise?ref=localhost">[week 13] Fetch &amp; Promise &#x88DC;&#x5145;</a></li></ul>]]></content:encoded></item><item><title><![CDATA[Validation attributes in ASP.NET Core]]></title><description><![CDATA[ASP.NET Core 裡的 Validation attributes 用於設定欄位的規則，當收到 HTTP 請求時依照規則檢查請求的資料是否符合 Validation attributes 設定的規則，以此過濾掉不符合規則的請求。]]></description><link>https://vincent87720.github.io/Blog/validation-attributes-in-asp-net-core/</link><guid isPermaLink="false">64ea48dd4feca3000178b923</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 26 Aug 2023 18:51:08 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/jason-dent-3wPJxh-piRw-unsplash-1.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/jason-dent-3wPJxh-piRw-unsplash-1.jpg" alt="Validation attributes in ASP.NET Core"><p>ASP.NET Core &#x88E1;&#x7684; Validation attributes &#x7528;&#x65BC;&#x8A2D;&#x5B9A;&#x6B04;&#x4F4D;&#x7684;&#x898F;&#x5247;&#xFF0C;&#x7576;&#x6536;&#x5230; HTTP &#x8ACB;&#x6C42;&#x6642;&#x4F9D;&#x7167;&#x898F;&#x5247;&#x6AA2;&#x67E5;&#x8ACB;&#x6C42;&#x7684;&#x8CC7;&#x6599;&#x662F;&#x5426;&#x7B26;&#x5408; Validation attributes &#x8A2D;&#x5B9A;&#x7684;&#x898F;&#x5247;&#xFF0C;&#x4EE5;&#x6B64;&#x904E;&#x6FFE;&#x6389;&#x4E0D;&#x7B26;&#x5408;&#x898F;&#x5247;&#x7684;&#x8ACB;&#x6C42;&#x3002;</p>
 <h2 id="%E8%87%AA%E5%8B%95%E5%9B%9E%E8%A6%86%E9%8C%AF%E8%AA%A4%E8%A8%8A%E6%81%AF">&#x81EA;&#x52D5;&#x56DE;&#x8986;&#x932F;&#x8AA4;&#x8A0A;&#x606F;</h2>
 <p>&#x5728; Web API controllers &#x4E2D;&#x52A0;&#x5165;<code>[ApiController]</code>&#x5C6C;&#x6027;&#x53EF;&#x4EE5;&#x8B93;&#x6211;&#x5011;&#x514D;&#x53BB;&#x8A2D;&#x5B9A;<code>ModelState.IsValid</code>&#x7684;&#x6B65;&#x9A5F;</p>
 <pre><code class="language-csharp">using Microsoft.AspNetCore.Mvc;
@@ -44,12 +80,12 @@ public class RegisterRequestModel
 </code></pre>
 <p><code>[Url]</code>: &#x9A57;&#x8B49;&#x662F;&#x5426;&#x7B26;&#x5408;URL&#x683C;&#x5F0F;<br>
 <code>[Remote]</code>: &#x5F9E;client&#x547C;&#x53EB;server&#x7684;&#x65B9;&#x6CD5;&#x9A57;&#x8B49;&#x4F7F;&#x7528;&#x8005;&#x8F38;&#x5165;</p>
-<p>&#x66F4;&#x591A;&#x9A57;&#x8B49;&#x5C6C;&#x6027;&#x8ACB;&#x53C3;&#x8003;&#x5FAE;&#x8EDF;&#x7684;<a href="https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0&amp;ref=chai-yu-bi-ji-ben">DataAnnotations</a></p>
+<p>&#x66F4;&#x591A;&#x9A57;&#x8B49;&#x5C6C;&#x6027;&#x8ACB;&#x53C3;&#x8003;&#x5FAE;&#x8EDF;&#x7684;<a href="https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0&amp;ref=localhost">DataAnnotations</a></p>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-6.0&amp;ref=chai-yu-bi-ji-ben">Model validation in ASP.NET Core MVC and Razor Pages</a></li>
-<li><a href="https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0&amp;ref=chai-yu-bi-ji-ben#apicontroller-attribute-1">ApiController attribute</a></li>
-<li><a href="https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0&amp;ref=chai-yu-bi-ji-ben">System.ComponentModel.DataAnnotations Namespace</a></li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/mvc/models/validation?view=aspnetcore-6.0&amp;ref=localhost">Model validation in ASP.NET Core MVC and Razor Pages</a></li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-6.0&amp;ref=localhost#apicontroller-attribute-1">ApiController attribute</a></li>
+<li><a href="https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations?view=net-6.0&amp;ref=localhost">System.ComponentModel.DataAnnotations Namespace</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Model Binding in ASP.NET Core]]></title><description><![CDATA[Controller會處理來自用戶端的HTTP Request，請求中會有一些資訊來往，這些資料會需要經過型別轉換、檢查必填、最大長度及正確性等步驟後我們才能使用，若手動處理這些步驟將會非常繁瑣。
 ASP.NET提供Model Binding的功能，可以處理來自使用者請求中的資料，將其綁定到指定型態的資料上，省去繁複的處理程序並提高正確性。]]></description><link>https://vincent87720.github.io/Blog/model-binding-in-asp-net-core/</link><guid isPermaLink="false">64e7a2daf1c6660001711fd6</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 24 Aug 2023 18:38:03 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint.png" alt="Model Binding in ASP.NET Core"><p>Controller&#x6703;&#x8655;&#x7406;&#x4F86;&#x81EA;&#x7528;&#x6236;&#x7AEF;&#x7684;HTTP Request&#xFF0C;&#x8ACB;&#x6C42;&#x4E2D;&#x6703;&#x6709;&#x4E00;&#x4E9B;&#x8CC7;&#x8A0A;&#x4F86;&#x5F80;&#xFF0C;&#x9019;&#x4E9B;&#x8CC7;&#x6599;&#x6703;&#x9700;&#x8981;&#x7D93;&#x904E;&#x578B;&#x5225;&#x8F49;&#x63DB;&#x3001;&#x6AA2;&#x67E5;&#x5FC5;&#x586B;&#x3001;&#x6700;&#x5927;&#x9577;&#x5EA6;&#x53CA;&#x6B63;&#x78BA;&#x6027;&#x7B49;&#x6B65;&#x9A5F;&#x5F8C;&#x6211;&#x5011;&#x624D;&#x80FD;&#x4F7F;&#x7528;&#xFF0C;&#x82E5;&#x624B;&#x52D5;&#x8655;&#x7406;&#x9019;&#x4E9B;&#x6B65;&#x9A5F;&#x5C07;&#x6703;&#x975E;&#x5E38;&#x7E41;&#x7463;&#x3002;<br>
@@ -109,10 +145,10 @@ ASP.NET&#x63D0;&#x4F9B;Model Binding&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4
 </code></pre>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://learn.microsoft.com/zh-tw/aspnet/core/mvc/models/model-binding?view=aspnetcore-3.1&amp;ref=chai-yu-bi-ji-ben">ASP.NET Core &#x4E2D;&#x7684;&#x8CC7;&#x6599;&#x7E6B;&#x7D50;</a></li>
-<li><a href="https://ithelp.ithome.com.tw/articles/10244545?ref=chai-yu-bi-ji-ben">[Day12] &#x6A21;&#x578B;&#x7E6B;&#x7D50;&#x8207;&#x9A57;&#x8B49; - &#x6211;&#x8207; ASP.NET Core 3 &#x7684; 30&#x5929;</a></li>
-<li><a href="https://www.gss.com.tw/blog/asp-net-core-model-binding-1?ref=chai-yu-bi-ji-ben">ASP.NET Core Model Binding &#x6B7B;&#x6D3B;&#x7D81;&#x4E0D;&#x4E0A; - 1</a></li>
-<li><a href="https://learn.microsoft.com/zh-tw/aspnet/core/web-api/?view=aspnetcore-3.1&amp;ref=chai-yu-bi-ji-ben#apicontroller-attribute-2">ApiController &#x5C6C;&#x6027;</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/aspnet/core/mvc/models/model-binding?view=aspnetcore-3.1&amp;ref=localhost">ASP.NET Core &#x4E2D;&#x7684;&#x8CC7;&#x6599;&#x7E6B;&#x7D50;</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10244545?ref=localhost">[Day12] &#x6A21;&#x578B;&#x7E6B;&#x7D50;&#x8207;&#x9A57;&#x8B49; - &#x6211;&#x8207; ASP.NET Core 3 &#x7684; 30&#x5929;</a></li>
+<li><a href="https://www.gss.com.tw/blog/asp-net-core-model-binding-1?ref=localhost">ASP.NET Core Model Binding &#x6B7B;&#x6D3B;&#x7D81;&#x4E0D;&#x4E0A; - 1</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/aspnet/core/web-api/?view=aspnetcore-3.1&amp;ref=localhost#apicontroller-attribute-2">ApiController &#x5C6C;&#x6027;</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[HTTP header Content-Disposition]]></title><description><![CDATA[Content-Disposition包含兩種類型，分別是inline 和 attachment，用於指定下載的行為]]></description><link>https://vincent87720.github.io/Blog/http-header-content-disposition/</link><guid isPermaLink="false">64de4be0f1c6660001711fc3</guid><category><![CDATA[HTTP]]></category><category><![CDATA[network]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 17 Aug 2023 16:37:55 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/communication-4871245.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/communication-4871245.jpg" alt="HTTP header Content-Disposition"><p>Content-Disposition&#x5305;&#x542B;&#x5169;&#x7A2E;&#x985E;&#x578B;&#xFF0C;&#x5206;&#x5225;&#x662F;inline &#x548C; attachment&#xFF0C;&#x7528;&#x65BC;&#x6307;&#x5B9A;&#x4E0B;&#x8F09;&#x7684;&#x884C;&#x70BA;</p>
 <h3 id="inline">inline</h3>
@@ -127,9 +163,9 @@ ASP.NET&#x63D0;&#x4F9B;Model Binding&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4
 <p>&#x4F7F;&#x7528;&#x6B64;Header&#x4FBF;&#x53EF;&#x4EE5;&#x8B93;&#x4F7F;&#x7528;&#x8005;&#x7AEF;&#x8DF3;&#x51FA;&#x53E6;&#x5B58;&#x8996;&#x7A97;&#xFF0C;&#x4E26;&#x5728;&#x9810;&#x8A2D;&#x6A94;&#x540D;&#x4E2D;&#x986F;&#x793A;filename&#x7684;&#x5B57;&#x4E32;</p>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://www.cnblogs.com/Lambquan/p/12980088.html?ref=chai-yu-bi-ji-ben">header&#x4E2D;Content-Disposition&#x7684;&#x4F5C;&#x7528;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</a></li>
-<li><a href="https://ithelp.ithome.com.tw/articles/10186863?ref=chai-yu-bi-ji-ben">Day20-&#x5167;&#x5BB9;&#x8981;&#x5982;&#x4F55;&#x8655;&#x7F6E;-Content-Disposition</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition?ref=chai-yu-bi-ji-ben">Content-Disposition</a></li>
+<li><a href="https://www.cnblogs.com/Lambquan/p/12980088.html?ref=localhost">header&#x4E2D;Content-Disposition&#x7684;&#x4F5C;&#x7528;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10186863?ref=localhost">Day20-&#x5167;&#x5BB9;&#x8981;&#x5982;&#x4F55;&#x8655;&#x7F6E;-Content-Disposition</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition?ref=localhost">Content-Disposition</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[依賴注入 Dependency injection]]></title><description><![CDATA[在高階模組中直接針對低階模組進行實作會產生高耦合，高度依賴低階模組，當想抽換低階模組、低階模組常常變動或是低階模組的設計改變時，會影響到高階模組。應統一由控制反轉中心建立物件，將物件送到高階模組內進行使用]]></description><link>https://vincent87720.github.io/Blog/aspnet-core-dependency-injection/</link><guid isPermaLink="false">64dbb5f35f1c820001e0a416</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><category><![CDATA[Pattern]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 15 Aug 2023 17:32:39 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/shapelined-_JBKdviweXI-unsplash.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><h2 id="%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5">&#x4F9D;&#x8CF4;&#x6CE8;&#x5165;</h2>
 <h3 id="%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E4%BD%BF%E7%94%A8%E6%B3%A8%E5%85%A5">&#x70BA;&#x4EC0;&#x9EBC;&#x8981;&#x4F7F;&#x7528;&#x6CE8;&#x5165;</h3>
@@ -268,11 +304,11 @@ public class TeaShop{
 </code></pre>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://igouist.github.io/post/2021/11/newbie-6-dependency-injection/?ref=chai-yu-bi-ji-ben">&#x83DC;&#x96DE;&#x65B0;&#x8A13;&#x8A18; (6): &#x4F7F;&#x7528; &#x4F9D;&#x8CF4;&#x6CE8;&#x5165; (Dependency Injection) &#x4F86;&#x89E3;&#x9664;&#x5F37;&#x8026;&#x5408;&#x5427;</a></li>
-<li><a href="https://old-oomusou.goodjack.tw/netcore/di/?ref=chai-yu-bi-ji-ben">&#x5982;&#x4F55;&#x5728; .NET Core &#x4F7F;&#x7528; DI ?</a></li>
-<li><a href="https://www.youtube.com/watch&amp;ref=chai-yu-bi-ji-ben">Dependency Injection in .NET Core (.NET 6)</a></li>
-<li><a href="https://medium.com/wenchin-rolls-around/%E6%B7%BA%E5%85%A5%E6%B7%BA%E5%87%BA-dependency-injection-ea672ba033ca?ref=chai-yu-bi-ji-ben">&#x6DFA;&#x5165;&#x6DFA;&#x51FA; Dependency Injection</a></li>
-<li><a href="https://learn.microsoft.com/zh-tw/dotnet/core/extensions/dependency-injection?ref=chai-yu-bi-ji-ben">.NET &#x76F8;&#x4F9D;&#x6027;&#x63D2;&#x5165;</a></li>
+<li><a href="https://igouist.github.io/post/2021/11/newbie-6-dependency-injection/?ref=localhost">&#x83DC;&#x96DE;&#x65B0;&#x8A13;&#x8A18; (6): &#x4F7F;&#x7528; &#x4F9D;&#x8CF4;&#x6CE8;&#x5165; (Dependency Injection) &#x4F86;&#x89E3;&#x9664;&#x5F37;&#x8026;&#x5408;&#x5427;</a></li>
+<li><a href="https://old-oomusou.goodjack.tw/netcore/di/?ref=localhost">&#x5982;&#x4F55;&#x5728; .NET Core &#x4F7F;&#x7528; DI ?</a></li>
+<li><a href="https://www.youtube.com/watch&amp;ref=localhost">Dependency Injection in .NET Core (.NET 6)</a></li>
+<li><a href="https://medium.com/wenchin-rolls-around/%E6%B7%BA%E5%85%A5%E6%B7%BA%E5%87%BA-dependency-injection-ea672ba033ca?ref=localhost">&#x6DFA;&#x5165;&#x6DFA;&#x51FA; Dependency Injection</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/dotnet/core/extensions/dependency-injection?ref=localhost">.NET &#x76F8;&#x4F9D;&#x6027;&#x63D2;&#x5165;</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[ASP.NET中RenderSection的作用]]></title><description><![CDATA[專案中的各個Page會被插入到_Layout.cshtml裡@RenderBody()的位置，與主版面整合。若Page中的某段程式不想被放在body內時，可以使用Section及RenderSection改變程式碼在_Layout.cshtml中的插入位置。]]></description><link>https://vincent87720.github.io/Blog/aspnet-core-render-section/</link><guid isPermaLink="false">64db19c5e17ae60001fb73af</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 15 Aug 2023 06:25:07 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint-1.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vs2012_gray_imprint-1.png" alt="ASP.NET&#x4E2D;RenderSection&#x7684;&#x4F5C;&#x7528;"><p>&#x5C08;&#x6848;&#x4E2D;&#x7684;&#x5404;&#x500B;Page&#x6703;&#x88AB;&#x63D2;&#x5165;&#x5230;_Layout.cshtml&#x88E1;@RenderBody()&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x8207;&#x4E3B;&#x7248;&#x9762;&#x6574;&#x5408;&#x3002;&#x82E5;Page&#x4E2D;&#x7684;&#x67D0;&#x6BB5;&#x7A0B;&#x5F0F;&#x4E0D;&#x60F3;&#x88AB;&#x653E;&#x5728;body&#x5167;&#x6642;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Section&#x53CA;RenderSection&#x6539;&#x8B8A;&#x7A0B;&#x5F0F;&#x78BC;&#x5728;_Layout.cshtml&#x4E2D;&#x7684;&#x63D2;&#x5165;&#x4F4D;&#x7F6E;&#x3002;</p>
 <p>&#x672C;&#x6B21;&#x7684;&#x4F7F;&#x7528;&#x60C5;&#x5883;&#x662F;&#x60F3;&#x8981;&#x5728;&#x9801;&#x9762;&#x4E2D;&#x52A0;&#x5165;JavaScript&#x6A94;&#x6848;&#xFF0C;&#x4F46;&#x60F3;&#x8981;&#x8B93;&#x4ED6;&#x5728;_Layout.cshtml&#x7684;&#x6700;&#x5C3E;&#x7AEF;&#x624D;&#x88AB;&#x8B80;&#x53D6;&#xFF0C;&#x6545;&#x4F7F;&#x7528;Section&#x53CA;RenderSection&#x6539;&#x8B8A;&#x7A0B;&#x5F0F;&#x78BC;&#x7684;&#x63D2;&#x5165;&#x4F4D;&#x7F6E;&#x3002;</p>
@@ -307,9 +343,9 @@ public class TeaShop{
 </code></pre>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://ithelp.ithome.com.tw/articles/10159990?ref=chai-yu-bi-ji-ben">&#x8A8D;&#x8B58;View - View&#x7684;&#x7A2E;&#x985E;</a></li>
-<li><a href="http://white1027.blogspot.com/2013/10/mvc-razor-rendersection.html?ref=chai-yu-bi-ji-ben">[MVC] Razor @RenderSection &#x4F7F;&#x7528;&#x5FC3;&#x5F97;</a></li>
-<li><a href="https://learn.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-7.0&amp;ref=chai-yu-bi-ji-ben">Layout in ASP.NET Core</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10159990?ref=localhost">&#x8A8D;&#x8B58;View - View&#x7684;&#x7A2E;&#x985E;</a></li>
+<li><a href="http://white1027.blogspot.com/2013/10/mvc-razor-rendersection.html?ref=localhost">[MVC] Razor @RenderSection &#x4F7F;&#x7528;&#x5FC3;&#x5F97;</a></li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-7.0&amp;ref=localhost">Layout in ASP.NET Core</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[叢集索引與非叢集索引]]></title><description><![CDATA[通常資料庫在尋找資料是逐行檢查，看看每一筆資料是否符合條件，若符合則拿出，不符合就往下一筆直到結束，稱為Full table scan。
 
@@ -343,9 +379,9 @@ B-tree&#x5247;&#x9069;&#x5408;&#x5132;&#x5B58;&#x5141;&#x8A31;&#x91CD;&#x8907;&#
 </ul>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://learn.microsoft.com/zh-tw/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver16&amp;ref=chai-yu-bi-ji-ben">&#x53E2;&#x96C6;&#x8207;&#x975E;&#x53E2;&#x96C6;&#x7D22;&#x5F15;&#x8AAA;&#x660E;</a></li>
-<li><a href="https://medium.com/@jinghua.shih/rails-%E7%B6%B2%E7%AB%99%E6%95%88%E8%83%BD%E5%84%AA%E5%8C%96-%E4%BA%8C-%E8%B3%87%E6%96%99%E5%BA%AB%E7%B4%A2%E5%BC%95-database-index-bd89fa3757a?ref=chai-yu-bi-ji-ben">[Rails &#x6548;&#x80FD;&#x512A;&#x5316;] &#x8CC7;&#x6599;&#x5EAB;&#x7D22;&#x5F15; Database Indexing</a></li>
-<li><a href="https://medium.com/omarelgabrys-blog/database-indexing-and-transactions-part-9-a24781d429f8?ref=chai-yu-bi-ji-ben">Database &#x2014; Indexing, Transactions &amp; Stored Procedures (Part 9)</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver16&amp;ref=localhost">&#x53E2;&#x96C6;&#x8207;&#x975E;&#x53E2;&#x96C6;&#x7D22;&#x5F15;&#x8AAA;&#x660E;</a></li>
+<li><a href="https://medium.com/@jinghua.shih/rails-%E7%B6%B2%E7%AB%99%E6%95%88%E8%83%BD%E5%84%AA%E5%8C%96-%E4%BA%8C-%E8%B3%87%E6%96%99%E5%BA%AB%E7%B4%A2%E5%BC%95-database-index-bd89fa3757a?ref=localhost">[Rails &#x6548;&#x80FD;&#x512A;&#x5316;] &#x8CC7;&#x6599;&#x5EAB;&#x7D22;&#x5F15; Database Indexing</a></li>
+<li><a href="https://medium.com/omarelgabrys-blog/database-indexing-and-transactions-part-9-a24781d429f8?ref=localhost">Database &#x2014; Indexing, Transactions &amp; Stored Procedures (Part 9)</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Webpack設定多個entry及output]]></title><description><![CDATA[預設的Webpack使用單一entry及output，若需要多個entry及output可以在webpack.config.js中加入一個函式取得目錄內的所有檔案，將所有檔案加入至entry中。]]></description><link>https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output/</link><guid isPermaLink="false">64d5f976e17ae60001fb7389</guid><category><![CDATA[Webpack]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 11 Aug 2023 09:07:59 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/webpack.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/webpack.png" alt="Webpack&#x8A2D;&#x5B9A;&#x591A;&#x500B;entry&#x53CA;output"><p>&#x9810;&#x8A2D;&#x7684;Webpack&#x4F7F;&#x7528;&#x55AE;&#x4E00;entry&#x53CA;output&#xFF0C;&#x82E5;&#x9700;&#x8981;&#x591A;&#x500B;entry&#x53CA;output&#x53EF;&#x4EE5;&#x5728;<code>webpack.config.js</code>&#x4E2D;&#x52A0;&#x5165;&#x4E00;&#x500B;&#x51FD;&#x5F0F;&#x53D6;&#x5F97;&#x76EE;&#x9304;&#x5167;&#x7684;&#x6240;&#x6709;&#x6A94;&#x6848;&#xFF0C;&#x5C07;&#x6240;&#x6709;&#x6A94;&#x6848;&#x52A0;&#x5165;&#x81F3;entry&#x4E2D;&#x3002;</p>
 <h2 id="%E5%AE%89%E8%A3%9D%E4%B8%A6%E8%BC%89%E5%85%A5glob">&#x5B89;&#x88DD;&#x4E26;&#x8F09;&#x5165;glob</h2>
@@ -381,7 +417,7 @@ module.exports = {
 </code></pre>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://medium.com/anna-hsaio-%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC%E8%A8%98/webpack-%E6%95%99%E5%AD%B8-webpack%E5%A4%9A%E5%85%A5%E5%8F%A3-%E5%A4%9A%E5%87%BA%E5%8F%A3%E9%85%8D%E7%BD%AE-b15a1a2fd74a?ref=chai-yu-bi-ji-ben">Webpack&#xFF5C;&#x6559;&#x5B78;&#xFF1A;webpack&#x591A;&#x5165;&#x53E3;/&#x591A;&#x51FA;&#x53E3;&#x914D;&#x7F6E;</a></li>
+<li><a href="https://medium.com/anna-hsaio-%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC%E8%A8%98/webpack-%E6%95%99%E5%AD%B8-webpack%E5%A4%9A%E5%85%A5%E5%8F%A3-%E5%A4%9A%E5%87%BA%E5%8F%A3%E9%85%8D%E7%BD%AE-b15a1a2fd74a?ref=localhost">Webpack&#xFF5C;&#x6559;&#x5B78;&#xFF1A;webpack&#x591A;&#x5165;&#x53E3;/&#x591A;&#x51FA;&#x53E3;&#x914D;&#x7F6E;</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Vue3錯誤訊息 Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias "vue" to "vue/dist/vue.esm-bundler.js".]]></title><description><![CDATA[從原本用CDN載入Vue，轉換為用npm載入並用webpack打包的過程中發生了錯誤，原因與Vue的使用環境有關。]]></description><link>https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/</link><guid isPermaLink="false">64d5f2755c5ac00001391bc4</guid><category><![CDATA[Vue]]></category><category><![CDATA[Webpack]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 11 Aug 2023 08:36:07 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/08/vue.jpg" alt="Vue3&#x932F;&#x8AA4;&#x8A0A;&#x606F; Component provided template option but runtime compilation is not supported in this build of Vue. Configure your bundler to alias &quot;vue&quot; to &quot;vue/dist/vue.esm-bundler.js&quot;."><p>&#x5F9E;&#x539F;&#x672C;&#x7528;CDN&#x8F09;&#x5165;Vue&#xFF0C;&#x8F49;&#x63DB;&#x70BA;&#x7528;npm&#x8F09;&#x5165;&#x4E26;&#x7528;webpack&#x6253;&#x5305;&#x7684;&#x904E;&#x7A0B;&#x4E2D;&#x767C;&#x751F;&#x4E86;&#x932F;&#x8AA4;&#xFF0C;&#x539F;&#x56E0;&#x8207;Vue&#x7684;&#x4F7F;&#x7528;&#x74B0;&#x5883;&#x6709;&#x95DC;&#x3002;</p>
 <h2 id="%E5%8E%9F%E5%9B%A0">&#x539F;&#x56E0;</h2>
@@ -400,7 +436,7 @@ module.exports = {
 </code></pre>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://developer.aliyun.com/article/1138888?ref=chai-yu-bi-ji-ben">vue3 &#x4F7F;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x63D2;&#x4EF6;&#x95EE;&#x9898; bundler to alias &#x201C;vue&#x201C; to &#x201C;vue/dist/vue.esm-bundler.js</a></li>
+<li><a href="https://developer.aliyun.com/article/1138888?ref=localhost">vue3 &#x4F7F;&#x7528;&#x7B2C;&#x4E09;&#x65B9;&#x63D2;&#x4EF6;&#x95EE;&#x9898; bundler to alias &#x201C;vue&#x201C; to &#x201C;vue/dist/vue.esm-bundler.js</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[ASP.NET Core使用Middleware進行例外處理]]></title><description><![CDATA[當API被呼叫且發生例外時，不太會希望預設的錯誤訊息被傳回給使用者，在C#中可以使用try catch攔截錯誤訊息。
 
@@ -485,10 +521,10 @@ module.exports = {
 </code></pre>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://learn.microsoft.com/zh-tw/aspnet/core/fundamentals/middleware/write?view=aspnetcore-6.0&amp;3BWT.mc_id=DT-MVP-5003022&amp;ref=chai-yu-bi-ji-ben">&#x64B0;&#x5BEB;&#x81EA;&#x8A02;&#x7684; ASP.NET Core &#x4E2D;&#x4ECB;&#x8EDF;&#x9AD4;</a></li>
-<li><a href="https://blog.poychang.net/asp-net-core-web-api-global-exception-handler/?ref=chai-yu-bi-ji-ben">&#x5728; ASP.NET Core &#x4E2D;&#x4F7F;&#x7528; Middleware &#x5168;&#x57DF;&#x8655;&#x7406;&#x4F8B;&#x5916;</a></li>
-<li><a href="https://ithelp.ithome.com.tw/articles/10238649?ref=chai-yu-bi-ji-ben">[Day03] Middleware- &#x6211;&#x8207; ASP.NET Core 3 &#x7684; 30&#x5929;</a></li>
-<li><a href="https://www.cnblogs.com/RainingNight/p/middleware-in-asp-net-core.html?ref=chai-yu-bi-ji-ben">ASP.NET Core &#x8FD0;&#x884C;&#x539F;&#x7406;&#x89E3;&#x5256;[3]:Middleware-&#x8BF7;&#x6C42;&#x7BA1;&#x9053;&#x7684;&#x6784;&#x6210;</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/aspnet/core/fundamentals/middleware/write?view=aspnetcore-6.0&amp;WT.mc_id=DT-MVP-5003022&amp;ref=localhost">&#x64B0;&#x5BEB;&#x81EA;&#x8A02;&#x7684; ASP.NET Core &#x4E2D;&#x4ECB;&#x8EDF;&#x9AD4;</a></li>
+<li><a href="https://blog.poychang.net/asp-net-core-web-api-global-exception-handler/?ref=localhost">&#x5728; ASP.NET Core &#x4E2D;&#x4F7F;&#x7528; Middleware &#x5168;&#x57DF;&#x8655;&#x7406;&#x4F8B;&#x5916;</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10238649?ref=localhost">[Day03] Middleware- &#x6211;&#x8207; ASP.NET Core 3 &#x7684; 30&#x5929;</a></li>
+<li><a href="https://www.cnblogs.com/RainingNight/p/middleware-in-asp-net-core.html?ref=localhost">ASP.NET Core &#x8FD0;&#x884C;&#x539F;&#x7406;&#x89E3;&#x5256;[3]:Middleware-&#x8BF7;&#x6C42;&#x7BA1;&#x9053;&#x7684;&#x6784;&#x6210;</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[比較JavaScript中assign與replace的差異]]></title><description><![CDATA[<!--kg-card-begin: markdown--><h2 id="assign">assign</h2>
 <h3 id="%E5%8A%9F%E8%83%BD">&#x529F;&#x80FD;</h3>
@@ -533,9 +569,9 @@ location.href=&quot;http://test.com&quot;
 <p>replace&#x548C;assign&#x7684;&#x5DEE;&#x7570;&#x5728;&#x65BC;replace&#x4E0D;&#x6703;&#x5728;session history&#x4E2D;&#x7D00;&#x9304;&#x76EE;&#x524D;&#x7684;&#x9801;&#x9762;&#xFF0C;replace&#x5F8C;&#x5C07;&#x7121;&#x6CD5;&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x9801;&#xFF0C;&#x82E5;&#x5728;replace&#x904E;&#x5F8C;&#x6309;&#x4E0B;&#x4E0A;&#x4E00;&#x9801;&#x5247;&#x6703;&#x56DE;&#x5230;&#x4E0A;&#x4E0A;&#x500B;&#x700F;&#x89BD;&#x7684;&#x9801;&#x9762;</p>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
 <ul>
-<li><a href="https://ithelp.ithome.com.tw/articles/10190062?ref=chai-yu-bi-ji-ben">Javascript &#x9801;&#x9762;&#x8DF3;&#x8F49;&#x3001;&#x5237;&#x65B0;&#x3001;&#x91CD;&#x5B9A;&#x5411;&#x7684;&#x5E7E;&#x7A2E;&#x65B9;&#x5F0F;</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/assign?ref=chai-yu-bi-ji-ben">location: assign() method - Web APIs | MDN</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/replace?ref=chai-yu-bi-ji-ben">location: replace() method - Web APIs | MDN</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10190062?ref=localhost">Javascript &#x9801;&#x9762;&#x8DF3;&#x8F49;&#x3001;&#x5237;&#x65B0;&#x3001;&#x91CD;&#x5B9A;&#x5411;&#x7684;&#x5E7E;&#x7A2E;&#x65B9;&#x5F0F;</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/assign?ref=localhost">location: assign() method - Web APIs | MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/replace?ref=localhost">location: replace() method - Web APIs | MDN</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Docker buildx]]></title><description><![CDATA[Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。]]></description><link>https://vincent87720.github.io/Blog/docker-buildx/</link><guid isPermaLink="false">63e5196c0a96e94f12972009</guid><category><![CDATA[Docker]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 09 Feb 2023 16:09:53 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/02/docker.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/02/docker.jpg" alt="Docker buildx"><p>Synology&#x7684;NAS&#x53EF;&#x4EE5;&#x5B89;&#x88DD;docker&#x5957;&#x4EF6;&#xFF0C;&#x4E0B;&#x8F09;&#x6620;&#x50CF;&#x6A94;&#x4F7F;&#x7528;&#x3002;&#x4F7F;&#x7528;&#x5B98;&#x65B9;&#x7684;&#x6620;&#x50CF;&#x6A94;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x57F7;&#x884C;&#xFF0C;&#x4F46;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x88FD;&#x4F5C;&#x7684;&#x6620;&#x50CF;&#x6A94;&#x537B;&#x8DF3;&#x51FA;&#x4E86;&#x932F;&#x8AA4;&#x8A0A;&#x606F;<code>standard_init_linux.go:230: exec user process caused: exec format error</code>&#xFF0C;&#x641C;&#x5C0B;&#x904E;&#x5F8C;&#x767C;&#x73FE;&#x8207;&#x7DE8;&#x8B6F;&#x5E73;&#x53F0;&#x6709;&#x95DC;&#xFF0C;&#x4F7F;&#x7528;buildx&#x5C07;&#x6620;&#x50CF;&#x6A94;&#x7DE8;&#x8B6F;&#x70BA;&#x76EE;&#x6A19;&#x5E73;&#x53F0;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x6620;&#x50CF;&#x6A94;&#x4FBF;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x89E3;&#x6C7A;&#x9019;&#x500B;&#x554F;&#x984C;&#x3002;</p>
 <h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
@@ -624,17 +660,17 @@ onValidationError(ref: any) {
 </code></pre>
 <p>&#x9996;&#x5148;&#x4F7F;&#x7528;<code>ref.$el</code>&#x53D6;&#x5F97;&#x5143;&#x7D20;</p>
 <p><img src="https://vincent87720.github.io/Blog/content/images/2022/10/o7tjfGz.png" alt="&#x4F7F;&#x7528;QUASAR&#x5728;&#x8868;&#x55AE;&#x9001;&#x51FA;&#x6642;&#x6EFE;&#x52D5;&#x5230;&#x932F;&#x8AA4;&#x6B04;&#x4F4D;" loading="lazy"><br>
-&#x5716;&#x7247;&#x53D6;&#x81EA;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect?ref=chai-yu-bi-ji-ben">Element.getBoundingClientRect() - Web APIs | MDN</a></p>
+&#x5716;&#x7247;&#x53D6;&#x81EA;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect?ref=localhost">Element.getBoundingClientRect() - Web APIs | MDN</a></p>
 <p>&#x63A5;&#x8457;&#x4F7F;&#x7528;getBoundingClientRect()&#x53D6;&#x5F97;&#x5143;&#x7D20;&#x8207;viewport&#x7684;&#x8DDD;&#x96E2;</p>
 <p>window.pageYOffset&#x70BA;&#x76EE;&#x524D;&#x6EFE;&#x52D5;&#x7684;&#x9AD8;&#x5EA6;</p>
 <p>&#x5169;&#x8005;&#x76F8;&#x52A0;&#x5373;&#x662F;&#x5143;&#x7D20;&#x9AD8;&#x5EA6;</p>
 <p>&#x6700;&#x5F8C;&#x4F7F;&#x7528;getScrollTarget&#x53CA;setVerticalScrollPosition&#x8A2D;&#x5B9A;&#x6EFE;&#x52D5;&#x76EE;&#x6A19;&#x3001;&#x4F4D;&#x7F6E;&#x53CA;&#x6642;&#x9593;</p>
 <h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect?ref=chai-yu-bi-ji-ben">Element.getBoundingClientRect() - Web APIs | MDN</a><br>
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset?ref=chai-yu-bi-ji-ben">Window.pageYOffset - Web APIs | MDN</a><br>
-<a href="https://stackoverflow.com/questions/71650521/autoscroll-to-empty-but-required-q-input-field-in-a-form-with-validation-quasar?ref=chai-yu-bi-ji-ben">autoscroll to empty but required q-input field in a form with validation Quasar 2.5.5 &amp; Vuejs3</a><br>
-<a href="https://github.com/znlbwo/study/issues/10?ref=chai-yu-bi-ji-ben">&#x83B7;&#x53D6;&#x5143;&#x7D20;&#x8DDD;&#x79BB;&#x9875;&#x9762;&#x9876;&#x90E8;&#x7684;&#x8DDD;&#x79BB; &#xB7; Issue #10 &#xB7; znlbwo/study</a><br>
-<a href="https://quasar.dev/quasar-utils/scrolling-utils?ref=chai-yu-bi-ji-ben#scrolling-to-an-element">Scrolling Utils | Quasar Framework</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect?ref=localhost">Element.getBoundingClientRect() - Web APIs | MDN</a><br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset?ref=localhost">Window.pageYOffset - Web APIs | MDN</a><br>
+<a href="https://stackoverflow.com/questions/71650521/autoscroll-to-empty-but-required-q-input-field-in-a-form-with-validation-quasar?ref=localhost">autoscroll to empty but required q-input field in a form with validation Quasar 2.5.5 &amp; Vuejs3</a><br>
+<a href="https://github.com/znlbwo/study/issues/10?ref=localhost">&#x83B7;&#x53D6;&#x5143;&#x7D20;&#x8DDD;&#x79BB;&#x9875;&#x9762;&#x9876;&#x90E8;&#x7684;&#x8DDD;&#x79BB; &#xB7; Issue #10 &#xB7; znlbwo/study</a><br>
+<a href="https://quasar.dev/quasar-utils/scrolling-utils?ref=localhost#scrolling-to-an-element">Scrolling Utils | Quasar Framework</a></p>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Python取得打包成binary後的路徑]]></title><description><![CDATA[使用pyinstaller打包後的執行檔在執行時有可能會發生實際執行的檔案位於Temporary內的情況，這時就必須用以下方法取得實際exe檔案所在的路徑]]></description><link>https://vincent87720.github.io/Blog/python-get-binary-path/</link><guid isPermaLink="false">635cfda26c901d4844747e89</guid><category><![CDATA[python]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:18:38 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2022/10/python-logo.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2022/10/python-logo.jpg" alt="Python&#x53D6;&#x5F97;&#x6253;&#x5305;&#x6210;binary&#x5F8C;&#x7684;&#x8DEF;&#x5F91;"><p>&#x4F7F;&#x7528;pyinstaller&#x6253;&#x5305;&#x5F8C;&#x7684;&#x57F7;&#x884C;&#x6A94;&#x5728;&#x57F7;&#x884C;&#x6642;&#x6709;&#x53EF;&#x80FD;&#x6703;&#x767C;&#x751F;&#x5BE6;&#x969B;&#x57F7;&#x884C;&#x7684;&#x6A94;&#x6848;&#x4F4D;&#x65BC;Temporary&#x5167;&#x7684;&#x60C5;&#x6CC1;&#xFF0C;&#x9019;&#x6642;&#x5C31;&#x5FC5;&#x9808;&#x7528;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x53D6;&#x5F97;&#x5BE6;&#x969B;exe&#x6A94;&#x6848;&#x6240;&#x5728;&#x7684;&#x8DEF;&#x5F91;</p>
 <h2 id="%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%B3%95">&#x89E3;&#x6C7A;&#x65B9;&#x6CD5;</h2>
 <pre><code class="language-python">import sys
@@ -646,7 +682,7 @@ print(sys.argv[0])
 print(path_current_dir)
 </code></pre>
 <h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
-<p><a href="https://syachiku.net/python%E3%82%92exe%E3%81%97%E3%81%9F%E9%9A%9B%E3%81%AB%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E5%AE%9F%E8%A1%8C%E3%83%91%E3%82%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/?ref=chai-yu-bi-ji-ben">Python&#x3092;exe&#x3057;&#x305F;&#x969B;&#x306B;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x5B9F;&#x884C;&#x30D1;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x65B9;&#x6CD5;</a></p>
+<p><a href="https://syachiku.net/python%E3%82%92exe%E3%81%97%E3%81%9F%E9%9A%9B%E3%81%AB%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E5%AE%9F%E8%A1%8C%E3%83%91%E3%82%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/?ref=localhost">Python&#x3092;exe&#x3057;&#x305F;&#x969B;&#x306B;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x5B9F;&#x884C;&#x30D1;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x65B9;&#x6CD5;</a></p>
 <!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Pipe]]></title><description><![CDATA[pipe()用於在兩個有關係的process（通常是父子或是兄弟process）之間通信
 假設有A和B兩個process，pipe()建立之後可以用A讀或寫經由pipe傳送到B的寫或讀]]></description><link>https://vincent87720.github.io/Blog/pipe/</link><guid isPermaLink="false">635cfc2d6c901d4844747e7d</guid><category><![CDATA[generalKnowledge]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:15:36 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2022/10/diana-Ynq3Wve3SOA-unsplash_pipe.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2022/10/diana-Ynq3Wve3SOA-unsplash_pipe.jpeg" alt="Pipe"><p>pipe()&#x7528;&#x65BC;&#x5728;&#x5169;&#x500B;&#x6709;&#x95DC;&#x4FC2;&#x7684;process&#xFF08;&#x901A;&#x5E38;&#x662F;&#x7236;&#x5B50;&#x6216;&#x662F;&#x5144;&#x5F1F;process&#xFF09;&#x4E4B;&#x9593;&#x901A;&#x4FE1;<br>
 &#x5047;&#x8A2D;&#x6709;A&#x548C;B&#x5169;&#x500B;process&#xFF0C;pipe()&#x5EFA;&#x7ACB;&#x4E4B;&#x5F8C;&#x53EF;&#x4EE5;&#x7528;A&#x8B80;&#x6216;&#x5BEB;&#x7D93;&#x7531;pipe&#x50B3;&#x9001;&#x5230;B&#x7684;&#x5BEB;&#x6216;&#x8B80;</p>
@@ -715,27 +751,5 @@ int main(int argc, char* argv[])
 }
 </code></pre>
 <h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
-<p><a href="https://www.cntofu.com/book/46/linux_system/pipehe_fifo.md?ref=chai-yu-bi-ji-ben">pipe&#x548C;FIFO</a></p>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Interprocess Communication (IPC)]]></title><description><![CDATA[行程間通訊有兩種方式，分別是Shared Memory Method和Message passing]]></description><link>https://vincent87720.github.io/Blog/interprocess-communication/</link><guid isPermaLink="false">635cfb2e6c901d4844747e6e</guid><category><![CDATA[generalKnowledge]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:09:26 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2022/10/communication-4871245.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2022/10/communication-4871245.jpg" alt="Interprocess Communication (IPC)"><p>&#x884C;&#x7A0B;&#x9593;&#x901A;&#x8A0A;&#x6709;&#x5169;&#x7A2E;&#x65B9;&#x5F0F;&#xFF0C;&#x5206;&#x5225;&#x662F;Shared Memory Method&#x548C;Message passing</p>
-<blockquote>
-<p>&#x4E0D;&#x8981;&#x901A;&#x904E;&#x5171;&#x4EAB;&#x8A18;&#x61B6;&#x9AD4;&#x6765;&#x901A;&#x4FE1;&#xFF0C;&#x800C;&#x61C9;&#x8A72;&#x901A;&#x904E;&#x901A;&#x4FE1;&#x6765;&#x5171;&#x4EAB;&#x8A18;&#x61B6;&#x9AD4;</p>
-</blockquote>
-<h2 id="shared-memory-method">Shared Memory Method</h2>
-<ul>
-<li>&#x70BA;&#x5169;&#x500B;&#x884C;&#x7A0B;&#x4E4B;&#x9593;&#x900F;&#x904E;&#x4E00;&#x584A;&#x5171;&#x540C;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x50B3;&#x905E;&#x8A0A;&#x606F;&#x8CC7;&#x6599;</li>
-<li>&#x5206;&#x70BA;&#x6709;&#x9650;&#x5236;&#x5927;&#x5C0F;&#x7684;buffer&#x53CA;&#x7121;&#x9650;&#x5236;&#x5927;&#x5C0F;&#x7684;buffer</li>
-<li>&#x82E5;&#x958B;&#x59CB;&#x53CA;&#x7D50;&#x675F;&#x90FD;&#x6307;&#x5411;&#x540C;&#x4E00;&#x500B;&#x6A19;&#x7C64;&#x5247;&#x70BA;&#x7121;&#x5927;&#x5C0F;&#x9650;&#x5236;buffer</li>
-</ul>
-<h2 id="message-passing">Message Passing</h2>
-<ul>
-<li>&#x70BA;&#x5169;&#x500B;&#x884C;&#x7A0B;&#x4E4B;&#x9593;&#x900F;&#x904E;kernel&#x50B3;&#x905E;&#x8A0A;&#x8A0A;&#x606F;&#x8CC7;&#x6599;</li>
-<li>&#x8A0A;&#x606F;&#x53EF;&#x4EE5;&#x5206;&#x70BA;header&#x548C;body&#x5169;&#x500B;&#x90E8;&#x5206;&#xFF0C;header&#x7528;&#x4F86;&#x5132;&#x5B58;&#x8A0A;&#x606F;&#x7A2E;&#x985E;&#x3001;&#x76EE;&#x6A19;ID&#x3001;&#x8A0A;&#x606F;&#x9577;&#x5EA6;&#x548C;&#x63A7;&#x5236;&#x8CC7;&#x8A0A;&#xFF0C;&#x63A7;&#x5236;&#x8CC7;&#x8A0A;&#x5305;&#x542B;&#x50CF;&#x662F;&#x7576;&#x8D85;&#x904E;buffer&#x8A72;&#x5982;&#x4F55;&#x8655;&#x7406;&#x7684;&#x8CC7;&#x8A0A;&#x3001;&#x5E8F;&#x865F;&#x53CA;&#x512A;&#x5148;&#x9806;&#x5E8F;&#xFF0C;&#x4E14;&#x4E00;&#x822C;&#x4F86;&#x8AAA;&#x4F7F;&#x7528;FIFO</li>
-<li>&#x8A0A;&#x606F;&#x50B3;&#x9001;&#x6709;&#x5206;&#x70BA;&#x540C;&#x6B65;&#x53CA;&#x975E;&#x540C;&#x6B65;&#xFF0C;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x7A2E;&#x6392;&#x5217;&#x7D44;&#x5408;
-<ul>
-<li>Blocking send and blocking receive</li>
-<li>Non-blocking send and Non-blocking receive</li>
-<li>Non-blocking send and Blocking receive (Mostly used)</li>
-</ul>
-</li>
-</ul>
+<p><a href="https://www.cntofu.com/book/46/linux_system/pipehe_fifo.md?ref=localhost">pipe&#x548C;FIFO</a></p>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

@@ -6,33 +6,33 @@
 
     <title>[Python]使用Python爬蟲抓取網站資料</title>
 
-    <meta name="description" content="使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。" />
-    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
-    <link rel="canonical" href="../index.html" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="description" content="使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。">
+    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     
-    <meta property="og:site_name" content="柴魚筆記本" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="[Python]使用Python爬蟲抓取網站資料" />
-    <meta property="og:description" content="使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。" />
-    <meta property="og:url" content="https://vincent87720.github.io/Blog/python-web-crawler/" />
-    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2020/01/python-logo.jpg" />
-    <meta property="article:published_time" content="2020-01-03T16:48:36.000Z" />
-    <meta property="article:modified_time" content="2020-10-27T18:29:23.000Z" />
-    <meta property="article:tag" content="python" />
-    <meta property="article:tag" content="crawler" />
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[Python]使用Python爬蟲抓取網站資料">
+    <meta property="og:description" content="使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/python-web-crawler/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2020/01/python-logo.jpg">
+    <meta property="article:published_time" content="2020-01-03T16:48:36.000Z">
+    <meta property="article:modified_time" content="2020-10-27T18:29:23.000Z">
+    <meta property="article:tag" content="python">
+    <meta property="article:tag" content="crawler">
     
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[Python]使用Python爬蟲抓取網站資料" />
-    <meta name="twitter:description" content="使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。" />
-    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/python-web-crawler/" />
-    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2020/01/python-logo.jpg" />
-    <meta name="twitter:label1" content="Written by" />
-    <meta name="twitter:data1" content="Katsuobushi" />
-    <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="python, crawler" />
-    <meta property="og:image:width" content="1890" />
-    <meta property="og:image:height" content="800" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="[Python]使用Python爬蟲抓取網站資料">
+    <meta name="twitter:description" content="使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/python-web-crawler/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2020/01/python-logo.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="python, crawler">
+    <meta property="og:image:width" content="1890">
+    <meta property="og:image:height" content="800">
     
     <script type="application/ld+json">
 {
@@ -73,15 +73,12 @@
     },
     "keywords": "python, crawler",
     "description": "使用python抓取網站或網頁資料是再方便不過的了，常見的抓取方法包含抓取網站回應的JSON檔，或是直接抓取網頁內容並進行分析，以下紀錄兩種方法該如何實作。",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://vincent87720.github.io/Blog/"
-    }
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/python-web-crawler/"
 }
     </script>
 
-    <meta name="generator" content="Ghost 5.38" />
-    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html" />
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html">
 
     <style amp-custom>
     *,
@@ -1101,7 +1098,7 @@ resp = requests.get(url) //建立get請求
 </code></pre>
 <p>使用<strong>BeautifulSoup(htmlMarkup,'html5lib')</strong>方法解析網頁內容，返回值(soup)為&lt;class 'bs4.BeautifulSoup'&gt;</p><pre><code>soup = BeautifulSoup(resp.text,'html5lib')
 </code></pre>
-<hr></hr><h2 id="--2">取得內容<br /></h2><h3 id="-json-1">目標為JSON</h3><p>以台灣證券交易所-201901月個股日成交資訊為例，網址為'<a href="https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&amp;3Bdate=20190101&amp;3BstockNo=2881&amp;ref=chai-yu-bi-ji-ben">https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&amp;date=20190101&amp;stockNo=2881</a>'，該請求返回的內容如下圖</p><figure class="kg-card kg-image-card"></figure><p>需使用Pandas模組裡的方法，使用以下指令載入該模組</p><pre><code>import pandas as pd
+<hr></hr><h2 id="--2">取得內容<br /></h2><h3 id="-json-1">目標為JSON</h3><p>以台灣證券交易所-201901月個股日成交資訊為例，網址為'<a href="https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&amp;date=20190101&amp;stockNo=2881&amp;ref=localhost">https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&amp;date=20190101&amp;stockNo=2881</a>'，該請求返回的內容如下圖</p><figure class="kg-card kg-image-card"></figure><p>需使用Pandas模組裡的方法，使用以下指令載入該模組</p><pre><code>import pandas as pd
 </code></pre>
 <p>我們需要取得data裡的0~20所有資訊做為內容，將其放入pandas的dataframe裡，並使用fields作為其欄位的標籤</p><pre><code>//data[]為先前取得的資料，型態為字典
 df = pd.DataFrame(data['data'],columns = data['fields'])

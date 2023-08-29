@@ -6,32 +6,32 @@
 
     <title>[Golang]MySQL Error 1040: Too Many Connections 錯誤處理</title>
 
-    <meta name="description" content="前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。" />
-    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon" />
-    <link rel="canonical" href="../index.html" />
-    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <meta name="description" content="前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。">
+    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
     
-    <meta property="og:site_name" content="柴魚筆記本" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="[Golang]MySQL Error 1040: Too Many Connections 錯誤處理" />
-    <meta property="og:description" content="前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。" />
-    <meta property="og:url" content="https://vincent87720.github.io/Blog/golang-mysql-error-1040/" />
-    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2021/06/golang-long.jpeg" />
-    <meta property="article:published_time" content="2021-06-08T16:09:52.000Z" />
-    <meta property="article:modified_time" content="2021-06-08T16:09:52.000Z" />
-    <meta property="article:tag" content="golang" />
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[Golang]MySQL Error 1040: Too Many Connections 錯誤處理">
+    <meta property="og:description" content="前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/golang-mysql-error-1040/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2021/06/golang-long.jpeg">
+    <meta property="article:published_time" content="2021-06-08T16:09:52.000Z">
+    <meta property="article:modified_time" content="2021-06-08T16:09:52.000Z">
+    <meta property="article:tag" content="golang">
     
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[Golang]MySQL Error 1040: Too Many Connections 錯誤處理" />
-    <meta name="twitter:description" content="前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。" />
-    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/golang-mysql-error-1040/" />
-    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2021/06/golang-long.jpeg" />
-    <meta name="twitter:label1" content="Written by" />
-    <meta name="twitter:data1" content="Katsuobushi" />
-    <meta name="twitter:label2" content="Filed under" />
-    <meta name="twitter:data2" content="golang" />
-    <meta property="og:image:width" content="2000" />
-    <meta property="og:image:height" content="515" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="[Golang]MySQL Error 1040: Too Many Connections 錯誤處理">
+    <meta name="twitter:description" content="前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/golang-mysql-error-1040/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2021/06/golang-long.jpeg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="golang">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="515">
     
     <script type="application/ld+json">
 {
@@ -72,15 +72,12 @@
     },
     "keywords": "golang",
     "description": "前陣子寫了一個golang程式用來上傳資料到MySQL，起初程式運作都非常良好，過了一陣子開始出現代號為1040的Too Many Connections錯誤，我們一起來看看發生了甚麼事。",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://vincent87720.github.io/Blog/"
-    }
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/golang-mysql-error-1040/"
 }
     </script>
 
-    <meta name="generator" content="Ghost 5.38" />
-    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html" />
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html">
 
     <style amp-custom>
     *,
@@ -1116,9 +1113,9 @@
 <p>我們可以發現到Threads_connected已經到達151了，MySQL預設的最大允許連線數量為151，可以使用以下指令查詢最大允許連線數量</p>
 <pre><code class="language-sql">SHOW VARIABLES LIKE 'max_connections';
 </code></pre>
-<h2 id>檢查程式碼</h2>
+<h2>檢查程式碼</h2>
 <p>後來檢查程式碼發現在database/sql這個package有兩個struct，一個是DB，另一個是Conn，我將DB物件的連線關掉而沒有關閉Conn物件的，導致連線數一直增加，造成1040錯誤。</p>
-<h3 id>錯誤程式碼範例</h3>
+<h3>錯誤程式碼範例</h3>
 <pre><code class="language-go">db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1)/testdb?charset=utf8")
 if err != nil {
     fmt.Println(err)
@@ -1131,7 +1128,7 @@ if err != nil {
 }
 </code></pre>
 <p>我們可以看到上面關閉的是db.Close()，這樣並不能正確關閉連線，必須關閉db.Query的連線才能正確的降低連線卡住的數量</p>
-<h3 id>修正程式碼範例</h3>
+<h3>修正程式碼範例</h3>
 <pre><code class="language-go">db, err := sql.Open("mysql", "user:password@tcp(127.0.0.1)/testdb?charset=utf8")
 if err != nil {
     fmt.Println(err)
@@ -1145,9 +1142,9 @@ if err != nil {
 defer conn.Close()
 
 </code></pre>
-<h2 id>參考資料</h2>
+<h2>參考資料</h2>
 <ul>
-<li><a href="https://stackoverflow.com/questions/39452555/is-it-normal-to-have-these-many-connections-in-mysql?ref=chai-yu-bi-ji-ben">stackoverflow - Is it normal to have these many connections in MySQL?</a></li>
+<li><a href="https://stackoverflow.com/questions/39452555/is-it-normal-to-have-these-many-connections-in-mysql?ref=localhost">stackoverflow - Is it normal to have these many connections in MySQL?</a></li>
 </ul>
 
 

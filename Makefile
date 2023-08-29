@@ -5,6 +5,8 @@ THE_BASE_DIR_PATH := $(abspath $(dir $(MAKEFILE_LIST)))
 
 init: set install
 
+dockerun: dockerun
+
 build: exportContent replaceContent
 
 set: setConfig
@@ -17,6 +19,15 @@ stop: stopInstance
 
 backup: backupInstance
 
+.PHONY: dockerun
+dockerun:
+	docker run --rm -d \
+        --name katsuobushi-ghost \
+        -e NODE_ENV=development \
+        -e database__connection__filename='/var/lib/ghost/content/data/ghost-local.db' \
+        -p 2368:2368 \
+        -v /Users/vincent/Desktop/Blog/content:/var/lib/ghost/content \
+        ghost
 
 .PHONY: installDependency
 installDependency:

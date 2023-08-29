@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Promise in JavaScript</title>
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<script>
+			var siteUrl = 'https://vincent87720.github.io/Blog';
+	</script>
+
+	<script>
+			var localTheme = localStorage.getItem('attila_theme');
+			switch (localTheme) {
+					case 'dark':
+							document.documentElement.classList.add('theme-dark');
+							break;
+					case 'light':
+							document.documentElement.classList.add('theme-light');
+							break;
+					default:
+							break;
+			}
+	</script>
+
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
+	<meta name="description" content="Promise是Javascript提供的建構函式，用於建構Promise物件，該物件會存放非同步事件的結果。">
+    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Promise in JavaScript">
+    <meta property="og:description" content="Promise是Javascript提供的建構函式，用於建構Promise物件，該物件會存放非同步事件的結果。">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/promise-in-javascript/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-2.png">
+    <meta property="article:published_time" content="2023-08-29T05:55:58.000Z">
+    <meta property="article:modified_time" content="2023-08-29T05:55:58.000Z">
+    <meta property="article:tag" content="JavaScript">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Promise in JavaScript">
+    <meta name="twitter:description" content="Promise是Javascript提供的建構函式，用於建構Promise物件，該物件會存放非同步事件的結果。">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/promise-in-javascript/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-2.png">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="JavaScript">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="500">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "https://vincent87720.github.io/Blog/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/Blog/content/images/2022/10/dog-breeder-round.svg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "https://vincent87720.github.io/Blog/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "Promise in JavaScript",
+    "url": "https://vincent87720.github.io/Blog/promise-in-javascript/",
+    "datePublished": "2023-08-29T05:55:58.000Z",
+    "dateModified": "2023-08-29T05:55:58.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://vincent87720.github.io/Blog/content/images/2023/08/javascript-2.png",
+        "width": 2000,
+        "height": 500
+    },
+    "keywords": "JavaScript",
+    "description": "Promise是Javascript提供的建構函式，用於建構Promise物件，該物件會存放非同步事件的結果。",
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/promise-in-javascript/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.34/umd/portal.min.js" data-i18n="false" data-ghost="https://vincent87720.github.io/Blog/" data-key="5230415085a98103bb9daaa3d3" data-api="https://vincent87720.github.io/Blog/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://vincent87720.github.io/Blog/" crossorigin="anonymous"></script>
+    
+    <link href="https://vincent87720.github.io/Blog/webmentions/receive/" rel="webmention">
+    <script defer src="../public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
+    <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+</head>
+
+<body class="post-template tag-javascript">
+
+	<div class="nav-header">
+		<nav class="nav-wrapper" aria-label="Main">
+				<ul>
+		<li class="nav-home"><a href="../index.html"><span>Home</span></a></li>
+		<li class="nav-author"><a href="../author/katsuobushi/index.html"><span>Author</span></a></li>
+		<li class="nav-tags"><a href="../tags/index.html"><span>Tags</span></a></li>
+		<li class="nav-golang"><a href="../tag/golang/index.html"><span>Golang</span></a></li>
+</ul>
+
+				<ul class="nav-meta">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>
+		</nav>
+
+		<div class="nav-wrapper-control">
+			<div class="inner">
+				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="nav-close" role="button" aria-label="Close"></div>
+
+	<section class="page-wrapper">
+
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header class="post-header  has-cover ">
+	<div class="inner">
+		<span class="post-info">
+			<span class="post-type">Article</span>
+			<span class="post-count">JavaScript</span>
+		</span>
+		<h1 class="post-title">Promise in JavaScript</h1>
+		<div class="post-meta">
+			<div class="post-meta-avatars">
+					<figure class="post-meta-avatar avatar">
+						<a href="../author/katsuobushi/index.html" class="author-avatar">
+								<img class="author-profile-image" src="../content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
+						</a>
+					</figure>
+			</div>
+			<h4 class="post-meta-author"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+			<time datetime="29-08-2023">29 Aug 2023</time> &bull; 2 min read
+		</div>
+		<div class="post-cover cover">
+			<img
+			srcset="../content/images/size/w320/2023/08/javascript-2.png 320w,
+             ../content/images/size/w640/2023/08/javascript-2.png 640w,
+            ../content/images/size/w960/2023/08/javascript-2.png 960w,
+           ../content/images/size/w1920/2023/08/javascript-2.png 1920w"
+      src="../content/images/size/w1920/2023/08/javascript-2.png"
+			alt="Promise in JavaScript" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-javascript">
+		<div class="inner">
+
+			<section class="post-content">
+				<p>Promise是Javascript提供的建構函式，用於建構Promise物件，該物件會存放非同步事件的結果。</p><h2 id="promise%E7%9A%84%E7%8B%80%E6%85%8B">Promise的狀態</h2><p>Promise包含三個狀態，<code>pending</code>、<code>fulfilled</code>及<code>rejected</code>，每個Promise物件僅能保存一種狀態，在結果尚未出爐時都是<code>pending</code>狀態，ˊ一旦變為<code>fulfilled</code>或<code>rejected</code>其中一個之後便無法再更改狀態。</p><h2 id="promise%E7%89%A9%E4%BB%B6%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95">Promise物件可以使用的方法</h2><p>Promise物件可以使用的方法包括<code>then</code>、<code>catch</code>和<code>finally</code></p><h2 id="%E5%BB%BA%E7%AB%8Bpromise">建立Promise</h2><p>Promise在建立時會需要帶入一個函式，函式需要帶入兩個參數，分別是<code>resolve</code>和<code>reject</code></p><pre><code class="language-javascript">const p = new Promise(function(resolve, reject) { 
+    if(...){
+        resolve();//當事件已經執行完畢且成功操作時，呼叫此函式
+    }
+    ...
+	reject();//當事件已經執行完畢但操作失敗時，呼叫此函式
+});
+</code></pre><h2 id="%E8%AE%80%E5%8F%96promise">讀取Promise</h2><h3 id="%E6%96%B9%E6%B3%95%E4%B8%80">方法一</h3><p>在then中傳入兩個callback function，分別接收成功與失敗的結果</p><pre><code class="language-javascript">p.then((success) =&gt; {
+    console.log(success);
+}, (fail) =&gt; {
+    console.log(fail);
+})
+</code></pre><h3 id="%E6%96%B9%E6%B3%95%E4%BA%8C">方法二</h3><p>使用then取得成功的結果，使用catch取得失敗的結果，大部分開發者習慣使用此種方式處理結果</p><pre><code class="language-javascript">p.then(success =&gt; {
+    console.log(success);
+})
+// 失敗的行為一律交給了 catch
+.catch(fail =&gt; {
+    console.log(fail);
+});
+</code></pre><h2 id="%E9%8F%88">鏈</h2><p>Promise可以使用鏈的機制串連多個Promise，此方法可以有效避免Callback Hell</p><pre><code class="language-javascript">p.then(success =&gt; {
+        ...
+    })
+    .then(success =&gt; {
+        ...
+    })
+    .then(success =&gt; {
+        ...
+    })
+    .catch(fail =&gt; {
+        ...
+        console.log(fail);
+    })
+</code></pre><h2 id="promise%E7%9A%84%E9%9D%9C%E6%85%8B%E6%96%B9%E6%B3%95">Promise的靜態方法</h2><h3 id="promiseall">Promise.all</h3><p>Promise.all可以傳入多個promise做為參數，這個方法會等待所有promise都被完成後才繼續執行。<br>在實作某功能需要多個API的資料都拿到才能執行時很實用。</p><pre><code class="language-javascript">Promise.all([promise(test1), promise(test2), promise(test3)])
+.then(res =&gt; {
+    console.log(res);
+});
+</code></pre><h3 id="promiserace">Promise.race</h3><p>Promise.race可以傳入多個promise作為參數，此方法只會回傳第一個執行完成的promise</p><h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">參考資料</h6><ul><li><a href="https://israynotarray.com/javascript/20211128/2950137358/?ref=localhost">JavaScript 中的 Promise 是什麼？以及為什麼你要懂 Promise</a></li><li><a href="https://www.casper.tw/development/2020/02/16/all-new-promise/?ref=localhost">JavaScript Promise 全介紹</a></li><li><a href="https://hackmd.io/@Heidi-Liu/note-fetch-and-promise?ref=localhost">[week 13] Fetch &amp; Promise 補充</a></li></ul>
+			</section>
+
+			<section class="post-footer">
+
+				<div class="post-share">
+					<span class="post-info-label">Share</span>
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=Promise in JavaScript&url=https://vincent87720.github.io/Blog/promise-in-javascript/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/Blog/promise-in-javascript/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/Blog/promise-in-javascript//&amp;title=Promise in JavaScript" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+						<i class="icon icon-linkedin" aria-hidden="true"></i>
+					</a>
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=Promise in JavaScript&amp;body=https://vincent87720.github.io/Blog/promise-in-javascript/">
+						<i class="icon icon-mail" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Topic</span>
+					<a href="../tag/javascript/index.html">JavaScript</a>
+				</aside>
+
+			</section>
+
+			<section class="post-full-comments">
+				<script src="https://utteranc.es/client.js"
+					repo="vincent87720/BlogComments"
+					issue-term="pathname"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+				</script>
+			</section>
+
+
+
+
+			<aside class="post-nav">
+
+
+					<a class="post-nav-prev" href="../validation-attributes-in-asp-net-core/index.html">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
+							<h2 class="post-nav-title">Validation attributes in ASP.NET Core</h2>
+							<p class="post-nav-excerpt">ASP.NET Core 裡的 Validation attributes 用於設定欄位的規則，當收到 HTTP 請求時依照規則檢查請求的資料是否符合 Validation attributes 設定的規則，以此過濾掉不符合規則的請求。&hellip;</p>
+							<p class="post-nav-meta"><time datetime="27-08-2023">27 Aug 2023</time></p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+		<div class="nav-footer">
+			<nav class="nav-wrapper" aria-label="Footer">
+				<span class="nav-copy">柴魚筆記本 &copy; 2023  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<ul>
+		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
+		<li class="nav-linkedin"><a href="https://www.linkedin.com/in/vincent87720/"><span>LinkedIn</span></a></li>
+</ul>
+
+				<span class="nav-credits">Published with <a href="https://ghost.org">Ghost</a> &bull; Theme <a href="https://github.com/zutrinken/attila">Attila</a> &bull; <a class="menu-item js-theme" href="index.html#" data-system="System theme" data-dark="Dark theme" data-light="Light theme"><span class="theme-icon"></span><span class="theme-text">System theme</span> </a> </span>
+			</nav>
+		</div>
+
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+
+  });
+</script>
+
+
+	
+
+</body>
+</html>

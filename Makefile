@@ -75,3 +75,4 @@ replaceContent:
 	rm -rf ./docs/assets/*
 	find ./docs -type f -name '*.html' -exec ./replace.pl {} \;
 	cp -Rf content/themes/$(THEME_VERSION)/assets/* docs/assets/
+	cp -Rf assets/googleSearch/* docs/

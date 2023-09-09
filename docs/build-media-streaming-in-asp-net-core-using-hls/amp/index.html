@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html ⚡>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <title>使用ASP.NET Core Web API提供HLS影片串流服務</title>
+
+    <meta name="description" content="公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。">
+    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="使用ASP.NET Core Web API提供HLS影片串流服務">
+    <meta property="og:description" content="公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg">
+    <meta property="article:published_time" content="2023-09-09T16:08:45.000Z">
+    <meta property="article:modified_time" content="2023-09-09T16:08:45.000Z">
+    <meta property="article:tag" content="ASP.NET Core">
+    <meta property="article:tag" content="C#">
+    <meta property="article:tag" content="HLS">
+    <meta property="article:tag" content="StreamingMedia">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="使用ASP.NET Core Web API提供HLS影片串流服務">
+    <meta name="twitter:description" content="公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="ASP.NET Core, C#, HLS, StreamingMedia">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="1333">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "https://vincent87720.github.io/Blog/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/Blog/content/images/2022/10/dog-breeder-round.svg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "https://vincent87720.github.io/Blog/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "使用ASP.NET Core Web API提供HLS影片串流服務",
+    "url": "https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/",
+    "datePublished": "2023-09-09T16:08:45.000Z",
+    "dateModified": "2023-09-09T16:08:45.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://vincent87720.github.io/Blog/content/images/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg",
+        "width": 2000,
+        "height": 1333
+    },
+    "keywords": "ASP.NET Core, C#, HLS, StreamingMedia",
+    "description": "公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。",
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html">
+
+    <style amp-custom>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        font-size: 62.5%;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        color: #3a4145;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;
+        font-size: 1.7rem;
+        line-height: 1.55em;
+        font-weight: 400;
+        font-style: normal;
+        background: #fff;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    p,
+    ul,
+    ol,
+    li,
+    dl,
+    dd,
+    hr,
+    pre,
+    form,
+    table,
+    video,
+    figure,
+    figcaption,
+    blockquote {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul[class],
+    ol[class] {
+        padding: 0;
+        list-style: none;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+        font: inherit;
+        -webkit-appearance: none;
+    }
+
+    fieldset {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    label {
+        display: block;
+        font-size: 0.9em;
+        font-weight: 700;
+    }
+
+    hr {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid currentcolor;
+        opacity: 0.1;
+    }
+
+    ::selection {
+        text-shadow: none;
+        background: #cbeafb;
+    }
+
+    mark {
+        background-color: #fdffb6;
+    }
+
+    small {
+        font-size: 80%;
+    }
+
+    sub,
+    sup {
+        position: relative;
+        font-size: 75%;
+        line-height: 0;
+        vertical-align: baseline;
+    }
+    sup {
+        top: -0.5em;
+    }
+    sub {
+        bottom: -0.25em;
+    }
+
+    ul li + li {
+        margin-top: 0.6em;
+    }
+
+    a {
+        color: var(--ghost-accent-color, #1292EE);
+        text-decoration-skip-ink: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0;
+        font-weight: 700;
+        color: #121212;
+        line-height: 1.4em;
+    }
+
+    h1 {
+        font-size: 3.4rem;
+        line-height: 1.1em;
+    }
+
+    h2 {
+        font-size: 2.4rem;
+        line-height: 1.2em;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    h4 {
+        font-size: 1.7rem;
+    }
+
+    h5 {
+        font-size: 1.6rem;
+    }
+
+    h6 {
+        font-size: 1.6rem;
+    }
+
+    amp-img {
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    amp-img img {
+        object-fit: cover;
+    }
+    
+    amp-youtube {
+        height: calc(100vw / 1.78);
+        width: 100vw;
+        position: relative;
+    }
+
+    amp-youtube img {
+        position: absolute;
+    }
+
+    .page-header {
+        padding: 50px 5vmin 30px;
+        text-align: center;
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .page-header a {
+        color: #121212;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 1.6rem;
+        letter-spacing: -0.1px;
+    }
+
+    .post {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .post-header {
+        margin: 0 5vmin 5vmin;
+        text-align: center;
+    }
+
+    .post-meta {
+        margin: 1rem 0 0 0;
+        text-transform: uppercase;
+        color: #738a94;
+        font-weight: 500;
+        font-size: 1.3rem;
+    }
+
+    .post-image {
+        margin: 0 0 5vmin;
+    }
+
+    .post-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .post-content {
+        padding: 0 5vmin;
+    }
+
+    .post-content > * + * {
+        margin-top: 1.5em;
+    }
+
+    .post-content [id]:not(:first-child) {
+        margin: 2em 0 0;
+    }
+
+    .post-content > [id] + * {
+        margin-top: 1rem;
+    }
+
+    .post-content [id] + .kg-card,
+    .post-content blockquote + .kg-card {
+        margin-top: 40px;
+    }
+
+    .post-content > ul,
+    .post-content > ol,
+    .post-content > dl {
+        padding-left: 1.9em;
+    }
+
+    .post-content hr {
+        margin-top: 40px;
+    }
+
+    .post .post-content hr + * {
+        margin-top: 40px;
+    }
+
+    .post-content amp-img {
+        background-color: #f8f8f8;
+    }
+
+    .post-content blockquote {
+        position: relative;
+        font-style: italic;
+    }
+
+    .post-content blockquote::before {
+        content: "";
+        position: absolute;
+        left: -1.5em;
+        top: 0;
+        bottom: 0;
+        width: 0.3rem;
+        background: var(--ghost-accent-color, #1292EE);
+    }
+
+    .post-content blockquote.kg-blockquote-alt {
+        font-size: 1.2em;
+        font-style: italic;
+        line-height: 1.6em;
+        text-align: center;
+        color: #738a94;
+        padding: 0.75em 3em 1.25em;
+    }
+
+    .post-content blockquote.kg-blockquote-alt::before {
+        display: none;
+    }
+
+    .post-content :not(.kg-card):not([id]) + .kg-card {
+        margin-top: 40px;
+    }
+
+    .post-content .kg-card + :not(.kg-card) {
+        margin-top: 40px;
+    }
+
+    .kg-card figcaption {
+        padding: 1.5rem 1.5rem 0;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.3rem;
+        line-height: 1.4em;
+        opacity: 0.6;
+    }
+
+    .kg-card figcaption strong {
+        color: rgba(0,0,0,0.8);
+    }
+
+    .post-content :not(pre) code {
+        vertical-align: middle;
+        padding: 0.15em 0.4em 0.15em;
+        border: #e1eaef 1px solid;
+        font-weight: 400;
+        font-size: 0.9em;
+        line-height: 1em;
+        color: #15171a;
+        background: #f0f6f9;
+        border-radius: 0.25em;
+    }
+
+    .post-content > pre {
+        overflow: scroll;
+        padding: 16px 20px;
+        color: #fff;
+        background: #1F2428;
+        border-radius: 5px;
+        box-shadow: 0 2px 6px -2px rgba(0,0,0,.1), 0 0 1px rgba(0,0,0,.4);
+    }
+
+    .kg-embed-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .kg-image-card img {
+        margin: auto;
+    }
+
+    .kg-gallery-card + .kg-gallery-card {
+        margin-top: 0.75em;
+    }
+
+    .kg-gallery-container {
+        position: relative;
+    }
+
+    .kg-gallery-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .kg-gallery-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .kg-gallery-row:not(:first-of-type) {
+        margin: 0.75em 0 0 0;
+    }
+
+    .kg-gallery-image:not(:first-of-type) {
+        margin: 0 0 0 0.75em;
+    }
+
+    .kg-bookmark-card,
+    .kg-bookmark-publisher {
+        position: relative;
+    }
+
+    .kg-bookmark-container,
+    .kg-bookmark-container:hover {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        color: currentColor;
+        background: rgba(255,255,255,0.6);
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;
+        text-decoration: none;
+        border-radius: 3px;
+        box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+    }
+
+    .kg-bookmark-content {
+        flex-basis: 0;
+        flex-grow: 999;
+        padding: 20px;
+        order: 1;
+    }
+
+    .kg-bookmark-title {
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 1.3em;
+    }
+
+    .kg-bookmark-description {
+        display: -webkit-box;
+        max-height: 45px;
+        margin: 0.5em 0 0 0;
+        font-size: 1.4rem;
+        line-height: 1.55em;
+        overflow: hidden;
+        opacity: 0.8;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .kg-bookmark-metadata {
+        margin-top: 20px;
+    }
+
+    .kg-bookmark-metadata {
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        font-size: 1.3rem;
+        line-height: 1.3em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .kg-bookmark-description {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+
+    .kg-bookmark-metadata amp-img {
+        width: 18px;
+        height: 18px;
+        max-width: 18px;
+        max-height: 18px;
+        margin-right: 10px;
+    }
+
+    .kg-bookmark-thumbnail {
+        display: flex;
+        flex-basis: 20rem;
+        flex-grow: 1;
+        justify-content: flex-end;
+    }
+
+    .kg-bookmark-thumbnail amp-img {
+        max-height: 200px;
+    }
+
+    .kg-bookmark-author {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .kg-bookmark-publisher::before {
+        content: "•";
+        margin: 0 .5em;
+    }
+
+    .kg-toggle-card-icon {
+        display: none;
+    }
+
+    .kg-toggle-content {
+        margin-top: 0.8rem;
+    }
+
+    .kg-product-card-container {
+        background: transparent;
+        padding: 20px;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: inset 0 0 0 1px rgb(124 139 154 / 25%);
+    }
+
+    .kg-product-card-description p {
+        margin-top: 1.5em;
+    }
+
+    .kg-product-card-description ul {
+        margin-left: 24px;
+    }
+
+    .kg-product-card-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+    }
+
+    .kg-product-card-rating-star {
+        height: 28px;
+        width: 20px;
+        margin-right: 2px;
+    }
+
+    .kg-product-card-rating-star svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    opacity: 0.15;
+    }
+
+    .kg-product-card-rating-active.kg-product-card-rating-star svg {
+    opacity: 1;
+    }
+
+    .kg-nft-card-container {
+        position: relative;
+        display: flex;
+        flex: auto;
+        flex-direction: column;
+        text-decoration: none;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;
+        font-size: 1.4rem;
+        font-weight: 400;
+        box-shadow: 0 2px 6px -2px rgb(0 0 0 / 10%), 0 0 1px rgb(0 0 0 / 40%);
+        width: 100%;
+        max-width: 512px;
+        color: #15212A;
+        background: #fff;
+        border-radius: 5px;
+        transition: none;
+        margin: 0 auto;
+    }
+
+    .kg-nft-metadata {
+        padding: 2.0rem;
+    }
+
+    .kg-nft-image-container {
+        position: relative;
+    }
+
+    .kg-nft-image {
+        display: flex;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .kg-nft-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .kg-nft-header h4.kg-nft-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        margin: 0;
+        color: #15212A;
+    }
+
+    .kg-nft-header amp-img {
+        max-width: 114px;
+        max-height: 26px;
+    }
+
+    .kg-nft-opensea-logo {
+        margin-top: 2px;
+        width: 100px;
+    }
+
+    .kg-nft-creator {
+        font-family: inherit;
+        color: #95A1AD;
+    }
+
+    .kg-nft-creator span {
+        font-weight: 500;
+        color: #15212A;
+    }
+
+    .kg-nft-card p.kg-nft-description {
+        font-size: 1.4rem;
+        line-height: 1.4em;
+        margin: 2.0rem 0 0;
+        color: #222;
+    }
+
+    .kg-button-card {
+        display: flex;
+        position: static;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .kg-btn {
+        display: flex;
+        position: static;
+        align-items: center;
+        padding: 0 2.0rem;
+        height: 4.0rem;
+        line-height: 4.0rem;
+        font-size: 1.65rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .kg-btn:hover {
+        opacity: 0.85;
+    }
+
+    .kg-btn-accent {
+        background-color: var(--ghost-accent-color, #1292EE);
+        color: #fff;
+    }
+
+    .kg-callout-card {
+        display: flex;
+        padding: 20px 28px;
+        border-radius: 3px;
+    }
+
+    .kg-callout-card-grey {
+        background: rgba(124, 139, 154, 0.13);
+    }
+
+    .kg-callout-card-white {
+        background: transparent;
+        box-shadow: inset 0 0 0 1px rgba(124, 139, 154, 0.25);
+    }
+
+    .kg-callout-card-blue {
+        background: rgba(33, 172, 232, 0.12);
+    }
+
+    .kg-callout-card-green {
+        background: rgba(52, 183, 67, 0.12);
+    }
+
+    .kg-callout-card-yellow {
+        background: rgba(240, 165, 15, 0.13);
+    }
+
+    .kg-callout-card-red {
+        background: rgba(209, 46, 46, 0.11);
+    }
+
+    .kg-callout-card-pink {
+        background: rgba(225, 71, 174, 0.11);
+    }
+
+    .kg-callout-card-purple {
+        background: rgba(135, 85, 236, 0.12);
+    }
+
+    .kg-callout-card-accent {
+        background: var(--ghost-accent-color);
+        color: #fff;
+    }
+
+    .kg-callout-card-accent a {
+        color: #fff;
+    }
+
+    .kg-callout-emoji {
+        padding-right: 16px;
+        line-height: 1.3;
+        font-size: 1.25em;
+    }
+
+    .kg-header-card {
+        padding: 6em 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .kg-header-card.kg-size-small {
+        padding-top: 4em;
+        padding-bottom: 4em;
+    }
+
+    .kg-header-card.kg-size-large {
+        padding-top: 12em;
+        padding-bottom: 12em;
+    }
+
+    .kg-header-card.kg-width-full {
+        padding-left: 4em;
+        padding-right: 4em;
+    }
+
+    .kg-header-card.kg-align-left {
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .kg-header-card.kg-style-dark {
+        background: #15171a;
+        color: #ffffff;
+    }
+
+    .kg-header-card.kg-style-light {
+        color: #15171a;
+        border: 1px solid rgba(124, 139, 154, 0.25);
+        border-width: 1px 0;
+    }
+
+    .kg-header-card.kg-style-accent {
+        background-color: var(--ghost-accent-color);
+    }
+
+    .kg-header-card.kg-style-image {
+        background-color: #e7e7eb;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .kg-header-card h2 {
+        font-size: 4em;
+        font-weight: 700;
+        line-height: 1.1em;
+        margin: 0;
+    }
+
+    .kg-header-card h2 strong {
+        font-weight: 800;
+    }
+
+    .kg-header-card.kg-size-small h2 {
+        font-size: 3em;
+    }
+
+    .kg-header-card.kg-size-large h2 {
+        font-size: 5em;
+    }
+
+    .kg-header-card h3 {
+        font-size: 1.25em;
+        font-weight: 500;
+        line-height: 1.3em;
+        margin: 0;
+    }
+
+    .kg-header-card h3 strong {
+        font-weight: 600;
+    }
+
+    .kg-header-card.kg-size-small h3 {
+        font-size: 1em;
+    }
+
+    .kg-header-card.kg-size-large h3 {
+        font-size: 1.5em;
+    }
+
+    .kg-header-card:not(.kg-style-light) h2,
+    .kg-header-card:not(.kg-style-light) h3 {
+        color: #ffffff;
+    }
+
+    .kg-header-card a.kg-header-card-button {
+        display: flex;
+        position: static;
+        align-items: center;
+        padding: 0 1.2em;
+        height: 2.4em;
+        line-height: 1em;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-size: 0.95em;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: opacity 0.2s ease-in-out;
+        background-color: var(--ghost-accent-color);
+        color: #ffffff;
+        margin: 1.75em 0 0;
+    }
+
+    .kg-header-card a.kg-header-card-button:hover {
+        opacity: 0.85;
+    }
+
+    .kg-header-card.kg-size-large a.kg-header-card-button {
+        margin-top: 2em;
+    }
+
+    .kg-header-card.kg-size-small a.kg-header-card-button {
+        margin-top: 1.5em;
+    }
+
+    .kg-header-card.kg-style-image a.kg-header-card-button,
+    .kg-header-card.kg-style-dark a.kg-header-card-button {
+        background: #ffffff;
+        color: #15171a;
+    }
+
+    .kg-header-card.kg-style-accent a.kg-header-card-button {
+        background: #ffffff;
+        color: var(--ghost-accent-color);
+    }
+
+    .kg-audio-card {
+        display: flex;
+        width: 100%;
+        box-shadow: inset 0 0 0 1px rgba(124, 139, 154, 0.25);
+    }
+
+    .kg-audio-thumbnail {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        min-width: 80px;
+        height: 80px;
+        background: transparent;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+        border-radius: 3px 0 0 3px;
+    }
+
+    .kg-audio-thumbnail.placeholder {
+        background: var(--ghost-accent-color);
+    }
+
+    .kg-audio-thumbnail.placeholder svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+    }
+
+    .kg-audio-player-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        --seek-before-width: 0%;
+        --volume-before-width: 100%;
+        --buffered-width: 0%;
+    }
+
+    .kg-audio-title {
+        width: 100%;
+        padding: 8px 12px 0;
+        border: none;
+        font-family: inherit;
+        font-size: 1.1em;
+        font-weight: 700;
+        background: transparent;
+    }
+
+    .kg-audio-player {
+        display: none;
+    }
+
+    .kg-width-full.kg-card-hascaption {
+        display: grid;
+        grid-template-columns: inherit;
+    }
+
+    .post-content table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .post-content th {
+        padding: 0.5em 0.8em;
+        text-align: left;
+        font-size: .75em;
+        text-transform: uppercase;
+    }
+
+    .post-content td {
+        padding: 0.4em 0.7em;
+    }
+
+    .post-content tbody tr:nth-child(2n + 1) {
+        background-color: rgba(0,0,0,0.1);
+        padding: 1px;
+    }
+
+    .post-content tbody tr:nth-child(2n + 2) td:last-child {
+        box-shadow:
+            inset 1px 0 rgba(0,0,0,0.1),
+            inset -1px 0 rgba(0,0,0,0.1);
+    }
+
+    .post-content tbody tr:nth-child(2n + 2) td {
+        box-shadow: inset 1px 0 rgba(0,0,0,0.1);
+    }
+
+    .post-content tbody tr:last-child {
+        border-bottom: 1px solid rgba(0,0,0,.1);
+    }
+
+    .page-footer {
+        padding: 60px 5vmin;
+        margin: 60px auto 0;
+        text-align: center;
+        background-color: #f8f8f8;
+    }
+
+    .page-footer h3 {
+        margin: 0.5rem 0 0 0;
+    }
+
+    .page-footer p {
+        max-width: 500px;
+        margin: 1rem auto 1.5rem;
+        font-size: 1.7rem;
+        line-height: 1.5em;
+        color: rgba(0,0,0,0.6)
+    }
+
+    .powered {
+        display: inline-flex;
+        align-items: center;
+        margin: 30px 0 0;
+        padding: 6px 9px 6px 6px;
+        border: rgba(0,0,0,0.1) 1px solid;
+        font-size: 12px;
+        line-height: 12px;
+        letter-spacing: -0.2px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-weight: 500;
+        color: #222;
+        text-decoration: none;
+        background: #fff;
+        border-radius: 6px;
+    }
+
+    .powered svg {
+        height: 16px;
+        width: 16px;
+        margin: 0 6px 0 0;
+    }
+
+    @media (max-width: 600px) {
+        body {
+            font-size: 1.6rem;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+        }
+    }
+
+    @media (max-width: 400px) {
+        h1 {
+            font-size: 2.6rem;
+            line-height: 1.15em;
+        }
+        h2 {
+            font-size: 2rem;
+            line-height: 1.2em;
+        }
+        h3 {
+            font-size: 1.7rem;
+        }
+    }
+
+    :root {--ghost-accent-color: #15171A;}
+    </style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    
+
+</head>
+
+<body class="amp-template">
+    <header class="page-header">
+        <a href="../../index.html">
+                <amp-img class="site-icon" src="https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico" width="50" height="50" layout="fixed" alt="柴魚筆記本"></amp-img>
+        </a>
+    </header>
+
+    <main class="content" role="main">
+        <article class="post">
+
+            <header class="post-header">
+                <h1 class="post-title">使用ASP.NET Core Web API提供HLS影片串流服務</h1>
+                <section class="post-meta">
+                    Katsuobushi -
+                    <time class="post-date" datetime="2023-09-10">10 Sep 2023</time>
+                </section>
+            </header>
+            <figure class="post-image">
+                <amp-img src="https://vincent87720.github.io/Blog/content/images/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg" width="600" height="340" layout="responsive" 
+                alt="使用ASP.NET Core Web API提供HLS影片串流服務"
+                ></amp-img>
+            </figure>
+            <section class="post-content">
+
+                <p>公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。</p>
+<h2 id="%E6%AA%94%E6%A1%88%E7%B5%90%E6%A7%8B">檔案結構</h2>
+<pre><code class="language-shell">|-- Example
+|    |--Program.cs          #程式進入點
+|    |
+|    |--Example.csproj      #CSharp專案檔
+|    |
+|    |--ApiControllers      #存放API
+|    |    |--MultimediaController.cs #提供多媒體上傳及下載的API
+|    |
+|    |--Models              #資料表模型存放資料夾
+|    |    |--Multimedia.cs  #用於存放影音資訊的模型
+|    |
+|    |--Services                     #服務存放資料夾
+|    |    |--MultimediaService.cs    #提供多媒體服務
+|    |    |--FileService.cs          #提供檔案操作服務
+|    |    |--HLSService.cs           #提供HLS串流服務
+|    |
+|    |--FFMpeg                       #FFMpeg可執行檔（官網下載）
+|
+|-- Example.sln             #專案
+</code></pre>
+<h2 id="%E5%BD%B1%E7%89%87%E4%B8%8A%E5%82%B3">影片上傳</h2>
+<h3 id="%E5%BB%BA%E7%AB%8B%E4%B8%8A%E5%82%B3%E5%BD%B1%E7%89%87%E6%9C%8D%E5%8B%99">建立上傳影片服務</h3>
+<p>上傳影片會用到<code>IFormFile</code>這個介面，<code>IFormFile</code>用來處理或儲存檔案，我們在<code>Services</code>目錄底下的<code>MultimediaService.cs</code>檔案裡新增<code>CreateMultimedia</code>函式並傳入型別為<code>IFormFile</code>的參數。</p>
+<p>首先取得檔案的副檔名，同時產生一個新檔名，接著建立一個Multimedia的物件，將資訊存放進去。</p>
+<p>這裡我們使用注入方式將資料庫注入，已建立好的Multimedia物件使用被注入的_dbContext加入到資料庫中，並且呼叫SaveChanges保存變動。</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+
+    public MultimediaService(DBContext dbContext)
+    {
+        //注入資料庫Context，用於對資料庫進行CRUD
+        _dbContext = dbContext;
+    }
+
+    public void CreateMultimedia(IFormFile file)
+    {
+        //取得副檔名
+        var fileExt = Path.GetExtension(file.FileName);
+        
+        //產生一個新隨機檔名，避免檔名重複
+        var fileNewName = Path.GetRandomFileName();
+        
+        //產生一個Multimedia物件，呼叫Add方法加入Multimedia資料表，
+        //最後使用_dbContext.SaveChanges()儲存更動
+        Multimedia multimedia = new Multimedia()
+        {
+            Uid = Guid.NewGuid(),
+            Type = file.ContentType,
+            Size = file.Length,
+            Ext = fileExt,
+            Name = fileNewName,
+            RecordId = request.RecordId
+        };
+        var mmedia = _dbContext.Multimedia.Add(multimedia);
+        _dbContext.SaveChanges();
+    }
+}
+</code></pre>
+<p>這個檔案先寫到這，我們先建立資料儲存及轉檔的程式，接著才會把所有服務都串起來。</p>
+<p>除了在資料庫存放檔案資訊外，還需要在實體目錄中存放實體影音檔案提供串流及下載，我們在<code>Services</code>目錄底下新增<code>FileService.cs</code>，用於提供檔案儲存及讀取的操作。</p>
+<p><code>WriteFile</code>函式傳入要寫入到本機的檔案、檔案名稱及副檔名，檢查目的目錄是否存在，並使用CopyToAsync及Stream寫入檔案。</p>
+<pre><code class="language-csharp">//FileService.cs
+
+public class FileService
+{
+    //設定檔案存放位置
+    private readonly string basePath = "./MultimediaFiles/";
+    
+    public async Task WriteFile(IFormFile file, string fileName, string fileExt)
+    {
+        //使用Path.Combine合併多個路徑，避免多餘的'/'符號產生
+        var filePath = Path.Combine(basePath, fileName);
+        
+        //判斷目標目錄是否存在，不存在便創建目錄
+        if (Directory.Exists(basePath) == false)
+        {
+            Directory.CreateDirectory(basePath);
+        }
+        
+        //建立檔案並指定給stream
+        Stream stream = File.Create(filePath + fileExt);
+        
+        //使用IFormFile的CopyToAsync方法，將file放入stream
+        await file.CopyToAsync(stream);
+        
+        //關閉stream
+        stream.Close();
+    }
+}
+</code></pre>
+<p>此時我們已經能夠將檔案寫入本機目錄中了，接著便是我們今天的重頭戲－轉檔</p>
+<h3 id="%E5%BD%B1%E7%89%87%E8%BD%89%E6%AA%94%E7%82%BAm3u8%E6%A0%BC%E5%BC%8F">影片轉檔為m3u8格式</h3>
+<p>不免俗的我們再來建立一個服務</p>
+<p>在<code>Services</code>目錄底下新增<code>HLSService.cs</code>，用於提供HLS的轉檔服務。</p>
+<p>這裡使用FFMpeg進行轉檔，使用FFMpeg進行轉檔除了要使用NuGet安裝<code>FFMpegCore</code>Package之外，還要去官網下載FFMpeg的可執行檔，放入專案目錄中。</p>
+<p>建立一個WriteFile函式，在函式內使用<code>FFMpegArguments</code>類別進行設定及轉檔。</p>
+<p><code>FromFileInput</code>可以用於指定輸入檔案的路徑<br />
+<code>OutputToFile</code>可以用於指定輸出檔案路徑<br />
+<code>ProcessAsynchronously</code>用於執行轉檔</p>
+<pre><code class="language-csharp">//HLSService.cs
+
+using FFMpegCore;
+
+public class HLSService
+{
+    private readonly string basePath = "./MultimediaFiles/";
+
+    public async Task WriteFile(string fileName, string fileExt)
+    {
+        //判斷目標目錄是否存在，不存在便創建目錄
+        var filePath = Path.Combine(basePath, fileName);
+        if (Directory.Exists(basePath) == false)
+        {
+            Directory.CreateDirectory(basePath);
+        }
+        await FFMpegArguments
+            .FromFileInput(filePath + fileExt)//輸入路徑後方必須包含原檔的副檔名
+            .OutputToFile(filePath + ".m3u8")//輸出路徑後方必須包含".m3u8"副檔名
+            .ProcessAsynchronously();
+    }
+}
+</code></pre>
+<p>到這邊已經可以將影片檔轉為m3u8及ts檔了，接著就是要把剛才的所有步驟串起來，我們把剛剛的步驟都串到<code>MultimediaService</code>裡的<code>CreateMultimedia</code>函式裡面。</p>
+<h3 id="%E5%8C%85%E8%A3%9D%E4%B8%8A%E5%82%B3%E6%B5%81%E7%A8%8B">包裝上傳流程</h3>
+<p>剛才在<code>FileService</code>建立了<code>WriteFile</code>方法，用於將檔案寫入目錄中，在<code>HLSService</code>也建立了<code>WriteFile</code>方法，用於進行影片轉檔，我們接著要把這些服務串起來。</p>
+<p>目前<code>MultimediaService</code>中的<code>CreateMultimedia</code>函式寫到新增影片資訊到資料庫，接著<code>_dbContext.SaveChanges();</code>的後面加入寫檔及轉檔的服務。</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+    private readonly FileService _file;
+    private readonly HLSService _hls;
+
+    public MultimediaService(DBContext dbContext, FileService file, HLSService hls)
+    {
+        _dbContext = dbContext;
+        _file = file;
+        _hls = hls;
+    }
+
+    //注意必須使用async將此函式指定為非同步，
+    //因為_file.WriteFile及_hls.WriteFile函式都是非同步方法，必須被等待
+    //除了加入async以外也必須加入Task，Task代表不會回傳值且以非同步方式執行函式
+    //若使用void，函式的呼叫端無法加上await，會導致呼叫端無法攔截例外
+    //容易造成靈異現象
+    public async Task CreateMultimedia(IFormFile file)
+    {
+        var fileExt = Path.GetExtension(file.FileName);
+        
+        var fileNewName = Path.GetRandomFileName();
+        
+        Multimedia multimedia = new Multimedia()
+        {
+            Uid = Guid.NewGuid(),
+            Type = file.ContentType,
+            Size = file.Length,
+            Ext = fileExt,
+            Name = fileNewName
+        };
+        var mmedia = _dbContext.Multimedia.Add(multimedia);
+        _dbContext.SaveChanges();
+        
+        //將檔案儲存在本機
+        //使用DI注入的FileService服務，呼叫WriteFile函式
+        //參數傳入檔案、檔名及副檔名
+        await _file.WriteFile(file, fileNewName, fileExt);
+
+        //將檔案轉為m3u8及ts檔
+        //傳入檔名及副檔名
+        await _hls.WriteFile(fileNewName, fileExt);
+    }
+}
+</code></pre>
+<p>恭喜我們終於完成上傳了，接著只要在API中提供此服務即可</p>
+<h3 id="%E5%BB%BA%E7%AB%8B%E4%B8%8A%E5%82%B3%E5%BD%B1%E7%89%87api">建立上傳影片API</h3>
+<p>上傳影片的API我們把他放在<code>ApiControllers</code>目錄中，在目錄中建立<code>MultimediaController.cs</code>檔案存放API</p>
+<pre><code class="language-csharp">//MultimediaController.cs
+
+[Route("api/[controller]")]
+[ApiController]
+public class MultimediaController : Controller
+{
+    private MultimediaService _mmedia;
+
+    public MultimediaController(MultimediaService mmedia)
+    {
+        _mmedia = mmedia;
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; PostMultimedia([FromForm] IFormFile file)
+    {
+        if (file.File.ContentType.Contains("video") == false)
+        {
+            return BadRequest();
+        }
+
+        //呼叫上傳影片服務
+        await _mmedia.CreateMultimedia(file);
+
+        return Ok();
+    }
+}
+</code></pre>
+<p>影片上傳終於告一段落了，接著是影片下載及串流</p>
+<h2 id="%E5%BD%B1%E7%89%87%E4%B8%B2%E6%B5%81">影片串流</h2>
+<p>剛才已經把影片都轉檔好了，其實影片串流就只是開一個API讓前端丟請求過來拿檔案而已...嗎？<br />
+也沒這麼單純，我們要先從資料庫取得影片列表，我們需要裡面的檔案名稱，存取完資料庫還要開一個讀檔案的服務從目錄中讀取檔案，不過這應該比剛剛的簡單多了。</p>
+<h3 id="%E5%BE%9E%E8%B3%87%E6%96%99%E5%BA%AB%E5%8F%96%E5%BE%97%E5%BD%B1%E7%89%87%E8%B3%87%E8%A8%8A">從資料庫取得影片資訊</h3>
+<p>在<code>MultimediaService.cs</code>中加入<code>GetMultimediaViews</code>函式，取得<code>_dbContext</code>中<code>Multimedia</code>資料表的資料。</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+    private readonly FileService _file;
+    private readonly HLSService _hls;
+
+    public MultimediaService(DBContext dbContext, FileService file, HLSService hls)
+    {
+        _dbContext = dbContext;
+        _file = file;
+        _hls = hls;
+    }
+    
+    public List&lt;Multimedia&gt; GetMultimediaViews()
+    {
+        return _dbContext.Multimedia.ToList();
+    }
+    
+    public async Task CreateMultimedia(IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<p>開好服務後由<code>MultimediaController</code>呼叫<code>GetMultimediaViews</code>服務，將資料表中的影音資訊清單返回給使用者</p>
+<pre><code class="language-csharp">//MultimediaController.cs
+
+[Route("api/[controller]")]
+[ApiController]
+public class MultimediaController : Controller
+{
+    private MultimediaService _mmedia;
+
+    public MultimediaController(MultimediaService mmedia)
+    {
+        _mmedia = mmedia;
+    }
+    
+    [HttpGet]
+    [Route("List")]
+    public IActionResult GetMultimediaList()
+    {
+
+        List&lt;Multimedia&gt; list = _mmedia.GetMultimediaViews();
+
+        return Ok(list);
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; PostMultimedia([FromForm] IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<h3 id="%E5%BE%9E%E7%9B%AE%E9%8C%84%E5%8F%96%E5%BE%97%E6%AA%94%E6%A1%88">從目錄取得檔案</h3>
+<p>先前寫入檔案時把程式寫在<code>FileService.cs</code>，讀取檔案我們一樣把函式放在這個檔案裡面</p>
+<pre><code class="language-csharp">//FileService.cs
+
+public class FileService
+{
+
+    private readonly string basePath = "./MultimediaFiles/";
+
+
+    public Stream? ReadFile(string fileName)
+    {
+        string filePath = Path.Combine(basePath, fileName);
+        if (File.Exists(fileFullPath) == false)
+        {
+            return null;
+        }
+
+        //使用FileStream讀取並返回檔案Stream
+        return new FileStream(filePath, FileMode.Open, FileAccess.Read,
+            FileShare.ReadWrite, 4096, FileOptions.SequentialScan);
+    }
+    
+    public async Task WriteFile(IFormFile file, string fileName, string fileExt)
+    {
+        ...
+    }
+    
+}
+</code></pre>
+<p>接著在<code>MultimediaService</code>中呼叫剛剛建立的讀取檔案函式，建立<code>GetMultimedia</code>服務</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+    private readonly FileService _file;
+    private readonly HLSService _hls;
+
+    public MultimediaService(DBContext dbContext, FileService file, HLSService hls)
+    {
+        _dbContext = dbContext;
+        _file = file;
+        _hls = hls;
+    }
+
+    public Stream GetMultimedia(string filename)
+    {
+        return _file.ReadFile(filename);
+    }
+    
+    public List&lt;Multimedia&gt; GetMultimediaViews()
+    {
+        ...
+    }
+    
+    public async Task CreateMultimedia(IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<p>到這邊已經完成所有服務了，接著只要建立取得檔案的API即可</p>
+<h3 id="%E5%BB%BA%E7%AB%8B%E4%B8%B2%E6%B5%81api">建立串流API</h3>
+<p>在<code>MultimediaController</code>中建立<code>GetHLSMultimedia</code>API函式，函式中呼叫<code>MultimediaService</code>中的<code>GetHLSMultimedia</code>方法，取得stream後使用<code>File</code>函式將stream返回給使用者，並指定Content-Type為<code>video/mp2t</code>。</p>
+<pre><code class="language-csharp">//MultimediaController.cs
+
+[Route("api/[controller]")]
+[ApiController]
+public class MultimediaController : Controller
+{
+    private MultimediaService _mmedia;
+
+    public MultimediaController(MultimediaService mmedia)
+    {
+        _mmedia = mmedia;
+    }
+    
+    [HttpGet]
+    [Route("List")]
+    public IActionResult GetMultimediaList()
+    {
+        ...
+    }
+    
+    [HttpGet]
+    [Route("HLS/{FileName}")]
+    public async Task&lt;IActionResult&gt; GetHLSMultimedia(string FileName)
+    {
+        Stream? stream = await _mmedia.GetHLSMultimedia(FileName);
+        if (stream == null)
+        {
+            return NotFound();
+        }
+
+        return File(stream, "video/mp2t");
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; PostMultimedia([FromForm] IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<h3 id="%E5%91%BC%E5%8F%ABapi">呼叫API</h3>
+<p>由於我們建立的是HttpGet方法，在瀏覽器網址列可以直接輸入網址呼叫API，在<code>MultimediaController</code>設定的路由是<code>/api/Multimedia/HLS/&lt;已轉檔後的檔名&gt;</code>，以檔名為<code>vxvi0clz.4od</code>的檔案為例，剛剛在轉檔的時候會轉出一個<code>vxvi0clz.4od.m3u8</code>檔案及<code>vxvi0clz.4od0.ts</code>,<code>vxvi0clz.4od1.ts</code>...等多個ts檔案，存取時呼叫<code>/api/Multimedia/HLS/vxvi0clz.4od.m3u8</code>即可取得檔案。</p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">參考資料</h6>
+<ul>
+<li><a href="https://www.twblogs.net/a/5c7f9ef7bd9eee35fc1345d5?ref=localhost">ASP.NET 使用FFmpeg實現MP4轉換M3U8</a></li>
+<li><a href="https://stackoverflow.com/questions/54398461/asp-net-core-2-0-not-serving-some-static-file-like-m3u8?ref=localhost">Asp.Net Core 2.0 not serving some static file like m3u8</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10310697?ref=localhost">JS筆記-前端撥放m3u8的兩種方法</a></li>
+</ul>
+
+
+            </section>
+
+        </article>
+    </main>
+    <footer class="page-footer">
+            <amp-img class="site-icon" src="https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico" width="50" height="50" layout="fixed" alt="柴魚筆記本"></amp-img>
+        <h3>柴魚筆記本</h3>
+            <p>程式・軟體・攝影</p>
+        <p><a href="../../index.html">Read more posts →</a></p>
+        <a class="powered" href="https://ghost.org" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 156"><g fill="none" fill-rule="evenodd"><rect fill="#15212B" width="156" height="156" rx="27"/><g transform="translate(36 36)" fill="#F6F8FA"><path d="M0 71.007A4.004 4.004 0 014 67h26a4 4 0 014 4.007v8.986A4.004 4.004 0 0130 84H4a4 4 0 01-4-4.007v-8.986zM50 71.007A4.004 4.004 0 0154 67h26a4 4 0 014 4.007v8.986A4.004 4.004 0 0180 84H54a4 4 0 01-4-4.007v-8.986z"/><rect y="34" width="84" height="17" rx="4"/><path d="M0 4.007A4.007 4.007 0 014.007 0h41.986A4.003 4.003 0 0150 4.007v8.986A4.007 4.007 0 0145.993 17H4.007A4.003 4.003 0 010 12.993V4.007z"/><rect x="67" width="17" height="17" rx="4"/></g></g></svg> Published with Ghost</a>
+    </footer>
+    
+</body>
+</html>

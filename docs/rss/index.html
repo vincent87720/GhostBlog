@@ -1,4 +1,390 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.60</generator><lastBuildDate>Tue, 29 Aug 2023 05:57:50 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Promise in JavaScript]]></title><description><![CDATA[Promise是Javascript提供的建構函式，用於建構Promise物件，該物件會存放非同步事件的結果。]]></description><link>https://vincent87720.github.io/Blog/promise-in-javascript/</link><guid isPermaLink="false">64ed875555ef9900013f35f7</guid><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 29 Aug 2023 05:55:58 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-2.png" medium="image"/><content:encoded><![CDATA[<img src="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-2.png" alt="Promise in JavaScript"><p>Promise&#x662F;Javascript&#x63D0;&#x4F9B;&#x7684;&#x5EFA;&#x69CB;&#x51FD;&#x5F0F;&#xFF0C;&#x7528;&#x65BC;&#x5EFA;&#x69CB;Promise&#x7269;&#x4EF6;&#xFF0C;&#x8A72;&#x7269;&#x4EF6;&#x6703;&#x5B58;&#x653E;&#x975E;&#x540C;&#x6B65;&#x4E8B;&#x4EF6;&#x7684;&#x7D50;&#x679C;&#x3002;</p><h2 id="promise%E7%9A%84%E7%8B%80%E6%85%8B">Promise&#x7684;&#x72C0;&#x614B;</h2><p>Promise&#x5305;&#x542B;&#x4E09;&#x500B;&#x72C0;&#x614B;&#xFF0C;<code>pending</code>&#x3001;<code>fulfilled</code>&#x53CA;<code>rejected</code>&#xFF0C;&#x6BCF;&#x500B;Promise&#x7269;&#x4EF6;&#x50C5;&#x80FD;&#x4FDD;&#x5B58;&#x4E00;&#x7A2E;&#x72C0;&#x614B;&#xFF0C;&#x5728;&#x7D50;&#x679C;&#x5C1A;&#x672A;&#x51FA;&#x7210;&#x6642;&#x90FD;&#x662F;<code>pending</code>&#x72C0;&#x614B;&#xFF0C;&#x2CA;&#x4E00;&#x65E6;&#x8B8A;&#x70BA;<code>fulfilled</code>&#x6216;<code>rejected</code>&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x4E4B;&#x5F8C;&#x4FBF;&#x7121;&#x6CD5;&#x518D;&#x66F4;&#x6539;&#x72C0;&#x614B;&#x3002;</p><h2 id="promise%E7%89%A9%E4%BB%B6%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95">Promise&#x7269;&#x4EF6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;</h2><p>Promise&#x7269;&#x4EF6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x5305;&#x62EC;<code>then</code>&#x3001;<code>catch</code>&#x548C;<code>finally</code></p><h2 id="%E5%BB%BA%E7%AB%8Bpromise">&#x5EFA;&#x7ACB;Promise</h2><p>Promise&#x5728;&#x5EFA;&#x7ACB;&#x6642;&#x6703;&#x9700;&#x8981;&#x5E36;&#x5165;&#x4E00;&#x500B;&#x51FD;&#x5F0F;&#xFF0C;&#x51FD;&#x5F0F;&#x9700;&#x8981;&#x5E36;&#x5165;&#x5169;&#x500B;&#x53C3;&#x6578;&#xFF0C;&#x5206;&#x5225;&#x662F;<code>resolve</code>&#x548C;<code>reject</code></p><pre><code class="language-javascript">const p = new Promise(function(resolve, reject) { 
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/Blog/</link><image><url>https://vincent87720.github.io/Blog/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/Blog/</link></image><generator>Ghost 5.60</generator><lastBuildDate>Sat, 09 Sep 2023 16:09:29 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/Blog/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[使用ASP.NET Core Web API提供HLS影片串流服務]]></title><description><![CDATA[公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。]]></description><link>https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/</link><guid isPermaLink="false">64fc94aefc699500018c4164</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><category><![CDATA[HLS]]></category><category><![CDATA[StreamingMedia]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 09 Sep 2023 16:08:45 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg" alt="&#x4F7F;&#x7528;ASP.NET Core Web API&#x63D0;&#x4F9B;HLS&#x5F71;&#x7247;&#x4E32;&#x6D41;&#x670D;&#x52D9;"><p>&#x516C;&#x53F8;&#x7684;APP&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x529F;&#x80FD;&#x662F;&#x5F71;&#x7247;&#x4E0A;&#x50B3;&#x53CA;&#x4E32;&#x6D41;&#x7684;&#x670D;&#x52D9;&#xFF0C;&#x9019;&#x9663;&#x5B50;&#x6BD4;&#x8F03;&#x4E86;&#x8A31;&#x591A;&#x5F71;&#x7247;&#x4E32;&#x6D41;&#x53CA;&#x76F4;&#x64AD;&#x7684;&#x901A;&#x8A0A;&#x5354;&#x5B9A;&#xFF0C;&#x6700;&#x5F8C;&#x9078;&#x64C7;&#x4F7F;&#x7528;HLS&#x5354;&#x5B9A;&#x4F86;&#x63D0;&#x4F9B;&#x5F71;&#x7247;&#x4E32;&#x6D41;&#x670D;&#x52D9;&#xFF0C;&#x6D41;&#x7A0B;&#x5305;&#x62EC;&#x300C;&#x5EFA;&#x7ACB;&#x5F71;&#x7247;&#x4E0A;&#x50B3;API&#x300D;&#x3001;&#x300C;&#x5F71;&#x7247;&#x8F49;&#x6A94;&#x300D;&#x53CA;&#x300C;&#x5EFA;&#x7ACB;&#x4E32;&#x6D41;API&#x300D;&#xFF0C;&#x9019;&#x7BC7;&#x7B46;&#x8A18;&#x8A18;&#x9304;&#x5982;&#x4F55;&#x4F7F;&#x7528;ASP.NET Core Web API&#x4F86;&#x5EFA;&#x7ACB;&#x5F71;&#x97F3;&#x4E32;&#x6D41;&#x670D;&#x52D9;&#x3002;</p>
+<h2 id="%E6%AA%94%E6%A1%88%E7%B5%90%E6%A7%8B">&#x6A94;&#x6848;&#x7D50;&#x69CB;</h2>
+<pre><code class="language-shell">|-- Example
+|    |--Program.cs          #&#x7A0B;&#x5F0F;&#x9032;&#x5165;&#x9EDE;
+|    |
+|    |--Example.csproj      #CSharp&#x5C08;&#x6848;&#x6A94;
+|    |
+|    |--ApiControllers      #&#x5B58;&#x653E;API
+|    |    |--MultimediaController.cs #&#x63D0;&#x4F9B;&#x591A;&#x5A92;&#x9AD4;&#x4E0A;&#x50B3;&#x53CA;&#x4E0B;&#x8F09;&#x7684;API
+|    |
+|    |--Models              #&#x8CC7;&#x6599;&#x8868;&#x6A21;&#x578B;&#x5B58;&#x653E;&#x8CC7;&#x6599;&#x593E;
+|    |    |--Multimedia.cs  #&#x7528;&#x65BC;&#x5B58;&#x653E;&#x5F71;&#x97F3;&#x8CC7;&#x8A0A;&#x7684;&#x6A21;&#x578B;
+|    |
+|    |--Services                     #&#x670D;&#x52D9;&#x5B58;&#x653E;&#x8CC7;&#x6599;&#x593E;
+|    |    |--MultimediaService.cs    #&#x63D0;&#x4F9B;&#x591A;&#x5A92;&#x9AD4;&#x670D;&#x52D9;
+|    |    |--FileService.cs          #&#x63D0;&#x4F9B;&#x6A94;&#x6848;&#x64CD;&#x4F5C;&#x670D;&#x52D9;
+|    |    |--HLSService.cs           #&#x63D0;&#x4F9B;HLS&#x4E32;&#x6D41;&#x670D;&#x52D9;
+|    |
+|    |--FFMpeg                       #FFMpeg&#x53EF;&#x57F7;&#x884C;&#x6A94;&#xFF08;&#x5B98;&#x7DB2;&#x4E0B;&#x8F09;&#xFF09;
+|
+|-- Example.sln             #&#x5C08;&#x6848;
+</code></pre>
+<h2 id="%E5%BD%B1%E7%89%87%E4%B8%8A%E5%82%B3">&#x5F71;&#x7247;&#x4E0A;&#x50B3;</h2>
+<h3 id="%E5%BB%BA%E7%AB%8B%E4%B8%8A%E5%82%B3%E5%BD%B1%E7%89%87%E6%9C%8D%E5%8B%99">&#x5EFA;&#x7ACB;&#x4E0A;&#x50B3;&#x5F71;&#x7247;&#x670D;&#x52D9;</h3>
+<p>&#x4E0A;&#x50B3;&#x5F71;&#x7247;&#x6703;&#x7528;&#x5230;<code>IFormFile</code>&#x9019;&#x500B;&#x4ECB;&#x9762;&#xFF0C;<code>IFormFile</code>&#x7528;&#x4F86;&#x8655;&#x7406;&#x6216;&#x5132;&#x5B58;&#x6A94;&#x6848;&#xFF0C;&#x6211;&#x5011;&#x5728;<code>Services</code>&#x76EE;&#x9304;&#x5E95;&#x4E0B;&#x7684;<code>MultimediaService.cs</code>&#x6A94;&#x6848;&#x88E1;&#x65B0;&#x589E;<code>CreateMultimedia</code>&#x51FD;&#x5F0F;&#x4E26;&#x50B3;&#x5165;&#x578B;&#x5225;&#x70BA;<code>IFormFile</code>&#x7684;&#x53C3;&#x6578;&#x3002;</p>
+<p>&#x9996;&#x5148;&#x53D6;&#x5F97;&#x6A94;&#x6848;&#x7684;&#x526F;&#x6A94;&#x540D;&#xFF0C;&#x540C;&#x6642;&#x7522;&#x751F;&#x4E00;&#x500B;&#x65B0;&#x6A94;&#x540D;&#xFF0C;&#x63A5;&#x8457;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;Multimedia&#x7684;&#x7269;&#x4EF6;&#xFF0C;&#x5C07;&#x8CC7;&#x8A0A;&#x5B58;&#x653E;&#x9032;&#x53BB;&#x3002;</p>
+<p>&#x9019;&#x88E1;&#x6211;&#x5011;&#x4F7F;&#x7528;&#x6CE8;&#x5165;&#x65B9;&#x5F0F;&#x5C07;&#x8CC7;&#x6599;&#x5EAB;&#x6CE8;&#x5165;&#xFF0C;&#x5DF2;&#x5EFA;&#x7ACB;&#x597D;&#x7684;Multimedia&#x7269;&#x4EF6;&#x4F7F;&#x7528;&#x88AB;&#x6CE8;&#x5165;&#x7684;_dbContext&#x52A0;&#x5165;&#x5230;&#x8CC7;&#x6599;&#x5EAB;&#x4E2D;&#xFF0C;&#x4E26;&#x4E14;&#x547C;&#x53EB;SaveChanges&#x4FDD;&#x5B58;&#x8B8A;&#x52D5;&#x3002;</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+
+    public MultimediaService(DBContext dbContext)
+    {
+        //&#x6CE8;&#x5165;&#x8CC7;&#x6599;&#x5EAB;Context&#xFF0C;&#x7528;&#x65BC;&#x5C0D;&#x8CC7;&#x6599;&#x5EAB;&#x9032;&#x884C;CRUD
+        _dbContext = dbContext;
+    }
+
+    public void CreateMultimedia(IFormFile file)
+    {
+        //&#x53D6;&#x5F97;&#x526F;&#x6A94;&#x540D;
+        var fileExt = Path.GetExtension(file.FileName);
+        
+        //&#x7522;&#x751F;&#x4E00;&#x500B;&#x65B0;&#x96A8;&#x6A5F;&#x6A94;&#x540D;&#xFF0C;&#x907F;&#x514D;&#x6A94;&#x540D;&#x91CD;&#x8907;
+        var fileNewName = Path.GetRandomFileName();
+        
+        //&#x7522;&#x751F;&#x4E00;&#x500B;Multimedia&#x7269;&#x4EF6;&#xFF0C;&#x547C;&#x53EB;Add&#x65B9;&#x6CD5;&#x52A0;&#x5165;Multimedia&#x8CC7;&#x6599;&#x8868;&#xFF0C;
+        //&#x6700;&#x5F8C;&#x4F7F;&#x7528;_dbContext.SaveChanges()&#x5132;&#x5B58;&#x66F4;&#x52D5;
+        Multimedia multimedia = new Multimedia()
+        {
+            Uid = Guid.NewGuid(),
+            Type = file.ContentType,
+            Size = file.Length,
+            Ext = fileExt,
+            Name = fileNewName,
+            RecordId = request.RecordId
+        };
+        var mmedia = _dbContext.Multimedia.Add(multimedia);
+        _dbContext.SaveChanges();
+    }
+}
+</code></pre>
+<p>&#x9019;&#x500B;&#x6A94;&#x6848;&#x5148;&#x5BEB;&#x5230;&#x9019;&#xFF0C;&#x6211;&#x5011;&#x5148;&#x5EFA;&#x7ACB;&#x8CC7;&#x6599;&#x5132;&#x5B58;&#x53CA;&#x8F49;&#x6A94;&#x7684;&#x7A0B;&#x5F0F;&#xFF0C;&#x63A5;&#x8457;&#x624D;&#x6703;&#x628A;&#x6240;&#x6709;&#x670D;&#x52D9;&#x90FD;&#x4E32;&#x8D77;&#x4F86;&#x3002;</p>
+<p>&#x9664;&#x4E86;&#x5728;&#x8CC7;&#x6599;&#x5EAB;&#x5B58;&#x653E;&#x6A94;&#x6848;&#x8CC7;&#x8A0A;&#x5916;&#xFF0C;&#x9084;&#x9700;&#x8981;&#x5728;&#x5BE6;&#x9AD4;&#x76EE;&#x9304;&#x4E2D;&#x5B58;&#x653E;&#x5BE6;&#x9AD4;&#x5F71;&#x97F3;&#x6A94;&#x6848;&#x63D0;&#x4F9B;&#x4E32;&#x6D41;&#x53CA;&#x4E0B;&#x8F09;&#xFF0C;&#x6211;&#x5011;&#x5728;<code>Services</code>&#x76EE;&#x9304;&#x5E95;&#x4E0B;&#x65B0;&#x589E;<code>FileService.cs</code>&#xFF0C;&#x7528;&#x65BC;&#x63D0;&#x4F9B;&#x6A94;&#x6848;&#x5132;&#x5B58;&#x53CA;&#x8B80;&#x53D6;&#x7684;&#x64CD;&#x4F5C;&#x3002;</p>
+<p><code>WriteFile</code>&#x51FD;&#x5F0F;&#x50B3;&#x5165;&#x8981;&#x5BEB;&#x5165;&#x5230;&#x672C;&#x6A5F;&#x7684;&#x6A94;&#x6848;&#x3001;&#x6A94;&#x6848;&#x540D;&#x7A31;&#x53CA;&#x526F;&#x6A94;&#x540D;&#xFF0C;&#x6AA2;&#x67E5;&#x76EE;&#x7684;&#x76EE;&#x9304;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x4E26;&#x4F7F;&#x7528;CopyToAsync&#x53CA;Stream&#x5BEB;&#x5165;&#x6A94;&#x6848;&#x3002;</p>
+<pre><code class="language-csharp">//FileService.cs
+
+public class FileService
+{
+    //&#x8A2D;&#x5B9A;&#x6A94;&#x6848;&#x5B58;&#x653E;&#x4F4D;&#x7F6E;
+    private readonly string basePath = &quot;./MultimediaFiles/&quot;;
+    
+    public async Task WriteFile(IFormFile file, string fileName, string fileExt)
+    {
+        //&#x4F7F;&#x7528;Path.Combine&#x5408;&#x4F75;&#x591A;&#x500B;&#x8DEF;&#x5F91;&#xFF0C;&#x907F;&#x514D;&#x591A;&#x9918;&#x7684;&apos;/&apos;&#x7B26;&#x865F;&#x7522;&#x751F;
+        var filePath = Path.Combine(basePath, fileName);
+        
+        //&#x5224;&#x65B7;&#x76EE;&#x6A19;&#x76EE;&#x9304;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x4E0D;&#x5B58;&#x5728;&#x4FBF;&#x5275;&#x5EFA;&#x76EE;&#x9304;
+        if (Directory.Exists(basePath) == false)
+        {
+            Directory.CreateDirectory(basePath);
+        }
+        
+        //&#x5EFA;&#x7ACB;&#x6A94;&#x6848;&#x4E26;&#x6307;&#x5B9A;&#x7D66;stream
+        Stream stream = File.Create(filePath + fileExt);
+        
+        //&#x4F7F;&#x7528;IFormFile&#x7684;CopyToAsync&#x65B9;&#x6CD5;&#xFF0C;&#x5C07;file&#x653E;&#x5165;stream
+        await file.CopyToAsync(stream);
+        
+        //&#x95DC;&#x9589;stream
+        stream.Close();
+    }
+}
+</code></pre>
+<p>&#x6B64;&#x6642;&#x6211;&#x5011;&#x5DF2;&#x7D93;&#x80FD;&#x5920;&#x5C07;&#x6A94;&#x6848;&#x5BEB;&#x5165;&#x672C;&#x6A5F;&#x76EE;&#x9304;&#x4E2D;&#x4E86;&#xFF0C;&#x63A5;&#x8457;&#x4FBF;&#x662F;&#x6211;&#x5011;&#x4ECA;&#x5929;&#x7684;&#x91CD;&#x982D;&#x6232;&#xFF0D;&#x8F49;&#x6A94;</p>
+<h3 id="%E5%BD%B1%E7%89%87%E8%BD%89%E6%AA%94%E7%82%BAm3u8%E6%A0%BC%E5%BC%8F">&#x5F71;&#x7247;&#x8F49;&#x6A94;&#x70BA;m3u8&#x683C;&#x5F0F;</h3>
+<p>&#x4E0D;&#x514D;&#x4FD7;&#x7684;&#x6211;&#x5011;&#x518D;&#x4F86;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x670D;&#x52D9;</p>
+<p>&#x5728;<code>Services</code>&#x76EE;&#x9304;&#x5E95;&#x4E0B;&#x65B0;&#x589E;<code>HLSService.cs</code>&#xFF0C;&#x7528;&#x65BC;&#x63D0;&#x4F9B;HLS&#x7684;&#x8F49;&#x6A94;&#x670D;&#x52D9;&#x3002;</p>
+<p>&#x9019;&#x88E1;&#x4F7F;&#x7528;FFMpeg&#x9032;&#x884C;&#x8F49;&#x6A94;&#xFF0C;&#x4F7F;&#x7528;FFMpeg&#x9032;&#x884C;&#x8F49;&#x6A94;&#x9664;&#x4E86;&#x8981;&#x4F7F;&#x7528;NuGet&#x5B89;&#x88DD;<code>FFMpegCore</code>Package&#x4E4B;&#x5916;&#xFF0C;&#x9084;&#x8981;&#x53BB;&#x5B98;&#x7DB2;&#x4E0B;&#x8F09;FFMpeg&#x7684;&#x53EF;&#x57F7;&#x884C;&#x6A94;&#xFF0C;&#x653E;&#x5165;&#x5C08;&#x6848;&#x76EE;&#x9304;&#x4E2D;&#x3002;</p>
+<p>&#x5EFA;&#x7ACB;&#x4E00;&#x500B;WriteFile&#x51FD;&#x5F0F;&#xFF0C;&#x5728;&#x51FD;&#x5F0F;&#x5167;&#x4F7F;&#x7528;<code>FFMpegArguments</code>&#x985E;&#x5225;&#x9032;&#x884C;&#x8A2D;&#x5B9A;&#x53CA;&#x8F49;&#x6A94;&#x3002;</p>
+<p><code>FromFileInput</code>&#x53EF;&#x4EE5;&#x7528;&#x65BC;&#x6307;&#x5B9A;&#x8F38;&#x5165;&#x6A94;&#x6848;&#x7684;&#x8DEF;&#x5F91;<br>
+<code>OutputToFile</code>&#x53EF;&#x4EE5;&#x7528;&#x65BC;&#x6307;&#x5B9A;&#x8F38;&#x51FA;&#x6A94;&#x6848;&#x8DEF;&#x5F91;<br>
+<code>ProcessAsynchronously</code>&#x7528;&#x65BC;&#x57F7;&#x884C;&#x8F49;&#x6A94;</p>
+<pre><code class="language-csharp">//HLSService.cs
+
+using FFMpegCore;
+
+public class HLSService
+{
+    private readonly string basePath = &quot;./MultimediaFiles/&quot;;
+
+    public async Task WriteFile(string fileName, string fileExt)
+    {
+        //&#x5224;&#x65B7;&#x76EE;&#x6A19;&#x76EE;&#x9304;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x4E0D;&#x5B58;&#x5728;&#x4FBF;&#x5275;&#x5EFA;&#x76EE;&#x9304;
+        var filePath = Path.Combine(basePath, fileName);
+        if (Directory.Exists(basePath) == false)
+        {
+            Directory.CreateDirectory(basePath);
+        }
+        await FFMpegArguments
+            .FromFileInput(filePath + fileExt)//&#x8F38;&#x5165;&#x8DEF;&#x5F91;&#x5F8C;&#x65B9;&#x5FC5;&#x9808;&#x5305;&#x542B;&#x539F;&#x6A94;&#x7684;&#x526F;&#x6A94;&#x540D;
+            .OutputToFile(filePath + &quot;.m3u8&quot;)//&#x8F38;&#x51FA;&#x8DEF;&#x5F91;&#x5F8C;&#x65B9;&#x5FC5;&#x9808;&#x5305;&#x542B;&quot;.m3u8&quot;&#x526F;&#x6A94;&#x540D;
+            .ProcessAsynchronously();
+    }
+}
+</code></pre>
+<p>&#x5230;&#x9019;&#x908A;&#x5DF2;&#x7D93;&#x53EF;&#x4EE5;&#x5C07;&#x5F71;&#x7247;&#x6A94;&#x8F49;&#x70BA;m3u8&#x53CA;ts&#x6A94;&#x4E86;&#xFF0C;&#x63A5;&#x8457;&#x5C31;&#x662F;&#x8981;&#x628A;&#x525B;&#x624D;&#x7684;&#x6240;&#x6709;&#x6B65;&#x9A5F;&#x4E32;&#x8D77;&#x4F86;&#xFF0C;&#x6211;&#x5011;&#x628A;&#x525B;&#x525B;&#x7684;&#x6B65;&#x9A5F;&#x90FD;&#x4E32;&#x5230;<code>MultimediaService</code>&#x88E1;&#x7684;<code>CreateMultimedia</code>&#x51FD;&#x5F0F;&#x88E1;&#x9762;&#x3002;</p>
+<h3 id="%E5%8C%85%E8%A3%9D%E4%B8%8A%E5%82%B3%E6%B5%81%E7%A8%8B">&#x5305;&#x88DD;&#x4E0A;&#x50B3;&#x6D41;&#x7A0B;</h3>
+<p>&#x525B;&#x624D;&#x5728;<code>FileService</code>&#x5EFA;&#x7ACB;&#x4E86;<code>WriteFile</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x65BC;&#x5C07;&#x6A94;&#x6848;&#x5BEB;&#x5165;&#x76EE;&#x9304;&#x4E2D;&#xFF0C;&#x5728;<code>HLSService</code>&#x4E5F;&#x5EFA;&#x7ACB;&#x4E86;<code>WriteFile</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x65BC;&#x9032;&#x884C;&#x5F71;&#x7247;&#x8F49;&#x6A94;&#xFF0C;&#x6211;&#x5011;&#x63A5;&#x8457;&#x8981;&#x628A;&#x9019;&#x4E9B;&#x670D;&#x52D9;&#x4E32;&#x8D77;&#x4F86;&#x3002;</p>
+<p>&#x76EE;&#x524D;<code>MultimediaService</code>&#x4E2D;&#x7684;<code>CreateMultimedia</code>&#x51FD;&#x5F0F;&#x5BEB;&#x5230;&#x65B0;&#x589E;&#x5F71;&#x7247;&#x8CC7;&#x8A0A;&#x5230;&#x8CC7;&#x6599;&#x5EAB;&#xFF0C;&#x63A5;&#x8457;<code>_dbContext.SaveChanges();</code>&#x7684;&#x5F8C;&#x9762;&#x52A0;&#x5165;&#x5BEB;&#x6A94;&#x53CA;&#x8F49;&#x6A94;&#x7684;&#x670D;&#x52D9;&#x3002;</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+    private readonly FileService _file;
+    private readonly HLSService _hls;
+
+    public MultimediaService(DBContext dbContext, FileService file, HLSService hls)
+    {
+        _dbContext = dbContext;
+        _file = file;
+        _hls = hls;
+    }
+
+    //&#x6CE8;&#x610F;&#x5FC5;&#x9808;&#x4F7F;&#x7528;async&#x5C07;&#x6B64;&#x51FD;&#x5F0F;&#x6307;&#x5B9A;&#x70BA;&#x975E;&#x540C;&#x6B65;&#xFF0C;
+    //&#x56E0;&#x70BA;_file.WriteFile&#x53CA;_hls.WriteFile&#x51FD;&#x5F0F;&#x90FD;&#x662F;&#x975E;&#x540C;&#x6B65;&#x65B9;&#x6CD5;&#xFF0C;&#x5FC5;&#x9808;&#x88AB;&#x7B49;&#x5F85;
+    //&#x9664;&#x4E86;&#x52A0;&#x5165;async&#x4EE5;&#x5916;&#x4E5F;&#x5FC5;&#x9808;&#x52A0;&#x5165;Task&#xFF0C;Task&#x4EE3;&#x8868;&#x4E0D;&#x6703;&#x56DE;&#x50B3;&#x503C;&#x4E14;&#x4EE5;&#x975E;&#x540C;&#x6B65;&#x65B9;&#x5F0F;&#x57F7;&#x884C;&#x51FD;&#x5F0F;
+    //&#x82E5;&#x4F7F;&#x7528;void&#xFF0C;&#x51FD;&#x5F0F;&#x7684;&#x547C;&#x53EB;&#x7AEF;&#x7121;&#x6CD5;&#x52A0;&#x4E0A;await&#xFF0C;&#x6703;&#x5C0E;&#x81F4;&#x547C;&#x53EB;&#x7AEF;&#x7121;&#x6CD5;&#x6514;&#x622A;&#x4F8B;&#x5916;
+    //&#x5BB9;&#x6613;&#x9020;&#x6210;&#x9748;&#x7570;&#x73FE;&#x8C61;
+    public async Task CreateMultimedia(IFormFile file)
+    {
+        var fileExt = Path.GetExtension(file.FileName);
+        
+        var fileNewName = Path.GetRandomFileName();
+        
+        Multimedia multimedia = new Multimedia()
+        {
+            Uid = Guid.NewGuid(),
+            Type = file.ContentType,
+            Size = file.Length,
+            Ext = fileExt,
+            Name = fileNewName
+        };
+        var mmedia = _dbContext.Multimedia.Add(multimedia);
+        _dbContext.SaveChanges();
+        
+        //&#x5C07;&#x6A94;&#x6848;&#x5132;&#x5B58;&#x5728;&#x672C;&#x6A5F;
+        //&#x4F7F;&#x7528;DI&#x6CE8;&#x5165;&#x7684;FileService&#x670D;&#x52D9;&#xFF0C;&#x547C;&#x53EB;WriteFile&#x51FD;&#x5F0F;
+        //&#x53C3;&#x6578;&#x50B3;&#x5165;&#x6A94;&#x6848;&#x3001;&#x6A94;&#x540D;&#x53CA;&#x526F;&#x6A94;&#x540D;
+        await _file.WriteFile(file, fileNewName, fileExt);
+
+        //&#x5C07;&#x6A94;&#x6848;&#x8F49;&#x70BA;m3u8&#x53CA;ts&#x6A94;
+        //&#x50B3;&#x5165;&#x6A94;&#x540D;&#x53CA;&#x526F;&#x6A94;&#x540D;
+        await _hls.WriteFile(fileNewName, fileExt);
+    }
+}
+</code></pre>
+<p>&#x606D;&#x559C;&#x6211;&#x5011;&#x7D42;&#x65BC;&#x5B8C;&#x6210;&#x4E0A;&#x50B3;&#x4E86;&#xFF0C;&#x63A5;&#x8457;&#x53EA;&#x8981;&#x5728;API&#x4E2D;&#x63D0;&#x4F9B;&#x6B64;&#x670D;&#x52D9;&#x5373;&#x53EF;</p>
+<h3 id="%E5%BB%BA%E7%AB%8B%E4%B8%8A%E5%82%B3%E5%BD%B1%E7%89%87api">&#x5EFA;&#x7ACB;&#x4E0A;&#x50B3;&#x5F71;&#x7247;API</h3>
+<p>&#x4E0A;&#x50B3;&#x5F71;&#x7247;&#x7684;API&#x6211;&#x5011;&#x628A;&#x4ED6;&#x653E;&#x5728;<code>ApiControllers</code>&#x76EE;&#x9304;&#x4E2D;&#xFF0C;&#x5728;&#x76EE;&#x9304;&#x4E2D;&#x5EFA;&#x7ACB;<code>MultimediaController.cs</code>&#x6A94;&#x6848;&#x5B58;&#x653E;API</p>
+<pre><code class="language-csharp">//MultimediaController.cs
+
+[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class MultimediaController : Controller
+{
+    private MultimediaService _mmedia;
+
+    public MultimediaController(MultimediaService mmedia)
+    {
+        _mmedia = mmedia;
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; PostMultimedia([FromForm] IFormFile file)
+    {
+        if (file.File.ContentType.Contains(&quot;video&quot;) == false)
+        {
+            return BadRequest();
+        }
+
+        //&#x547C;&#x53EB;&#x4E0A;&#x50B3;&#x5F71;&#x7247;&#x670D;&#x52D9;
+        await _mmedia.CreateMultimedia(file);
+
+        return Ok();
+    }
+}
+</code></pre>
+<p>&#x5F71;&#x7247;&#x4E0A;&#x50B3;&#x7D42;&#x65BC;&#x544A;&#x4E00;&#x6BB5;&#x843D;&#x4E86;&#xFF0C;&#x63A5;&#x8457;&#x662F;&#x5F71;&#x7247;&#x4E0B;&#x8F09;&#x53CA;&#x4E32;&#x6D41;</p>
+<h2 id="%E5%BD%B1%E7%89%87%E4%B8%B2%E6%B5%81">&#x5F71;&#x7247;&#x4E32;&#x6D41;</h2>
+<p>&#x525B;&#x624D;&#x5DF2;&#x7D93;&#x628A;&#x5F71;&#x7247;&#x90FD;&#x8F49;&#x6A94;&#x597D;&#x4E86;&#xFF0C;&#x5176;&#x5BE6;&#x5F71;&#x7247;&#x4E32;&#x6D41;&#x5C31;&#x53EA;&#x662F;&#x958B;&#x4E00;&#x500B;API&#x8B93;&#x524D;&#x7AEF;&#x4E1F;&#x8ACB;&#x6C42;&#x904E;&#x4F86;&#x62FF;&#x6A94;&#x6848;&#x800C;&#x5DF2;...&#x55CE;&#xFF1F;<br>
+&#x4E5F;&#x6C92;&#x9019;&#x9EBC;&#x55AE;&#x7D14;&#xFF0C;&#x6211;&#x5011;&#x8981;&#x5148;&#x5F9E;&#x8CC7;&#x6599;&#x5EAB;&#x53D6;&#x5F97;&#x5F71;&#x7247;&#x5217;&#x8868;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x88E1;&#x9762;&#x7684;&#x6A94;&#x6848;&#x540D;&#x7A31;&#xFF0C;&#x5B58;&#x53D6;&#x5B8C;&#x8CC7;&#x6599;&#x5EAB;&#x9084;&#x8981;&#x958B;&#x4E00;&#x500B;&#x8B80;&#x6A94;&#x6848;&#x7684;&#x670D;&#x52D9;&#x5F9E;&#x76EE;&#x9304;&#x4E2D;&#x8B80;&#x53D6;&#x6A94;&#x6848;&#xFF0C;&#x4E0D;&#x904E;&#x9019;&#x61C9;&#x8A72;&#x6BD4;&#x525B;&#x525B;&#x7684;&#x7C21;&#x55AE;&#x591A;&#x4E86;&#x3002;</p>
+<h3 id="%E5%BE%9E%E8%B3%87%E6%96%99%E5%BA%AB%E5%8F%96%E5%BE%97%E5%BD%B1%E7%89%87%E8%B3%87%E8%A8%8A">&#x5F9E;&#x8CC7;&#x6599;&#x5EAB;&#x53D6;&#x5F97;&#x5F71;&#x7247;&#x8CC7;&#x8A0A;</h3>
+<p>&#x5728;<code>MultimediaService.cs</code>&#x4E2D;&#x52A0;&#x5165;<code>GetMultimediaViews</code>&#x51FD;&#x5F0F;&#xFF0C;&#x53D6;&#x5F97;<code>_dbContext</code>&#x4E2D;<code>Multimedia</code>&#x8CC7;&#x6599;&#x8868;&#x7684;&#x8CC7;&#x6599;&#x3002;</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+    private readonly FileService _file;
+    private readonly HLSService _hls;
+
+    public MultimediaService(DBContext dbContext, FileService file, HLSService hls)
+    {
+        _dbContext = dbContext;
+        _file = file;
+        _hls = hls;
+    }
+    
+    public List&lt;Multimedia&gt; GetMultimediaViews()
+    {
+        return _dbContext.Multimedia.ToList();
+    }
+    
+    public async Task CreateMultimedia(IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<p>&#x958B;&#x597D;&#x670D;&#x52D9;&#x5F8C;&#x7531;<code>MultimediaController</code>&#x547C;&#x53EB;<code>GetMultimediaViews</code>&#x670D;&#x52D9;&#xFF0C;&#x5C07;&#x8CC7;&#x6599;&#x8868;&#x4E2D;&#x7684;&#x5F71;&#x97F3;&#x8CC7;&#x8A0A;&#x6E05;&#x55AE;&#x8FD4;&#x56DE;&#x7D66;&#x4F7F;&#x7528;&#x8005;</p>
+<pre><code class="language-csharp">//MultimediaController.cs
+
+[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class MultimediaController : Controller
+{
+    private MultimediaService _mmedia;
+
+    public MultimediaController(MultimediaService mmedia)
+    {
+        _mmedia = mmedia;
+    }
+    
+    [HttpGet]
+    [Route(&quot;List&quot;)]
+    public IActionResult GetMultimediaList()
+    {
+
+        List&lt;Multimedia&gt; list = _mmedia.GetMultimediaViews();
+
+        return Ok(list);
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; PostMultimedia([FromForm] IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<h3 id="%E5%BE%9E%E7%9B%AE%E9%8C%84%E5%8F%96%E5%BE%97%E6%AA%94%E6%A1%88">&#x5F9E;&#x76EE;&#x9304;&#x53D6;&#x5F97;&#x6A94;&#x6848;</h3>
+<p>&#x5148;&#x524D;&#x5BEB;&#x5165;&#x6A94;&#x6848;&#x6642;&#x628A;&#x7A0B;&#x5F0F;&#x5BEB;&#x5728;<code>FileService.cs</code>&#xFF0C;&#x8B80;&#x53D6;&#x6A94;&#x6848;&#x6211;&#x5011;&#x4E00;&#x6A23;&#x628A;&#x51FD;&#x5F0F;&#x653E;&#x5728;&#x9019;&#x500B;&#x6A94;&#x6848;&#x88E1;&#x9762;</p>
+<pre><code class="language-csharp">//FileService.cs
+
+public class FileService
+{
+
+    private readonly string basePath = &quot;./MultimediaFiles/&quot;;
+
+
+    public Stream? ReadFile(string fileName)
+    {
+        string filePath = Path.Combine(basePath, fileName);
+        if (File.Exists(fileFullPath) == false)
+        {
+            return null;
+        }
+
+        //&#x4F7F;&#x7528;FileStream&#x8B80;&#x53D6;&#x4E26;&#x8FD4;&#x56DE;&#x6A94;&#x6848;Stream
+        return new FileStream(filePath, FileMode.Open, FileAccess.Read,
+            FileShare.ReadWrite, 4096, FileOptions.SequentialScan);
+    }
+    
+    public async Task WriteFile(IFormFile file, string fileName, string fileExt)
+    {
+        ...
+    }
+    
+}
+</code></pre>
+<p>&#x63A5;&#x8457;&#x5728;<code>MultimediaService</code>&#x4E2D;&#x547C;&#x53EB;&#x525B;&#x525B;&#x5EFA;&#x7ACB;&#x7684;&#x8B80;&#x53D6;&#x6A94;&#x6848;&#x51FD;&#x5F0F;&#xFF0C;&#x5EFA;&#x7ACB;<code>GetMultimedia</code>&#x670D;&#x52D9;</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+    private readonly FileService _file;
+    private readonly HLSService _hls;
+
+    public MultimediaService(DBContext dbContext, FileService file, HLSService hls)
+    {
+        _dbContext = dbContext;
+        _file = file;
+        _hls = hls;
+    }
+
+    public Stream GetMultimedia(string filename)
+    {
+        return _file.ReadFile(filename);
+    }
+    
+    public List&lt;Multimedia&gt; GetMultimediaViews()
+    {
+        ...
+    }
+    
+    public async Task CreateMultimedia(IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<p>&#x5230;&#x9019;&#x908A;&#x5DF2;&#x7D93;&#x5B8C;&#x6210;&#x6240;&#x6709;&#x670D;&#x52D9;&#x4E86;&#xFF0C;&#x63A5;&#x8457;&#x53EA;&#x8981;&#x5EFA;&#x7ACB;&#x53D6;&#x5F97;&#x6A94;&#x6848;&#x7684;API&#x5373;&#x53EF;</p>
+<h3 id="%E5%BB%BA%E7%AB%8B%E4%B8%B2%E6%B5%81api">&#x5EFA;&#x7ACB;&#x4E32;&#x6D41;API</h3>
+<p>&#x5728;<code>MultimediaController</code>&#x4E2D;&#x5EFA;&#x7ACB;<code>GetHLSMultimedia</code>API&#x51FD;&#x5F0F;&#xFF0C;&#x51FD;&#x5F0F;&#x4E2D;&#x547C;&#x53EB;<code>MultimediaService</code>&#x4E2D;&#x7684;<code>GetHLSMultimedia</code>&#x65B9;&#x6CD5;&#xFF0C;&#x53D6;&#x5F97;stream&#x5F8C;&#x4F7F;&#x7528;<code>File</code>&#x51FD;&#x5F0F;&#x5C07;stream&#x8FD4;&#x56DE;&#x7D66;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x4E26;&#x6307;&#x5B9A;Content-Type&#x70BA;<code>video/mp2t</code>&#x3002;</p>
+<pre><code class="language-csharp">//MultimediaController.cs
+
+[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class MultimediaController : Controller
+{
+    private MultimediaService _mmedia;
+
+    public MultimediaController(MultimediaService mmedia)
+    {
+        _mmedia = mmedia;
+    }
+    
+    [HttpGet]
+    [Route(&quot;List&quot;)]
+    public IActionResult GetMultimediaList()
+    {
+        ...
+    }
+    
+    [HttpGet]
+    [Route(&quot;HLS/{FileName}&quot;)]
+    public async Task&lt;IActionResult&gt; GetHLSMultimedia(string FileName)
+    {
+        Stream? stream = await _mmedia.GetHLSMultimedia(FileName);
+        if (stream == null)
+        {
+            return NotFound();
+        }
+
+        return File(stream, &quot;video/mp2t&quot;);
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; PostMultimedia([FromForm] IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<h3 id="%E5%91%BC%E5%8F%ABapi">&#x547C;&#x53EB;API</h3>
+<p>&#x7531;&#x65BC;&#x6211;&#x5011;&#x5EFA;&#x7ACB;&#x7684;&#x662F;HttpGet&#x65B9;&#x6CD5;&#xFF0C;&#x5728;&#x700F;&#x89BD;&#x5668;&#x7DB2;&#x5740;&#x5217;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8F38;&#x5165;&#x7DB2;&#x5740;&#x547C;&#x53EB;API&#xFF0C;&#x5728;<code>MultimediaController</code>&#x8A2D;&#x5B9A;&#x7684;&#x8DEF;&#x7531;&#x662F;<code>/api/Multimedia/HLS/&lt;&#x5DF2;&#x8F49;&#x6A94;&#x5F8C;&#x7684;&#x6A94;&#x540D;&gt;</code>&#xFF0C;&#x4EE5;&#x6A94;&#x540D;&#x70BA;<code>vxvi0clz.4od</code>&#x7684;&#x6A94;&#x6848;&#x70BA;&#x4F8B;&#xFF0C;&#x525B;&#x525B;&#x5728;&#x8F49;&#x6A94;&#x7684;&#x6642;&#x5019;&#x6703;&#x8F49;&#x51FA;&#x4E00;&#x500B;<code>vxvi0clz.4od.m3u8</code>&#x6A94;&#x6848;&#x53CA;<code>vxvi0clz.4od0.ts</code>,<code>vxvi0clz.4od1.ts</code>...&#x7B49;&#x591A;&#x500B;ts&#x6A94;&#x6848;&#xFF0C;&#x5B58;&#x53D6;&#x6642;&#x547C;&#x53EB;<code>/api/Multimedia/HLS/vxvi0clz.4od.m3u8</code>&#x5373;&#x53EF;&#x53D6;&#x5F97;&#x6A94;&#x6848;&#x3002;</p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://www.twblogs.net/a/5c7f9ef7bd9eee35fc1345d5?ref=localhost">ASP.NET &#x4F7F;&#x7528;FFmpeg&#x5BE6;&#x73FE;MP4&#x8F49;&#x63DB;M3U8</a></li>
+<li><a href="https://stackoverflow.com/questions/54398461/asp-net-core-2-0-not-serving-some-static-file-like-m3u8?ref=localhost">Asp.Net Core 2.0 not serving some static file like m3u8</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10310697?ref=localhost">JS&#x7B46;&#x8A18;-&#x524D;&#x7AEF;&#x64A5;&#x653E;m3u8&#x7684;&#x5169;&#x7A2E;&#x65B9;&#x6CD5;</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Promise in JavaScript]]></title><description><![CDATA[Promise是Javascript提供的建構函式，用於建構Promise物件，該物件會存放非同步事件的結果。]]></description><link>https://vincent87720.github.io/Blog/promise-in-javascript/</link><guid isPermaLink="false">64ed875555ef9900013f35f7</guid><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 29 Aug 2023 05:55:58 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-2.png" medium="image"/><content:encoded><![CDATA[<img src="https://vincent87720.github.io/Blog/content/images/2023/08/javascript-2.png" alt="Promise in JavaScript"><p>Promise&#x662F;Javascript&#x63D0;&#x4F9B;&#x7684;&#x5EFA;&#x69CB;&#x51FD;&#x5F0F;&#xFF0C;&#x7528;&#x65BC;&#x5EFA;&#x69CB;Promise&#x7269;&#x4EF6;&#xFF0C;&#x8A72;&#x7269;&#x4EF6;&#x6703;&#x5B58;&#x653E;&#x975E;&#x540C;&#x6B65;&#x4E8B;&#x4EF6;&#x7684;&#x7D50;&#x679C;&#x3002;</p><h2 id="promise%E7%9A%84%E7%8B%80%E6%85%8B">Promise&#x7684;&#x72C0;&#x614B;</h2><p>Promise&#x5305;&#x542B;&#x4E09;&#x500B;&#x72C0;&#x614B;&#xFF0C;<code>pending</code>&#x3001;<code>fulfilled</code>&#x53CA;<code>rejected</code>&#xFF0C;&#x6BCF;&#x500B;Promise&#x7269;&#x4EF6;&#x50C5;&#x80FD;&#x4FDD;&#x5B58;&#x4E00;&#x7A2E;&#x72C0;&#x614B;&#xFF0C;&#x5728;&#x7D50;&#x679C;&#x5C1A;&#x672A;&#x51FA;&#x7210;&#x6642;&#x90FD;&#x662F;<code>pending</code>&#x72C0;&#x614B;&#xFF0C;&#x2CA;&#x4E00;&#x65E6;&#x8B8A;&#x70BA;<code>fulfilled</code>&#x6216;<code>rejected</code>&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x4E4B;&#x5F8C;&#x4FBF;&#x7121;&#x6CD5;&#x518D;&#x66F4;&#x6539;&#x72C0;&#x614B;&#x3002;</p><h2 id="promise%E7%89%A9%E4%BB%B6%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95">Promise&#x7269;&#x4EF6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;</h2><p>Promise&#x7269;&#x4EF6;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#x5305;&#x62EC;<code>then</code>&#x3001;<code>catch</code>&#x548C;<code>finally</code></p><h2 id="%E5%BB%BA%E7%AB%8Bpromise">&#x5EFA;&#x7ACB;Promise</h2><p>Promise&#x5728;&#x5EFA;&#x7ACB;&#x6642;&#x6703;&#x9700;&#x8981;&#x5E36;&#x5165;&#x4E00;&#x500B;&#x51FD;&#x5F0F;&#xFF0C;&#x51FD;&#x5F0F;&#x9700;&#x8981;&#x5E36;&#x5165;&#x5169;&#x500B;&#x53C3;&#x6578;&#xFF0C;&#x5206;&#x5225;&#x662F;<code>resolve</code>&#x548C;<code>reject</code></p><pre><code class="language-javascript">const p = new Promise(function(resolve, reject) { 
     if(...){
         resolve();//&#x7576;&#x4E8B;&#x4EF6;&#x5DF2;&#x7D93;&#x57F7;&#x884C;&#x5B8C;&#x7562;&#x4E14;&#x6210;&#x529F;&#x64CD;&#x4F5C;&#x6642;&#xFF0C;&#x547C;&#x53EB;&#x6B64;&#x51FD;&#x5F0F;
     }
@@ -683,73 +1069,4 @@ print(path_current_dir)
 </code></pre>
 <h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
 <p><a href="https://syachiku.net/python%E3%82%92exe%E3%81%97%E3%81%9F%E9%9A%9B%E3%81%AB%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%88%E5%AE%9F%E8%A1%8C%E3%83%91%E3%82%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/?ref=localhost">Python&#x3092;exe&#x3057;&#x305F;&#x969B;&#x306B;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x5B9F;&#x884C;&#x30D1;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x65B9;&#x6CD5;</a></p>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Pipe]]></title><description><![CDATA[pipe()用於在兩個有關係的process（通常是父子或是兄弟process）之間通信
-假設有A和B兩個process，pipe()建立之後可以用A讀或寫經由pipe傳送到B的寫或讀]]></description><link>https://vincent87720.github.io/Blog/pipe/</link><guid isPermaLink="false">635cfc2d6c901d4844747e7d</guid><category><![CDATA[generalKnowledge]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:15:36 GMT</pubDate><media:content url="https://vincent87720.github.io/Blog/content/images/2022/10/diana-Ynq3Wve3SOA-unsplash_pipe.jpeg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/Blog/content/images/2022/10/diana-Ynq3Wve3SOA-unsplash_pipe.jpeg" alt="Pipe"><p>pipe()&#x7528;&#x65BC;&#x5728;&#x5169;&#x500B;&#x6709;&#x95DC;&#x4FC2;&#x7684;process&#xFF08;&#x901A;&#x5E38;&#x662F;&#x7236;&#x5B50;&#x6216;&#x662F;&#x5144;&#x5F1F;process&#xFF09;&#x4E4B;&#x9593;&#x901A;&#x4FE1;<br>
-&#x5047;&#x8A2D;&#x6709;A&#x548C;B&#x5169;&#x500B;process&#xFF0C;pipe()&#x5EFA;&#x7ACB;&#x4E4B;&#x5F8C;&#x53EF;&#x4EE5;&#x7528;A&#x8B80;&#x6216;&#x5BEB;&#x7D93;&#x7531;pipe&#x50B3;&#x9001;&#x5230;B&#x7684;&#x5BEB;&#x6216;&#x8B80;</p>
-<pre><code class="language-cpp">#include &lt;unistd.h&gt;
-int pipe(int pipefd[2]);
-</code></pre>
-<p>&#x4F7F;&#x7528;pipefd&#x8868;&#x793A;&#x8B80;&#x6216;&#x5BEB;&#xFF0C;pipefd[0]&#x7528;&#x65BC;&#x8B80;&#xFF0C;pipefd[1]&#x7528;&#x65BC;&#x5BEB;</p>
-<p>&#x5728;&#x5EFA;&#x7ACB;&#x7BA1;&#x9053;&#x4E4B;&#x5F8C;&#x9700;&#x8981;fork&#x51FA;&#x4E00;&#x500B;process&#xFF0C;&#x6240;&#x4EE5;&#x76EE;&#x524D;&#x6709;&#x7236;process&#x53CA;fork&#x51FA;&#x4F86;&#x7684;&#x5B50;process<br>
-&#x63A5;&#x8457;&#x5229;&#x7528;cpid&#x5224;&#x65B7;&#x54EA;&#x500B;process&#x662F;&#x7236;process&#x54EA;&#x500B;&#x662F;&#x5B50;process<br>
-&#x7576;&#x7236;process&#x7684;&#x5BEB;&#x7AEF;&#x9700;&#x8981;&#x4F7F;&#x7528;stdout&#x5BEB;&#x51FA;&#x6578;&#x64DA;&#x7D66;&#x5B50;process&#x7684;&#x8B80;&#x7AEF;&#x8B80;&#x53D6;&#x6642;&#xFF0C;&#x9019;&#x6642;&#x9700;&#x8981;&#x5C07;&#x7236;process&#x6C92;&#x6709;&#x7528;&#x5230;&#x7684;&#x8B80;&#x7AEF;&#x53CA;&#x5B50;process&#x6C92;&#x7528;&#x5230;&#x7684;&#x5BEB;&#x7AEF;&#x95DC;&#x9589;<br>
-&#x63A5;&#x8457;&#x5C31;&#x662F;&#x5728;&#x7236;process&#x4F7F;&#x7528;write&#xFF0C;&#x53CA;&#x5728;&#x5B50;process&#x4F7F;&#x7528;read&#xFF0C;&#x5373;&#x53EF;&#x5B8C;&#x6210;&#x7236;&#x5B50;process&#x4E4B;&#x9593;&#x7684;&#x901A;&#x4FE1;</p>
-<pre><code class="language-cpp">#include &lt;sys/wait.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;string.h&gt;
-#include &lt;errno.h&gt;
-
-int main(int argc, char* argv[])
-{
-    int pipefd[2];
-    pid_t cpid;
-    char buf[128];
-    int readlen;
-
-
-    if (argc != 2) {
-        fprintf(stderr, &quot;Usage: %s &lt;string&gt;\n&quot;, argv[0]);
-        return -1;
-    }
-
-    if (pipe(pipefd) &lt; 0) {
-        fprintf(stderr, &quot;pipe: %s\n&quot;, strerror(errno));
-        return -1;
-    }
-
-    cpid = fork();
-
-    if (cpid &lt; 0) {
-        fprintf(stderr, &quot;fork: %s\n&quot;, strerror(errno));
-        return -1;
-    }
-
-    if (0 == cpid) { /* &#x5B50;&#x9032;&#x7A0B; */
-        close(pipefd[1]); /* &#x5B50;&#x9032;&#x7A0B;&#x95DC;&#x9589;&#x5BEB;&#x7AEF; */
-        readlen = read(pipefd[0], buf,
-                       128); //&#x5B50;&#x9032;&#x7A0B;&#x963B;&#x585E;&#x5728;&#x8B80;&#x4E0A;&#xFF0C;&#x7B49;&#x5F85;&#x7236;&#x9032;&#x7A0B;&#x5BEB;
-
-        if (readlen &lt; 0) {
-            fprintf(stderr, &quot;read: %s\n&quot;, strerror(errno));
-            return -1;
-        }
-
-        write(STDOUT_FILENO, buf, readlen);
-        write(STDOUT_FILENO, &quot;\n&quot;, 1);
-        close(pipefd[0]); //&#x8B80;&#x5B8C;&#x4E4B;&#x5F8C;&#x95DC;&#x9589;&#x8B80;&#x63CF;&#x8FF0;&#x7B26;
-        return 0;
-    } else { /* &#x7236;&#x9032;&#x7A0B; */
-        close(pipefd[0]); /*&#x7236;&#x9032;&#x7A0B;&#x95DC;&#x9589;&#x6C92;&#x7528;&#x7684;&#x8B80;&#x7AEF; */
-        sleep(2);
-        write(pipefd[1], argv[1], strlen(argv[1])); //&#x7236;&#x9032;&#x7A0B;&#x958B;&#x59CB;&#x5BEB;
-        close(pipefd[1]); /* &#x7236;&#x9032;&#x7A0B;&#x95DC;&#x9589;&#x5BEB;&#x63CF;&#x8FF0;&#x7B26; */
-        wait(NULL); /* &#x7236;&#x9032;&#x7A0B;&#x7B49;&#x5F85;&#x5B50;&#x9032;&#x7A0B;&#x9000;&#x51FA;&#xFF0C;&#x56DE;&#x6536;&#x5B50;&#x9032;&#x7A0B;&#x8CC7;&#x6E90; */
-        return 0;
-    }
-}
-</code></pre>
-<h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
-<p><a href="https://www.cntofu.com/book/46/linux_system/pipehe_fifo.md?ref=localhost">pipe&#x548C;FIFO</a></p>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

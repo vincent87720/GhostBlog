@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>使用ASP.NET Core Web API提供HLS影片串流服務</title>
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<script>
+			var siteUrl = 'https://vincent87720.github.io/Blog';
+	</script>
+
+	<script>
+			var localTheme = localStorage.getItem('attila_theme');
+			switch (localTheme) {
+					case 'dark':
+							document.documentElement.classList.add('theme-dark');
+							break;
+					case 'light':
+							document.documentElement.classList.add('theme-light');
+							break;
+					default:
+							break;
+			}
+	</script>
+
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
+	<meta name="description" content="公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。">
+    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="使用ASP.NET Core Web API提供HLS影片串流服務">
+    <meta property="og:description" content="公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。">
+    <meta property="og:url" content="https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/">
+    <meta property="og:image" content="https://vincent87720.github.io/Blog/content/images/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg">
+    <meta property="article:published_time" content="2023-09-09T16:08:45.000Z">
+    <meta property="article:modified_time" content="2023-09-09T16:08:45.000Z">
+    <meta property="article:tag" content="ASP.NET Core">
+    <meta property="article:tag" content="C#">
+    <meta property="article:tag" content="HLS">
+    <meta property="article:tag" content="StreamingMedia">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="使用ASP.NET Core Web API提供HLS影片串流服務">
+    <meta name="twitter:description" content="公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。">
+    <meta name="twitter:url" content="https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/Blog/content/images/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="ASP.NET Core, C#, HLS, StreamingMedia">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="1333">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "https://vincent87720.github.io/Blog/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/Blog/content/images/2022/10/dog-breeder-round.svg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "https://vincent87720.github.io/Blog/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "使用ASP.NET Core Web API提供HLS影片串流服務",
+    "url": "https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/",
+    "datePublished": "2023-09-09T16:08:45.000Z",
+    "dateModified": "2023-09-09T16:08:45.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://vincent87720.github.io/Blog/content/images/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg",
+        "width": 2000,
+        "height": 1333
+    },
+    "keywords": "ASP.NET Core, C#, HLS, StreamingMedia",
+    "description": "公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。",
+    "mainEntityOfPage": "https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.34/umd/portal.min.js" data-i18n="false" data-ghost="https://vincent87720.github.io/Blog/" data-key="5230415085a98103bb9daaa3d3" data-api="https://vincent87720.github.io/Blog/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://vincent87720.github.io/Blog/" crossorigin="anonymous"></script>
+    
+    <link href="https://vincent87720.github.io/Blog/webmentions/receive/" rel="webmention">
+    <script defer src="../public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
+    <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+</head>
+
+<body class="post-template tag-asp-net-core tag-csharp tag-hls tag-streamingmedia">
+
+	<div class="nav-header">
+		<nav class="nav-wrapper" aria-label="Main">
+				<ul>
+		<li class="nav-home"><a href="../index.html"><span>Home</span></a></li>
+		<li class="nav-author"><a href="../author/katsuobushi/index.html"><span>Author</span></a></li>
+		<li class="nav-tags"><a href="../tags/index.html"><span>Tags</span></a></li>
+		<li class="nav-golang"><a href="../tag/golang/index.html"><span>Golang</span></a></li>
+</ul>
+
+				<ul class="nav-meta">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>
+		</nav>
+
+		<div class="nav-wrapper-control">
+			<div class="inner">
+				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="nav-close" role="button" aria-label="Close"></div>
+
+	<section class="page-wrapper">
+
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header class="post-header  has-cover ">
+	<div class="inner">
+		<span class="post-info">
+			<span class="post-type">Article</span>
+			<span class="post-count">ASP.NET Core</span>
+		</span>
+		<h1 class="post-title">使用ASP.NET Core Web API提供HLS影片串流服務</h1>
+		<div class="post-meta">
+			<div class="post-meta-avatars">
+					<figure class="post-meta-avatar avatar">
+						<a href="../author/katsuobushi/index.html" class="author-avatar">
+								<img class="author-profile-image" src="../content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
+						</a>
+					</figure>
+			</div>
+			<h4 class="post-meta-author"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+			<time datetime="10-09-2023">10 Sep 2023</time> &bull; 9 min read
+		</div>
+		<div class="post-cover cover">
+			<img
+			srcset="../content/images/size/w320/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg 320w,
+             ../content/images/size/w640/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg 640w,
+            ../content/images/size/w960/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg 960w,
+           ../content/images/size/w1920/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg 1920w"
+      src="../content/images/size/w1920/2023/09/jonatan-lewczuk-CSsUkXtQ_PM-unsplash.jpg"
+			alt="使用ASP.NET Core Web API提供HLS影片串流服務" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-asp-net-core tag-csharp tag-hls tag-streamingmedia">
+		<div class="inner">
+
+			<section class="post-content">
+				<!--kg-card-begin: markdown--><p>公司的APP其中一個功能是影片上傳及串流的服務，這陣子比較了許多影片串流及直播的通訊協定，最後選擇使用HLS協定來提供影片串流服務，流程包括「建立影片上傳API」、「影片轉檔」及「建立串流API」，這篇筆記記錄如何使用ASP.NET Core Web API來建立影音串流服務。</p>
+<h2 id="%E6%AA%94%E6%A1%88%E7%B5%90%E6%A7%8B">檔案結構</h2>
+<pre><code class="language-shell">|-- Example
+|    |--Program.cs          #程式進入點
+|    |
+|    |--Example.csproj      #CSharp專案檔
+|    |
+|    |--ApiControllers      #存放API
+|    |    |--MultimediaController.cs #提供多媒體上傳及下載的API
+|    |
+|    |--Models              #資料表模型存放資料夾
+|    |    |--Multimedia.cs  #用於存放影音資訊的模型
+|    |
+|    |--Services                     #服務存放資料夾
+|    |    |--MultimediaService.cs    #提供多媒體服務
+|    |    |--FileService.cs          #提供檔案操作服務
+|    |    |--HLSService.cs           #提供HLS串流服務
+|    |
+|    |--FFMpeg                       #FFMpeg可執行檔（官網下載）
+|
+|-- Example.sln             #專案
+</code></pre>
+<h2 id="%E5%BD%B1%E7%89%87%E4%B8%8A%E5%82%B3">影片上傳</h2>
+<h3 id="%E5%BB%BA%E7%AB%8B%E4%B8%8A%E5%82%B3%E5%BD%B1%E7%89%87%E6%9C%8D%E5%8B%99">建立上傳影片服務</h3>
+<p>上傳影片會用到<code>IFormFile</code>這個介面，<code>IFormFile</code>用來處理或儲存檔案，我們在<code>Services</code>目錄底下的<code>MultimediaService.cs</code>檔案裡新增<code>CreateMultimedia</code>函式並傳入型別為<code>IFormFile</code>的參數。</p>
+<p>首先取得檔案的副檔名，同時產生一個新檔名，接著建立一個Multimedia的物件，將資訊存放進去。</p>
+<p>這裡我們使用注入方式將資料庫注入，已建立好的Multimedia物件使用被注入的_dbContext加入到資料庫中，並且呼叫SaveChanges保存變動。</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+
+    public MultimediaService(DBContext dbContext)
+    {
+        //注入資料庫Context，用於對資料庫進行CRUD
+        _dbContext = dbContext;
+    }
+
+    public void CreateMultimedia(IFormFile file)
+    {
+        //取得副檔名
+        var fileExt = Path.GetExtension(file.FileName);
+        
+        //產生一個新隨機檔名，避免檔名重複
+        var fileNewName = Path.GetRandomFileName();
+        
+        //產生一個Multimedia物件，呼叫Add方法加入Multimedia資料表，
+        //最後使用_dbContext.SaveChanges()儲存更動
+        Multimedia multimedia = new Multimedia()
+        {
+            Uid = Guid.NewGuid(),
+            Type = file.ContentType,
+            Size = file.Length,
+            Ext = fileExt,
+            Name = fileNewName,
+            RecordId = request.RecordId
+        };
+        var mmedia = _dbContext.Multimedia.Add(multimedia);
+        _dbContext.SaveChanges();
+    }
+}
+</code></pre>
+<p>這個檔案先寫到這，我們先建立資料儲存及轉檔的程式，接著才會把所有服務都串起來。</p>
+<p>除了在資料庫存放檔案資訊外，還需要在實體目錄中存放實體影音檔案提供串流及下載，我們在<code>Services</code>目錄底下新增<code>FileService.cs</code>，用於提供檔案儲存及讀取的操作。</p>
+<p><code>WriteFile</code>函式傳入要寫入到本機的檔案、檔案名稱及副檔名，檢查目的目錄是否存在，並使用CopyToAsync及Stream寫入檔案。</p>
+<pre><code class="language-csharp">//FileService.cs
+
+public class FileService
+{
+    //設定檔案存放位置
+    private readonly string basePath = &quot;./MultimediaFiles/&quot;;
+    
+    public async Task WriteFile(IFormFile file, string fileName, string fileExt)
+    {
+        //使用Path.Combine合併多個路徑，避免多餘的'/'符號產生
+        var filePath = Path.Combine(basePath, fileName);
+        
+        //判斷目標目錄是否存在，不存在便創建目錄
+        if (Directory.Exists(basePath) == false)
+        {
+            Directory.CreateDirectory(basePath);
+        }
+        
+        //建立檔案並指定給stream
+        Stream stream = File.Create(filePath + fileExt);
+        
+        //使用IFormFile的CopyToAsync方法，將file放入stream
+        await file.CopyToAsync(stream);
+        
+        //關閉stream
+        stream.Close();
+    }
+}
+</code></pre>
+<p>此時我們已經能夠將檔案寫入本機目錄中了，接著便是我們今天的重頭戲－轉檔</p>
+<h3 id="%E5%BD%B1%E7%89%87%E8%BD%89%E6%AA%94%E7%82%BAm3u8%E6%A0%BC%E5%BC%8F">影片轉檔為m3u8格式</h3>
+<p>不免俗的我們再來建立一個服務</p>
+<p>在<code>Services</code>目錄底下新增<code>HLSService.cs</code>，用於提供HLS的轉檔服務。</p>
+<p>這裡使用FFMpeg進行轉檔，使用FFMpeg進行轉檔除了要使用NuGet安裝<code>FFMpegCore</code>Package之外，還要去官網下載FFMpeg的可執行檔，放入專案目錄中。</p>
+<p>建立一個WriteFile函式，在函式內使用<code>FFMpegArguments</code>類別進行設定及轉檔。</p>
+<p><code>FromFileInput</code>可以用於指定輸入檔案的路徑<br>
+<code>OutputToFile</code>可以用於指定輸出檔案路徑<br>
+<code>ProcessAsynchronously</code>用於執行轉檔</p>
+<pre><code class="language-csharp">//HLSService.cs
+
+using FFMpegCore;
+
+public class HLSService
+{
+    private readonly string basePath = &quot;./MultimediaFiles/&quot;;
+
+    public async Task WriteFile(string fileName, string fileExt)
+    {
+        //判斷目標目錄是否存在，不存在便創建目錄
+        var filePath = Path.Combine(basePath, fileName);
+        if (Directory.Exists(basePath) == false)
+        {
+            Directory.CreateDirectory(basePath);
+        }
+        await FFMpegArguments
+            .FromFileInput(filePath + fileExt)//輸入路徑後方必須包含原檔的副檔名
+            .OutputToFile(filePath + &quot;.m3u8&quot;)//輸出路徑後方必須包含&quot;.m3u8&quot;副檔名
+            .ProcessAsynchronously();
+    }
+}
+</code></pre>
+<p>到這邊已經可以將影片檔轉為m3u8及ts檔了，接著就是要把剛才的所有步驟串起來，我們把剛剛的步驟都串到<code>MultimediaService</code>裡的<code>CreateMultimedia</code>函式裡面。</p>
+<h3 id="%E5%8C%85%E8%A3%9D%E4%B8%8A%E5%82%B3%E6%B5%81%E7%A8%8B">包裝上傳流程</h3>
+<p>剛才在<code>FileService</code>建立了<code>WriteFile</code>方法，用於將檔案寫入目錄中，在<code>HLSService</code>也建立了<code>WriteFile</code>方法，用於進行影片轉檔，我們接著要把這些服務串起來。</p>
+<p>目前<code>MultimediaService</code>中的<code>CreateMultimedia</code>函式寫到新增影片資訊到資料庫，接著<code>_dbContext.SaveChanges();</code>的後面加入寫檔及轉檔的服務。</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+    private readonly FileService _file;
+    private readonly HLSService _hls;
+
+    public MultimediaService(DBContext dbContext, FileService file, HLSService hls)
+    {
+        _dbContext = dbContext;
+        _file = file;
+        _hls = hls;
+    }
+
+    //注意必須使用async將此函式指定為非同步，
+    //因為_file.WriteFile及_hls.WriteFile函式都是非同步方法，必須被等待
+    //除了加入async以外也必須加入Task，Task代表不會回傳值且以非同步方式執行函式
+    //若使用void，函式的呼叫端無法加上await，會導致呼叫端無法攔截例外
+    //容易造成靈異現象
+    public async Task CreateMultimedia(IFormFile file)
+    {
+        var fileExt = Path.GetExtension(file.FileName);
+        
+        var fileNewName = Path.GetRandomFileName();
+        
+        Multimedia multimedia = new Multimedia()
+        {
+            Uid = Guid.NewGuid(),
+            Type = file.ContentType,
+            Size = file.Length,
+            Ext = fileExt,
+            Name = fileNewName
+        };
+        var mmedia = _dbContext.Multimedia.Add(multimedia);
+        _dbContext.SaveChanges();
+        
+        //將檔案儲存在本機
+        //使用DI注入的FileService服務，呼叫WriteFile函式
+        //參數傳入檔案、檔名及副檔名
+        await _file.WriteFile(file, fileNewName, fileExt);
+
+        //將檔案轉為m3u8及ts檔
+        //傳入檔名及副檔名
+        await _hls.WriteFile(fileNewName, fileExt);
+    }
+}
+</code></pre>
+<p>恭喜我們終於完成上傳了，接著只要在API中提供此服務即可</p>
+<h3 id="%E5%BB%BA%E7%AB%8B%E4%B8%8A%E5%82%B3%E5%BD%B1%E7%89%87api">建立上傳影片API</h3>
+<p>上傳影片的API我們把他放在<code>ApiControllers</code>目錄中，在目錄中建立<code>MultimediaController.cs</code>檔案存放API</p>
+<pre><code class="language-csharp">//MultimediaController.cs
+
+[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class MultimediaController : Controller
+{
+    private MultimediaService _mmedia;
+
+    public MultimediaController(MultimediaService mmedia)
+    {
+        _mmedia = mmedia;
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; PostMultimedia([FromForm] IFormFile file)
+    {
+        if (file.File.ContentType.Contains(&quot;video&quot;) == false)
+        {
+            return BadRequest();
+        }
+
+        //呼叫上傳影片服務
+        await _mmedia.CreateMultimedia(file);
+
+        return Ok();
+    }
+}
+</code></pre>
+<p>影片上傳終於告一段落了，接著是影片下載及串流</p>
+<h2 id="%E5%BD%B1%E7%89%87%E4%B8%B2%E6%B5%81">影片串流</h2>
+<p>剛才已經把影片都轉檔好了，其實影片串流就只是開一個API讓前端丟請求過來拿檔案而已...嗎？<br>
+也沒這麼單純，我們要先從資料庫取得影片列表，我們需要裡面的檔案名稱，存取完資料庫還要開一個讀檔案的服務從目錄中讀取檔案，不過這應該比剛剛的簡單多了。</p>
+<h3 id="%E5%BE%9E%E8%B3%87%E6%96%99%E5%BA%AB%E5%8F%96%E5%BE%97%E5%BD%B1%E7%89%87%E8%B3%87%E8%A8%8A">從資料庫取得影片資訊</h3>
+<p>在<code>MultimediaService.cs</code>中加入<code>GetMultimediaViews</code>函式，取得<code>_dbContext</code>中<code>Multimedia</code>資料表的資料。</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+    private readonly FileService _file;
+    private readonly HLSService _hls;
+
+    public MultimediaService(DBContext dbContext, FileService file, HLSService hls)
+    {
+        _dbContext = dbContext;
+        _file = file;
+        _hls = hls;
+    }
+    
+    public List&lt;Multimedia&gt; GetMultimediaViews()
+    {
+        return _dbContext.Multimedia.ToList();
+    }
+    
+    public async Task CreateMultimedia(IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<p>開好服務後由<code>MultimediaController</code>呼叫<code>GetMultimediaViews</code>服務，將資料表中的影音資訊清單返回給使用者</p>
+<pre><code class="language-csharp">//MultimediaController.cs
+
+[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class MultimediaController : Controller
+{
+    private MultimediaService _mmedia;
+
+    public MultimediaController(MultimediaService mmedia)
+    {
+        _mmedia = mmedia;
+    }
+    
+    [HttpGet]
+    [Route(&quot;List&quot;)]
+    public IActionResult GetMultimediaList()
+    {
+
+        List&lt;Multimedia&gt; list = _mmedia.GetMultimediaViews();
+
+        return Ok(list);
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; PostMultimedia([FromForm] IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<h3 id="%E5%BE%9E%E7%9B%AE%E9%8C%84%E5%8F%96%E5%BE%97%E6%AA%94%E6%A1%88">從目錄取得檔案</h3>
+<p>先前寫入檔案時把程式寫在<code>FileService.cs</code>，讀取檔案我們一樣把函式放在這個檔案裡面</p>
+<pre><code class="language-csharp">//FileService.cs
+
+public class FileService
+{
+
+    private readonly string basePath = &quot;./MultimediaFiles/&quot;;
+
+
+    public Stream? ReadFile(string fileName)
+    {
+        string filePath = Path.Combine(basePath, fileName);
+        if (File.Exists(fileFullPath) == false)
+        {
+            return null;
+        }
+
+        //使用FileStream讀取並返回檔案Stream
+        return new FileStream(filePath, FileMode.Open, FileAccess.Read,
+            FileShare.ReadWrite, 4096, FileOptions.SequentialScan);
+    }
+    
+    public async Task WriteFile(IFormFile file, string fileName, string fileExt)
+    {
+        ...
+    }
+    
+}
+</code></pre>
+<p>接著在<code>MultimediaService</code>中呼叫剛剛建立的讀取檔案函式，建立<code>GetMultimedia</code>服務</p>
+<pre><code class="language-csharp">//MultimediaService.cs
+
+public class MultimediaService
+{    
+    private readonly DBContext _dbContext;
+    private readonly FileService _file;
+    private readonly HLSService _hls;
+
+    public MultimediaService(DBContext dbContext, FileService file, HLSService hls)
+    {
+        _dbContext = dbContext;
+        _file = file;
+        _hls = hls;
+    }
+
+    public Stream GetMultimedia(string filename)
+    {
+        return _file.ReadFile(filename);
+    }
+    
+    public List&lt;Multimedia&gt; GetMultimediaViews()
+    {
+        ...
+    }
+    
+    public async Task CreateMultimedia(IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<p>到這邊已經完成所有服務了，接著只要建立取得檔案的API即可</p>
+<h3 id="%E5%BB%BA%E7%AB%8B%E4%B8%B2%E6%B5%81api">建立串流API</h3>
+<p>在<code>MultimediaController</code>中建立<code>GetHLSMultimedia</code>API函式，函式中呼叫<code>MultimediaService</code>中的<code>GetHLSMultimedia</code>方法，取得stream後使用<code>File</code>函式將stream返回給使用者，並指定Content-Type為<code>video/mp2t</code>。</p>
+<pre><code class="language-csharp">//MultimediaController.cs
+
+[Route(&quot;api/[controller]&quot;)]
+[ApiController]
+public class MultimediaController : Controller
+{
+    private MultimediaService _mmedia;
+
+    public MultimediaController(MultimediaService mmedia)
+    {
+        _mmedia = mmedia;
+    }
+    
+    [HttpGet]
+    [Route(&quot;List&quot;)]
+    public IActionResult GetMultimediaList()
+    {
+        ...
+    }
+    
+    [HttpGet]
+    [Route(&quot;HLS/{FileName}&quot;)]
+    public async Task&lt;IActionResult&gt; GetHLSMultimedia(string FileName)
+    {
+        Stream? stream = await _mmedia.GetHLSMultimedia(FileName);
+        if (stream == null)
+        {
+            return NotFound();
+        }
+
+        return File(stream, &quot;video/mp2t&quot;);
+    }
+
+    [HttpPost]
+    public async Task&lt;IActionResult&gt; PostMultimedia([FromForm] IFormFile file)
+    {
+        ...
+    }
+}
+</code></pre>
+<h3 id="%E5%91%BC%E5%8F%ABapi">呼叫API</h3>
+<p>由於我們建立的是HttpGet方法，在瀏覽器網址列可以直接輸入網址呼叫API，在<code>MultimediaController</code>設定的路由是<code>/api/Multimedia/HLS/&lt;已轉檔後的檔名&gt;</code>，以檔名為<code>vxvi0clz.4od</code>的檔案為例，剛剛在轉檔的時候會轉出一個<code>vxvi0clz.4od.m3u8</code>檔案及<code>vxvi0clz.4od0.ts</code>,<code>vxvi0clz.4od1.ts</code>...等多個ts檔案，存取時呼叫<code>/api/Multimedia/HLS/vxvi0clz.4od.m3u8</code>即可取得檔案。</p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">參考資料</h6>
+<ul>
+<li><a href="https://www.twblogs.net/a/5c7f9ef7bd9eee35fc1345d5?ref=localhost">ASP.NET 使用FFmpeg實現MP4轉換M3U8</a></li>
+<li><a href="https://stackoverflow.com/questions/54398461/asp-net-core-2-0-not-serving-some-static-file-like-m3u8?ref=localhost">Asp.Net Core 2.0 not serving some static file like m3u8</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10310697?ref=localhost">JS筆記-前端撥放m3u8的兩種方法</a></li>
+</ul>
+<!--kg-card-end: markdown-->
+			</section>
+
+			<section class="post-footer">
+
+				<div class="post-share">
+					<span class="post-info-label">Share</span>
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=使用ASP.NET Core Web API提供HLS影片串流服務&url=https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls//&amp;title=使用ASP.NET Core Web API提供HLS影片串流服務" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+						<i class="icon icon-linkedin" aria-hidden="true"></i>
+					</a>
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=使用ASP.NET Core Web API提供HLS影片串流服務&amp;body=https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/">
+						<i class="icon icon-mail" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Topic</span>
+					<a href="../tag/asp-net-core/index.html">ASP.NET Core</a> <a href="../tag/csharp/index.html">C#</a> <a href="../tag/hls/index.html">HLS</a> <a href="../tag/streamingmedia/index.html">StreamingMedia</a>
+				</aside>
+
+			</section>
+
+			<section class="post-full-comments">
+				<script src="https://utteranc.es/client.js"
+					repo="vincent87720/BlogComments"
+					issue-term="pathname"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+				</script>
+			</section>
+
+
+
+
+			<aside class="post-nav">
+
+
+					<a class="post-nav-prev" href="../promise-in-javascript/index.html">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
+							<h2 class="post-nav-title">Promise in JavaScript</h2>
+							<p class="post-nav-excerpt">Promise是Javascript提供的建構函式，用於建構Promise物件，該物件會存放非同步事件的結果。&hellip;</p>
+							<p class="post-nav-meta"><time datetime="29-08-2023">29 Aug 2023</time></p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+		<div class="nav-footer">
+			<nav class="nav-wrapper" aria-label="Footer">
+				<span class="nav-copy">柴魚筆記本 &copy; 2023  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<ul>
+		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
+		<li class="nav-linkedin"><a href="https://www.linkedin.com/in/vincent87720/"><span>LinkedIn</span></a></li>
+</ul>
+
+				<span class="nav-credits">Published with <a href="https://ghost.org">Ghost</a> &bull; Theme <a href="https://github.com/zutrinken/attila">Attila</a> &bull; <a class="menu-item js-theme" href="index.html#" data-system="System theme" data-dark="Dark theme" data-light="Light theme"><span class="theme-icon"></span><span class="theme-text">System theme</span> </a> </span>
+			</nav>
+		</div>
+
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+
+  });
+</script>
+
+
+	
+
+</body>
+</html>

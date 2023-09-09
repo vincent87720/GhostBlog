@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://vincent87720.github.io/Blog/</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/author/katsuobushi/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tags/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/golang/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/page/2/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/build-media-streaming-in-asp-net-core-using-hls/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/asp-net-core/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/promise-in-javascript/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/javascript/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/validation-attributes-in-asp-net-core/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/model-binding-in-asp-net-core/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/http-header-content-disposition/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/http/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/aspnet-core-dependency-injection/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/aspnet-core-render-section/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/clustered-and-nonclustered-indexes/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/database/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/rss/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/author/katsuobushi/page/2/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/csharp/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/vue/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/python/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/golangpackage/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/generalknowledge/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/postgresql/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/network/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/pattern/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/webpack/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/clover/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/hackintosh/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/cpp/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/qt/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/nuget/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/mqtt/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/visualstudiocode/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/esp8266/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/zsh/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/ubuntu/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/crawler/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/tcp/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/elasticsearch/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/quasar/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/docker/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/hls/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tag/streamingmedia/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/golang-mysql-error-1040/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/golang-sort-traditionalchinese/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/golang-package-walk/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/golang-package-goversioninfo/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/golang-channel/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/golang-package-excelize/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/golang-kill-goroutine/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/golang-function/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/page/3/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/webpack-multiple-entry-and-output/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/vue3-webpack-import-vue-esm-bundler/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/exception-handling-with-middleware-in-aspnet-core/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/difference-between-assign-and-replace-in-javascript/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/docker-buildx/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/quasar-scroll-to-field-on-validation-error/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/python-get-binary-path/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/pipe/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/author/katsuobushi/page/3/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/csharp-connect-to-postgresql/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/vue-vuerouter-init/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/vue-vuetify-init/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/vue-vuecli-init/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/python-shi-yong-pyinstallerda-bao-djangozhuan-an-fa-sheng-modulenotfounderror-no-module-named-xxx-cuo-wu/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/python-pyinstaller-django-runserver-does-not-exist-error/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/python-web-crawler/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/interprocess-communication/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/memory-management/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/postgresql-write-timestamp-on-update/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/tcp-three-way-handshake/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/pattern-rest-api-design/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/clover-package-err/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/cpp-array-pointer-address/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/qt-key-mouse-press-event/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/mqtt-mosquitto-server-init/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/ide-vscode-terminal-using-msys/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/flash-firmware-on-esp01/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/zsh-ubuntu-init/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/elasticsearch-intro/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/clock-and-bandwidth/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/wildcard-mask/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/page/4/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/author/katsuobushi/page/4/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/vue-vuecli-init/index.html?ref=localhost</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/ghost-github-webpage/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/page/5/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/author/katsuobushi/page/5/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/page/6/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.33</priority>
+</url>
+<url>
+  <loc>https://vincent87720.github.io/Blog/author/katsuobushi/page/6/index.html</loc>
+  <lastmod>2023-09-09T18:57:16+00:00</lastmod>
+  <priority>0.26</priority>
+</url>
+
+
+</urlset>

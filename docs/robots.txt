@@ -1,5 +1,5 @@
 User-agent: *
-Sitemap: https://vincent87720.github.io/Blog/sitemap.xml
+Sitemap: http://localhost:2368/sitemap.xml
 Disallow: /ghost/
 Disallow: /p/
 Disallow: /email/

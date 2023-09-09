@@ -7,8 +7,8 @@
     <title>[Ghost]使用Ghost和GitHub Pages建立網頁</title>
 
     <meta name="description" content="一直以來都有個困擾，就是查個程式寫法或是軟體操作方法每次都很快就忘記，所以想寫個Blog紀錄自己的手順，先前曾想過直接寫個網頁PUSH到GitHub上，但實在有點累( ˘･з･)，偶然又看到有個很喜歡的排版是用Ghost建立的，因此使用Ghost+GitHub的形式建立部落格">
-    <link rel="icon" href="https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
-    <link rel="canonical" href="https://vincent87720.github.io/Blog/ghost-github-webpage/">
+    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
     <meta name="referrer" content="no-referrer-when-downgrade">
     
     <meta property="og:site_name" content="柴魚筆記本">
@@ -72,7 +72,7 @@
     </script>
 
     <meta name="generator" content="Ghost 5.60">
-    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="https://vincent87720.github.io/Blog/rss/">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html">
 
     <style amp-custom>
     *,
@@ -1059,7 +1059,7 @@
 
 <body class="amp-template">
     <header class="page-header">
-        <a href="https://vincent87720.github.io/Blog">
+        <a href="../../index.html">
                 <amp-img class="site-icon" src="https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico" width="50" height="50" layout="fixed" alt="柴魚筆記本"></amp-img>
         </a>
     </header>
@@ -1097,7 +1097,7 @@ git commit -m 'Installed Node dependencies'
 </code></pre>
 <hr></hr><h2 id="-ghost-1">設定Ghost</h2><p>1.移動到已安裝Ghost的目錄並輸入指令開啟Ghost</p><pre><code>ghost start
 </code></pre>
-<p>2.一般使用<a href="https://vincent87720.github.io/Blog/ghost">https://vincent87720.github.io/Blog/ghost</a>開啟Ghost的管理介面，但因為先前已經在另一個地方裝過一個Ghost，所以畫面顯示以<a href="http://localhost:2369/ghost/?ref=localhost">http://localhost:2369/ghost</a>/開啟管理介面</p><figure class="kg-card kg-image-card"></figure><figure class="kg-card kg-image-card"></figure><p>3.填寫網站名稱及作者基本資料</p><figure class="kg-card kg-image-card"></figure><p>4.可輸入email邀請其他作者一起協作，只有自己使用的話則按下方直接進入管理介面</p><figure class="kg-card kg-image-card"></figure><p>5.更新repository</p><pre><code>git add -A 
+<p>2.一般使用<a href="../../ghost">https://vincent87720.github.io/Blog/ghost</a>開啟Ghost的管理介面，但因為先前已經在另一個地方裝過一個Ghost，所以畫面顯示以<a href="http://localhost:2369/ghost/?ref=localhost">http://localhost:2369/ghost</a>/開啟管理介面</p><figure class="kg-card kg-image-card"></figure><figure class="kg-card kg-image-card"></figure><p>3.填寫網站名稱及作者基本資料</p><figure class="kg-card kg-image-card"></figure><p>4.可輸入email邀請其他作者一起協作，只有自己使用的話則按下方直接進入管理介面</p><figure class="kg-card kg-image-card"></figure><p>5.更新repository</p><pre><code>git add -A 
 git commit -m 'Finished local Ghost setup'
 </code></pre>
 <hr></hr><h2 id="-">將網頁輸出為檔案</h2><p>1.使用wget輸出網頁到docs資料夾內<br />   --mirror : 鏡像下載所有檔案相當於-N -r -l inf --no-remove-listing選項<br />        -N : 若遠端檔案較新則下載檔案<br />        -r : 遞迴下載<br />        -l : 最大搜尋深度(0或inf表示無限)<br />        --no-remove-listing : 不刪除<strong>.listing</strong>檔案<br />   --convert-links : 轉換檔案內路徑為符合本地目錄的路徑   <br />   --page-requisites : 下載所有顯示網頁所需的檔案，例如圖片等<br />   -nH : 不建立名稱為網站名稱的目錄，直接在當前目錄建立檔案<br />   --no-parent : 不進入上層目錄<br />   -P : 指定下載目錄</p><pre><code>wget --mirror --convert-links --page-requisites -nH --no-parent -P docs https://vincent87720.github.io/Blog/
@@ -1119,7 +1119,7 @@ git commit -m "Export website to docs file;"
             <amp-img class="site-icon" src="https://vincent87720.github.io/Blog/content/images/2019/12/dog-breeder-small.ico" width="50" height="50" layout="fixed" alt="柴魚筆記本"></amp-img>
         <h3>柴魚筆記本</h3>
             <p>程式・軟體・攝影</p>
-        <p><a href="https://vincent87720.github.io/Blog">Read more posts →</a></p>
+        <p><a href="../../index.html">Read more posts →</a></p>
         <a class="powered" href="https://ghost.org" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 156"><g fill="none" fill-rule="evenodd"><rect fill="#15212B" width="156" height="156" rx="27"/><g transform="translate(36 36)" fill="#F6F8FA"><path d="M0 71.007A4.004 4.004 0 014 67h26a4 4 0 014 4.007v8.986A4.004 4.004 0 0130 84H4a4 4 0 01-4-4.007v-8.986zM50 71.007A4.004 4.004 0 0154 67h26a4 4 0 014 4.007v8.986A4.004 4.004 0 0180 84H54a4 4 0 01-4-4.007v-8.986z"/><rect y="34" width="84" height="17" rx="4"/><path d="M0 4.007A4.007 4.007 0 014.007 0h41.986A4.003 4.003 0 0150 4.007v8.986A4.007 4.007 0 0145.993 17H4.007A4.003 4.003 0 010 12.993V4.007z"/><rect x="67" width="17" height="17" rx="4"/></g></g></svg> Published with Ghost</a>
     </footer>
     

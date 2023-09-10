@@ -73,7 +73,7 @@ replaceContent:
 	# find ./docs/assets/font -type f -name '*?*' -exec rm {} \;
 	# find ./docs -type f -name '*?*' -exec rm {} \;
 	rm -rf ./docs/assets/*
-	find ./docs -type f -name '*.html' -exec ./replace.pl {} \;
+	find ./docs -type f -name '*.*' -exec ./replace.pl {} \;
 	cp -Rf content/themes/$(THEME_VERSION)/assets/* docs/assets/
 	cp -Rf assets/googleSearch/* docs/
 	cp -Rf assets/sitemap/* docs/

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Queued background tasks in ASP.NET Core</title>
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+	<script>
+			var siteUrl = 'https://vincent87720.github.io';
+	</script>
+
+	<script>
+			var localTheme = localStorage.getItem('attila_theme');
+			switch (localTheme) {
+					case 'dark':
+							document.documentElement.classList.add('theme-dark');
+							break;
+					case 'light':
+							document.documentElement.classList.add('theme-light');
+							break;
+					default:
+							break;
+			}
+	</script>
+
+
+
+			<style>
+				.theme-dark:root {
+				  --ghost-accent-color: #52768E;
+				}
+				@media (prefers-color-scheme: dark) {
+				  html:not(.theme-light):root {
+				    --ghost-accent-color: #52768E;
+				  }
+				}
+			</style>
+
+	<meta name="description" content="在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。">
+    <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="amp/index.html">
+    
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Queued background tasks in ASP.NET Core">
+    <meta property="og:description" content="在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。">
+    <meta property="og:url" content="https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/">
+    <meta property="og:image" content="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg">
+    <meta property="article:published_time" content="2023-10-01T16:01:03.000Z">
+    <meta property="article:modified_time" content="2023-10-01T16:05:06.000Z">
+    <meta property="article:tag" content="ASP.NET Core">
+    <meta property="article:tag" content="C#">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Queued background tasks in ASP.NET Core">
+    <meta name="twitter:description" content="在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。">
+    <meta name="twitter:url" content="https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="ASP.NET Core, C#">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="3555">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "https://vincent87720.github.io/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/content/images/2019/12/dog-breeder-small.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/content/images/2022/10/dog-breeder-round.svg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "https://vincent87720.github.io/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "Queued background tasks in ASP.NET Core",
+    "url": "https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/",
+    "datePublished": "2023-10-01T16:01:03.000Z",
+    "dateModified": "2023-10-01T16:05:06.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg",
+        "width": 2000,
+        "height": 3555
+    },
+    "keywords": "ASP.NET Core, C#",
+    "description": "在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。",
+    "mainEntityOfPage": "https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../rss/index.html">
+    <script defer src="https://cdn.jsdelivr.net/ghost/portal@~2.34/umd/portal.min.js" data-i18n="false" data-ghost="https://vincent87720.github.io/" data-key="5230415085a98103bb9daaa3d3" data-api="https://vincent87720.github.io/ghost/api/content/" crossorigin="anonymous"></script><style id="gh-members-styles">.gh-post-upgrade-cta-content,
+.gh-post-upgrade-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.gh-post-upgrade-cta-content {
+    border-radius: 8px;
+    padding: 40px 4vw;
+}
+
+.gh-post-upgrade-cta h2 {
+    color: #ffffff;
+    font-size: 28px;
+    letter-spacing: -0.2px;
+    margin: 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta p {
+    margin: 20px 0 0;
+    padding: 0;
+}
+
+.gh-post-upgrade-cta small {
+    font-size: 16px;
+    letter-spacing: -0.2px;
+}
+
+.gh-post-upgrade-cta a {
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a:hover {
+    color: #ffffff;
+    opacity: 0.8;
+    box-shadow: none;
+    text-decoration: underline;
+}
+
+.gh-post-upgrade-cta a.gh-btn {
+    display: block;
+    background: #ffffff;
+    text-decoration: none;
+    margin: 28px 0 0;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.gh-post-upgrade-cta a.gh-btn:hover {
+    opacity: 0.92;
+}</style>
+    <script defer src="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js" data-key="5230415085a98103bb9daaa3d3" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css" data-sodo-search="https://vincent87720.github.io/" crossorigin="anonymous"></script>
+    
+    <link href="https://vincent87720.github.io/webmentions/receive/" rel="webmention">
+    <script defer src="../public/cards.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../public/cards.min.css">
+    <script defer src="../public/member-attribution.min.js"></script><style>:root {--ghost-accent-color: #15171A;}</style>
+</head>
+
+<body class="post-template tag-asp-net-core tag-csharp">
+
+	<div class="nav-header">
+		<nav class="nav-wrapper" aria-label="Main">
+				<ul>
+		<li class="nav-home"><a href="../index.html"><span>Home</span></a></li>
+		<li class="nav-author"><a href="../author/katsuobushi/index.html"><span>Author</span></a></li>
+		<li class="nav-tags"><a href="../tags/index.html"><span>Tags</span></a></li>
+		<li class="nav-golang"><a href="../tag/golang/index.html"><span>Golang</span></a></li>
+</ul>
+
+				<ul class="nav-meta">
+  <li class="nav-search">
+    <a title="Search" data-ghost-search>
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>
+		</nav>
+
+		<div class="nav-wrapper-control">
+			<div class="inner">
+				<a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+				<a class="nav-search" title="Search" role="button" data-ghost-search><i class="icon icon-search" aria-hidden="true"></i></a>
+			</div>
+		</div>
+	</div>
+	<div class="nav-close" role="button" aria-label="Close"></div>
+
+	<section class="page-wrapper">
+
+		
+
+<div class="progress-container">
+	<span class="progress-bar"></span>
+</div>
+
+<header class="post-header  has-cover ">
+	<div class="inner">
+		<span class="post-info">
+			<span class="post-type">Article</span>
+			<span class="post-count">ASP.NET Core</span>
+		</span>
+		<h1 class="post-title">Queued background tasks in ASP.NET Core</h1>
+		<div class="post-meta">
+			<div class="post-meta-avatars">
+					<figure class="post-meta-avatar avatar">
+						<a href="../author/katsuobushi/index.html" class="author-avatar">
+								<img class="author-profile-image" src="../content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
+						</a>
+					</figure>
+			</div>
+			<h4 class="post-meta-author"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
+			<time datetime="02-10-2023">02 Oct 2023</time> &bull; 6 min read
+		</div>
+		<div class="post-cover cover">
+			<img
+			srcset="../content/images/size/w320/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg 320w,
+             ../content/images/size/w640/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg 640w,
+            ../content/images/size/w960/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg 960w,
+           ../content/images/size/w1920/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg 1920w"
+      src="../content/images/size/w1920/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg"
+			alt="Queued background tasks in ASP.NET Core" />
+		</div>
+	</div>
+</header>
+
+<main class="content" role="main">
+	<article class="post tag-asp-net-core tag-csharp">
+		<div class="inner">
+
+			<section class="post-content">
+				<!--kg-card-begin: markdown--><p>在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。</p>
+<h2 id="%E7%92%B0%E5%A2%83">環境</h2>
+<ul>
+<li>macOS Ventura 13.0(Apple M1 Pro)</li>
+<li>.NET 6.0</li>
+<li>Visual Studio Community 2022 for Mac 17.6.1</li>
+</ul>
+<h2 id="%E5%BB%BA%E7%AB%8B%E4%BD%87%E5%88%97%E6%9C%8D%E5%8B%99">建立佇列服務</h2>
+<p>在<code>Services</code>目錄下建立<code>BackgroundTaskQueue.cs</code>檔案。</p>
+<p>在這個檔案中放入一個interface及一個類別，分別是<code>IBackgroundTaskQueue</code>及<code>BackgroundTaskQueue</code>。</p>
+<p><code>IBackgroundTaskQueue</code>定義Queue的interface，包含將任務加入Queue以及從Queue中取出服務的兩個方法。</p>
+<p><code>BackgroundTaskQueue</code>是<code>IBackgroundTaskQueue</code>的實作類別，提供資料儲存及實作介面定義的方法。</p>
+<h3 id="%E5%AE%9A%E7%BE%A9ibackgroundtaskqueue%E4%BB%8B%E9%9D%A2">定義IBackgroundTaskQueue介面</h3>
+<p>首先是<code>IBackgroundTaskQueue</code>，interface中定義了<code>QueueBackgroundWorkItem</code>和<code>DequeueAsync</code>兩個方法。</p>
+<pre><code class="language-csharp">// BackgroundTaskQueue.cs
+
+public interface IBackgroundTaskQueue
+{
+    void QueueBackgroundWorkItem(Func&lt;CancellationToken, Task&gt; workItem);
+
+    Task&lt;Func&lt;CancellationToken, Task&gt;&gt; DequeueAsync(CancellationToken cancellationToken);
+}
+</code></pre>
+<p><code>QueueBackgroundWorkItem</code>用於將任務加入到Queue中，此方法傳入一個函式作為參數。<br>
+這個作為參數傳入的函式也有參數及回傳值，參數是<code>CancellationToken</code>，回傳則是<code>Task</code>。<br>
+意即必須將一個型別為<code>Func&lt;CancellationToken, Task&gt;</code>的函式傳入到<code>QueueBackgroundWorkItem</code>函式中，被傳入的函式便是我們要排隊執行的任務。</p>
+<p><code>DequeueAsync</code>用於將任務從Queue中取出，此方法傳入<code>CancellationToken</code>作為參數，回傳值是<code>Func&lt;CancellationToken, Task&gt;</code>，與先前加入Queue的任務的型別相同。</p>
+<h3 id="%E5%AF%A6%E4%BD%9Cbackgroundtaskqueue%E9%A1%9E%E5%88%A5">實作BackgroundTaskQueue類別</h3>
+<p>定義好<code>IBackgroundTaskQueue</code>介面後，以<code>BackgroundTaskQueue</code>實作該介面，此類別除了<code>QueueBackgroundWorkItem</code>和<code>DequeueAsync</code>兩個方法以外還增加了<code>_workItems</code>及<code>_signal</code>兩個屬性。</p>
+<pre><code class="language-csharp">// BackgroundTaskQueue.cs
+
+public class BackgroundTaskQueue : IBackgroundTaskQueue
+{
+    // ConcurrentQueue是執行序安全的集合類型，用來存放任務
+    private ConcurrentQueue&lt;Func&lt;CancellationToken, Task&gt;&gt; _workItems =
+        new ConcurrentQueue&lt;Func&lt;CancellationToken, Task&gt;&gt;();
+
+    // 號誌
+    private SemaphoreSlim _signal = new SemaphoreSlim(0);
+
+    // 將任務加入佇列
+    public void QueueBackgroundWorkItem(
+        Func&lt;CancellationToken, Task&gt; workItem)
+    {
+        if (workItem == null)
+        {
+            throw new ArgumentNullException(nameof(workItem));
+        }
+
+        _workItems.Enqueue(workItem);
+        _signal.Release();
+    }
+
+    // 將任務從佇列取出
+    public async Task&lt;Func&lt;CancellationToken, Task&gt;&gt; DequeueAsync(CancellationToken cancellationToken)
+    {
+        await _signal.WaitAsync(cancellationToken);
+        _workItems.TryDequeue(out var workItem);
+
+        return workItem;
+    }
+}
+</code></pre>
+<p><code>_workItems</code>的型別是<code>ConcurrentQueue&lt;Func&lt;CancellationToken, Task&gt;&gt;</code>，ConcurrentQueue是執行序安全的Queue，用來存放型別為<code>Func&lt;CancellationToken, Task&gt;</code>的任務。<br>
+<code>_signal</code>的型別是<code>SemaphoreSlim</code>，用於管制目前可存取<code>_workItems</code>任務的數量。我們會在將任務加入佇列時使用<code>_signal</code>的<code>Release()</code>方法，讓<code>_signal</code>的可同時存取數量加1。在將任務從佇列取出時呼叫<code>WaitAsync()</code>方法，若<code>_signal</code>的可用數量足夠時則將任務從佇列取出，若<code>_signal</code>的可用數量不足時則讓呼叫者等待。</p>
+<p><code>QueueBackgroundWorkItem</code>方法傳入要被加入到<code>_workItems</code>的任務，此方法首先檢查傳入的<code>workItem</code>是否為null，若不是null則將任務加入到<code>_workItems</code>裡頭排隊，並將<code>_signal</code>的可用數量加1。</p>
+<p><code>DequeueAsync</code>方法傳入<code>cancellationToken</code>，進入方法後持續等待直到可用數量足夠且被<code>_signal</code>放行為止，被放行後就可以從<code>_workItems</code>將任務Dequeue出來並回傳。</p>
+<h3 id="%E8%A8%BB%E5%86%8Abackgroundtaskqueue%E6%9C%8D%E5%8B%99">註冊BackgroundTaskQueue服務</h3>
+<p>在使用BackgroundTaskQueue服務前，我們需要在<code>Program.cs</code>檔案中註冊BackgroundTaskQueue服務。由於BackgroundTaskQueue在整個程式中只能存在一個實體，必須使用AddSingleton方法將BackgroundTaskQueue註冊為Singleton的服務。</p>
+<pre><code class="language-csharp">// Program.cs
+
+...
+    
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+// 將BackgroundTaskQueue註冊為Singleton服務
+builder.Services.AddSingleton&lt;IBackgroundTaskQueue, BackgroundTaskQueue&gt;();
+
+...
+    
+var app = builder.Build();
+
+...
+    
+app.Run();
+</code></pre>
+<h2 id="%E5%BB%BA%E7%AB%8B%E8%83%8C%E6%99%AF%E6%9C%8D%E5%8B%99">建立背景服務</h2>
+<p>有了排隊的機制之後，我們需要讓程式有空閒時自動在背景中執行這些任務，這時候就需要用到<code>BackgroundService</code>類別來幫助我們達成這個機制。</p>
+<h3 id="%E5%AF%A6%E4%BD%9Cqueuedhostedservice%E9%A1%9E%E5%88%A5">實作QueuedHostedService類別</h3>
+<p>在<code>Services</code>目錄下建立<code>QueuedHostedService.cs</code>檔案。</p>
+<p>在這個檔案中建立一個<code>QueuedHostedService</code>類別，此類別繼承<code>BackgroundService</code>類別並實作其<code>ExecuteAsync</code>方法。</p>
+<pre><code class="language-csharp">public class QueuedHostedService : BackgroundService
+{
+    private readonly ILogger _logger;
+    private readonly IBackgroundTaskQueue _taskQueue;
+
+    public QueuedHostedService(
+        IBackgroundTaskQueue taskQueue,
+        ILoggerFactory loggerFactory)
+    {
+        _taskQueue = taskQueue;
+        _logger = loggerFactory.CreateLogger&lt;QueuedHostedService&gt;();
+    }
+
+    protected async override Task ExecuteAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation(&quot;Queued Hosted Service is starting.&quot;);
+
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            // 從佇列中取得workItem
+            var workItem = await _taskQueue.DequeueAsync(cancellationToken);
+
+            try
+            {
+                // 執行從佇列取得的函式
+                await workItem(cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex,
+                   $&quot;Error occurred executing {nameof(workItem)}.&quot;);
+            }
+        }
+
+        _logger.LogInformation(&quot;Queued Hosted Service is stopping.&quot;);
+    }
+}
+</code></pre>
+<p><code>ExecuteAsync</code>方法裡的while迴圈會不停的執行，當有任務需要被執行時會從_taskQueue.DequeueAsync取得任務，並在try區塊內被執行，若發生錯誤也會在此被捕捉到。</p>
+<p>總的來說，QueuedHostedService就是負責不斷的在背景中從Queue取得任務並執行。</p>
+<h3 id="%E8%A8%BB%E5%86%8Aqueuedhostedservice%E6%9C%8D%E5%8B%99">註冊QueuedHostedService服務</h3>
+<p>與其他服務一樣，我們需要在<code>Program.cs</code>檔案中註冊QueuedHostedService服務。不過因為QueuedHostedService要提供的是背景服務，必須使用AddHostedService方法將QueuedHostedService註冊為HostedService。</p>
+<pre><code class="language-csharp">// Program.cs
+
+...
+    
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+// 將QueuedHostedService註冊為HostedService
+builder.Services.AddHostedService&lt;QueuedHostedService&gt;();
+
+...
+    
+var app = builder.Build();
+
+...
+    
+app.Run();
+</code></pre>
+<p>到這邊我們已經可以讓服務在Queue中排隊，並且可以使用背景服務將在排隊的服務取出執行，接著我們只要把我們的任務加入到Queue中讓他們排隊就行了。</p>
+<h2 id="%E8%AE%93%E4%BB%BB%E5%8B%99%E5%8A%A0%E5%85%A5%E5%88%B0%E9%9A%8A%E4%BC%8D%E4%B8%AD">讓任務加入到隊伍中</h2>
+<p>在<code>Services</code>目錄下建立<code>RecordService.cs</code>檔案，此檔案只是為了展示如何將任務加入到Queue中，不一定要建立這個檔案，可以在任何需要讓任務排隊的地方加入排隊的程式碼。</p>
+<pre><code class="language-csharp">public class RecordService
+{
+    private readonly IBackgroundTaskQueue _taskQueue;
+
+    public RecordService(IBackgroundTaskQueue taskQueue)
+    {
+        _taskQueue = taskQueue;
+    }
+
+    public void ShowText(int from, int to)
+    {
+        Console.WriteLine(&quot;1&quot;);
+        _taskQueue.QueueBackgroundWorkItem(async cancellationToken =&gt;
+        {
+            for(int i= from; i&lt; to; i++)
+            {
+                Console.WriteLine(i);
+            }
+        });
+        Console.WriteLine(&quot;2&quot;);
+    }
+}
+</code></pre>
+<p>在建構子中，我們使用DI注入<code>IBackgroundTaskQueue</code>服務，將服務存放在<code>_taskQueue</code>中。<br>
+在<code>ShowText</code>中，我們使用<code>_taskQueue.QueueBackgroundWorkItem</code>方法將一個會從from輸出到to的迴圈作為任務加入到<code>_taskQueue</code>去排隊，這個任務會在<code>QueuedHostedService</code>裡的<code>ExecuteAsync</code>被排隊執行。</p>
+<h3 id="%E8%A8%BB%E5%86%8Arecordservice%E6%9C%8D%E5%8B%99">註冊RecordService服務</h3>
+<p>記得將RecordService也註冊到<code>Program.cs</code>檔案中，可以使用自己需要的生命週期註冊服務，這裡使用AddTransient進行示範。</p>
+<pre><code class="language-csharp">// Program.cs
+
+...
+    
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+// 將RecordService註冊為Transient的服務
+builder.Services.AddTransient&lt;RecordService&gt;();
+
+...
+    
+var app = builder.Build();
+
+...
+    
+app.Run();
+</code></pre>
+<p>將上面的所有服務都建立好之後我們就可以讓會花費很多時間的任務通通去排隊了(ﾉ&gt;ω&lt;)ﾉ</p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">參考資料</h6>
+<ul>
+<li><a href="https://www.cnblogs.com/Vincent-yuan/p/11048748.html?ref=localhost">dotnet core系列之Background tasks with hosted services (后台任务)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-7.0&amp%3Btabs=visual-studio&tabs=visual-studio-mac%2Cvisual-studio&ref=localhost#queued-background-tasks">Background tasks with hosted services in ASP.NET Core | Microsoft Learn</a></li>
+</ul>
+<!--kg-card-end: markdown-->
+			</section>
+
+			<section class="post-footer">
+
+				<div class="post-share">
+					<span class="post-info-label">Share</span>
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=Queued background tasks in ASP.NET Core&url=https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+						<i class="icon icon-twitter" aria-hidden="true"></i>
+					</a>
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+						<i class="icon icon-facebook" aria-hidden="true"></i>
+					</a>
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/queued-background-tasks-in-asp-net-core//&amp;title=Queued background tasks in ASP.NET Core" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+						<i class="icon icon-linkedin" aria-hidden="true"></i>
+					</a>
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=Queued background tasks in ASP.NET Core&amp;body=https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/">
+						<i class="icon icon-mail" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<aside class="post-tags">
+					<span class="post-info-label">Topic</span>
+					<a href="../tag/asp-net-core/index.html">ASP.NET Core</a> <a href="../tag/csharp/index.html">C#</a>
+				</aside>
+
+			</section>
+
+			<section class="post-full-comments">
+				<script src="https://utteranc.es/client.js"
+					repo="vincent87720/BlogComments"
+					issue-term="pathname"
+					theme="github-light"
+					crossorigin="anonymous"
+					async>
+				</script>
+			</section>
+
+
+
+
+			<aside class="post-nav">
+
+
+					<a class="post-nav-prev" href="../difference-between-ienumerable-iqueryable-linq/index.html">
+						<section class="post-nav-teaser">
+							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
+							<h2 class="post-nav-title">IEnumerable或IQueryable物件在進行LINQ查詢時的差異</h2>
+							<p class="post-nav-excerpt">當使用LINQ查詢時，執行對象是IEnumerable或是IQueryable有很大的差異。&hellip;</p>
+							<p class="post-nav-meta"><time datetime="25-09-2023">25 Sep 2023</time></p>
+						</section>
+					</a>
+				<div class="clear"></div>
+			</aside>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+		<div class="nav-footer">
+			<nav class="nav-wrapper" aria-label="Footer">
+				<span class="nav-copy">柴魚筆記本 &copy; 2023  <a class="nav-rss" title="RSS" href="../rss/index.html" target="_blank"><i class="icon icon-rss" aria-hidden="true"></i></a></span>
+				<ul>
+		<li class="nav-github"><a href="https://github.com/vincent87720"><span>Github</span></a></li>
+		<li class="nav-linkedin"><a href="https://www.linkedin.com/in/vincent87720/"><span>LinkedIn</span></a></li>
+</ul>
+
+				<span class="nav-credits">Published with <a href="https://ghost.org">Ghost</a> &bull; Theme <a href="https://github.com/zutrinken/attila">Attila</a> &bull; <a class="menu-item js-theme" href="index.html#" data-system="System theme" data-dark="Dark theme" data-light="Light theme"><span class="theme-icon"></span><span class="theme-text">System theme</span> </a> </span>
+			</nav>
+		</div>
+
+	</section>
+
+	<script type="text/javascript" src="../assets/js/script.js"></script>
+
+	<script>
+  $(document).ready(function () {
+		var viewport = $(window);
+		var post = $('.post-content');
+		// Responsive videos with fitVids
+    post.fitVids();
+		// Format code blocks and add line numbers
+		function codestyling() {
+	    $('pre code').each(function(i, e) {
+				// Code highlight
+	      hljs.highlightElement(e);
+	      // No lines for plain text blocks
+	      if (!$(this).hasClass('language-text')) {
+	        var code = $(this);
+					// Calculate amount of lines
+	        var lines = code.html().split(/\n(?!$)/g).length;
+	        var numbers = [];
+	        if (lines > 1) {
+	          lines++;
+	        }
+	        for (i = 1; i < lines; i++) {
+	          numbers += '<span class="line" aria-hidden="true">' + i + '</span>';
+	        }
+	        code.parent().append('<div class="lines">' + numbers + '</div>');
+	      }
+	    });
+	  }
+	  codestyling();
+		// Reading progress bar on window top
+	  function readingProgress() {
+			var postBottom = post.offset().top + post.height();
+			var viewportHeight = viewport.height();
+      var progress = 100 - (((postBottom - (viewport.scrollTop() + viewportHeight) + viewportHeight / 3) / (postBottom - viewportHeight + viewportHeight / 3)) * 100);
+      $('.progress-bar').css('width', progress + '%');
+      (progress > 100) ? $('.progress-container').addClass('complete'): $('.progress-container').removeClass('complete');
+	  }
+	  readingProgress();
+		// Trigger reading progress
+	  viewport.on({
+	    'scroll': function() {
+	      readingProgress();
+	    },
+	    'resize': function() {
+	      readingProgress();
+	    },
+	    'orientationchange': function() {
+	      readingProgress();
+	    }
+	  });
+
+  });
+</script>
+
+
+	
+
+</body>
+</html>

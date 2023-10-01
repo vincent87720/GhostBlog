@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html ⚡>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    <title>Queued background tasks in ASP.NET Core</title>
+
+    <meta name="description" content="在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。">
+    <link rel="icon" href="../../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
+    <link rel="canonical" href="../index.html">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta property="og:site_name" content="柴魚筆記本">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Queued background tasks in ASP.NET Core">
+    <meta property="og:description" content="在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。">
+    <meta property="og:url" content="https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/">
+    <meta property="og:image" content="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg">
+    <meta property="article:published_time" content="2023-10-01T16:01:03.000Z">
+    <meta property="article:modified_time" content="2023-10-01T16:05:06.000Z">
+    <meta property="article:tag" content="ASP.NET Core">
+    <meta property="article:tag" content="C#">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Queued background tasks in ASP.NET Core">
+    <meta name="twitter:description" content="在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。">
+    <meta name="twitter:url" content="https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Katsuobushi">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="ASP.NET Core, C#">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="3555">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "柴魚筆記本",
+        "url": "https://vincent87720.github.io/",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/content/images/2019/12/dog-breeder-small.ico",
+            "width": 60,
+            "height": 60
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Katsuobushi",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://vincent87720.github.io/content/images/2022/10/dog-breeder-round.svg",
+            "width": 512,
+            "height": 512
+        },
+        "url": "https://vincent87720.github.io/author/katsuobushi/",
+        "sameAs": []
+    },
+    "headline": "Queued background tasks in ASP.NET Core",
+    "url": "https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/",
+    "datePublished": "2023-10-01T16:01:03.000Z",
+    "dateModified": "2023-10-01T16:05:06.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg",
+        "width": 2000,
+        "height": 3555
+    },
+    "keywords": "ASP.NET Core, C#",
+    "description": "在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。",
+    "mainEntityOfPage": "https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 5.60">
+    <link rel="alternate" type="application/rss+xml" title="柴魚筆記本" href="../../rss/index.html">
+
+    <style amp-custom>
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        font-size: 62.5%;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    body {
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        color: #3a4145;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;
+        font-size: 1.7rem;
+        line-height: 1.55em;
+        font-weight: 400;
+        font-style: normal;
+        background: #fff;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    p,
+    ul,
+    ol,
+    li,
+    dl,
+    dd,
+    hr,
+    pre,
+    form,
+    table,
+    video,
+    figure,
+    figcaption,
+    blockquote {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul[class],
+    ol[class] {
+        padding: 0;
+        list-style: none;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    input,
+    button,
+    select,
+    textarea {
+        font: inherit;
+        -webkit-appearance: none;
+    }
+
+    fieldset {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    label {
+        display: block;
+        font-size: 0.9em;
+        font-weight: 700;
+    }
+
+    hr {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid currentcolor;
+        opacity: 0.1;
+    }
+
+    ::selection {
+        text-shadow: none;
+        background: #cbeafb;
+    }
+
+    mark {
+        background-color: #fdffb6;
+    }
+
+    small {
+        font-size: 80%;
+    }
+
+    sub,
+    sup {
+        position: relative;
+        font-size: 75%;
+        line-height: 0;
+        vertical-align: baseline;
+    }
+    sup {
+        top: -0.5em;
+    }
+    sub {
+        bottom: -0.25em;
+    }
+
+    ul li + li {
+        margin-top: 0.6em;
+    }
+
+    a {
+        color: var(--ghost-accent-color, #1292EE);
+        text-decoration-skip-ink: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0;
+        font-weight: 700;
+        color: #121212;
+        line-height: 1.4em;
+    }
+
+    h1 {
+        font-size: 3.4rem;
+        line-height: 1.1em;
+    }
+
+    h2 {
+        font-size: 2.4rem;
+        line-height: 1.2em;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    h4 {
+        font-size: 1.7rem;
+    }
+
+    h5 {
+        font-size: 1.6rem;
+    }
+
+    h6 {
+        font-size: 1.6rem;
+    }
+
+    amp-img {
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    amp-img img {
+        object-fit: cover;
+    }
+    
+    amp-youtube {
+        height: calc(100vw / 1.78);
+        width: 100vw;
+        position: relative;
+    }
+
+    amp-youtube img {
+        position: absolute;
+    }
+
+    .page-header {
+        padding: 50px 5vmin 30px;
+        text-align: center;
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .page-header a {
+        color: #121212;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 1.6rem;
+        letter-spacing: -0.1px;
+    }
+
+    .post {
+        max-width: 680px;
+        margin: 0 auto;
+    }
+
+    .post-header {
+        margin: 0 5vmin 5vmin;
+        text-align: center;
+    }
+
+    .post-meta {
+        margin: 1rem 0 0 0;
+        text-transform: uppercase;
+        color: #738a94;
+        font-weight: 500;
+        font-size: 1.3rem;
+    }
+
+    .post-image {
+        margin: 0 0 5vmin;
+    }
+
+    .post-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .post-content {
+        padding: 0 5vmin;
+    }
+
+    .post-content > * + * {
+        margin-top: 1.5em;
+    }
+
+    .post-content [id]:not(:first-child) {
+        margin: 2em 0 0;
+    }
+
+    .post-content > [id] + * {
+        margin-top: 1rem;
+    }
+
+    .post-content [id] + .kg-card,
+    .post-content blockquote + .kg-card {
+        margin-top: 40px;
+    }
+
+    .post-content > ul,
+    .post-content > ol,
+    .post-content > dl {
+        padding-left: 1.9em;
+    }
+
+    .post-content hr {
+        margin-top: 40px;
+    }
+
+    .post .post-content hr + * {
+        margin-top: 40px;
+    }
+
+    .post-content amp-img {
+        background-color: #f8f8f8;
+    }
+
+    .post-content blockquote {
+        position: relative;
+        font-style: italic;
+    }
+
+    .post-content blockquote::before {
+        content: "";
+        position: absolute;
+        left: -1.5em;
+        top: 0;
+        bottom: 0;
+        width: 0.3rem;
+        background: var(--ghost-accent-color, #1292EE);
+    }
+
+    .post-content blockquote.kg-blockquote-alt {
+        font-size: 1.2em;
+        font-style: italic;
+        line-height: 1.6em;
+        text-align: center;
+        color: #738a94;
+        padding: 0.75em 3em 1.25em;
+    }
+
+    .post-content blockquote.kg-blockquote-alt::before {
+        display: none;
+    }
+
+    .post-content :not(.kg-card):not([id]) + .kg-card {
+        margin-top: 40px;
+    }
+
+    .post-content .kg-card + :not(.kg-card) {
+        margin-top: 40px;
+    }
+
+    .kg-card figcaption {
+        padding: 1.5rem 1.5rem 0;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.3rem;
+        line-height: 1.4em;
+        opacity: 0.6;
+    }
+
+    .kg-card figcaption strong {
+        color: rgba(0,0,0,0.8);
+    }
+
+    .post-content :not(pre) code {
+        vertical-align: middle;
+        padding: 0.15em 0.4em 0.15em;
+        border: #e1eaef 1px solid;
+        font-weight: 400;
+        font-size: 0.9em;
+        line-height: 1em;
+        color: #15171a;
+        background: #f0f6f9;
+        border-radius: 0.25em;
+    }
+
+    .post-content > pre {
+        overflow: scroll;
+        padding: 16px 20px;
+        color: #fff;
+        background: #1F2428;
+        border-radius: 5px;
+        box-shadow: 0 2px 6px -2px rgba(0,0,0,.1), 0 0 1px rgba(0,0,0,.4);
+    }
+
+    .kg-embed-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .kg-image-card img {
+        margin: auto;
+    }
+
+    .kg-gallery-card + .kg-gallery-card {
+        margin-top: 0.75em;
+    }
+
+    .kg-gallery-container {
+        position: relative;
+    }
+
+    .kg-gallery-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .kg-gallery-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .kg-gallery-row:not(:first-of-type) {
+        margin: 0.75em 0 0 0;
+    }
+
+    .kg-gallery-image:not(:first-of-type) {
+        margin: 0 0 0 0.75em;
+    }
+
+    .kg-bookmark-card,
+    .kg-bookmark-publisher {
+        position: relative;
+    }
+
+    .kg-bookmark-container,
+    .kg-bookmark-container:hover {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        color: currentColor;
+        background: rgba(255,255,255,0.6);
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;
+        text-decoration: none;
+        border-radius: 3px;
+        box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+    }
+
+    .kg-bookmark-content {
+        flex-basis: 0;
+        flex-grow: 999;
+        padding: 20px;
+        order: 1;
+    }
+
+    .kg-bookmark-title {
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 1.3em;
+    }
+
+    .kg-bookmark-description {
+        display: -webkit-box;
+        max-height: 45px;
+        margin: 0.5em 0 0 0;
+        font-size: 1.4rem;
+        line-height: 1.55em;
+        overflow: hidden;
+        opacity: 0.8;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+
+    .kg-bookmark-metadata {
+        margin-top: 20px;
+    }
+
+    .kg-bookmark-metadata {
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        font-size: 1.3rem;
+        line-height: 1.3em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .kg-bookmark-description {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+
+    .kg-bookmark-metadata amp-img {
+        width: 18px;
+        height: 18px;
+        max-width: 18px;
+        max-height: 18px;
+        margin-right: 10px;
+    }
+
+    .kg-bookmark-thumbnail {
+        display: flex;
+        flex-basis: 20rem;
+        flex-grow: 1;
+        justify-content: flex-end;
+    }
+
+    .kg-bookmark-thumbnail amp-img {
+        max-height: 200px;
+    }
+
+    .kg-bookmark-author {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .kg-bookmark-publisher::before {
+        content: "•";
+        margin: 0 .5em;
+    }
+
+    .kg-toggle-card-icon {
+        display: none;
+    }
+
+    .kg-toggle-content {
+        margin-top: 0.8rem;
+    }
+
+    .kg-product-card-container {
+        background: transparent;
+        padding: 20px;
+        width: 100%;
+        border-radius: 5px;
+        box-shadow: inset 0 0 0 1px rgb(124 139 154 / 25%);
+    }
+
+    .kg-product-card-description p {
+        margin-top: 1.5em;
+    }
+
+    .kg-product-card-description ul {
+        margin-left: 24px;
+    }
+
+    .kg-product-card-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+    }
+
+    .kg-product-card-rating-star {
+        height: 28px;
+        width: 20px;
+        margin-right: 2px;
+    }
+
+    .kg-product-card-rating-star svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    opacity: 0.15;
+    }
+
+    .kg-product-card-rating-active.kg-product-card-rating-star svg {
+    opacity: 1;
+    }
+
+    .kg-nft-card-container {
+        position: relative;
+        display: flex;
+        flex: auto;
+        flex-direction: column;
+        text-decoration: none;
+        font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;
+        font-size: 1.4rem;
+        font-weight: 400;
+        box-shadow: 0 2px 6px -2px rgb(0 0 0 / 10%), 0 0 1px rgb(0 0 0 / 40%);
+        width: 100%;
+        max-width: 512px;
+        color: #15212A;
+        background: #fff;
+        border-radius: 5px;
+        transition: none;
+        margin: 0 auto;
+    }
+
+    .kg-nft-metadata {
+        padding: 2.0rem;
+    }
+
+    .kg-nft-image-container {
+        position: relative;
+    }
+
+    .kg-nft-image {
+        display: flex;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .kg-nft-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .kg-nft-header h4.kg-nft-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        margin: 0;
+        color: #15212A;
+    }
+
+    .kg-nft-header amp-img {
+        max-width: 114px;
+        max-height: 26px;
+    }
+
+    .kg-nft-opensea-logo {
+        margin-top: 2px;
+        width: 100px;
+    }
+
+    .kg-nft-creator {
+        font-family: inherit;
+        color: #95A1AD;
+    }
+
+    .kg-nft-creator span {
+        font-weight: 500;
+        color: #15212A;
+    }
+
+    .kg-nft-card p.kg-nft-description {
+        font-size: 1.4rem;
+        line-height: 1.4em;
+        margin: 2.0rem 0 0;
+        color: #222;
+    }
+
+    .kg-button-card {
+        display: flex;
+        position: static;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .kg-btn {
+        display: flex;
+        position: static;
+        align-items: center;
+        padding: 0 2.0rem;
+        height: 4.0rem;
+        line-height: 4.0rem;
+        font-size: 1.65rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .kg-btn:hover {
+        opacity: 0.85;
+    }
+
+    .kg-btn-accent {
+        background-color: var(--ghost-accent-color, #1292EE);
+        color: #fff;
+    }
+
+    .kg-callout-card {
+        display: flex;
+        padding: 20px 28px;
+        border-radius: 3px;
+    }
+
+    .kg-callout-card-grey {
+        background: rgba(124, 139, 154, 0.13);
+    }
+
+    .kg-callout-card-white {
+        background: transparent;
+        box-shadow: inset 0 0 0 1px rgba(124, 139, 154, 0.25);
+    }
+
+    .kg-callout-card-blue {
+        background: rgba(33, 172, 232, 0.12);
+    }
+
+    .kg-callout-card-green {
+        background: rgba(52, 183, 67, 0.12);
+    }
+
+    .kg-callout-card-yellow {
+        background: rgba(240, 165, 15, 0.13);
+    }
+
+    .kg-callout-card-red {
+        background: rgba(209, 46, 46, 0.11);
+    }
+
+    .kg-callout-card-pink {
+        background: rgba(225, 71, 174, 0.11);
+    }
+
+    .kg-callout-card-purple {
+        background: rgba(135, 85, 236, 0.12);
+    }
+
+    .kg-callout-card-accent {
+        background: var(--ghost-accent-color);
+        color: #fff;
+    }
+
+    .kg-callout-card-accent a {
+        color: #fff;
+    }
+
+    .kg-callout-emoji {
+        padding-right: 16px;
+        line-height: 1.3;
+        font-size: 1.25em;
+    }
+
+    .kg-header-card {
+        padding: 6em 3em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .kg-header-card.kg-size-small {
+        padding-top: 4em;
+        padding-bottom: 4em;
+    }
+
+    .kg-header-card.kg-size-large {
+        padding-top: 12em;
+        padding-bottom: 12em;
+    }
+
+    .kg-header-card.kg-width-full {
+        padding-left: 4em;
+        padding-right: 4em;
+    }
+
+    .kg-header-card.kg-align-left {
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .kg-header-card.kg-style-dark {
+        background: #15171a;
+        color: #ffffff;
+    }
+
+    .kg-header-card.kg-style-light {
+        color: #15171a;
+        border: 1px solid rgba(124, 139, 154, 0.25);
+        border-width: 1px 0;
+    }
+
+    .kg-header-card.kg-style-accent {
+        background-color: var(--ghost-accent-color);
+    }
+
+    .kg-header-card.kg-style-image {
+        background-color: #e7e7eb;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .kg-header-card h2 {
+        font-size: 4em;
+        font-weight: 700;
+        line-height: 1.1em;
+        margin: 0;
+    }
+
+    .kg-header-card h2 strong {
+        font-weight: 800;
+    }
+
+    .kg-header-card.kg-size-small h2 {
+        font-size: 3em;
+    }
+
+    .kg-header-card.kg-size-large h2 {
+        font-size: 5em;
+    }
+
+    .kg-header-card h3 {
+        font-size: 1.25em;
+        font-weight: 500;
+        line-height: 1.3em;
+        margin: 0;
+    }
+
+    .kg-header-card h3 strong {
+        font-weight: 600;
+    }
+
+    .kg-header-card.kg-size-small h3 {
+        font-size: 1em;
+    }
+
+    .kg-header-card.kg-size-large h3 {
+        font-size: 1.5em;
+    }
+
+    .kg-header-card:not(.kg-style-light) h2,
+    .kg-header-card:not(.kg-style-light) h3 {
+        color: #ffffff;
+    }
+
+    .kg-header-card a.kg-header-card-button {
+        display: flex;
+        position: static;
+        align-items: center;
+        padding: 0 1.2em;
+        height: 2.4em;
+        line-height: 1em;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-size: 0.95em;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: opacity 0.2s ease-in-out;
+        background-color: var(--ghost-accent-color);
+        color: #ffffff;
+        margin: 1.75em 0 0;
+    }
+
+    .kg-header-card a.kg-header-card-button:hover {
+        opacity: 0.85;
+    }
+
+    .kg-header-card.kg-size-large a.kg-header-card-button {
+        margin-top: 2em;
+    }
+
+    .kg-header-card.kg-size-small a.kg-header-card-button {
+        margin-top: 1.5em;
+    }
+
+    .kg-header-card.kg-style-image a.kg-header-card-button,
+    .kg-header-card.kg-style-dark a.kg-header-card-button {
+        background: #ffffff;
+        color: #15171a;
+    }
+
+    .kg-header-card.kg-style-accent a.kg-header-card-button {
+        background: #ffffff;
+        color: var(--ghost-accent-color);
+    }
+
+    .kg-audio-card {
+        display: flex;
+        width: 100%;
+        box-shadow: inset 0 0 0 1px rgba(124, 139, 154, 0.25);
+    }
+
+    .kg-audio-thumbnail {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 80px;
+        min-width: 80px;
+        height: 80px;
+        background: transparent;
+        object-fit: cover;
+        aspect-ratio: 1/1;
+        border-radius: 3px 0 0 3px;
+    }
+
+    .kg-audio-thumbnail.placeholder {
+        background: var(--ghost-accent-color);
+    }
+
+    .kg-audio-thumbnail.placeholder svg {
+        width: 24px;
+        height: 24px;
+        fill: white;
+    }
+
+    .kg-audio-player-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        --seek-before-width: 0%;
+        --volume-before-width: 100%;
+        --buffered-width: 0%;
+    }
+
+    .kg-audio-title {
+        width: 100%;
+        padding: 8px 12px 0;
+        border: none;
+        font-family: inherit;
+        font-size: 1.1em;
+        font-weight: 700;
+        background: transparent;
+    }
+
+    .kg-audio-player {
+        display: none;
+    }
+
+    .kg-width-full.kg-card-hascaption {
+        display: grid;
+        grid-template-columns: inherit;
+    }
+
+    .post-content table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .post-content th {
+        padding: 0.5em 0.8em;
+        text-align: left;
+        font-size: .75em;
+        text-transform: uppercase;
+    }
+
+    .post-content td {
+        padding: 0.4em 0.7em;
+    }
+
+    .post-content tbody tr:nth-child(2n + 1) {
+        background-color: rgba(0,0,0,0.1);
+        padding: 1px;
+    }
+
+    .post-content tbody tr:nth-child(2n + 2) td:last-child {
+        box-shadow:
+            inset 1px 0 rgba(0,0,0,0.1),
+            inset -1px 0 rgba(0,0,0,0.1);
+    }
+
+    .post-content tbody tr:nth-child(2n + 2) td {
+        box-shadow: inset 1px 0 rgba(0,0,0,0.1);
+    }
+
+    .post-content tbody tr:last-child {
+        border-bottom: 1px solid rgba(0,0,0,.1);
+    }
+
+    .page-footer {
+        padding: 60px 5vmin;
+        margin: 60px auto 0;
+        text-align: center;
+        background-color: #f8f8f8;
+    }
+
+    .page-footer h3 {
+        margin: 0.5rem 0 0 0;
+    }
+
+    .page-footer p {
+        max-width: 500px;
+        margin: 1rem auto 1.5rem;
+        font-size: 1.7rem;
+        line-height: 1.5em;
+        color: rgba(0,0,0,0.6)
+    }
+
+    .powered {
+        display: inline-flex;
+        align-items: center;
+        margin: 30px 0 0;
+        padding: 6px 9px 6px 6px;
+        border: rgba(0,0,0,0.1) 1px solid;
+        font-size: 12px;
+        line-height: 12px;
+        letter-spacing: -0.2px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-weight: 500;
+        color: #222;
+        text-decoration: none;
+        background: #fff;
+        border-radius: 6px;
+    }
+
+    .powered svg {
+        height: 16px;
+        width: 16px;
+        margin: 0 6px 0 0;
+    }
+
+    @media (max-width: 600px) {
+        body {
+            font-size: 1.6rem;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+        }
+    }
+
+    @media (max-width: 400px) {
+        h1 {
+            font-size: 2.6rem;
+            line-height: 1.15em;
+        }
+        h2 {
+            font-size: 2rem;
+            line-height: 1.2em;
+        }
+        h3 {
+            font-size: 1.7rem;
+        }
+    }
+
+    :root {--ghost-accent-color: #15171A;}
+    </style>
+
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+    
+
+</head>
+
+<body class="amp-template">
+    <header class="page-header">
+        <a href="../../index.html">
+                <amp-img class="site-icon" src="https://vincent87720.github.io/content/images/2019/12/dog-breeder-small.ico" width="50" height="50" layout="fixed" alt="柴魚筆記本"></amp-img>
+        </a>
+    </header>
+
+    <main class="content" role="main">
+        <article class="post">
+
+            <header class="post-header">
+                <h1 class="post-title">Queued background tasks in ASP.NET Core</h1>
+                <section class="post-meta">
+                    Katsuobushi -
+                    <time class="post-date" datetime="2023-10-02">02 Oct 2023</time>
+                </section>
+            </header>
+            <figure class="post-image">
+                <amp-img src="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg" width="600" height="340" layout="responsive" 
+                alt="Queued background tasks in ASP.NET Core"
+                ></amp-img>
+            </figure>
+            <section class="post-content">
+
+                <p>在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。</p>
+<h2 id="%E7%92%B0%E5%A2%83">環境</h2>
+<ul>
+<li>macOS Ventura 13.0(Apple M1 Pro)</li>
+<li>.NET 6.0</li>
+<li>Visual Studio Community 2022 for Mac 17.6.1</li>
+</ul>
+<h2 id="%E5%BB%BA%E7%AB%8B%E4%BD%87%E5%88%97%E6%9C%8D%E5%8B%99">建立佇列服務</h2>
+<p>在<code>Services</code>目錄下建立<code>BackgroundTaskQueue.cs</code>檔案。</p>
+<p>在這個檔案中放入一個interface及一個類別，分別是<code>IBackgroundTaskQueue</code>及<code>BackgroundTaskQueue</code>。</p>
+<p><code>IBackgroundTaskQueue</code>定義Queue的interface，包含將任務加入Queue以及從Queue中取出服務的兩個方法。</p>
+<p><code>BackgroundTaskQueue</code>是<code>IBackgroundTaskQueue</code>的實作類別，提供資料儲存及實作介面定義的方法。</p>
+<h3 id="%E5%AE%9A%E7%BE%A9ibackgroundtaskqueue%E4%BB%8B%E9%9D%A2">定義IBackgroundTaskQueue介面</h3>
+<p>首先是<code>IBackgroundTaskQueue</code>，interface中定義了<code>QueueBackgroundWorkItem</code>和<code>DequeueAsync</code>兩個方法。</p>
+<pre><code class="language-csharp">// BackgroundTaskQueue.cs
+
+public interface IBackgroundTaskQueue
+{
+    void QueueBackgroundWorkItem(Func&lt;CancellationToken, Task&gt; workItem);
+
+    Task&lt;Func&lt;CancellationToken, Task&gt;&gt; DequeueAsync(CancellationToken cancellationToken);
+}
+</code></pre>
+<p><code>QueueBackgroundWorkItem</code>用於將任務加入到Queue中，此方法傳入一個函式作為參數。<br />
+這個作為參數傳入的函式也有參數及回傳值，參數是<code>CancellationToken</code>，回傳則是<code>Task</code>。<br />
+意即必須將一個型別為<code>Func&lt;CancellationToken, Task&gt;</code>的函式傳入到<code>QueueBackgroundWorkItem</code>函式中，被傳入的函式便是我們要排隊執行的任務。</p>
+<p><code>DequeueAsync</code>用於將任務從Queue中取出，此方法傳入<code>CancellationToken</code>作為參數，回傳值是<code>Func&lt;CancellationToken, Task&gt;</code>，與先前加入Queue的任務的型別相同。</p>
+<h3 id="%E5%AF%A6%E4%BD%9Cbackgroundtaskqueue%E9%A1%9E%E5%88%A5">實作BackgroundTaskQueue類別</h3>
+<p>定義好<code>IBackgroundTaskQueue</code>介面後，以<code>BackgroundTaskQueue</code>實作該介面，此類別除了<code>QueueBackgroundWorkItem</code>和<code>DequeueAsync</code>兩個方法以外還增加了<code>_workItems</code>及<code>_signal</code>兩個屬性。</p>
+<pre><code class="language-csharp">// BackgroundTaskQueue.cs
+
+public class BackgroundTaskQueue : IBackgroundTaskQueue
+{
+    // ConcurrentQueue是執行序安全的集合類型，用來存放任務
+    private ConcurrentQueue&lt;Func&lt;CancellationToken, Task&gt;&gt; _workItems =
+        new ConcurrentQueue&lt;Func&lt;CancellationToken, Task&gt;&gt;();
+
+    // 號誌
+    private SemaphoreSlim _signal = new SemaphoreSlim(0);
+
+    // 將任務加入佇列
+    public void QueueBackgroundWorkItem(
+        Func&lt;CancellationToken, Task&gt; workItem)
+    {
+        if (workItem == null)
+        {
+            throw new ArgumentNullException(nameof(workItem));
+        }
+
+        _workItems.Enqueue(workItem);
+        _signal.Release();
+    }
+
+    // 將任務從佇列取出
+    public async Task&lt;Func&lt;CancellationToken, Task&gt;&gt; DequeueAsync(CancellationToken cancellationToken)
+    {
+        await _signal.WaitAsync(cancellationToken);
+        _workItems.TryDequeue(out var workItem);
+
+        return workItem;
+    }
+}
+</code></pre>
+<p><code>_workItems</code>的型別是<code>ConcurrentQueue&lt;Func&lt;CancellationToken, Task&gt;&gt;</code>，ConcurrentQueue是執行序安全的Queue，用來存放型別為<code>Func&lt;CancellationToken, Task&gt;</code>的任務。<br />
+<code>_signal</code>的型別是<code>SemaphoreSlim</code>，用於管制目前可存取<code>_workItems</code>任務的數量。我們會在將任務加入佇列時使用<code>_signal</code>的<code>Release()</code>方法，讓<code>_signal</code>的可同時存取數量加1。在將任務從佇列取出時呼叫<code>WaitAsync()</code>方法，若<code>_signal</code>的可用數量足夠時則將任務從佇列取出，若<code>_signal</code>的可用數量不足時則讓呼叫者等待。</p>
+<p><code>QueueBackgroundWorkItem</code>方法傳入要被加入到<code>_workItems</code>的任務，此方法首先檢查傳入的<code>workItem</code>是否為null，若不是null則將任務加入到<code>_workItems</code>裡頭排隊，並將<code>_signal</code>的可用數量加1。</p>
+<p><code>DequeueAsync</code>方法傳入<code>cancellationToken</code>，進入方法後持續等待直到可用數量足夠且被<code>_signal</code>放行為止，被放行後就可以從<code>_workItems</code>將任務Dequeue出來並回傳。</p>
+<h3 id="%E8%A8%BB%E5%86%8Abackgroundtaskqueue%E6%9C%8D%E5%8B%99">註冊BackgroundTaskQueue服務</h3>
+<p>在使用BackgroundTaskQueue服務前，我們需要在<code>Program.cs</code>檔案中註冊BackgroundTaskQueue服務。由於BackgroundTaskQueue在整個程式中只能存在一個實體，必須使用AddSingleton方法將BackgroundTaskQueue註冊為Singleton的服務。</p>
+<pre><code class="language-csharp">// Program.cs
+
+...
+    
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+// 將BackgroundTaskQueue註冊為Singleton服務
+builder.Services.AddSingleton&lt;IBackgroundTaskQueue, BackgroundTaskQueue&gt;();
+
+...
+    
+var app = builder.Build();
+
+...
+    
+app.Run();
+</code></pre>
+<h2 id="%E5%BB%BA%E7%AB%8B%E8%83%8C%E6%99%AF%E6%9C%8D%E5%8B%99">建立背景服務</h2>
+<p>有了排隊的機制之後，我們需要讓程式有空閒時自動在背景中執行這些任務，這時候就需要用到<code>BackgroundService</code>類別來幫助我們達成這個機制。</p>
+<h3 id="%E5%AF%A6%E4%BD%9Cqueuedhostedservice%E9%A1%9E%E5%88%A5">實作QueuedHostedService類別</h3>
+<p>在<code>Services</code>目錄下建立<code>QueuedHostedService.cs</code>檔案。</p>
+<p>在這個檔案中建立一個<code>QueuedHostedService</code>類別，此類別繼承<code>BackgroundService</code>類別並實作其<code>ExecuteAsync</code>方法。</p>
+<pre><code class="language-csharp">public class QueuedHostedService : BackgroundService
+{
+    private readonly ILogger _logger;
+    private readonly IBackgroundTaskQueue _taskQueue;
+
+    public QueuedHostedService(
+        IBackgroundTaskQueue taskQueue,
+        ILoggerFactory loggerFactory)
+    {
+        _taskQueue = taskQueue;
+        _logger = loggerFactory.CreateLogger&lt;QueuedHostedService&gt;();
+    }
+
+    protected async override Task ExecuteAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Queued Hosted Service is starting.");
+
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            // 從佇列中取得workItem
+            var workItem = await _taskQueue.DequeueAsync(cancellationToken);
+
+            try
+            {
+                // 執行從佇列取得的函式
+                await workItem(cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex,
+                   $"Error occurred executing {nameof(workItem)}.");
+            }
+        }
+
+        _logger.LogInformation("Queued Hosted Service is stopping.");
+    }
+}
+</code></pre>
+<p><code>ExecuteAsync</code>方法裡的while迴圈會不停的執行，當有任務需要被執行時會從_taskQueue.DequeueAsync取得任務，並在try區塊內被執行，若發生錯誤也會在此被捕捉到。</p>
+<p>總的來說，QueuedHostedService就是負責不斷的在背景中從Queue取得任務並執行。</p>
+<h3 id="%E8%A8%BB%E5%86%8Aqueuedhostedservice%E6%9C%8D%E5%8B%99">註冊QueuedHostedService服務</h3>
+<p>與其他服務一樣，我們需要在<code>Program.cs</code>檔案中註冊QueuedHostedService服務。不過因為QueuedHostedService要提供的是背景服務，必須使用AddHostedService方法將QueuedHostedService註冊為HostedService。</p>
+<pre><code class="language-csharp">// Program.cs
+
+...
+    
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+// 將QueuedHostedService註冊為HostedService
+builder.Services.AddHostedService&lt;QueuedHostedService&gt;();
+
+...
+    
+var app = builder.Build();
+
+...
+    
+app.Run();
+</code></pre>
+<p>到這邊我們已經可以讓服務在Queue中排隊，並且可以使用背景服務將在排隊的服務取出執行，接著我們只要把我們的任務加入到Queue中讓他們排隊就行了。</p>
+<h2 id="%E8%AE%93%E4%BB%BB%E5%8B%99%E5%8A%A0%E5%85%A5%E5%88%B0%E9%9A%8A%E4%BC%8D%E4%B8%AD">讓任務加入到隊伍中</h2>
+<p>在<code>Services</code>目錄下建立<code>RecordService.cs</code>檔案，此檔案只是為了展示如何將任務加入到Queue中，不一定要建立這個檔案，可以在任何需要讓任務排隊的地方加入排隊的程式碼。</p>
+<pre><code class="language-csharp">public class RecordService
+{
+    private readonly IBackgroundTaskQueue _taskQueue;
+
+    public RecordService(IBackgroundTaskQueue taskQueue)
+    {
+        _taskQueue = taskQueue;
+    }
+
+    public void ShowText(int from, int to)
+    {
+        Console.WriteLine("1");
+        _taskQueue.QueueBackgroundWorkItem(async cancellationToken =&gt;
+        {
+            for(int i= from; i&lt; to; i++)
+            {
+                Console.WriteLine(i);
+            }
+        });
+        Console.WriteLine("2");
+    }
+}
+</code></pre>
+<p>在建構子中，我們使用DI注入<code>IBackgroundTaskQueue</code>服務，將服務存放在<code>_taskQueue</code>中。<br />
+在<code>ShowText</code>中，我們使用<code>_taskQueue.QueueBackgroundWorkItem</code>方法將一個會從from輸出到to的迴圈作為任務加入到<code>_taskQueue</code>去排隊，這個任務會在<code>QueuedHostedService</code>裡的<code>ExecuteAsync</code>被排隊執行。</p>
+<h3 id="%E8%A8%BB%E5%86%8Arecordservice%E6%9C%8D%E5%8B%99">註冊RecordService服務</h3>
+<p>記得將RecordService也註冊到<code>Program.cs</code>檔案中，可以使用自己需要的生命週期註冊服務，這裡使用AddTransient進行示範。</p>
+<pre><code class="language-csharp">// Program.cs
+
+...
+    
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+// 將RecordService註冊為Transient的服務
+builder.Services.AddTransient&lt;RecordService&gt;();
+
+...
+    
+var app = builder.Build();
+
+...
+    
+app.Run();
+</code></pre>
+<p>將上面的所有服務都建立好之後我們就可以讓會花費很多時間的任務通通去排隊了(ﾉ&gt;ω&lt;)ﾉ</p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">參考資料</h6>
+<ul>
+<li><a href="https://www.cnblogs.com/Vincent-yuan/p/11048748.html?ref=localhost">dotnet core系列之Background tasks with hosted services (后台任务)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-7.0&amp;3Btabs=visual-studio&amp;tabs=visual-studio-mac%2Cvisual-studio&amp;ref=localhost#queued-background-tasks">Background tasks with hosted services in ASP.NET Core | Microsoft Learn</a></li>
+</ul>
+
+
+            </section>
+
+        </article>
+    </main>
+    <footer class="page-footer">
+            <amp-img class="site-icon" src="https://vincent87720.github.io/content/images/2019/12/dog-breeder-small.ico" width="50" height="50" layout="fixed" alt="柴魚筆記本"></amp-img>
+        <h3>柴魚筆記本</h3>
+            <p>程式・軟體・攝影</p>
+        <p><a href="../../index.html">Read more posts →</a></p>
+        <a class="powered" href="https://ghost.org" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 156"><g fill="none" fill-rule="evenodd"><rect fill="#15212B" width="156" height="156" rx="27"/><g transform="translate(36 36)" fill="#F6F8FA"><path d="M0 71.007A4.004 4.004 0 014 67h26a4 4 0 014 4.007v8.986A4.004 4.004 0 0130 84H4a4 4 0 01-4-4.007v-8.986zM50 71.007A4.004 4.004 0 0154 67h26a4 4 0 014 4.007v8.986A4.004 4.004 0 0180 84H54a4 4 0 01-4-4.007v-8.986z"/><rect y="34" width="84" height="17" rx="4"/><path d="M0 4.007A4.007 4.007 0 014.007 0h41.986A4.003 4.003 0 0150 4.007v8.986A4.007 4.007 0 0145.993 17H4.007A4.003 4.003 0 010 12.993V4.007z"/><rect x="67" width="17" height="17" rx="4"/></g></g></svg> Published with Ghost</a>
+    </footer>
+    
+</body>
+</html>

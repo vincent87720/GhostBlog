@@ -1,4 +1,213 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.60</generator><lastBuildDate>Sun, 24 Sep 2023 16:02:50 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[IEnumerable或IQueryable物件在進行LINQ查詢時的差異]]></title><description><![CDATA[當使用LINQ查詢時，執行對象是IEnumerable或是IQueryable有很大的差異。]]></description><link>https://vincent87720.github.io/difference-between-ienumerable-iqueryable-linq/</link><guid isPermaLink="false">65105b6630e7a60001e1d564</guid><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 24 Sep 2023 16:01:52 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/09/vs2012_gray_imprint.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/09/vs2012_gray_imprint.png" alt="IEnumerable&#x6216;IQueryable&#x7269;&#x4EF6;&#x5728;&#x9032;&#x884C;LINQ&#x67E5;&#x8A62;&#x6642;&#x7684;&#x5DEE;&#x7570;"><p>&#x7576;&#x4F7F;&#x7528;LINQ&#x67E5;&#x8A62;&#x6642;&#xFF0C;&#x57F7;&#x884C;&#x5C0D;&#x8C61;&#x662F;IEnumerable&#x6216;&#x662F;IQueryable&#x6709;&#x5F88;&#x5927;&#x7684;&#x5DEE;&#x7570;&#x3002;</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.60</generator><lastBuildDate>Sun, 01 Oct 2023 16:05:31 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Queued background tasks in ASP.NET Core]]></title><description><![CDATA[在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。]]></description><link>https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/</link><guid isPermaLink="false">651996620bc50e000198cfe7</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 01 Oct 2023 16:01:03 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg" alt="Queued background tasks in ASP.NET Core"><p>&#x5728;&#x5BE6;&#x52D9;&#x4E0A;&#x6709;&#x6642;&#x5019;&#x6703;&#x9047;&#x5230;&#x67D0;&#x4E9B;&#x9700;&#x8981;&#x82B1;&#x8CBB;&#x5927;&#x91CF;&#x6642;&#x9593;&#x57F7;&#x884C;&#x7684;&#x4EFB;&#x52D9;&#xFF0C;&#x50CF;&#x6211;&#x5C31;&#x662F;&#x5728;&#x5BEB;&#x516C;&#x53F8;&#x5C08;&#x6848;&#x6642;&#x9047;&#x5230;&#x9700;&#x8981;&#x7522;&#x751F;&#x7E2E;&#x5716;&#x548C;&#x8F49;&#x6A94;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x82E5;&#x4E0D;&#x60F3;&#x8B93;&#x4F7F;&#x7528;&#x8005;&#x4E00;&#x76F4;&#x8F49;&#x5708;&#x5708;&#x7B49;&#x5F85;&#x7684;&#x8A71;&#xFF0C;&#x6211;&#x5011;&#x5FC5;&#x9808;&#x63A1;&#x7528;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x8B93;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x5148;&#x56DE;&#x8986;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x4E4B;&#x5F8C;&#x518D;&#x4F86;&#x6162;&#x6162;&#x8655;&#x7406;&#x9019;&#x4E9B;&#x9700;&#x6C42;&#xFF0C;&#x5728;&#x80CC;&#x666F;&#x4E2D;&#x8B93;&#x9019;&#x4E9B;&#x4EFB;&#x52D9;&#x6392;&#x968A;&#x57F7;&#x884C;&#x5C31;&#x662F;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x65B9;&#x6CD5;&#x3002;</p>
+<h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
+<ul>
+<li>macOS Ventura 13.0(Apple M1 Pro)</li>
+<li>.NET 6.0</li>
+<li>Visual Studio Community 2022 for Mac 17.6.1</li>
+</ul>
+<h2 id="%E5%BB%BA%E7%AB%8B%E4%BD%87%E5%88%97%E6%9C%8D%E5%8B%99">&#x5EFA;&#x7ACB;&#x4F47;&#x5217;&#x670D;&#x52D9;</h2>
+<p>&#x5728;<code>Services</code>&#x76EE;&#x9304;&#x4E0B;&#x5EFA;&#x7ACB;<code>BackgroundTaskQueue.cs</code>&#x6A94;&#x6848;&#x3002;</p>
+<p>&#x5728;&#x9019;&#x500B;&#x6A94;&#x6848;&#x4E2D;&#x653E;&#x5165;&#x4E00;&#x500B;interface&#x53CA;&#x4E00;&#x500B;&#x985E;&#x5225;&#xFF0C;&#x5206;&#x5225;&#x662F;<code>IBackgroundTaskQueue</code>&#x53CA;<code>BackgroundTaskQueue</code>&#x3002;</p>
+<p><code>IBackgroundTaskQueue</code>&#x5B9A;&#x7FA9;Queue&#x7684;interface&#xFF0C;&#x5305;&#x542B;&#x5C07;&#x4EFB;&#x52D9;&#x52A0;&#x5165;Queue&#x4EE5;&#x53CA;&#x5F9E;Queue&#x4E2D;&#x53D6;&#x51FA;&#x670D;&#x52D9;&#x7684;&#x5169;&#x500B;&#x65B9;&#x6CD5;&#x3002;</p>
+<p><code>BackgroundTaskQueue</code>&#x662F;<code>IBackgroundTaskQueue</code>&#x7684;&#x5BE6;&#x4F5C;&#x985E;&#x5225;&#xFF0C;&#x63D0;&#x4F9B;&#x8CC7;&#x6599;&#x5132;&#x5B58;&#x53CA;&#x5BE6;&#x4F5C;&#x4ECB;&#x9762;&#x5B9A;&#x7FA9;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<h3 id="%E5%AE%9A%E7%BE%A9ibackgroundtaskqueue%E4%BB%8B%E9%9D%A2">&#x5B9A;&#x7FA9;IBackgroundTaskQueue&#x4ECB;&#x9762;</h3>
+<p>&#x9996;&#x5148;&#x662F;<code>IBackgroundTaskQueue</code>&#xFF0C;interface&#x4E2D;&#x5B9A;&#x7FA9;&#x4E86;<code>QueueBackgroundWorkItem</code>&#x548C;<code>DequeueAsync</code>&#x5169;&#x500B;&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="language-csharp">// BackgroundTaskQueue.cs
+
+public interface IBackgroundTaskQueue
+{
+    void QueueBackgroundWorkItem(Func&lt;CancellationToken, Task&gt; workItem);
+
+    Task&lt;Func&lt;CancellationToken, Task&gt;&gt; DequeueAsync(CancellationToken cancellationToken);
+}
+</code></pre>
+<p><code>QueueBackgroundWorkItem</code>&#x7528;&#x65BC;&#x5C07;&#x4EFB;&#x52D9;&#x52A0;&#x5165;&#x5230;Queue&#x4E2D;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x50B3;&#x5165;&#x4E00;&#x500B;&#x51FD;&#x5F0F;&#x4F5C;&#x70BA;&#x53C3;&#x6578;&#x3002;<br>
+&#x9019;&#x500B;&#x4F5C;&#x70BA;&#x53C3;&#x6578;&#x50B3;&#x5165;&#x7684;&#x51FD;&#x5F0F;&#x4E5F;&#x6709;&#x53C3;&#x6578;&#x53CA;&#x56DE;&#x50B3;&#x503C;&#xFF0C;&#x53C3;&#x6578;&#x662F;<code>CancellationToken</code>&#xFF0C;&#x56DE;&#x50B3;&#x5247;&#x662F;<code>Task</code>&#x3002;<br>
+&#x610F;&#x5373;&#x5FC5;&#x9808;&#x5C07;&#x4E00;&#x500B;&#x578B;&#x5225;&#x70BA;<code>Func&lt;CancellationToken, Task&gt;</code>&#x7684;&#x51FD;&#x5F0F;&#x50B3;&#x5165;&#x5230;<code>QueueBackgroundWorkItem</code>&#x51FD;&#x5F0F;&#x4E2D;&#xFF0C;&#x88AB;&#x50B3;&#x5165;&#x7684;&#x51FD;&#x5F0F;&#x4FBF;&#x662F;&#x6211;&#x5011;&#x8981;&#x6392;&#x968A;&#x57F7;&#x884C;&#x7684;&#x4EFB;&#x52D9;&#x3002;</p>
+<p><code>DequeueAsync</code>&#x7528;&#x65BC;&#x5C07;&#x4EFB;&#x52D9;&#x5F9E;Queue&#x4E2D;&#x53D6;&#x51FA;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x50B3;&#x5165;<code>CancellationToken</code>&#x4F5C;&#x70BA;&#x53C3;&#x6578;&#xFF0C;&#x56DE;&#x50B3;&#x503C;&#x662F;<code>Func&lt;CancellationToken, Task&gt;</code>&#xFF0C;&#x8207;&#x5148;&#x524D;&#x52A0;&#x5165;Queue&#x7684;&#x4EFB;&#x52D9;&#x7684;&#x578B;&#x5225;&#x76F8;&#x540C;&#x3002;</p>
+<h3 id="%E5%AF%A6%E4%BD%9Cbackgroundtaskqueue%E9%A1%9E%E5%88%A5">&#x5BE6;&#x4F5C;BackgroundTaskQueue&#x985E;&#x5225;</h3>
+<p>&#x5B9A;&#x7FA9;&#x597D;<code>IBackgroundTaskQueue</code>&#x4ECB;&#x9762;&#x5F8C;&#xFF0C;&#x4EE5;<code>BackgroundTaskQueue</code>&#x5BE6;&#x4F5C;&#x8A72;&#x4ECB;&#x9762;&#xFF0C;&#x6B64;&#x985E;&#x5225;&#x9664;&#x4E86;<code>QueueBackgroundWorkItem</code>&#x548C;<code>DequeueAsync</code>&#x5169;&#x500B;&#x65B9;&#x6CD5;&#x4EE5;&#x5916;&#x9084;&#x589E;&#x52A0;&#x4E86;<code>_workItems</code>&#x53CA;<code>_signal</code>&#x5169;&#x500B;&#x5C6C;&#x6027;&#x3002;</p>
+<pre><code class="language-csharp">// BackgroundTaskQueue.cs
+
+public class BackgroundTaskQueue : IBackgroundTaskQueue
+{
+    // ConcurrentQueue&#x662F;&#x57F7;&#x884C;&#x5E8F;&#x5B89;&#x5168;&#x7684;&#x96C6;&#x5408;&#x985E;&#x578B;&#xFF0C;&#x7528;&#x4F86;&#x5B58;&#x653E;&#x4EFB;&#x52D9;
+    private ConcurrentQueue&lt;Func&lt;CancellationToken, Task&gt;&gt; _workItems =
+        new ConcurrentQueue&lt;Func&lt;CancellationToken, Task&gt;&gt;();
+
+    // &#x865F;&#x8A8C;
+    private SemaphoreSlim _signal = new SemaphoreSlim(0);
+
+    // &#x5C07;&#x4EFB;&#x52D9;&#x52A0;&#x5165;&#x4F47;&#x5217;
+    public void QueueBackgroundWorkItem(
+        Func&lt;CancellationToken, Task&gt; workItem)
+    {
+        if (workItem == null)
+        {
+            throw new ArgumentNullException(nameof(workItem));
+        }
+
+        _workItems.Enqueue(workItem);
+        _signal.Release();
+    }
+
+    // &#x5C07;&#x4EFB;&#x52D9;&#x5F9E;&#x4F47;&#x5217;&#x53D6;&#x51FA;
+    public async Task&lt;Func&lt;CancellationToken, Task&gt;&gt; DequeueAsync(CancellationToken cancellationToken)
+    {
+        await _signal.WaitAsync(cancellationToken);
+        _workItems.TryDequeue(out var workItem);
+
+        return workItem;
+    }
+}
+</code></pre>
+<p><code>_workItems</code>&#x7684;&#x578B;&#x5225;&#x662F;<code>ConcurrentQueue&lt;Func&lt;CancellationToken, Task&gt;&gt;</code>&#xFF0C;ConcurrentQueue&#x662F;&#x57F7;&#x884C;&#x5E8F;&#x5B89;&#x5168;&#x7684;Queue&#xFF0C;&#x7528;&#x4F86;&#x5B58;&#x653E;&#x578B;&#x5225;&#x70BA;<code>Func&lt;CancellationToken, Task&gt;</code>&#x7684;&#x4EFB;&#x52D9;&#x3002;<br>
+<code>_signal</code>&#x7684;&#x578B;&#x5225;&#x662F;<code>SemaphoreSlim</code>&#xFF0C;&#x7528;&#x65BC;&#x7BA1;&#x5236;&#x76EE;&#x524D;&#x53EF;&#x5B58;&#x53D6;<code>_workItems</code>&#x4EFB;&#x52D9;&#x7684;&#x6578;&#x91CF;&#x3002;&#x6211;&#x5011;&#x6703;&#x5728;&#x5C07;&#x4EFB;&#x52D9;&#x52A0;&#x5165;&#x4F47;&#x5217;&#x6642;&#x4F7F;&#x7528;<code>_signal</code>&#x7684;<code>Release()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8B93;<code>_signal</code>&#x7684;&#x53EF;&#x540C;&#x6642;&#x5B58;&#x53D6;&#x6578;&#x91CF;&#x52A0;1&#x3002;&#x5728;&#x5C07;&#x4EFB;&#x52D9;&#x5F9E;&#x4F47;&#x5217;&#x53D6;&#x51FA;&#x6642;&#x547C;&#x53EB;<code>WaitAsync()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x82E5;<code>_signal</code>&#x7684;&#x53EF;&#x7528;&#x6578;&#x91CF;&#x8DB3;&#x5920;&#x6642;&#x5247;&#x5C07;&#x4EFB;&#x52D9;&#x5F9E;&#x4F47;&#x5217;&#x53D6;&#x51FA;&#xFF0C;&#x82E5;<code>_signal</code>&#x7684;&#x53EF;&#x7528;&#x6578;&#x91CF;&#x4E0D;&#x8DB3;&#x6642;&#x5247;&#x8B93;&#x547C;&#x53EB;&#x8005;&#x7B49;&#x5F85;&#x3002;</p>
+<p><code>QueueBackgroundWorkItem</code>&#x65B9;&#x6CD5;&#x50B3;&#x5165;&#x8981;&#x88AB;&#x52A0;&#x5165;&#x5230;<code>_workItems</code>&#x7684;&#x4EFB;&#x52D9;&#xFF0C;&#x6B64;&#x65B9;&#x6CD5;&#x9996;&#x5148;&#x6AA2;&#x67E5;&#x50B3;&#x5165;&#x7684;<code>workItem</code>&#x662F;&#x5426;&#x70BA;null&#xFF0C;&#x82E5;&#x4E0D;&#x662F;null&#x5247;&#x5C07;&#x4EFB;&#x52D9;&#x52A0;&#x5165;&#x5230;<code>_workItems</code>&#x88E1;&#x982D;&#x6392;&#x968A;&#xFF0C;&#x4E26;&#x5C07;<code>_signal</code>&#x7684;&#x53EF;&#x7528;&#x6578;&#x91CF;&#x52A0;1&#x3002;</p>
+<p><code>DequeueAsync</code>&#x65B9;&#x6CD5;&#x50B3;&#x5165;<code>cancellationToken</code>&#xFF0C;&#x9032;&#x5165;&#x65B9;&#x6CD5;&#x5F8C;&#x6301;&#x7E8C;&#x7B49;&#x5F85;&#x76F4;&#x5230;&#x53EF;&#x7528;&#x6578;&#x91CF;&#x8DB3;&#x5920;&#x4E14;&#x88AB;<code>_signal</code>&#x653E;&#x884C;&#x70BA;&#x6B62;&#xFF0C;&#x88AB;&#x653E;&#x884C;&#x5F8C;&#x5C31;&#x53EF;&#x4EE5;&#x5F9E;<code>_workItems</code>&#x5C07;&#x4EFB;&#x52D9;Dequeue&#x51FA;&#x4F86;&#x4E26;&#x56DE;&#x50B3;&#x3002;</p>
+<h3 id="%E8%A8%BB%E5%86%8Abackgroundtaskqueue%E6%9C%8D%E5%8B%99">&#x8A3B;&#x518A;BackgroundTaskQueue&#x670D;&#x52D9;</h3>
+<p>&#x5728;&#x4F7F;&#x7528;BackgroundTaskQueue&#x670D;&#x52D9;&#x524D;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5728;<code>Program.cs</code>&#x6A94;&#x6848;&#x4E2D;&#x8A3B;&#x518A;BackgroundTaskQueue&#x670D;&#x52D9;&#x3002;&#x7531;&#x65BC;BackgroundTaskQueue&#x5728;&#x6574;&#x500B;&#x7A0B;&#x5F0F;&#x4E2D;&#x53EA;&#x80FD;&#x5B58;&#x5728;&#x4E00;&#x500B;&#x5BE6;&#x9AD4;&#xFF0C;&#x5FC5;&#x9808;&#x4F7F;&#x7528;AddSingleton&#x65B9;&#x6CD5;&#x5C07;BackgroundTaskQueue&#x8A3B;&#x518A;&#x70BA;Singleton&#x7684;&#x670D;&#x52D9;&#x3002;</p>
+<pre><code class="language-csharp">// Program.cs
+
+...
+    
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+// &#x5C07;BackgroundTaskQueue&#x8A3B;&#x518A;&#x70BA;Singleton&#x670D;&#x52D9;
+builder.Services.AddSingleton&lt;IBackgroundTaskQueue, BackgroundTaskQueue&gt;();
+
+...
+    
+var app = builder.Build();
+
+...
+    
+app.Run();
+</code></pre>
+<h2 id="%E5%BB%BA%E7%AB%8B%E8%83%8C%E6%99%AF%E6%9C%8D%E5%8B%99">&#x5EFA;&#x7ACB;&#x80CC;&#x666F;&#x670D;&#x52D9;</h2>
+<p>&#x6709;&#x4E86;&#x6392;&#x968A;&#x7684;&#x6A5F;&#x5236;&#x4E4B;&#x5F8C;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x8B93;&#x7A0B;&#x5F0F;&#x6709;&#x7A7A;&#x9592;&#x6642;&#x81EA;&#x52D5;&#x5728;&#x80CC;&#x666F;&#x4E2D;&#x57F7;&#x884C;&#x9019;&#x4E9B;&#x4EFB;&#x52D9;&#xFF0C;&#x9019;&#x6642;&#x5019;&#x5C31;&#x9700;&#x8981;&#x7528;&#x5230;<code>BackgroundService</code>&#x985E;&#x5225;&#x4F86;&#x5E6B;&#x52A9;&#x6211;&#x5011;&#x9054;&#x6210;&#x9019;&#x500B;&#x6A5F;&#x5236;&#x3002;</p>
+<h3 id="%E5%AF%A6%E4%BD%9Cqueuedhostedservice%E9%A1%9E%E5%88%A5">&#x5BE6;&#x4F5C;QueuedHostedService&#x985E;&#x5225;</h3>
+<p>&#x5728;<code>Services</code>&#x76EE;&#x9304;&#x4E0B;&#x5EFA;&#x7ACB;<code>QueuedHostedService.cs</code>&#x6A94;&#x6848;&#x3002;</p>
+<p>&#x5728;&#x9019;&#x500B;&#x6A94;&#x6848;&#x4E2D;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;<code>QueuedHostedService</code>&#x985E;&#x5225;&#xFF0C;&#x6B64;&#x985E;&#x5225;&#x7E7C;&#x627F;<code>BackgroundService</code>&#x985E;&#x5225;&#x4E26;&#x5BE6;&#x4F5C;&#x5176;<code>ExecuteAsync</code>&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="language-csharp">public class QueuedHostedService : BackgroundService
+{
+    private readonly ILogger _logger;
+    private readonly IBackgroundTaskQueue _taskQueue;
+
+    public QueuedHostedService(
+        IBackgroundTaskQueue taskQueue,
+        ILoggerFactory loggerFactory)
+    {
+        _taskQueue = taskQueue;
+        _logger = loggerFactory.CreateLogger&lt;QueuedHostedService&gt;();
+    }
+
+    protected async override Task ExecuteAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation(&quot;Queued Hosted Service is starting.&quot;);
+
+        while (!cancellationToken.IsCancellationRequested)
+        {
+            // &#x5F9E;&#x4F47;&#x5217;&#x4E2D;&#x53D6;&#x5F97;workItem
+            var workItem = await _taskQueue.DequeueAsync(cancellationToken);
+
+            try
+            {
+                // &#x57F7;&#x884C;&#x5F9E;&#x4F47;&#x5217;&#x53D6;&#x5F97;&#x7684;&#x51FD;&#x5F0F;
+                await workItem(cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex,
+                   $&quot;Error occurred executing {nameof(workItem)}.&quot;);
+            }
+        }
+
+        _logger.LogInformation(&quot;Queued Hosted Service is stopping.&quot;);
+    }
+}
+</code></pre>
+<p><code>ExecuteAsync</code>&#x65B9;&#x6CD5;&#x88E1;&#x7684;while&#x8FF4;&#x5708;&#x6703;&#x4E0D;&#x505C;&#x7684;&#x57F7;&#x884C;&#xFF0C;&#x7576;&#x6709;&#x4EFB;&#x52D9;&#x9700;&#x8981;&#x88AB;&#x57F7;&#x884C;&#x6642;&#x6703;&#x5F9E;_taskQueue.DequeueAsync&#x53D6;&#x5F97;&#x4EFB;&#x52D9;&#xFF0C;&#x4E26;&#x5728;try&#x5340;&#x584A;&#x5167;&#x88AB;&#x57F7;&#x884C;&#xFF0C;&#x82E5;&#x767C;&#x751F;&#x932F;&#x8AA4;&#x4E5F;&#x6703;&#x5728;&#x6B64;&#x88AB;&#x6355;&#x6349;&#x5230;&#x3002;</p>
+<p>&#x7E3D;&#x7684;&#x4F86;&#x8AAA;&#xFF0C;QueuedHostedService&#x5C31;&#x662F;&#x8CA0;&#x8CAC;&#x4E0D;&#x65B7;&#x7684;&#x5728;&#x80CC;&#x666F;&#x4E2D;&#x5F9E;Queue&#x53D6;&#x5F97;&#x4EFB;&#x52D9;&#x4E26;&#x57F7;&#x884C;&#x3002;</p>
+<h3 id="%E8%A8%BB%E5%86%8Aqueuedhostedservice%E6%9C%8D%E5%8B%99">&#x8A3B;&#x518A;QueuedHostedService&#x670D;&#x52D9;</h3>
+<p>&#x8207;&#x5176;&#x4ED6;&#x670D;&#x52D9;&#x4E00;&#x6A23;&#xFF0C;&#x6211;&#x5011;&#x9700;&#x8981;&#x5728;<code>Program.cs</code>&#x6A94;&#x6848;&#x4E2D;&#x8A3B;&#x518A;QueuedHostedService&#x670D;&#x52D9;&#x3002;&#x4E0D;&#x904E;&#x56E0;&#x70BA;QueuedHostedService&#x8981;&#x63D0;&#x4F9B;&#x7684;&#x662F;&#x80CC;&#x666F;&#x670D;&#x52D9;&#xFF0C;&#x5FC5;&#x9808;&#x4F7F;&#x7528;AddHostedService&#x65B9;&#x6CD5;&#x5C07;QueuedHostedService&#x8A3B;&#x518A;&#x70BA;HostedService&#x3002;</p>
+<pre><code class="language-csharp">// Program.cs
+
+...
+    
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+// &#x5C07;QueuedHostedService&#x8A3B;&#x518A;&#x70BA;HostedService
+builder.Services.AddHostedService&lt;QueuedHostedService&gt;();
+
+...
+    
+var app = builder.Build();
+
+...
+    
+app.Run();
+</code></pre>
+<p>&#x5230;&#x9019;&#x908A;&#x6211;&#x5011;&#x5DF2;&#x7D93;&#x53EF;&#x4EE5;&#x8B93;&#x670D;&#x52D9;&#x5728;Queue&#x4E2D;&#x6392;&#x968A;&#xFF0C;&#x4E26;&#x4E14;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x80CC;&#x666F;&#x670D;&#x52D9;&#x5C07;&#x5728;&#x6392;&#x968A;&#x7684;&#x670D;&#x52D9;&#x53D6;&#x51FA;&#x57F7;&#x884C;&#xFF0C;&#x63A5;&#x8457;&#x6211;&#x5011;&#x53EA;&#x8981;&#x628A;&#x6211;&#x5011;&#x7684;&#x4EFB;&#x52D9;&#x52A0;&#x5165;&#x5230;Queue&#x4E2D;&#x8B93;&#x4ED6;&#x5011;&#x6392;&#x968A;&#x5C31;&#x884C;&#x4E86;&#x3002;</p>
+<h2 id="%E8%AE%93%E4%BB%BB%E5%8B%99%E5%8A%A0%E5%85%A5%E5%88%B0%E9%9A%8A%E4%BC%8D%E4%B8%AD">&#x8B93;&#x4EFB;&#x52D9;&#x52A0;&#x5165;&#x5230;&#x968A;&#x4F0D;&#x4E2D;</h2>
+<p>&#x5728;<code>Services</code>&#x76EE;&#x9304;&#x4E0B;&#x5EFA;&#x7ACB;<code>RecordService.cs</code>&#x6A94;&#x6848;&#xFF0C;&#x6B64;&#x6A94;&#x6848;&#x53EA;&#x662F;&#x70BA;&#x4E86;&#x5C55;&#x793A;&#x5982;&#x4F55;&#x5C07;&#x4EFB;&#x52D9;&#x52A0;&#x5165;&#x5230;Queue&#x4E2D;&#xFF0C;&#x4E0D;&#x4E00;&#x5B9A;&#x8981;&#x5EFA;&#x7ACB;&#x9019;&#x500B;&#x6A94;&#x6848;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4EFB;&#x4F55;&#x9700;&#x8981;&#x8B93;&#x4EFB;&#x52D9;&#x6392;&#x968A;&#x7684;&#x5730;&#x65B9;&#x52A0;&#x5165;&#x6392;&#x968A;&#x7684;&#x7A0B;&#x5F0F;&#x78BC;&#x3002;</p>
+<pre><code class="language-csharp">public class RecordService
+{
+    private readonly IBackgroundTaskQueue _taskQueue;
+
+    public RecordService(IBackgroundTaskQueue taskQueue)
+    {
+        _taskQueue = taskQueue;
+    }
+
+    public void ShowText(int from, int to)
+    {
+        Console.WriteLine(&quot;1&quot;);
+        _taskQueue.QueueBackgroundWorkItem(async cancellationToken =&gt;
+        {
+            for(int i= from; i&lt; to; i++)
+            {
+                Console.WriteLine(i);
+            }
+        });
+        Console.WriteLine(&quot;2&quot;);
+    }
+}
+</code></pre>
+<p>&#x5728;&#x5EFA;&#x69CB;&#x5B50;&#x4E2D;&#xFF0C;&#x6211;&#x5011;&#x4F7F;&#x7528;DI&#x6CE8;&#x5165;<code>IBackgroundTaskQueue</code>&#x670D;&#x52D9;&#xFF0C;&#x5C07;&#x670D;&#x52D9;&#x5B58;&#x653E;&#x5728;<code>_taskQueue</code>&#x4E2D;&#x3002;<br>
+&#x5728;<code>ShowText</code>&#x4E2D;&#xFF0C;&#x6211;&#x5011;&#x4F7F;&#x7528;<code>_taskQueue.QueueBackgroundWorkItem</code>&#x65B9;&#x6CD5;&#x5C07;&#x4E00;&#x500B;&#x6703;&#x5F9E;from&#x8F38;&#x51FA;&#x5230;to&#x7684;&#x8FF4;&#x5708;&#x4F5C;&#x70BA;&#x4EFB;&#x52D9;&#x52A0;&#x5165;&#x5230;<code>_taskQueue</code>&#x53BB;&#x6392;&#x968A;&#xFF0C;&#x9019;&#x500B;&#x4EFB;&#x52D9;&#x6703;&#x5728;<code>QueuedHostedService</code>&#x88E1;&#x7684;<code>ExecuteAsync</code>&#x88AB;&#x6392;&#x968A;&#x57F7;&#x884C;&#x3002;</p>
+<h3 id="%E8%A8%BB%E5%86%8Arecordservice%E6%9C%8D%E5%8B%99">&#x8A3B;&#x518A;RecordService&#x670D;&#x52D9;</h3>
+<p>&#x8A18;&#x5F97;&#x5C07;RecordService&#x4E5F;&#x8A3B;&#x518A;&#x5230;<code>Program.cs</code>&#x6A94;&#x6848;&#x4E2D;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x9700;&#x8981;&#x7684;&#x751F;&#x547D;&#x9031;&#x671F;&#x8A3B;&#x518A;&#x670D;&#x52D9;&#xFF0C;&#x9019;&#x88E1;&#x4F7F;&#x7528;AddTransient&#x9032;&#x884C;&#x793A;&#x7BC4;&#x3002;</p>
+<pre><code class="language-csharp">// Program.cs
+
+...
+    
+var builder = WebApplication.CreateBuilder(args);
+
+...
+
+// &#x5C07;RecordService&#x8A3B;&#x518A;&#x70BA;Transient&#x7684;&#x670D;&#x52D9;
+builder.Services.AddTransient&lt;RecordService&gt;();
+
+...
+    
+var app = builder.Build();
+
+...
+    
+app.Run();
+</code></pre>
+<p>&#x5C07;&#x4E0A;&#x9762;&#x7684;&#x6240;&#x6709;&#x670D;&#x52D9;&#x90FD;&#x5EFA;&#x7ACB;&#x597D;&#x4E4B;&#x5F8C;&#x6211;&#x5011;&#x5C31;&#x53EF;&#x4EE5;&#x8B93;&#x6703;&#x82B1;&#x8CBB;&#x5F88;&#x591A;&#x6642;&#x9593;&#x7684;&#x4EFB;&#x52D9;&#x901A;&#x901A;&#x53BB;&#x6392;&#x968A;&#x4E86;(&#xFF89;&gt;&#x3C9;&lt;)&#xFF89;</p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://www.cnblogs.com/Vincent-yuan/p/11048748.html?ref=localhost">dotnet core&#x7CFB;&#x5217;&#x4E4B;Background tasks with hosted services (&#x540E;&#x53F0;&#x4EFB;&#x52A1;)</a></li>
+<li><a href="https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-7.0&amp;3Btabs=visual-studio&amp;tabs=visual-studio-mac%2Cvisual-studio&amp;ref=localhost#queued-background-tasks">Background tasks with hosted services in ASP.NET Core | Microsoft Learn</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[IEnumerable或IQueryable物件在進行LINQ查詢時的差異]]></title><description><![CDATA[當使用LINQ查詢時，執行對象是IEnumerable或是IQueryable有很大的差異。]]></description><link>https://vincent87720.github.io/difference-between-ienumerable-iqueryable-linq/</link><guid isPermaLink="false">65105b6630e7a60001e1d564</guid><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 24 Sep 2023 16:01:52 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/09/vs2012_gray_imprint.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/09/vs2012_gray_imprint.png" alt="IEnumerable&#x6216;IQueryable&#x7269;&#x4EF6;&#x5728;&#x9032;&#x884C;LINQ&#x67E5;&#x8A62;&#x6642;&#x7684;&#x5DEE;&#x7570;"><p>&#x7576;&#x4F7F;&#x7528;LINQ&#x67E5;&#x8A62;&#x6642;&#xFF0C;&#x57F7;&#x884C;&#x5C0D;&#x8C61;&#x662F;IEnumerable&#x6216;&#x662F;IQueryable&#x6709;&#x5F88;&#x5927;&#x7684;&#x5DEE;&#x7570;&#x3002;</p>
 <h2 id="%E5%B0%8Diqueryable%E7%89%A9%E4%BB%B6%E6%88%96ienumerable%E7%89%A9%E4%BB%B6%E4%BD%BF%E7%94%A8linq%E6%9F%A5%E8%A9%A2%E7%9A%84%E5%B7%AE%E7%95%B0">&#x5C0D;IQueryable&#x7269;&#x4EF6;&#x6216;IEnumerable&#x7269;&#x4EF6;&#x4F7F;&#x7528;LINQ&#x67E5;&#x8A62;&#x7684;&#x5DEE;&#x7570;</h2>
 <p>&#x91DD;&#x5C0D;IQueryable&#x5BE6;&#x4F5C;&#x7684;LINQ&#x67E5;&#x8A62;&#x65B9;&#x6CD5;&#x7528;&#x65BC;&#x5E6B;&#x52A9;DataProvider&#x751F;&#x6210;SQL&#x8A9E;&#x6CD5;&#x3002;<br>
 &#x91DD;&#x5C0D;IEnumerable&#x5BE6;&#x4F5C;&#x7684;LINQ&#x67E5;&#x8A62;&#x65B9;&#x6CD5;&#x662F;&#x76F4;&#x63A5;&#x5C0D;&#x8A18;&#x61B6;&#x9AD4;&#x4E2D;&#x7684;&#x8CC7;&#x6599;&#x9032;&#x884C;&#x904E;&#x6FFE;&#x3002;</p>
@@ -1014,69 +1223,4 @@ location.href=&quot;http://test.com&quot;
 <code>-f</code>&#x53C3;&#x6578;&#x6307;&#x5B9A;&#x8981;&#x7528;&#x4F86;&#x9032;&#x884C;&#x5EFA;&#x7F6E;&#x7684;Dockerfile</p>
 <p>&#x5EFA;&#x7F6E;&#x5B8C;&#x6210;&#x5F8C;&#x524D;&#x5F80;DockerHub&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x525B;&#x624D;&#x6307;&#x5B9A;&#x5E73;&#x53F0;&#x7684;&#x6620;&#x50CF;&#x6A94;&#x5DF2;&#x6210;&#x529F;&#x5EFA;&#x7F6E;&#x4E26;&#x4E0A;&#x50B3;<br>
 <img src="https://vincent87720.github.io/content/images/2023/02/---2023-02-09---10.42.41.png" alt="Docker buildx" loading="lazy"></p>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[使用QUASAR在表單送出時滾動到錯誤欄位]]></title><description><![CDATA[表單submit時會希望能讓頁面自動滾動到元素位置，使用q-form的validation-error事件搭配滾動來達成此效果]]></description><link>https://vincent87720.github.io/quasar-scroll-to-field-on-validation-error/</link><guid isPermaLink="false">635cfeb06c901d4844747e97</guid><category><![CDATA[Quasar]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 29 Oct 2022 10:42:51 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2022/10/Quasar.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2022/10/Quasar.png" alt="&#x4F7F;&#x7528;QUASAR&#x5728;&#x8868;&#x55AE;&#x9001;&#x51FA;&#x6642;&#x6EFE;&#x52D5;&#x5230;&#x932F;&#x8AA4;&#x6B04;&#x4F4D;"><p>&#x8868;&#x55AE;submit&#x6642;&#x6703;&#x5E0C;&#x671B;&#x80FD;&#x8B93;&#x9801;&#x9762;&#x81EA;&#x52D5;&#x6EFE;&#x52D5;&#x5230;&#x5143;&#x7D20;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F7F;&#x7528;q-form&#x7684;validation-error&#x4E8B;&#x4EF6;&#x642D;&#x914D;&#x6EFE;&#x52D5;&#x4F86;&#x9054;&#x6210;&#x6B64;&#x6548;&#x679C;</p>
-<h2 id="q-form%E7%9A%84validation-error%E4%BA%8B%E4%BB%B6">q-form&#x7684;validation-error&#x4E8B;&#x4EF6;</h2>
-<pre><code class="language-htmlmixed">&lt;template&gt;
-    &lt;q-form 
-    @submit=&quot;gotoNext&quot;
-    @validation-error=&quot;onValidationError&quot;
-    &gt;
-        &lt;q-input 
-        v-model=&quot;username&quot;
-        :rules=&quot;[idRequiredRule]&quot;
-        lazy-rules=&quot;ondemand&quot;
-        &gt;&lt;/q-input&gt;
-    &lt;/q-form&gt;
-&lt;/template&gt;
-
-&lt;script&gt;
-    
-import { scroll } from &quot;quasar&quot;;
-const {getScrollTarget, setVerticalScrollPosition} = scroll;
-    
-/* eslint-disable*/
-onValidationError(ref: any) {
-    
-}
-/* eslint-enable*/
-&lt;/script&gt;
-
-&lt;!-- &#x82E5;&#x4F7F;&#x7528;Typescript&#x7121;&#x6CD5;&#x4F7F;&#x7528;any&#x7684;&#x8A71;&#x53EF;&#x4EE5;&#x7528;eslint-disable&#x8DF3;&#x904E;&#x6AA2;&#x67E5; --&gt;
-&lt;script lang=&quot;ts&quot;&gt;
-    
-import { scroll } from &quot;quasar&quot;;
-const {getScrollTarget, setVerticalScrollPosition} = scroll;
-    
-/* eslint-disable*/
-onValidationError(ref: any) {
-    
-}
-/* eslint-enable*/
-&lt;/script&gt;
-</code></pre>
-<p>q-form&#x63D0;&#x4F9B;validation-error&#x4E8B;&#x4EF6;&#xFF0C;&#x7576;submit&#x4E14;&#x8868;&#x55AE;&#x5167;&#x7684;&#x6B04;&#x4F4D;&#x6709;&#x932F;&#x8AA4;&#x6642;&#xFF0C;&#x6703;&#x56DE;&#x50B3;&#x7B2C;&#x4E00;&#x500B;&#x6709;&#x932F;&#x8AA4;&#x7684;&#x5143;&#x7D20;</p>
-<h2 id="%E5%8F%96%E5%BE%97%E8%88%87%E9%A0%81%E9%9D%A2%E9%A0%82%E9%83%A8%E7%9A%84%E8%B7%9D%E9%9B%A2">&#x53D6;&#x5F97;&#x8207;&#x9801;&#x9762;&#x9802;&#x90E8;&#x7684;&#x8DDD;&#x96E2;</h2>
-<pre><code class="language-typescript">onValidationError(ref: any) {
-    var el = ref.$el;
-    
-    var offset = el.getBoundingClientRect().top + window.pageYOffset;
-    
-    var duration = 200;
-    
-    setVerticalScrollPosition(getScrollTarget(el), offset, duration);
-}
-</code></pre>
-<p>&#x9996;&#x5148;&#x4F7F;&#x7528;<code>ref.$el</code>&#x53D6;&#x5F97;&#x5143;&#x7D20;</p>
-<p><img src="https://vincent87720.github.io/content/images/2022/10/o7tjfGz.png" alt="&#x4F7F;&#x7528;QUASAR&#x5728;&#x8868;&#x55AE;&#x9001;&#x51FA;&#x6642;&#x6EFE;&#x52D5;&#x5230;&#x932F;&#x8AA4;&#x6B04;&#x4F4D;" loading="lazy"><br>
-&#x5716;&#x7247;&#x53D6;&#x81EA;<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect?ref=localhost">Element.getBoundingClientRect() - Web APIs | MDN</a></p>
-<p>&#x63A5;&#x8457;&#x4F7F;&#x7528;getBoundingClientRect()&#x53D6;&#x5F97;&#x5143;&#x7D20;&#x8207;viewport&#x7684;&#x8DDD;&#x96E2;</p>
-<p>window.pageYOffset&#x70BA;&#x76EE;&#x524D;&#x6EFE;&#x52D5;&#x7684;&#x9AD8;&#x5EA6;</p>
-<p>&#x5169;&#x8005;&#x76F8;&#x52A0;&#x5373;&#x662F;&#x5143;&#x7D20;&#x9AD8;&#x5EA6;</p>
-<p>&#x6700;&#x5F8C;&#x4F7F;&#x7528;getScrollTarget&#x53CA;setVerticalScrollPosition&#x8A2D;&#x5B9A;&#x6EFE;&#x52D5;&#x76EE;&#x6A19;&#x3001;&#x4F4D;&#x7F6E;&#x53CA;&#x6642;&#x9593;</p>
-<h2 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h2>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect?ref=localhost">Element.getBoundingClientRect() - Web APIs | MDN</a><br>
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset?ref=localhost">Window.pageYOffset - Web APIs | MDN</a><br>
-<a href="https://stackoverflow.com/questions/71650521/autoscroll-to-empty-but-required-q-input-field-in-a-form-with-validation-quasar?ref=localhost">autoscroll to empty but required q-input field in a form with validation Quasar 2.5.5 &amp; Vuejs3</a><br>
-<a href="https://github.com/znlbwo/study/issues/10?ref=localhost">&#x83B7;&#x53D6;&#x5143;&#x7D20;&#x8DDD;&#x79BB;&#x9875;&#x9762;&#x9876;&#x90E8;&#x7684;&#x8DDD;&#x79BB; &#xB7; Issue #10 &#xB7; znlbwo/study</a><br>
-<a href="https://quasar.dev/quasar-utils/scrolling-utils?ref=localhost#scrolling-to-an-element">Scrolling Utils | Quasar Framework</a></p>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

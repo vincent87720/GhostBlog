@@ -1,4 +1,317 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.60</generator><lastBuildDate>Sun, 01 Oct 2023 17:03:02 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Queued background tasks in ASP.NET Core]]></title><description><![CDATA[在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。]]></description><link>https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/</link><guid isPermaLink="false">651996620bc50e000198cfe7</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 01 Oct 2023 16:01:03 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg" alt="Queued background tasks in ASP.NET Core"><p>&#x5728;&#x5BE6;&#x52D9;&#x4E0A;&#x6709;&#x6642;&#x5019;&#x6703;&#x9047;&#x5230;&#x67D0;&#x4E9B;&#x9700;&#x8981;&#x82B1;&#x8CBB;&#x5927;&#x91CF;&#x6642;&#x9593;&#x57F7;&#x884C;&#x7684;&#x4EFB;&#x52D9;&#xFF0C;&#x50CF;&#x6211;&#x5C31;&#x662F;&#x5728;&#x5BEB;&#x516C;&#x53F8;&#x5C08;&#x6848;&#x6642;&#x9047;&#x5230;&#x9700;&#x8981;&#x7522;&#x751F;&#x7E2E;&#x5716;&#x548C;&#x8F49;&#x6A94;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x82E5;&#x4E0D;&#x60F3;&#x8B93;&#x4F7F;&#x7528;&#x8005;&#x4E00;&#x76F4;&#x8F49;&#x5708;&#x5708;&#x7B49;&#x5F85;&#x7684;&#x8A71;&#xFF0C;&#x6211;&#x5011;&#x5FC5;&#x9808;&#x63A1;&#x7528;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x8B93;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x5148;&#x56DE;&#x8986;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x4E4B;&#x5F8C;&#x518D;&#x4F86;&#x6162;&#x6162;&#x8655;&#x7406;&#x9019;&#x4E9B;&#x9700;&#x6C42;&#xFF0C;&#x5728;&#x80CC;&#x666F;&#x4E2D;&#x8B93;&#x9019;&#x4E9B;&#x4EFB;&#x52D9;&#x6392;&#x968A;&#x57F7;&#x884C;&#x5C31;&#x662F;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x65B9;&#x6CD5;&#x3002;</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.60</generator><lastBuildDate>Sun, 22 Oct 2023 07:45:51 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Race condition 的種類、成因與解決辦法]]></title><description><![CDATA[當多個程序同時存取同一個資源時，很可能會發生該資源在其他程序進行期間被進行更動，導致資料與預期的結果不同的問題。]]></description><link>https://vincent87720.github.io/race-condition-intro/</link><guid isPermaLink="false">6534cec4bee2720001e0bdd5</guid><category><![CDATA[concurrency]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 22 Oct 2023 07:42:51 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/10/bruno-kelzer-zZoscDXH6ss-unsplash-1.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/10/bruno-kelzer-zZoscDXH6ss-unsplash-1.jpg" alt="Race condition &#x7684;&#x7A2E;&#x985E;&#x3001;&#x6210;&#x56E0;&#x8207;&#x89E3;&#x6C7A;&#x8FA6;&#x6CD5;"><p>&#x7576;&#x591A;&#x500B;&#x7A0B;&#x5E8F;&#x540C;&#x6642;&#x5B58;&#x53D6;&#x540C;&#x4E00;&#x500B;&#x8CC7;&#x6E90;&#x6642;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x6703;&#x767C;&#x751F;&#x8A72;&#x8CC7;&#x6E90;&#x5728;&#x5176;&#x4ED6;&#x7A0B;&#x5E8F;&#x9032;&#x884C;&#x671F;&#x9593;&#x88AB;&#x9032;&#x884C;&#x66F4;&#x52D5;&#xFF0C;&#x5C0E;&#x81F4;&#x8CC7;&#x6599;&#x8207;&#x9810;&#x671F;&#x7684;&#x7D50;&#x679C;&#x4E0D;&#x540C;&#x7684;&#x554F;&#x984C;&#x3002;</p>
+<p>&#x9020;&#x6210;Race condition&#x901A;&#x5E38;&#x8981;&#x6EFF;&#x8DB3;&#x4EE5;&#x4E0B;&#x5169;&#x9EDE;</p>
+<ol>
+<li>&#x5E73;&#x884C;&#x8655;&#x7406;</li>
+<li>&#x540C;&#x6642;&#x5B58;&#x53D6;&#x540C;&#x4E00;&#x500B;&#x8CC7;&#x6E90;</li>
+</ol>
+<h2 id="race-condition-%E7%9A%84%E6%83%85%E5%A2%83%E8%88%87%E8%A7%A3%E6%B3%95">Race condition &#x7684;&#x60C5;&#x5883;&#x8207;&#x89E3;&#x6CD5;</h2>
+<p>Race condition &#x53EF;&#x5927;&#x81F4;&#x4E0A;&#x5206;&#x70BA;&#x4E94;&#x500B;&#x73FE;&#x8C61;&#xFF0C;&#x5305;&#x542B;</p>
+<ul>
+<li>Dirty Read</li>
+<li>Non-repeatable Read (Read Skew)</li>
+<li>Phantom</li>
+<li>Lost update</li>
+<li>Write Skew</li>
+</ul>
+<h2 id="dirty-read-%E9%AB%92%E8%AE%80">Dirty Read &#x9AD2;&#x8B80;</h2>
+<p>&#x6240;&#x8B02;&#x9AD2;&#x8B80;&#x5C31;&#x662F;&#x8B80;&#x5230;&#x9AD2;&#x6771;&#x897F;&#xFF0C;&#x610F;&#x5373;&#x8B80;&#x53D6;&#x5230;&#x53E6;&#x4E00;&#x500B; Transaction &#x5C1A;&#x672A; commit &#x7684;&#x503C;&#x3002;</p>
+<h3 id="dirty-read-%E7%9A%84%E6%83%85%E5%A2%83">Dirty Read &#x7684;&#x60C5;&#x5883;</h3>
+<p>&#x5047;&#x8A2D;&#x6709;&#x4E09;&#x500B;&#x89D2;&#x8272;&#xFF0C;&#x8CC7;&#x6599;&#x5EAB;&#x3001;Transaction A &#x548C; Transaction B</p>
+<p>&#x8CC7;&#x6599;&#x5EAB;&#xFF1A;&#x5728;&#x8CC7;&#x6599;&#x5EAB;&#x4E2D;&#x5B58;&#x5728;&#x4E00;&#x500B;&#x503C; X=0<br>
+Transaction A&#xFF1A;&#x8B8A;&#x66F4;&#x6578;&#x503C; X &#x70BA; 2 &#x4F46;&#x56E0;&#x70BA;&#x67D0;&#x4E9B;&#x539F;&#x56E0;&#x9700;&#x8981; rollback&#xFF0C;&#x6C92;&#x6709;&#x6210;&#x529F;&#x66F4;&#x65B0;<br>
+Transaction B&#xFF1A;&#x8B80;&#x53D6;&#x6578;&#x503C; X</p>
+<p>&#x5982;&#x679C;&#x662F;&#x6B63;&#x5E38;&#x7684;&#x60C5;&#x6CC1;&#x61C9;&#x8A72;&#x662F; Transaction A &#x60F3;&#x5C07; X &#x8B8A;&#x66F4;&#x70BA; 2 &#x4F46;&#x6C92;&#x6709;&#x6210;&#x529F;&#xFF0C;&#x6240;&#x4EE5;&#x5C07; rollback &#x56DE; 0 &#xFF0C;&#x6B64;&#x6642; Transaction B &#x8B80;&#x53D6;&#x5230;&#x7684;&#x6578;&#x503C;&#x61C9;&#x8A72;&#x8981;&#x662F;0&#xFF0C;&#x8207;&#x8CC7;&#x6599;&#x5EAB;&#x5167;&#x7684;&#x6578;&#x503C;&#x76F8;&#x540C;&#x3002;</p>
+<p>&#x82E5;&#x767C;&#x751F; Dirty Read &#x7684;&#x60C5;&#x6CC1;&#x6642; Transaction B &#x8B80;&#x5230;&#x7684;&#x6578;&#x503C;&#x6703;&#x662F;2&#xFF0C;&#x767C;&#x751F;&#x7AF6;&#x722D;&#x6642;&#x7684;&#x57F7;&#x884C;&#x9806;&#x5E8F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Transaction A</th>
+<th style="text-align:center">Transaction B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x5C07;X&#x8B8A;&#x66F4;&#x70BA;2</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x8B80;&#x53D6;&#x5230;X&#x7684;&#x503C;&#x70BA;2</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x5C07; X rollback &#x56DE; 0</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x7D50;&#x675F;&#xFF0C;commit</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>&#x76EE;&#x524D;&#x7684;&#x72C0;&#x614B;&#x662F;&#x8CC7;&#x6599;&#x5EAB;&#x4E2D;X&#x7684;&#x503C;&#x4F9D;&#x7136;&#x662F;0&#xFF0C;&#x6211;&#x5011;&#x672C;&#x4F86;&#x9810;&#x671F; Transaction B &#x4E5F;&#x61C9;&#x8A72;&#x62FF;&#x5230; 0&#xFF0C;&#x4F46; Transaction B &#x5728; Transaction A &#x5C1A;&#x672A; commit &#x5C31;&#x8B80;&#x53D6; X &#x7684;&#x503C;&#xFF0C;&#x62FF;&#x5230;&#x4E86;&#x932F;&#x8AA4;&#x7684;&#x6578;&#x503C;&#xFF0C;&#x6211;&#x5011;&#x628A;&#x9019;&#x500B;&#x73FE;&#x8C61;&#x7A31;&#x70BA; Dirty Read&#x3002;</p>
+<p>&#x6B64;&#x73FE;&#x8C61;&#x662F; Transaction A &#x6539;&#x52D5;&#x7684;&#x503C;&#x5728;commit&#x524D;&#x6C92;&#x6709;&#x88AB;&#x53D7;&#x5230;&#x4FDD;&#x8B77;&#x9020;&#x6210;&#x7684;&#x7D50;&#x679C;&#x3002;</p>
+<h3 id="dirty-read-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95">Dirty Read &#x7684;&#x89E3;&#x6C7A;&#x8FA6;&#x6CD5;</h3>
+<p>&#x5C07;&#x4EA4;&#x6613;&#x9694;&#x96E2;&#x7B49;&#x7D1A;&#x8A2D;&#x5B9A;&#x70BA;<code>READ UNCOMMITTED</code>&#x5373;&#x53EF;&#x907F;&#x514D; Dirty Read &#x7684;&#x767C;&#x751F;&#x3002;<br>
+<code>READ UNCOMMITTED</code>&#x6703;&#x9632;&#x6B62;&#x9AD2;&#x8B80;&#xFF0C;&#x5373;&#x9632;&#x6B62;&#x6B64;&#x4EA4;&#x6613;&#x8B80;&#x53D6;&#x5230;&#x5176;&#x4ED6;&#x4EA4;&#x6613;&#x5C1A;&#x672A; commit &#x7684;&#x8CC7;&#x6599;&#x3002;</p>
+<h2 id="non-repeatable-read-read-skew">Non-repeatable Read (Read Skew)</h2>
+<p>Non-repeatable Read &#x7684;&#x4E2D;&#x6587;&#x7FFB;&#x8B6F;&#x662F;&#x300C;&#x4E0D;&#x53EF;&#x91CD;&#x8907;&#x8B80;&#x300D;&#xFF0C;&#x4F46;&#x9019;&#x7FFB;&#x8B6F;&#x6211;&#x8A8D;&#x70BA;&#x6C92;&#x6709;&#x5F88;&#x597D;&#x61C2;&#xFF0C;&#x53EF;&#x80FD;&#x610F;&#x601D;&#x6703;&#x6BD4;&#x8F03;&#x63A5;&#x8FD1;&#x300C;&#x7121;&#x91CD;&#x8907;&#x8B80;&#x300D;&#xFF1F;<br>
+&#x7528;&#x767D;&#x8A71;&#x4E00;&#x9EDE;&#x89E3;&#x91CB;&#x5C31;&#x662F;&#x5728;&#x540C;&#x4E00;&#x500B;&#x4EA4;&#x6613;&#x4E2D;&#x67E5;&#x8A62;&#x76F8;&#x540C;&#x7684;&#x503C;&#x5169;&#x6B21;&#x4F46;&#x5F97;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x7D50;&#x679C;&#xFF08;&#x5728;&#x540C;&#x4E00;&#x500B;&#x4EA4;&#x6613;&#x4E2D;&#x6211;&#x5011;&#x6703;&#x671F;&#x671B;&#x5982;&#x679C;&#x6C92;&#x6709;&#x66F4;&#x52D5;&#x8CC7;&#x6599;&#xFF0C;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x689D;&#x4EF6;&#x9032;&#x884C;&#x67E5;&#x8A62;&#x61C9;&#x8A72;&#x5F97;&#x5230;&#x76F8;&#x540C;&#x7D50;&#x679C;&#xFF09;&#x3002;</p>
+<p>&#x8209;&#x500B;&#x4F8B;&#x5B50;&#xFF0C;&#x9019;&#x611F;&#x89BA;&#x5C31;&#x50CF;&#x6211;&#x958B;&#x4E86;&#x4E00;&#x5718;&#x98F2;&#x6599;&#x8A02;&#x55AE;&#xFF0C;&#x6211;&#x8CA0;&#x8CAC;&#x53BB;&#x554F;&#x50F9;&#x9322;&#x662F;&#x591A;&#x5C11;&#x4E26;&#x56DE;&#x8986;&#x7D66;&#x8981;&#x8A02;&#x98F2;&#x6599;&#x7684;&#x5927;&#x5BB6;&#xFF0C;&#x524D;&#x4E00;&#x79D2;&#x624D;&#x554F;&#x5E97;&#x54E1;&#x5F97;&#x77E5;&#x4E00;&#x676F;&#x70CF;&#x9F8D;&#x9BAE;&#x5976;&#x8336;50&#x5143;&#xFF0C;&#x8DDF;&#x540C;&#x4E8B;&#x56DE;&#x5831;&#x5B8C;&#x50F9;&#x683C;&#x78BA;&#x8A8D;&#x91D1;&#x984D;&#x5F8C;&#xFF0C;&#x6B63;&#x8981;&#x7D50;&#x5E33;&#x6642;&#x537B;&#x8DDF;&#x6211;&#x8AAA;&#x62B1;&#x6B49;&#x525B;&#x525B;&#x50F9;&#x683C;&#x88AB;&#x7E3D;&#x516C;&#x53F8;&#x6539;&#x52D5;&#x4E86;&#xFF0C;&#x4E00;&#x676F;&#x8B8A;&#x6210;70&#x5143;&#x4E86;&#xFF0C;&#x6211;&#x60F3;&#x5927;&#x90E8;&#x5206;&#x4EBA;&#x90FD;&#x6703;&#x5F88;&#x50BB;&#x773C;&#x3002;</p>
+<p>&#x4EE5;&#x9019;&#x500B;&#x4F8B;&#x5B50;&#x4F86;&#x8AAA;&#x5C31;&#x662F;&#x5728;&#x540C;&#x4E00;&#x500B;&#x4EA4;&#x6613;&#xFF08;&#x958B;&#x98F2;&#x6599;&#x5718;&#x8A02;&#x55AE;&#xFF09;&#x4E2D;&#xFF0C;&#x67E5;&#x8A62;&#x76F8;&#x540C;&#x7684;&#x503C;&#xFF08;&#x90FD;&#x662F;&#x67E5;&#x8A62;&#x70CF;&#x9F8D;&#x9BAE;&#x5976;&#x8336;&#x7684;&#x50F9;&#x683C;&#xFF09;&#x5169;&#x6B21;&#xFF0C;&#x5169;&#x6B21;&#x7684;&#x7D50;&#x679C;&#x4E0D;&#x76F8;&#x540C;&#xFF08;&#x7B2C;&#x4E00;&#x6B21;&#x70BA;&#x554F;&#x5E97;&#x54E1;&#x5F97;&#x77E5;&#x7684;&#x50F9;&#x683C;&#x8207;&#x7B2C;&#x4E8C;&#x6B21;&#x70BA;&#x7D50;&#x5E33;&#x6642;&#x5F97;&#x77E5;&#x7684;&#x50F9;&#x683C;&#x4E0D;&#x76F8;&#x540C;&#xFF09;&#x3002;<br>
+&#x800C;&#x4E0D;&#x76F8;&#x540C;&#x7684;&#x539F;&#x56E0;&#x51FA;&#x5728;&#x53E6;&#x4E00;&#x500B;&#x4EA4;&#x6613;&#xFF08;&#x7E3D;&#x516C;&#x53F8;&#x8ABF;&#x6F32;&#x50F9;&#x683C;&#x70BA;70&#x5143;&#xFF09;&#x5728;&#x6B64;&#x4EA4;&#x6613;&#x5169;&#x6B21;&#x67E5;&#x8A62;&#x7684;&#x9014;&#x4E2D;&#x66F4;&#x6539;&#x4E86;&#x8A72;&#x6578;&#x503C;&#x5C0E;&#x81F4;&#x7684;&#x73FE;&#x8C61;&#x3002;</p>
+<h3 id="non-repeatable-read-%E7%9A%84%E6%83%85%E5%A2%83">Non-repeatable Read &#x7684;&#x60C5;&#x5883;</h3>
+<p>&#x5047;&#x8A2D;&#x6709;&#x4E09;&#x500B;&#x89D2;&#x8272;&#xFF0C;&#x8CC7;&#x6599;&#x5EAB;&#x3001;Transaction A&#x548C;Transaction B</p>
+<p>&#x8CC7;&#x6599;&#x5EAB;&#xFF1A;&#x5728;&#x8CC7;&#x6599;&#x5EAB;&#x4E2D;&#x5B58;&#x5728;&#x4E00;&#x500B;&#x503C;X=0<br>
+Transaction A&#xFF1A;&#x8B8A;&#x66F4;&#x6578;&#x503C;X&#x70BA;2<br>
+Transaction B&#xFF1A;&#x8B80;&#x53D6;&#x5169;&#x6B21;&#x6578;&#x503C;X</p>
+<p>&#x6B63;&#x5E38;&#x60C5;&#x6CC1;&#x4E0B; Transaction B &#x8B80;&#x5169;&#x6B21;&#x6578;&#x503C;&#x61C9;&#x8A72;&#x6703;&#x90FD;&#x662F; 0 &#x6216;&#x90FD;&#x662F; 2&#x3002;</p>
+<p>&#x82E5;&#x767C;&#x751F; Non-repeatable Read&#xFF0C;&#x5247;&#x6709;&#x53EF;&#x80FD; Transaction B &#x5728;&#x5169;&#x6B21;&#x8B80;&#x53D6;&#x7684;&#x671F;&#x9593; X &#x7684;&#x503C;&#x88AB;&#x6539;&#x4E86;&#xFF0C;&#x767C;&#x751F;&#x7AF6;&#x722D;&#x6642;&#x7684;&#x57F7;&#x884C;&#x9806;&#x5E8F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Transaction A</th>
+<th style="text-align:center">Transaction B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x5C07;X&#x8B8A;&#x66F4;&#x70BA;2</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x8B80;&#x53D6;&#x5230;X&#x7684;&#x503C;&#x70BA;0&#xFF08;&#x6C92;&#x6709;Dirty Read&#x7684;&#x60C5;&#x6CC1;&#x4E0B;&#x8B80;&#x5230;0&#x662F;&#x6B63;&#x5E38;&#x7684;&#xFF09;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x7D50;&#x675F;&#xFF0C;commit</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x8B80;&#x53D6;&#x5230;X&#x7684;&#x503C;&#x70BA;2</td>
+</tr>
+</tbody>
+</table>
+<p>&#x9019;&#x7A2E;&#x60C5;&#x5883;&#x4E0B; Transaction A &#x6539;&#x52D5;&#x7684;&#x503C;&#x6709;&#x88AB;&#x59A5;&#x5584;&#x4FDD;&#x8B77;&#x76F4;&#x5230; commit&#xFF0C;&#x4F46; Transaction B &#x7684;&#x5169;&#x6B21;&#x8B80;&#x53D6;&#x5206;&#x5225;&#x5728; Transaction A &#x7684; commit &#x524D;&#x548C; commit &#x5F8C;&#xFF0C;&#x9020;&#x6210;&#x4E86; Non-repeatable Read &#x7684;&#x73FE;&#x8C61;&#x3002;</p>
+<h3 id="non-repeatable-read-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95">Non-repeatable Read &#x7684;&#x89E3;&#x6C7A;&#x8FA6;&#x6CD5;</h3>
+<p>&#x5C07;&#x4EA4;&#x6613;&#x9694;&#x96E2;&#x7B49;&#x7D1A;&#x8A2D;&#x5B9A;&#x70BA;<code>READ COMMITTED</code>&#x5373;&#x53EF;&#x907F;&#x514D;&#x4EE5;&#x4E0B;&#x60C5;&#x6CC1;&#x767C;&#x751F;&#xFF1A;</p>
+<ul>
+<li>&#x9632;&#x6B62;&#x76EE;&#x524D;&#x7684;&#x4EA4;&#x6613;&#x8B80;&#x53D6;&#x5176;&#x4ED6;&#x4EA4;&#x6613;&#x5DF2;&#x7DE8;&#x8F2F;&#x4F46;&#x5C1A;&#x672A; commit &#x7684;&#x8CC7;&#x6599;</li>
+<li>&#x9632;&#x6B62;&#x5176;&#x4ED6;&#x4EA4;&#x6613;&#x7DE8;&#x8F2F;&#x76EE;&#x524D;&#x4EA4;&#x6613;&#x6703;&#x8B80;&#x53D6;&#x5230;&#x7684;&#x8CC7;&#x6599;</li>
+</ul>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x5C07;&#x4EA4;&#x6613;&#x9694;&#x96E2;&#x7B49;&#x7D1A;&#x8A2D;&#x5B9A;&#x70BA;<code>READ COMMITTED SNAPSHOT</code>&#xFF0C;&#x8207; READ COMMITTED &#x7684;&#x5DEE;&#x7570;&#x5728;&#x65BC; READ COMMITTED SNAPSHOT &#x4F7F;&#x7528;&#x6A02;&#x89C0;&#x9396;&#x7684;&#x65B9;&#x5F0F;&#x8655;&#x7406; race condition&#x3002;&#x800C; READ COMMITTED &#x4F7F;&#x7528;&#x60B2;&#x89C0;&#x9396;&#x8655;&#x7406; race condition &#x554F;&#x984C;&#x3002;</p>
+<h2 id="phantom">Phantom</h2>
+<p>&#x5728;&#x540C;&#x4E00;&#x500B;&#x4EA4;&#x6613;&#x4E2D;&#x4E0B;&#x9054;&#x540C;&#x6A23;&#x7684;&#x67E5;&#x8A62;&#x5F0F;&#xFF0C;&#x4F46;&#x5F97;&#x5230;&#x4E0D;&#x540C;&#x7B46;&#x6578;&#x7684;&#x8CC7;&#x6599;&#x3002;</p>
+<h3 id="phantom-%E7%9A%84%E6%83%85%E5%A2%83">Phantom &#x7684;&#x60C5;&#x5883;</h3>
+<p>&#x5047;&#x8A2D;&#x6709;&#x4E09;&#x500B;&#x89D2;&#x8272;&#xFF0C;&#x8CC7;&#x6599;&#x5EAB;&#x3001;Transaction A&#x548C;Transaction B</p>
+<p>&#x8CC7;&#x6599;&#x5EAB;&#xFF1A;&#x5728;&#x8CC7;&#x6599;&#x5EAB;&#x4E2D;&#x5B58;&#x5728;&#x4E00;&#x7B46;&#x8CC7;&#x6599;<br>
+Transaction A&#xFF1A;&#x589E;&#x52A0;&#x4E00;&#x7B46;&#x8CC7;&#x6599;<br>
+Transaction B&#xFF1A;&#x67E5;&#x8A62;&#x6240;&#x6709;&#x8CC7;&#x6599;&#x5169;&#x6B21;</p>
+<p>&#x6B63;&#x5E38;&#x60C5;&#x6CC1;&#x4E0B; Transaction B &#x7684;&#x5169;&#x6B21;&#x67E5;&#x8A62;&#x61C9;&#x8A72;&#x90FD;&#x8981;&#x662F;&#x76F8;&#x540C;&#x7684;&#x7B46;&#x6578;&#x3002;</p>
+<p>&#x5047;&#x8A2D; Transaction A &#x548C; Transaction B &#x5E7E;&#x4E4E;&#x540C;&#x6642;&#x767C;&#x751F;&#xFF0C;&#x5247;&#x6709;&#x53EF;&#x80FD;&#x767C;&#x751F;&#x5728; Transaction B &#x5206;&#x5225;&#x5728; Transaction A &#x65B0;&#x589E;&#x8CC7;&#x6599;&#x7684;&#x524D;&#x8207;&#x5F8C;&#x8B80;&#x53D6;&#x8CC7;&#x6599;&#xFF0C;&#x5C0E;&#x81F4;&#x8B80;&#x5230;&#x7684;&#x8CC7;&#x6599;&#x7B46;&#x6578;&#x4E0D;&#x4E00;&#x81F4;&#x7684;&#x554F;&#x984C;&#xFF0C;&#x7BC4;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Transaction A</th>
+<th style="text-align:center">Transaction B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x67E5;&#x8A62;&#x6240;&#x6709;&#x8CC7;&#x6599;&#xFF0C;&#x5F97;&#x5230;1&#x7B46;&#x8CC7;&#x6599;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x589E;&#x52A0;&#x4E00;&#x7B46;&#x8CC7;&#x6599;</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x7D50;&#x675F;&#xFF0C;commit</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x67E5;&#x8A62;&#x6240;&#x6709;&#x8CC7;&#x6599;&#xFF0C;&#x5F97;&#x5230;2&#x7B46;&#x8CC7;&#x6599;</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x7D50;&#x675F;&#xFF0C;commit</td>
+</tr>
+</tbody>
+</table>
+<p>&#x9019;&#x7A2E;&#x73FE;&#x8C61;&#x70BA; Transaction B &#x7684;&#x5169;&#x6B21;&#x8B80;&#x53D6;&#x5206;&#x5225;&#x5728; Transaction A &#x7684; commit &#x524D;&#x548C; commit &#x5F8C;&#xFF0C;&#x9020;&#x6210;&#x53D6;&#x5F97;&#x7684;&#x8CC7;&#x6599;&#x7B46;&#x6578;&#x4E0D;&#x4E00;&#x81F4;&#x7684;&#x554F;&#x984C;&#xFF0C;&#x6B64;&#x73FE;&#x8C61;&#x7A31;&#x70BA; Phantom&#x3002;</p>
+<h2 id="lost-update">Lost update</h2>
+<p>&#x7576;&#x66F4;&#x65B0;&#x7684;&#x6578;&#x503C;&#x5728; commit &#x524D;&#x88AB;&#x5176;&#x4ED6; transaction &#x6539;&#x52D5;&#x6642;&#x7A31;&#x70BA; lost update&#x3002;</p>
+<h3 id="lost-update-%E7%9A%84%E6%83%85%E5%A2%83">Lost update &#x7684;&#x60C5;&#x5883;</h3>
+<p>&#x5047;&#x8A2D;&#x6709;&#x4E09;&#x500B;&#x89D2;&#x8272;&#xFF0C;&#x8CC7;&#x6599;&#x5EAB;&#x3001;Transaction A&#x548C;Transaction B</p>
+<p>&#x8CC7;&#x6599;&#x5EAB;&#xFF1A;&#x5728;&#x8CC7;&#x6599;&#x5EAB;&#x4E2D;&#x5B58;&#x5728;&#x4E00;&#x500B;&#x503C;X=0<br>
+Transaction A&#xFF1A;&#x8B8A;&#x66F4;&#x6578;&#x503C;X&#xFF0C;&#x5C07;X&#x52A0;&#x4E0A;2<br>
+Transaction B&#xFF1A;&#x8B8A;&#x66F4;&#x6578;&#x503C;X&#xFF0C;&#x5C07;X&#x52A0;&#x4E0A;3</p>
+<p>&#x6B63;&#x5E38;&#x60C5;&#x6CC1;&#x4E0B; Transaction A &#x548C; B &#x5C0D; X &#x52A0;&#x4E0A; 2 &#x548C; 3 &#x5F8C;&#xFF0C;X &#x61C9;&#x8A72;&#x8981;&#x8B8A;&#x6210; 5&#x3002;</p>
+<p>&#x5047;&#x8A2D; Transaction A &#x548C; Transaction B &#x5E7E;&#x4E4E;&#x540C;&#x6642;&#x767C;&#x751F;&#xFF0C;&#x4E14;&#x6C92;&#x6709;&#x9632;&#x6B62; race condition&#xFF0C;&#x5247;&#x6703;&#x767C;&#x751F;&#x4EE5;&#x4E0B;&#x60C5;&#x6CC1;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Transaction A</th>
+<th style="text-align:center">Transaction B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x8B80;&#x53D6;&#x5230;X&#x70BA;0</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x8B80;&#x53D6;&#x5230;X&#x70BA;0</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x5C07;X&#x589E;&#x52A0;2&#xFF0C;X&#x8B8A;&#x6210;2</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x5C07;X&#x589E;&#x52A0;3&#xFF0C;X&#x8B8A;&#x6210;3</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x7D50;&#x675F;&#xFF0C;commit</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x7D50;&#x675F;&#xFF0C;commit</td>
+</tr>
+</tbody>
+</table>
+<p>&#x7D50;&#x679C;&#x6703;&#x662F; Transaction B &#x7684;&#x66F4;&#x52D5;&#x7D50;&#x679C;&#x8986;&#x84CB;&#x4E86; Transaction A &#x7684;&#x66F4;&#x52D5;&#x7D50;&#x679C;&#xFF0C;&#x9020;&#x6210; Transaction A &#x7684;&#x66F4;&#x52D5;&#x7D50;&#x679C;&#x907A;&#x5931;&#x4E86;&#xFF0C;&#x8207;&#x9810;&#x671F;&#x7684;&#x7D50;&#x679C;&#x4E0D;&#x76F8;&#x540C;&#x3002;</p>
+<h3 id="lost-update-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95">Lost update &#x7684;&#x89E3;&#x6C7A;&#x8FA6;&#x6CD5;</h3>
+<h4 id="%E4%BD%BF%E7%94%A8%E8%B3%87%E6%96%99%E5%BA%AB%E6%8F%90%E4%BE%9B%E7%9A%84-atomic-%E7%9A%84%E6%93%8D%E4%BD%9C">&#x4F7F;&#x7528;&#x8CC7;&#x6599;&#x5EAB;&#x63D0;&#x4F9B;&#x7684; Atomic &#x7684;&#x64CD;&#x4F5C;</h4>
+<pre><code class="language-sql">UPDATE record SET x=3 WHERE uid=1
+</code></pre>
+<h4 id="%E4%BD%BF%E7%94%A8-select-for-update">&#x4F7F;&#x7528; SELECT FOR UPDATE</h4>
+<p>InnoDB &#x53EF;&#x4EE5;&#x4F7F;&#x7528; FOR UPDATE &#x8A9E;&#x6CD5;&#x89E3;&#x6C7A; lost update &#x7684;&#x554F;&#x984C;&#x3002;<br>
+FOR UPDATE &#x662F;&#x4E00;&#x7A2E;&#x884C;&#x7D1A;&#x9396;&#xFF0C;&#x53C8;&#x7A31;&#x70BA;&#x6392;&#x4ED6;&#x9396;&#xFF0C;&#x5C6C;&#x65BC;&#x60B2;&#x89C0;&#x9396;&#x3002;</p>
+<h4 id="%E4%BD%BF%E7%94%A8-snapshot">&#x4F7F;&#x7528; SNAPSHOT</h4>
+<p>&#x8CC7;&#x6599;&#x5EAB;&#x7684; SNAPSHOT &#x53EF;&#x4EE5;&#x81EA;&#x52D5;&#x6AA2;&#x67E5;&#x662F;&#x5426;&#x767C;&#x751F; Lost update&#xFF0C;&#x4E26;&#x7D42;&#x6B62;&#x51FA;&#x554F;&#x984C;&#x7684;&#x4EA4;&#x6613;&#x3002;<br>
+&#x4F7F;&#x7528; SNAPSHOT &#x6642;&#x8981;&#x8A18;&#x5F97;&#x8655;&#x7406;&#x88AB;&#x7D42;&#x6B62;&#x7684;&#x4EA4;&#x6613;&#xFF0C;&#x91CD;&#x65B0;&#x57F7;&#x884C;&#x5C31;&#x53EF;&#x4EE5;&#x89E3;&#x6C7A;&#x6B64;&#x554F;&#x984C;&#x3002;</p>
+<h2 id="write-skew">Write Skew</h2>
+<p>&#x7576;&#x5169;&#x500B;&#x4EA4;&#x6613;&#x540C;&#x6642;&#x8B80;&#x53D6;&#x4E00;&#x500B;&#x8CC7;&#x6599;&#x96C6;&#xFF0C;&#x4E26;&#x4E14;&#x5404;&#x81EA;&#x6539;&#x52D5;&#x4E0D;&#x540C;&#x7684;&#x8CC7;&#x6599;&#x6642;&#xFF0C;&#x6703;&#x9020;&#x6210;&#x8CC7;&#x6599;&#x4E0D;&#x4E00;&#x81F4;&#x7684;&#x554F;&#x984C;&#x3002;</p>
+<h3 id="write-skew-%E7%9A%84%E6%83%85%E5%A2%83">Write Skew &#x7684;&#x60C5;&#x5883;</h3>
+<p>&#x5047;&#x8A2D;&#x6709;&#x4E09;&#x500B;&#x89D2;&#x8272;&#xFF0C;&#x8CC7;&#x6599;&#x5EAB;&#x3001;Transaction A&#x548C;Transaction B</p>
+<p>&#x8CC7;&#x6599;&#x5EAB;&#xFF1A;&#x5728;&#x8CC7;&#x6599;&#x5EAB;&#x4E2D;&#x5B58;&#x5728;&#x4E8C;&#x7B46;&#x8CC7;&#x6599;&#xFF0C;&#x5169;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x6578;&#x503C;&#x7686;&#x70BA;false<br>
+Transaction A&#xFF1A;&#x8B80;&#x53D6;&#x4E26;&#x7DE8;&#x8F2F;&#x5176;&#x4E2D;&#x4E00;&#x7B46;&#x8CC7;&#x6599;<br>
+Transaction B&#xFF1A;&#x8B80;&#x53D6;&#x4E26;&#x7DE8;&#x8F2F;&#x53E6;&#x5916;&#x4E00;&#x7B46;&#x8CC7;&#x6599;</p>
+<p>&#x5047;&#x8A2D;&#x6211;&#x7684;&#x5546;&#x696D;&#x908F;&#x8F2F;&#x662F;&#x6240;&#x6709;&#x8CC7;&#x6599;&#x4E2D;&#x53EA;&#x5141;&#x8A31;&#x5176;&#x4E2D;&#x4E00;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x72C0;&#x614B;&#x70BA; true &#xFF0C;&#x4E00;&#x4F46;&#x6709;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x70BA; true &#x4E4B;&#x5F8C;&#x5176;&#x9918;&#x7684;&#x8CC7;&#x6599;&#x90FD;&#x4E0D;&#x80FD;&#x88AB;&#x8B8A;&#x66F4;&#x70BA; true&#x3002;</p>
+<p>&#x6B63;&#x5E38;&#x60C5;&#x6CC1;&#x4E0B;&#x7B2C;&#x4E8C;&#x500B;&#x4EA4;&#x6613;&#x7684;&#x67E5;&#x8A62;&#x61C9;&#x8A72;&#x6703;&#x57FA;&#x65BC;&#x524D;&#x4E00;&#x500B;&#x4EA4;&#x6613;&#x7684;&#x7D50;&#x679C;&#x9032;&#x884C;&#x67E5;&#x8A62;&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x4F46; Transaction A &#x5C07;&#x7B2C;&#x4E00;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x72C0;&#x614B;&#x6539;&#x70BA;true&#x4E4B;&#x5F8C;&#xFF0C;Transaction B &#x61C9;&#x8A72;&#x4E0D;&#x80FD;&#x5C07;&#x7B2C;&#x4E8C;&#x7B46;&#x8CC7;&#x6599;&#x6539;&#x70BA; true&#x3002;</p>
+<p>&#x5047;&#x8A2D; Transaction A &#x548C; B &#x540C;&#x6642;&#x8B80;&#x53D6;&#x5230;&#x4E00;&#x6A23;&#x7684;&#x72C0;&#x614B;&#xFF0C;&#x5169;&#x500B;&#x90FD;&#x5404;&#x81EA;&#x9032;&#x884C;&#x7DE8;&#x8F2F;&#x4E26; commit&#xFF0C;&#x96D6;&#x7136;&#x6539;&#x52D5;&#x4E0D;&#x540C;&#x7B46;&#x8CC7;&#x6599;&#x6240;&#x4EE5;&#x4E0D;&#x6703;&#x5C07;&#x53E6;&#x4E00;&#x500B;&#x4EA4;&#x6613;&#x7684;&#x7D50;&#x679C;&#x8986;&#x84CB;&#x6389;&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x80FD;&#x6703;&#x5C0E;&#x81F4;&#x5546;&#x696D;&#x908F;&#x8F2F;&#x4E0A;&#x7684;&#x932F;&#x8AA4;&#xFF0C;&#x7BC4;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Transaction A</th>
+<th style="text-align:center">Transaction B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x958B;&#x59CB;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x67E5;&#x8A62;&#x6240;&#x6709;&#x8CC7;&#x6599;<br>&#x7B2C;&#x4E00;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x72C0;&#x614B;&#x70BA;false<br>&#x7B2C;&#x4E8C;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x72C0;&#x614B;&#x70BA;false</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x67E5;&#x8A62;&#x6240;&#x6709;&#x8CC7;&#x6599;<br>&#x7B2C;&#x4E00;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x72C0;&#x614B;&#x70BA;false<br>&#x7B2C;&#x4E8C;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x72C0;&#x614B;&#x70BA;false</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x5C07;&#x7B2C;&#x4E00;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x72C0;&#x614B;&#x6539;&#x70BA;true&#xFF0C;&#x6C92;&#x6709;&#x9055;&#x53CD;&#x5546;&#x696D;&#x908F;&#x8F2F;</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x5C07;&#x7B2C;&#x4E8C;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x72C0;&#x614B;&#x6539;&#x70BA;true&#xFF0C;&#x6C92;&#x6709;&#x9055;&#x53CD;&#x5546;&#x696D;&#x908F;&#x8F2F;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x7D50;&#x675F;&#xFF0C;commit</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">&#x4EA4;&#x6613;&#x7D50;&#x675F;&#xFF0C;commit</td>
+</tr>
+</tbody>
+</table>
+<p>&#x7D50;&#x679C;&#x6703;&#x662F;&#x5169;&#x7B46;&#x8CC7;&#x6599;&#x90FD;&#x88AB;&#x8B8A;&#x66F4;&#x70BA; true &#x4E86;&#xFF0C;&#x8207;&#x5546;&#x696D;&#x908F;&#x8F2F;&#x76F8;&#x62B5;&#x89F8;&#x3002;</p>
+<h3 id="write-skew-%E7%9A%84%E8%A7%A3%E6%B1%BA%E8%BE%A6%E6%B3%95">Write Skew &#x7684;&#x89E3;&#x6C7A;&#x8FA6;&#x6CD5;</h3>
+<h4 id="%E5%B0%87%E4%BA%A4%E6%98%93%E9%9A%94%E9%9B%A2%E7%AD%89%E7%B4%9A%E8%A8%AD%E7%82%BA-serializable">&#x5C07;&#x4EA4;&#x6613;&#x9694;&#x96E2;&#x7B49;&#x7D1A;&#x8A2D;&#x70BA; SERIALIZABLE</h4>
+<p>SERIALIZABLE &#x7B49;&#x7D1A;&#x7684;&#x4EA4;&#x6613;&#x6703;&#x5E8F;&#x5217;&#x5316;&#x57F7;&#x884C;&#xFF0C;&#x5C31;&#x50CF;&#x4F75;&#x767C;&#x4E0D;&#x5B58;&#x5728;&#x4E00;&#x6A23;&#xFF0C;&#x53EF;&#x907F;&#x514D; Write Skew &#x7684;&#x554F;&#x984C;&#xFF0C;&#x4F46;&#x7F3A;&#x9EDE;&#x5C31;&#x662F;&#x6548;&#x7387;&#x6975;&#x5DEE;&#x3002;</p>
+<h4 id="%E4%BD%BF%E7%94%A8%E5%85%A9%E9%9A%8E%E6%AE%B5%E9%8E%96%E5%AE%9A-2pl%EF%BC%8Ctwo-phase-locking">&#x4F7F;&#x7528;&#x5169;&#x968E;&#x6BB5;&#x9396;&#x5B9A; (2PL&#xFF0C;two-phase locking)</h4>
+<p>&#x4E00;&#x7A2E;&#x5E8F;&#x5217;&#x5316;&#x6F14;&#x7B97;&#x6CD5;&#xFF0C;&#x5C6C;&#x65BC;&#x60B2;&#x89C0;&#x7684;&#x4F75;&#x767C;&#x63A7;&#x5236;&#x6A5F;&#x5236;</p>
+<h4 id="%E4%BD%BF%E7%94%A8%E5%8F%AF%E5%BA%8F%E5%88%97%E5%8C%96%E5%BF%AB%E7%85%A7%E9%9A%94%E9%9B%A2%EF%BC%88ssi-serializable-snapshot-isolation%EF%BC%89">&#x4F7F;&#x7528;&#x53EF;&#x5E8F;&#x5217;&#x5316;&#x5FEB;&#x7167;&#x9694;&#x96E2;&#xFF08;SSI, serializable snapshot isolation&#xFF09;</h4>
+<p>&#x4E00;&#x7A2E;&#x5E8F;&#x5217;&#x5316;&#x6F14;&#x7B97;&#x6CD5;&#xFF0C;&#x5C6C;&#x65BC;&#x6A02;&#x89C0;&#x7684;&#x4F75;&#x767C;&#x63A7;&#x5236;&#x6A5F;&#x5236;</p>
+<h2 id="%E5%90%84%E6%83%85%E5%A2%83%E4%B9%8B%E9%96%93%E7%9A%84%E5%B7%AE%E7%95%B0">&#x5404;&#x60C5;&#x5883;&#x4E4B;&#x9593;&#x7684;&#x5DEE;&#x7570;</h2>
+<h3 id="non-repeatable-read-%E5%92%8C-phantom-%E7%9A%84%E5%B7%AE%E7%95%B0">Non-repeatable Read &#x548C; Phantom &#x7684;&#x5DEE;&#x7570;</h3>
+<p>Non-repeatable Read &#x662F;&#x5728;&#x540C;&#x4E00;&#x500B;&#x4EA4;&#x6613;&#x4E2D;&#x7684;&#x5169;&#x6B21;&#x67E5;&#x8A62;&#x4E4B;&#x9593;&#x6709;&#x5176;&#x4ED6;&#x4EA4;&#x6613; commit&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x6578;&#x503C;&#x88AB;&#x6539;&#x52D5;&#x4E86;&#xFF0C;&#x5C0E;&#x81F4;&#x591A;&#x6B21;&#x67E5;&#x8A62;&#x540C;&#x4E00;&#x7B46;&#x8CC7;&#x6599;&#x7684;&#x7D50;&#x679C;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;<br>
+Phantom &#x662F;&#x5728;&#x540C;&#x4E00;&#x500B;&#x4EA4;&#x6613;&#x4E2D;&#x7684;&#x5169;&#x6B21;&#x67E5;&#x8A62;&#x4E4B;&#x9593;&#x6709;&#x5176;&#x4ED6;&#x4EA4;&#x6613; commit&#xFF0C;&#x5176;&#x4E2D;&#x8CC7;&#x6599;&#x7B46;&#x6578;&#x6709;&#x88AB;&#x8B8A;&#x52D5;&#xFF0C;&#x5C0E;&#x81F4;&#x591A;&#x6B21;&#x67E5;&#x8A62;&#x7684;&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x7B46;&#x6578;&#x4E0D;&#x540C;&#x3002;</p>
+<h3 id="lost-update-%E8%88%87-dirty-write-%E7%9A%84%E5%B7%AE%E7%95%B0">Lost update &#x8207; dirty write &#x7684;&#x5DEE;&#x7570;</h3>
+<p>Dirty write &#x662F;&#x5728; commit &#x524D;&#x5C31;&#x88AB;&#x8986;&#x84CB;&#x6389;&#xFF0C;lost update &#x5247;&#x662F;&#x5DF2;&#x7D93; commit &#x5F8C;&#x624D;&#x88AB;&#x84CB;&#x6389;&#x3002;</p>
+<h3 id="lost-update-%E8%88%87-write-skew-%E7%9A%84%E5%B7%AE%E7%95%B0">Lost update &#x8207; Write Skew &#x7684;&#x5DEE;&#x7570;</h3>
+<p>Lost update &#x662F;&#x5171;&#x540C;&#x7DE8;&#x8F2F;&#x540C;&#x4E00;&#x7B46;&#x8CC7;&#x6599;&#x4E14;&#x7DE8;&#x8F2F;&#x5230;&#x4E86;&#x904E;&#x6642;&#x7684;&#x8CC7;&#x6599;&#xFF0C;&#x5C0E;&#x81F4;&#x7DE8;&#x8F2F;&#x7684;&#x503C;&#x88AB;&#x5F8C;&#x7E8C; commit &#x7684;&#x503C;&#x8986;&#x84CB;&#x6389;&#x5C0E;&#x81F4;&#x7684;&#x554F;&#x984C;&#x3002;<br>
+Write Skew &#x662F;&#x7DE8;&#x8F2F;&#x5230;&#x4E86;&#x904E;&#x6642;&#x7684;&#x8CC7;&#x6599;&#x5C0E;&#x81F4;&#x5546;&#x696D;&#x908F;&#x8F2F;&#x932F;&#x8AA4;&#x7684;&#x554F;&#x984C;&#x3002;<br>
+Lost update &#x53EF;&#x4EE5;&#x7B97;&#x662F; Write Skew &#x7684;&#x4E00;&#x7A2E; special case&#x3002;</p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://ajing-notebook.blogspot.com/2021/12/postgresql-transaction.html?ref=localhost">[PostgreSQL] &#x8CC7;&#x6599;&#x5EAB;&#x7684;Race Condition&#x554F;&#x984C;&#x8207;&#x4EA4;&#x6613;&#x9694;&#x96E2;&#x7B49;&#x7D1A;</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/sql/t-sql/statements/set-transaction-isolation-level-transact-sql?view=sql-server-ver16&amp;ref=localhost">SET TRANSACTION ISOLATION LEVEL (Transact-SQL)</a></li>
+<li><a href="https://totoroliu.medium.com/%E8%B3%87%E6%96%99%E5%BA%AB-isolation-levels-c587d3103ba4?ref=localhost">&#x8CC7;&#x6599;&#x5EAB; Isolation Levels</a></li>
+<li><a href="https://blog.amis.com/database-transaction-isolation-a1e448a7736e?ref=localhost">&#x8CC7;&#x6599;&#x5EAB;&#x4EA4;&#x6613;&#x7684; Isolation</a></li>
+<li><a href="https://myapollo.com.tw/blog/interview-question-race-condition/?ref=localhost">&#x5F8C;&#x7AEF;&#x5DE5;&#x7A0B;&#x5E2B;&#x9762;&#x8A66;&#x8003;&#x4EC0;&#x9EBC; - Race Condition &#x7BC7;</a></li>
+<li><a href="https://stackoverflow.com/a/52245852?ref=localhost">Why write skew can happen in Repeatable reads?</a></li>
+<li><a href="https://stackoverflow.com/questions/11043712/what-is-the-difference-between-non-repeatable-read-and-phantom-read?ref=localhost">What is the difference between Non-Repeatable Read and Phantom Read?</a></li>
+<li><a href="https://blog.csdn.net/u013288190/article/details/119773584?ref=localhost">&#x5199;&#x504F;&#x659C;&#xFF08;Write Skew&#xFF09;&#x548C;&#x4E22;&#x5931;&#x66F4;&#x65B0;&#xFF08;Lost Updates&#xFF09;&#x533A;&#x522B;</a></li>
+<li><a href="https://blog.ite2.com/repeating-number/?ref=localhost">&#x5E7E;&#x7A2E;&#x65B9;&#x5F0F;&#x907F;&#x514D;&#x53D6;&#x865F;&#x529F;&#x80FD;&#x53D6;&#x5230;&#x91CD;&#x8907;&#x7684;&#x503C;</a></li>
+<li><a href="https://dotblogs.com.tw/joysdw12/2012/06/07/72668?ref=localhost">[ASP.NET] &#x4F7F;&#x7528;Lock&#x9396;&#x5B9A; &#x5728;&#x591A;&#x4F7F;&#x7528;&#x8005;&#x6216;&#x591A;&#x57F7;&#x884C;&#x7DD2;&#x4E0B;&#x65B0;&#x589E;&#x7DE8;&#x865F;&#x78BA;&#x4FDD;&#x7DE8;&#x865F;&#x4E0D;&#x91CD;&#x8907;</a></li>
+<li><a href="http://ddia.vonng.com/?ref=localhost#/zh-tw/ch7?id=%e7%ac%ac%e4%b8%83%e7%ab%a0%ef%bc%9a%e4%ba%8b%e5%8b%99">DDIA &#x7B2C;&#x4E03;&#x7AE0;&#xFF1A;&#x4E8B;&#x52D9;</a></li>
+<li><a href="https://segmentfault.com/a/1190000023045909?ref=localhost">&#x6570;&#x636E;&#x5E93;-MySQL&#x4E2D;for update&#x7684;&#x4F5C;&#x7528;&#x548C;&#x7528;&#x6CD5;</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Queued background tasks in ASP.NET Core]]></title><description><![CDATA[在實務上有時候會遇到某些需要花費大量時間執行的任務，像我就是在寫公司專案時遇到需要產生縮圖和轉檔的需求，若不想讓使用者一直轉圈圈等待的話，我們必須採用一些方法讓我們可以先回覆使用者，之後再來慢慢處理這些需求，在背景中讓這些任務排隊執行就是其中一個方法。]]></description><link>https://vincent87720.github.io/queued-background-tasks-in-asp-net-core/</link><guid isPermaLink="false">651996620bc50e000198cfe7</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 01 Oct 2023 16:01:03 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/10/will-truettner-VYeFTyjns0M-unsplash.jpg" alt="Queued background tasks in ASP.NET Core"><p>&#x5728;&#x5BE6;&#x52D9;&#x4E0A;&#x6709;&#x6642;&#x5019;&#x6703;&#x9047;&#x5230;&#x67D0;&#x4E9B;&#x9700;&#x8981;&#x82B1;&#x8CBB;&#x5927;&#x91CF;&#x6642;&#x9593;&#x57F7;&#x884C;&#x7684;&#x4EFB;&#x52D9;&#xFF0C;&#x50CF;&#x6211;&#x5C31;&#x662F;&#x5728;&#x5BEB;&#x516C;&#x53F8;&#x5C08;&#x6848;&#x6642;&#x9047;&#x5230;&#x9700;&#x8981;&#x7522;&#x751F;&#x7E2E;&#x5716;&#x548C;&#x8F49;&#x6A94;&#x7684;&#x9700;&#x6C42;&#xFF0C;&#x82E5;&#x4E0D;&#x60F3;&#x8B93;&#x4F7F;&#x7528;&#x8005;&#x4E00;&#x76F4;&#x8F49;&#x5708;&#x5708;&#x7B49;&#x5F85;&#x7684;&#x8A71;&#xFF0C;&#x6211;&#x5011;&#x5FC5;&#x9808;&#x63A1;&#x7528;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x8B93;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x5148;&#x56DE;&#x8986;&#x4F7F;&#x7528;&#x8005;&#xFF0C;&#x4E4B;&#x5F8C;&#x518D;&#x4F86;&#x6162;&#x6162;&#x8655;&#x7406;&#x9019;&#x4E9B;&#x9700;&#x6C42;&#xFF0C;&#x5728;&#x80CC;&#x666F;&#x4E2D;&#x8B93;&#x9019;&#x4E9B;&#x4EFB;&#x52D9;&#x6392;&#x968A;&#x57F7;&#x884C;&#x5C31;&#x662F;&#x5176;&#x4E2D;&#x4E00;&#x500B;&#x65B9;&#x6CD5;&#x3002;</p>
 <h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
 <ul>
 <li>macOS Ventura 13.0(Apple M1 Pro)</li>
@@ -1190,37 +1503,4 @@ location.href=&quot;http://test.com&quot;
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/assign?ref=localhost">location: assign() method - Web APIs | MDN</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/replace?ref=localhost">location: replace() method - Web APIs | MDN</a></li>
 </ul>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Docker buildx]]></title><description><![CDATA[Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。]]></description><link>https://vincent87720.github.io/docker-buildx/</link><guid isPermaLink="false">63e5196c0a96e94f12972009</guid><category><![CDATA[Docker]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 09 Feb 2023 16:09:53 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/02/docker.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/02/docker.jpg" alt="Docker buildx"><p>Synology&#x7684;NAS&#x53EF;&#x4EE5;&#x5B89;&#x88DD;docker&#x5957;&#x4EF6;&#xFF0C;&#x4E0B;&#x8F09;&#x6620;&#x50CF;&#x6A94;&#x4F7F;&#x7528;&#x3002;&#x4F7F;&#x7528;&#x5B98;&#x65B9;&#x7684;&#x6620;&#x50CF;&#x6A94;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x57F7;&#x884C;&#xFF0C;&#x4F46;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x88FD;&#x4F5C;&#x7684;&#x6620;&#x50CF;&#x6A94;&#x537B;&#x8DF3;&#x51FA;&#x4E86;&#x932F;&#x8AA4;&#x8A0A;&#x606F;<code>standard_init_linux.go:230: exec user process caused: exec format error</code>&#xFF0C;&#x641C;&#x5C0B;&#x904E;&#x5F8C;&#x767C;&#x73FE;&#x8207;&#x7DE8;&#x8B6F;&#x5E73;&#x53F0;&#x6709;&#x95DC;&#xFF0C;&#x4F7F;&#x7528;buildx&#x5C07;&#x6620;&#x50CF;&#x6A94;&#x7DE8;&#x8B6F;&#x70BA;&#x76EE;&#x6A19;&#x5E73;&#x53F0;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x6620;&#x50CF;&#x6A94;&#x4FBF;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x89E3;&#x6C7A;&#x9019;&#x500B;&#x554F;&#x984C;&#x3002;</p>
-<h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
-<p>&#x5EFA;&#x7F6E;&#x74B0;&#x5883;</p>
-<ul>
-<li>macOS Ventura 13.0(Apple M1 Pro)</li>
-<li>Docker 20.10.21</li>
-</ul>
-<p>&#x90E8;&#x7F72;&#x74B0;&#x5883;</p>
-<ul>
-<li>Synology DSM 7.1.1(INTEL Celeron J4125)</li>
-<li>Docker 20.10.3</li>
-</ul>
-<h2 id="%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95">&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</h2>
-<p>&#x8981;&#x4F7F;&#x7528;buildx&#x5EFA;&#x7ACB;&#x591A;&#x5E73;&#x53F0;&#x7684;&#x6620;&#x50CF;&#x6A94;&#xFF0C;&#x9996;&#x5148;&#x9700;&#x8981;&#x5EFA;&#x7ACB;builder&#xFF0C;&#x4E26;&#x4F7F;&#x7528;<code>--platform</code>&#x53C3;&#x6578;&#x5E36;&#x5165;&#x76EE;&#x6A19;&#x5E73;&#x53F0;&#x5B57;&#x4E32;&#xFF0C;&#x5373;&#x53EF;&#x5EFA;&#x7ACB;&#x591A;&#x5E73;&#x53F0;&#x6620;&#x50CF;&#x6A94;&#x3002;</p>
-<h3 id="%E5%BB%BA%E7%AB%8Bbuilder">&#x5EFA;&#x7ACB;builder</h3>
-<p>&#x5EFA;&#x7ACB;&#x4E26;&#x4F7F;&#x7528;&#x540D;&#x7A31;&#x70BA;multiarch&#x7684;builder</p>
-<pre><code>docker buildx create --name multiarch --use
-</code></pre>
-<p>&#x4F7F;&#x7528;<code>docker buildx ls</code>&#x53EF;&#x5217;&#x51FA;&#x76EE;&#x524D;&#x7684;builder</p>
-<h3 id="%E5%BB%BA%E7%BD%AE%E4%B8%A6%E4%B8%8A%E5%82%B3">&#x5EFA;&#x7F6E;&#x4E26;&#x4E0A;&#x50B3;</h3>
-<pre><code>docker buildx build --rm --push\
-    --platform linux/amd64,linux/arm64 \
-    -t DOCKERHUB&#x7684;&#x4F7F;&#x7528;&#x8005;&#x540D;&#x7A31;/&#x6620;&#x50CF;&#x6A94;&#x540D;&#x7A31;:&#x6620;&#x50CF;&#x6A94;tag \
-    -f &#x8981;&#x7528;&#x4F86;&#x9032;&#x884C;&#x5EFA;&#x7F6E;&#x7684;Dockerfile .
-</code></pre>
-<p>&#x57F7;&#x884C;<code>docker buildx build</code>&#x9032;&#x884C;&#x5EFA;&#x7F6E;<br>
-<code>--rm</code>&#x53C3;&#x6578;&#x53EF;&#x4EE5;&#x5728;&#x57F7;&#x884C;&#x7D50;&#x675F;&#x5F8C;&#x79FB;&#x9664;&#x5BB9;&#x5668;<br>
-<code>--push</code>&#x53C3;&#x6578;&#x53EF;&#x4EE5;&#x5728;&#x5EFA;&#x7F6E;&#x5B8C;&#x6210;&#x6642;&#x63A8;&#x9001;&#x6620;&#x50CF;&#x6A94;&#x5230;DockerHub<br>
-<code>--platform</code>&#x53C3;&#x6578;&#x6307;&#x5B9A;&#x76EE;&#x6A19;&#x5E73;&#x53F0;&#xFF0C;&#x672C;&#x6B21;&#x4F7F;&#x7528;<strong>linux/amd64</strong>&#x53CA;<strong>linux/arm64</strong>&#x4F5C;&#x70BA;&#x76EE;&#x6A19;&#x5E73;&#x53F0;<br>
-<code>-t</code>&#x53C3;&#x6578;&#x6307;&#x5B9A;&#x6620;&#x50CF;&#x6A94;&#x53CA;&#x6620;&#x50CF;&#x6A94;&#x6A19;&#x7C64;<br>
-<code>-f</code>&#x53C3;&#x6578;&#x6307;&#x5B9A;&#x8981;&#x7528;&#x4F86;&#x9032;&#x884C;&#x5EFA;&#x7F6E;&#x7684;Dockerfile</p>
-<p>&#x5EFA;&#x7F6E;&#x5B8C;&#x6210;&#x5F8C;&#x524D;&#x5F80;DockerHub&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x525B;&#x624D;&#x6307;&#x5B9A;&#x5E73;&#x53F0;&#x7684;&#x6620;&#x50CF;&#x6A94;&#x5DF2;&#x6210;&#x529F;&#x5EFA;&#x7F6E;&#x4E26;&#x4E0A;&#x50B3;<br>
-<img src="https://vincent87720.github.io/content/images/2023/02/---2023-02-09---10.42.41.png" alt="Docker buildx" loading="lazy"></p>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

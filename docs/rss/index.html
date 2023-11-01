@@ -1,4 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.60</generator><lastBuildDate>Sun, 22 Oct 2023 08:13:01 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Race condition 的種類、成因與解決辦法]]></title><description><![CDATA[當多個程序同時存取同一個資源時，很可能會發生該資源在其他程序進行期間被進行更動，導致資料與預期的結果不同的問題。]]></description><link>https://vincent87720.github.io/race-condition-intro/</link><guid isPermaLink="false">6534cec4bee2720001e0bdd5</guid><category><![CDATA[concurrency]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 22 Oct 2023 07:42:51 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/10/bruno-kelzer-zZoscDXH6ss-unsplash-3.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/10/bruno-kelzer-zZoscDXH6ss-unsplash-3.jpg" alt="Race condition &#x7684;&#x7A2E;&#x985E;&#x3001;&#x6210;&#x56E0;&#x8207;&#x89E3;&#x6C7A;&#x8FA6;&#x6CD5;"><p>&#x7576;&#x591A;&#x500B;&#x7A0B;&#x5E8F;&#x540C;&#x6642;&#x5B58;&#x53D6;&#x540C;&#x4E00;&#x500B;&#x8CC7;&#x6E90;&#x6642;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x6703;&#x767C;&#x751F;&#x8A72;&#x8CC7;&#x6E90;&#x5728;&#x5176;&#x4ED6;&#x7A0B;&#x5E8F;&#x9032;&#x884C;&#x671F;&#x9593;&#x88AB;&#x9032;&#x884C;&#x66F4;&#x52D5;&#xFF0C;&#x5C0E;&#x81F4;&#x8CC7;&#x6599;&#x8207;&#x9810;&#x671F;&#x7684;&#x7D50;&#x679C;&#x4E0D;&#x540C;&#x7684;&#x554F;&#x984C;&#x3002;</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.60</generator><lastBuildDate>Wed, 01 Nov 2023 17:16:32 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[使用 C# 建立上傳檔案請求]]></title><description><![CDATA[<!--kg-card-begin: markdown--><h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
+<ul>
+<li>macOS Sonoma 14.0(Apple M1 Pro)</li>
+<li>.NET 6.0</li>
+<li>Visual Studio Community 2022 for Mac 17.6.6</li>
+</ul>
+<h2 id="%E8%AE%80%E5%8F%96%E6%AA%94%E6%A1%88%E3%80%81%E5%BB%BA%E7%AB%8B%E8%AB%8B%E6%B1%82%E5%8F%8A%E5%82%B3%E9%80%81%E8%AB%8B%E6%B1%82">&#x8B80;&#x53D6;&#x6A94;&#x6848;&#x3001;&#x5EFA;&#x7ACB;&#x8ACB;&#x6C42;&#x53CA;&#x50B3;&#x9001;&#x8ACB;&#x6C42;</h2>
+<pre><code class="language-csharp">var filename = &quot;test.png&quot;;
+
+// &#x5EFA;&#x7ACB; HttpClient &#x5BE6;&#x9AD4;
+using (var client = new</code></pre>]]></description><link>https://vincent87720.github.io/upload-file-using-csharp/</link><guid isPermaLink="false">654285210b04b200017b53f7</guid><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Wed, 01 Nov 2023 17:14:07 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/11/visualStudioCode.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><h2 id="%E7%92%B0%E5%A2%83">&#x74B0;&#x5883;</h2>
+<ul>
+<li>macOS Sonoma 14.0(Apple M1 Pro)</li>
+<li>.NET 6.0</li>
+<li>Visual Studio Community 2022 for Mac 17.6.6</li>
+</ul>
+<h2 id="%E8%AE%80%E5%8F%96%E6%AA%94%E6%A1%88%E3%80%81%E5%BB%BA%E7%AB%8B%E8%AB%8B%E6%B1%82%E5%8F%8A%E5%82%B3%E9%80%81%E8%AB%8B%E6%B1%82">&#x8B80;&#x53D6;&#x6A94;&#x6848;&#x3001;&#x5EFA;&#x7ACB;&#x8ACB;&#x6C42;&#x53CA;&#x50B3;&#x9001;&#x8ACB;&#x6C42;</h2>
+<pre><code class="language-csharp">var filename = &quot;test.png&quot;;
+
+// &#x5EFA;&#x7ACB; HttpClient &#x5BE6;&#x9AD4;
+using (var client = new HttpClient())
+{
+    // &#x5EFA;&#x7ACB; FileStream
+    using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read,
+            FileShare.ReadWrite, 4096, FileOptions.SequentialScan))
+    {
+        // &#x5EFA;&#x7ACB; multipart/form-data &#x985E;&#x578B;&#x7684; HttpContent
+        using (var content = new MultipartFormDataContent())
+        {
+            // &#x5C07;&#x6587;&#x5B57;&#x7684; key-value &#x52A0;&#x5165; content
+            content.Add(new StringContent(&quot;40fe36a4-b5b3-485a-b18e-5127106b3795&quot;), &quot;\&quot;Id\&quot;&quot;);
+
+            // &#x5C07;&#x6A94;&#x6848;&#x52A0;&#x5165; content
+            // &#x6700;&#x5F8C;&#x4E00;&#x500B;&#x6A94;&#x540D;&#x53C3;&#x6578;&#x5FC5;&#x9808;&#x8981;&#x52A0;&#x5426;&#x5247;&#x6703;&#x51FA;&#x932F;
+            content.Add(new StreamContent(stream), &quot;\&quot;File\&quot;&quot;, filename);
+
+            // &#x50B3;&#x9001;&#x8ACB;&#x6C42;
+            var responseMessage = await client.PostAsync(&quot;https://localhost:7113/api/File&quot;, content);
+
+            // &#x8B80;&#x53D6;&#x56DE;&#x8986;&#x5167;&#x5BB9;
+            var responseContent = await responseMessage.Content.ReadAsStringAsync();
+            Console.WriteLine(responseContent);
+        }
+    }
+}
+</code></pre>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://stackoverflow.com/a/55424886?ref=localhost">How to post form-data IFormFile with HttpClient?</a></li>
+<li><a href="https://stackoverflow.com/a/29309941?ref=localhost">400 - Bad Request when performing bulk import of contacts</a></li>
+</ul>
+<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Race condition 的種類、成因與解決辦法]]></title><description><![CDATA[當多個程序同時存取同一個資源時，很可能會發生該資源在其他程序進行期間被進行更動，導致資料與預期的結果不同的問題。]]></description><link>https://vincent87720.github.io/race-condition-intro/</link><guid isPermaLink="false">6534cec4bee2720001e0bdd5</guid><category><![CDATA[concurrency]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 22 Oct 2023 07:42:51 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/10/bruno-kelzer-zZoscDXH6ss-unsplash-3.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/10/bruno-kelzer-zZoscDXH6ss-unsplash-3.jpg" alt="Race condition &#x7684;&#x7A2E;&#x985E;&#x3001;&#x6210;&#x56E0;&#x8207;&#x89E3;&#x6C7A;&#x8FA6;&#x6CD5;"><p>&#x7576;&#x591A;&#x500B;&#x7A0B;&#x5E8F;&#x540C;&#x6642;&#x5B58;&#x53D6;&#x540C;&#x4E00;&#x500B;&#x8CC7;&#x6E90;&#x6642;&#xFF0C;&#x5F88;&#x53EF;&#x80FD;&#x6703;&#x767C;&#x751F;&#x8A72;&#x8CC7;&#x6E90;&#x5728;&#x5176;&#x4ED6;&#x7A0B;&#x5E8F;&#x9032;&#x884C;&#x671F;&#x9593;&#x88AB;&#x9032;&#x884C;&#x66F4;&#x52D5;&#xFF0C;&#x5C0E;&#x81F4;&#x8CC7;&#x6599;&#x8207;&#x9810;&#x671F;&#x7684;&#x7D50;&#x679C;&#x4E0D;&#x540C;&#x7684;&#x554F;&#x984C;&#x3002;</p>
 <p>&#x9020;&#x6210;Race condition&#x901A;&#x5E38;&#x8981;&#x6EFF;&#x8DB3;&#x4EE5;&#x4E0B;&#x5169;&#x9EDE;</p>
 <ol>
 <li>&#x5E73;&#x884C;&#x8655;&#x7406;</li>
@@ -1455,52 +1506,5 @@ module.exports = {
 <li><a href="https://blog.poychang.net/asp-net-core-web-api-global-exception-handler/?ref=localhost">&#x5728; ASP.NET Core &#x4E2D;&#x4F7F;&#x7528; Middleware &#x5168;&#x57DF;&#x8655;&#x7406;&#x4F8B;&#x5916;</a></li>
 <li><a href="https://ithelp.ithome.com.tw/articles/10238649?ref=localhost">[Day03] Middleware- &#x6211;&#x8207; ASP.NET Core 3 &#x7684; 30&#x5929;</a></li>
 <li><a href="https://www.cnblogs.com/RainingNight/p/middleware-in-asp-net-core.html?ref=localhost">ASP.NET Core &#x8FD0;&#x884C;&#x539F;&#x7406;&#x89E3;&#x5256;[3]:Middleware-&#x8BF7;&#x6C42;&#x7BA1;&#x9053;&#x7684;&#x6784;&#x6210;</a></li>
-</ul>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[比較JavaScript中assign與replace的差異]]></title><description><![CDATA[<!--kg-card-begin: markdown--><h2 id="assign">assign</h2>
-<h3 id="%E5%8A%9F%E8%83%BD">&#x529F;&#x80FD;</h3>
-<p>assign&#x53EF;&#x4EE5;&#x8B93;window&#x8F09;&#x5165;&#x4E26;&#x986F;&#x793A;URL&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;</p>
-<h3 id="%E8%AA%9E%E6%B3%95">&#x8A9E;&#x6CD5;</h3>
-<pre><code class="language-javascript">window.location.assign(&quot;http://test.com&quot;);
-</code></pre>
-<h3 id="%E8%88%87assign%E7%9B%B8%E5%90%8C%E5%8A%9F%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95">&#x8207;assign&#x76F8;&#x540C;&#x529F;&#x7528;&#x7684;&#x7528;&#x6CD5;</h3>
-<pre><code class="language-javascript">window.location=&quot;http://test.com&quot;
-window.location.href=&quot;http:</code></pre>]]></description><link>https://vincent87720.github.io/difference-between-assign-and-replace-in-javascript/</link><guid isPermaLink="false">64d1177d1f95c4000167e858</guid><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 07 Aug 2023 16:25:04 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/08/javascript-1.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><h2 id="assign">assign</h2>
-<h3 id="%E5%8A%9F%E8%83%BD">&#x529F;&#x80FD;</h3>
-<img src="https://vincent87720.github.io/content/images/2023/08/javascript-1.png" alt="&#x6BD4;&#x8F03;JavaScript&#x4E2D;assign&#x8207;replace&#x7684;&#x5DEE;&#x7570;"><p>assign&#x53EF;&#x4EE5;&#x8B93;window&#x8F09;&#x5165;&#x4E26;&#x986F;&#x793A;URL&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;</p>
-<h3 id="%E8%AA%9E%E6%B3%95">&#x8A9E;&#x6CD5;</h3>
-<pre><code class="language-javascript">window.location.assign(&quot;http://test.com&quot;);
-</code></pre>
-<h3 id="%E8%88%87assign%E7%9B%B8%E5%90%8C%E5%8A%9F%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95">&#x8207;assign&#x76F8;&#x540C;&#x529F;&#x7528;&#x7684;&#x7528;&#x6CD5;</h3>
-<pre><code class="language-javascript">window.location=&quot;http://test.com&quot;
-window.location.href=&quot;http://test.com&quot;
-location=&quot;http://test.com&quot;
-location.href=&quot;http://test.com&quot;
-</code></pre>
-<h3 id="%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F">&#x4F7F;&#x7528;&#x6642;&#x6A5F;</h3>
-<ul>
-<li>&#x5E0C;&#x671B;&#x5728;&#x8DF3;&#x8F49;&#x9801;&#x9762;&#x5F8C;&#x53EF;&#x4EE5;&#x8FD4;&#x56DE;&#x4E0A;&#x4E00;&#x9801;</li>
-</ul>
-<h2 id="replace">replace</h2>
-<h3 id="%E5%8A%9F%E8%83%BD">&#x529F;&#x80FD;</h3>
-<p>replace&#x6703;&#x4F7F;&#x7528;URL&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;&#x7F6E;&#x63DB;&#x6389;&#x76EE;&#x524D;&#x7684;&#x9801;&#x9762;</p>
-<h3 id="%E8%AA%9E%E6%B3%95">&#x8A9E;&#x6CD5;</h3>
-<pre><code class="language-javascript">window.location.replace(&quot;http://test.com&quot;);
-</code></pre>
-<h3 id="%E4%BD%BF%E7%94%A8%E6%99%82%E6%A9%9F">&#x4F7F;&#x7528;&#x6642;&#x6A5F;</h3>
-<ul>
-<li>&#x5E0C;&#x671B;&#x9801;&#x9762;&#x91CD;&#x65B0;&#x8F09;&#x5165;&#x800C;&#x4E0D;&#x662F;&#x91CD;&#x65B0;&#x63D0;&#x4EA4;&#x4E00;&#x6B21;</li>
-<li>&#x4E0D;&#x61C9;&#x8A72;&#x91CD;&#x8907;&#x89F8;&#x767C;&#x7684;&#x9801;&#x9762;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;
-<ul>
-<li>&#x91D1;&#x6D41;&#x4ED8;&#x9322;&#x9801;&#x9762;&#xFF0C;&#x4ED8;&#x6B3E;&#x5F8C;replace&#x56DE;&#x539F;&#x672C;&#x7684;&#x9801;&#x9762;&#xFF0C;&#x6E1B;&#x5C11;&#x4F7F;&#x7528;&#x8005;&#x8FD4;&#x56DE;&#x4E0A;&#x4E00;&#x9801;&#x9020;&#x6210;&#x932F;&#x8AA4;&#x7684;&#x6A5F;&#x6703;</li>
-</ul>
-</li>
-</ul>
-<h2 id="%E5%B7%AE%E7%95%B0">&#x5DEE;&#x7570;</h2>
-<p>replace&#x548C;assign&#x7684;&#x5DEE;&#x7570;&#x5728;&#x65BC;replace&#x4E0D;&#x6703;&#x5728;session history&#x4E2D;&#x7D00;&#x9304;&#x76EE;&#x524D;&#x7684;&#x9801;&#x9762;&#xFF0C;replace&#x5F8C;&#x5C07;&#x7121;&#x6CD5;&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x9801;&#xFF0C;&#x82E5;&#x5728;replace&#x904E;&#x5F8C;&#x6309;&#x4E0B;&#x4E0A;&#x4E00;&#x9801;&#x5247;&#x6703;&#x56DE;&#x5230;&#x4E0A;&#x4E0A;&#x500B;&#x700F;&#x89BD;&#x7684;&#x9801;&#x9762;</p>
-<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
-<ul>
-<li><a href="https://ithelp.ithome.com.tw/articles/10190062?ref=localhost">Javascript &#x9801;&#x9762;&#x8DF3;&#x8F49;&#x3001;&#x5237;&#x65B0;&#x3001;&#x91CD;&#x5B9A;&#x5411;&#x7684;&#x5E7E;&#x7A2E;&#x65B9;&#x5F0F;</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/assign?ref=localhost">location: assign() method - Web APIs | MDN</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Location/replace?ref=localhost">location: replace() method - Web APIs | MDN</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

@@ -201,7 +201,7 @@
 		<div class="archive archive-tag box archive-box">
 			<span class="archive-info">
 				<span class="archive-type">Topic</span>
-				<span class="archive-count">9 Posts</span>
+				<span class="archive-count">10 Posts</span>
 			</span>
 			<h2 class="archive-title">C#</h2>
 		</div>
@@ -233,6 +233,42 @@
 </nav>
 
 </div>
+
+
+<article class="post tag-csharp">
+	<div class="inner">
+		<div class="box post-box">
+			<h2 class="post-title"><a href="../../upload-file-using-csharp/index.html">使用 C# 建立上傳檔案請求</a></h2>
+			<span class="post-meta">
+				By
+				<a href="../../author/katsuobushi/index.html">Katsuobushi</a>
+				in <a class="post-meta-tag" href="index.html">C#</a>
+				on
+				<time datetime="02-11-2023">02 Nov 2023</time>
+			</span>
+			<p class="post-excerpt">環境
+
+
+ * macOS Sonoma 14.0(Apple M1 Pro)
+ * .NET 6.0
+ * Visual Studio Community 2022 for Mac 17.6.6
+
+
+
+讀取檔案、建立請求及傳送請求
+
+
+var filename = "test.png";
+
+// 建立 HttpClient 實體
+using (var client = new HttpClient())
+{
+    // 建立 FileStream
+    using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read,
+            FileShare.ReadWrite, 4096, FileOptions.&hellip;</p>
+		</div>
+	</div>
+</article>
 
 
 <article class="post tag-asp-net-core tag-csharp">
@@ -350,25 +386,6 @@ ASP.NET提供Model Binding的功能，可以處理來自使用者請求中的資
 				<time datetime="15-08-2023">15 Aug 2023</time>
 			</span>
 			<p class="post-excerpt">專案中的各個Page會被插入到_Layout.cshtml裡@RenderBody()的位置，與主版面整合。若Page中的某段程式不想被放在body內時，可以使用Section及RenderSection改變程式碼在_Layout.cshtml中的插入位置。&hellip;</p>
-		</div>
-	</div>
-</article>
-
-
-<article class="post tag-asp-net-core tag-csharp">
-	<div class="inner">
-		<div class="box post-box">
-			<h2 class="post-title"><a href="../../exception-handling-with-middleware-in-aspnet-core/index.html">ASP.NET Core使用Middleware進行例外處理</a></h2>
-			<span class="post-meta">
-				By
-				<a href="../../author/katsuobushi/index.html">Katsuobushi</a>
-				in <a class="post-meta-tag" href="../asp-net-core/index.html">ASP.NET Core</a>
-				on
-				<time datetime="09-08-2023">09 Aug 2023</time>
-			</span>
-			<p class="post-excerpt">當API被呼叫且發生例外時，不太會希望預設的錯誤訊息被傳回給使用者，在C#中可以使用try catch攔截錯誤訊息。
-
-但在每個可能會發生錯誤的地方都加上try catch相當繁瑣，使用Middleware可以捕捉錯誤訊息，並在返回給使用者之前統一處理，不僅可以節省開發時間，還能將錯誤訊息攔截，避免洩漏過多內部訊息給使用者，提高安全性。&hellip;</p>
 		</div>
 	</div>
 </article>

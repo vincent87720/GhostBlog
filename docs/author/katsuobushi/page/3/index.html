@@ -160,7 +160,7 @@
 		<div class="archive archive-author box archive-box">
 			<span class="archive-info">
 				<span class="archive-type">Author</span>
-				<span class="archive-count">50 Posts</span>
+				<span class="archive-count">51 Posts</span>
 			</span>
 			<figure class="archive-avatar avatar">
 					<img src="../../../../content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
@@ -200,6 +200,23 @@
 </nav>
 
 </div>
+
+
+<article class="post tag-docker">
+	<div class="inner">
+		<div class="box post-box">
+			<h2 class="post-title"><a href="../../../../docker-buildx/index.html">Docker buildx</a></h2>
+			<span class="post-meta">
+				By
+				<a href="../../index.html">Katsuobushi</a>
+				in <a class="post-meta-tag" href="../../../../tag/docker/index.html">Docker</a>
+				on
+				<time datetime="10-02-2023">10 Feb 2023</time>
+			</span>
+			<p class="post-excerpt">Synology的NAS可以安裝docker套件，下載映像檔使用。使用官方的映像檔可以正常執行，但使用自己製作的映像檔卻跳出了錯誤訊息standard_init_linux.go:230: exec user process caused: exec format error，搜尋過後發現與編譯平台有關，使用buildx將映像檔編譯為目標平台可以使用的映像檔便可以有效解決這個問題。&hellip;</p>
+		</div>
+	</div>
+</article>
 
 
 <article class="post tag-quasar tag-javascript">
@@ -336,23 +353,6 @@ Heap
 				<time datetime="30-07-2022">30 Jul 2022</time>
 			</span>
 			<p class="post-excerpt">若需要用到「依照更新順序排列資料」功能時，則會需要在表格被變動時在某個欄位紀錄該筆資料的變更時間以進行排序，這篇筆記在table中新增update_at欄位並使用TRIGGER及FUNCTION對其進行更新，以達成在更新紀錄時自動記錄更新時間的功能&hellip;</p>
-		</div>
-	</div>
-</article>
-
-
-<article class="post tag-python">
-	<div class="inner">
-		<div class="box post-box">
-			<h2 class="post-title"><a href="../../../../module-not-found-error-in-django-pyinstaller/index.html">[Python]使用Pyinstaller打包Django專案發生ModuleNotFoundError: No module named &#x27;XXX&#x27;.錯誤</a></h2>
-			<span class="post-meta">
-				By
-				<a href="../../index.html">Katsuobushi</a>
-				in <a class="post-meta-tag" href="../../../../tag/python/index.html">python</a>
-				on
-				<time datetime="24-11-2021">24 Nov 2021</time>
-			</span>
-			<p class="post-excerpt">使用pyinstaller將manage.py打包後會產生manage.exe可執行檔，在執行`manage.exe runserver --noreload`指令時發生*ModuleNotFoundError: No module named 'XXX'.* 錯誤&hellip;</p>
 		</div>
 	</div>
 </article>

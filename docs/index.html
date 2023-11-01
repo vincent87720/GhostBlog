@@ -230,6 +230,42 @@
 </div>
 
 
+<article class="post tag-csharp">
+	<div class="inner">
+		<div class="box post-box">
+			<h2 class="post-title"><a href="upload-file-using-csharp/index.html">使用 C# 建立上傳檔案請求</a></h2>
+			<span class="post-meta">
+				By
+				<a href="author/katsuobushi/index.html">Katsuobushi</a>
+				in <a class="post-meta-tag" href="tag/csharp/index.html">C#</a>
+				on
+				<time datetime="02-11-2023">02 Nov 2023</time>
+			</span>
+			<p class="post-excerpt">環境
+
+
+ * macOS Sonoma 14.0(Apple M1 Pro)
+ * .NET 6.0
+ * Visual Studio Community 2022 for Mac 17.6.6
+
+
+
+讀取檔案、建立請求及傳送請求
+
+
+var filename = "test.png";
+
+// 建立 HttpClient 實體
+using (var client = new HttpClient())
+{
+    // 建立 FileStream
+    using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read,
+            FileShare.ReadWrite, 4096, FileOptions.&hellip;</p>
+		</div>
+	</div>
+</article>
+
+
 <article class="post tag-concurrency">
 	<div class="inner">
 		<div class="box post-box">
@@ -345,23 +381,6 @@
 			</span>
 			<p class="post-excerpt">Controller會處理來自用戶端的HTTP Request，請求中會有一些資訊來往，這些資料會需要經過型別轉換、檢查必填、最大長度及正確性等步驟後我們才能使用，若手動處理這些步驟將會非常繁瑣。
 ASP.NET提供Model Binding的功能，可以處理來自使用者請求中的資料，將其綁定到指定型態的資料上，省去繁複的處理程序並提高正確性。&hellip;</p>
-		</div>
-	</div>
-</article>
-
-
-<article class="post tag-http tag-network">
-	<div class="inner">
-		<div class="box post-box">
-			<h2 class="post-title"><a href="http-header-content-disposition/index.html">HTTP header Content-Disposition</a></h2>
-			<span class="post-meta">
-				By
-				<a href="author/katsuobushi/index.html">Katsuobushi</a>
-				in <a class="post-meta-tag" href="tag/http/index.html">HTTP</a>
-				on
-				<time datetime="18-08-2023">18 Aug 2023</time>
-			</span>
-			<p class="post-excerpt">Content-Disposition包含兩種類型，分別是inline 和 attachment，用於指定下載的行為&hellip;</p>
 		</div>
 	</div>
 </article>

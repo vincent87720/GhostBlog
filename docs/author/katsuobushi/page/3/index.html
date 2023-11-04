@@ -163,7 +163,7 @@
 		<div class="archive archive-author box archive-box">
 			<span class="archive-info">
 				<span class="archive-type">Author</span>
-				<span class="archive-count">51 Posts</span>
+				<span class="archive-count">52 Posts</span>
 			</span>
 			<figure class="archive-avatar avatar">
 					<img src="../../../../content/images/2022/10/dog-breeder-round.svg" alt="Katsuobushi" />
@@ -203,6 +203,85 @@
 </nav>
 
 </div>
+
+
+<article class="post tag-javascript">
+	<div class="inner">
+		<div class="box post-box">
+			<h2 class="post-title"><a href="../../../../difference-between-assign-and-replace-in-javascript/index.html">比較JavaScript中assign與replace的差異</a></h2>
+			<span class="post-meta">
+				By
+				<a href="../../index.html">Katsuobushi</a>
+				in <a class="post-meta-tag" href="../../../../tag/javascript/index.html">JavaScript</a>
+				on
+				<time datetime="08-08-2023">08 Aug 2023</time>
+			</span>
+			<p class="post-excerpt">assign
+
+
+
+功能
+
+
+assign可以讓window載入並顯示URL指定的文件
+
+
+
+語法
+
+
+window.location.assign("http://test.com");
+
+
+
+
+與assign相同功用的用法
+
+
+window.location="http://test.com"
+window.location.href="http://test.com"
+location="http://test.com"
+location.href="http://test.com"
+
+
+
+
+使用時機
+
+
+ * 希望在跳轉頁面後可以返回上一頁
+
+
+
+replace
+
+
+
+功能
+
+
+replace會使用URL指定的文件置換掉目前的頁面
+
+
+
+語法
+
+
+window.location.replace("http://test.com");
+
+
+
+
+使用時機
+
+
+ * 希望頁面重新載入而不是重新提交一次
+ * 不應該重複觸發的頁面，例如：
+   
+   * 金流付錢頁面，付款後replace回原本的頁面，減少使用者返回上一頁造成錯誤的機會&hellip;</p>
+		</div>
+	</div>
+</article>
 
 
 <article class="post tag-docker">
@@ -339,23 +418,6 @@ Heap
 				<time datetime="29-10-2022">29 Oct 2022</time>
 			</span>
 			<p class="post-excerpt">ElasticSearch是一個開源的且基於Lucene的全文搜尋引擎，其封裝Lucene並提供REST API，讓使用者可以更容易操作及使用。&hellip;</p>
-		</div>
-	</div>
-</article>
-
-
-<article class="post tag-postgresql">
-	<div class="inner">
-		<div class="box post-box">
-			<h2 class="post-title"><a href="../../../../postgresql-write-timestamp-on-update/index.html">[PostgreSQL]執行UPDATE時自動記錄更新時間</a></h2>
-			<span class="post-meta">
-				By
-				<a href="../../index.html">Katsuobushi</a>
-				in <a class="post-meta-tag" href="../../../../tag/postgresql/index.html">PostgreSQL</a>
-				on
-				<time datetime="30-07-2022">30 Jul 2022</time>
-			</span>
-			<p class="post-excerpt">若需要用到「依照更新順序排列資料」功能時，則會需要在表格被變動時在某個欄位紀錄該筆資料的變更時間以進行排序，這篇筆記在table中新增update_at欄位並使用TRIGGER及FUNCTION對其進行更新，以達成在更新紀錄時自動記錄更新時間的功能&hellip;</p>
 		</div>
 	</div>
 </article>

@@ -63,8 +63,13 @@ setConfig:
 .PHONY: exportContent
 exportContent:
 	mkdir -p docs
+
 	rm -rf docs/*
+	mkdir -p docs/ghost/api/content/posts/ghost/api/content/posts
 	wget --mirror --convert-links --page-requisites -nH --no-parent -P docs http://localhost:2368/ || :
+	wget --mirror --convert-links --page-requisites -nH --no-parent -P docs "http://localhost:2368/ghost/api/content/posts/?key=5230415085a98103bb9daaa3d3&limit=10000&fields=id%2Cslug%2Ctitle%2Cexcerpt%2Curl%2Cupdated_at%2Cvisibility&order=updated_at%20DESC" || :
+	wget --mirror --convert-links --page-requisites -nH --no-parent -P docs "http://localhost:2368/ghost/api/content/authors/?key=5230415085a98103bb9daaa3d3&limit=10000&fields=id%2Cslug%2Cname%2Curl%2Cprofile_image&order=updated_at%20DESC" || :
+	wget --mirror --convert-links --page-requisites -nH --no-parent -P docs "http://localhost:2368/ghost/api/content/tags/?key=5230415085a98103bb9daaa3d3&limit=10000&fields=id%2Cslug%2Cname%2Curl&order=updated_at%20DESC&filter=visibility%3Apublic" || :
 
 .PHONY: replaceContent
 replaceContent:

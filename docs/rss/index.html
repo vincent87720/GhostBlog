@@ -1,4 +1,122 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.71</generator><lastBuildDate>Mon, 15 Jan 2024 16:59:34 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Virtual]]></title><description><![CDATA[設定Virtual關鍵字後，允許衍生類別（Derived Class）覆寫（override）其狀態或行為。]]></description><link>https://vincent87720.github.io/csharp-virtual/</link><guid isPermaLink="false">65a4caf76883f700018af452</guid><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 15 Jan 2024 06:06:50 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2024/01/visualStudioCode.png" medium="image"/><content:encoded><![CDATA[<img src="https://vincent87720.github.io/content/images/2024/01/visualStudioCode.png" alt="Virtual"><p>&#x8A2D;&#x5B9A;Virtual&#x95DC;&#x9375;&#x5B57;&#x5F8C;&#xFF0C;&#x5141;&#x8A31;&#x884D;&#x751F;&#x985E;&#x5225;&#xFF08;Derived Class&#xFF09;&#x8986;&#x5BEB;&#xFF08;override&#xFF09;&#x5176;&#x72C0;&#x614B;&#x6216;&#x884C;&#x70BA;&#x3002;</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.71</generator><lastBuildDate>Sat, 17 Feb 2024 16:44:32 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[HAVING語句]]></title><description><![CDATA[HAVING語句用來篩選聚合函數執行後的結果]]></description><link>https://vincent87720.github.io/sql-having-clause/</link><guid isPermaLink="false">65d0dfbd2d9f94000158a994</guid><category><![CDATA[SQL]]></category><category><![CDATA[Database]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sat, 17 Feb 2024 16:37:16 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2024/02/jan-antonin-kolar-lRoX0shwjUQ-unsplash_database.jpeg" medium="image"/><content:encoded><![CDATA[<img src="https://vincent87720.github.io/content/images/2024/02/jan-antonin-kolar-lRoX0shwjUQ-unsplash_database.jpeg" alt="HAVING&#x8A9E;&#x53E5;"><p><code>HAVING</code>&#x8A9E;&#x53E5;&#x7528;&#x4F86;&#x7BE9;&#x9078;&#x805A;&#x5408;&#x51FD;&#x6578;&#x57F7;&#x884C;&#x5F8C;&#x7684;&#x7D50;&#x679C;</p>
+<h2 id="%E7%82%BA%E4%BB%80%E9%BA%BC%E4%B8%8D%E4%BD%BF%E7%94%A8where%E7%AF%A9%E9%81%B8">&#x70BA;&#x4EC0;&#x9EBC;&#x4E0D;&#x4F7F;&#x7528;WHERE&#x7BE9;&#x9078;</h2>
+<p>&#x4F7F;&#x7528;<code>HAVING</code>&#x800C;&#x4E0D;&#x4F7F;&#x7528;<code>WHERE</code>&#x4F86;&#x7BE9;&#x9078;&#x805A;&#x5408;&#x51FD;&#x6578;&#x57F7;&#x884C;&#x5F8C;&#x7684;&#x7D50;&#x679C;&#x8207;SQL&#x8A9E;&#x53E5;&#x7684;&#x57F7;&#x884C;&#x9806;&#x5E8F;&#x6709;&#x95DC;&#xFF0C;&#x5404;&#x500B;SQL&#x8A9E;&#x53E5;&#x7684;&#x57F7;&#x884C;&#x9806;&#x5E8F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>&#x9806;&#x5E8F;</th>
+<th>&#x8A9E;&#x53E5;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>FROM</td>
+</tr>
+<tr>
+<td>2</td>
+<td>WHERE</td>
+</tr>
+<tr>
+<td>3</td>
+<td>GROUP BY</td>
+</tr>
+<tr>
+<td>4</td>
+<td>HAVING</td>
+</tr>
+<tr>
+<td>5</td>
+<td>SELECT</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ORDER BY</td>
+</tr>
+<tr>
+<td>7</td>
+<td>LIMIT</td>
+</tr>
+</tbody>
+</table>
+<p>&#x8981;&#x62FF;&#x5230;&#x805A;&#x5408;&#x51FD;&#x6578;&#x57F7;&#x884C;&#x904E;&#x5F8C;&#x7684;&#x7D50;&#x679C;&#xFF0C;&#x6211;&#x5011;&#x5FC5;&#x9808;&#x4F7F;&#x7528;&#x805A;&#x5408;&#x51FD;&#x6578;&#x9032;&#x884C;&#x904B;&#x7B97;&#xFF0C;&#x800C;&#x8981;&#x4F7F;&#x7528;&#x805A;&#x5408;&#x51FD;&#x6578;&#x53C8;&#x5FC5;&#x9808;&#x5F97;&#x4F7F;&#x7528;<code>GROUP BY</code>&#x8A9E;&#x53E5;&#x4F86;&#x9650;&#x5B9A;&#x6211;&#x5011;&#x8981;&#x7528;&#x4F86;&#x5206;&#x7D44;&#x7684;&#x689D;&#x4EF6;&#x3002;</p>
+<p>&#x5F9E;&#x57F7;&#x884C;&#x9806;&#x5E8F;&#x8868;&#x4E2D;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>WHERE</code>&#x6703;&#x5728;<code>GROUP BY</code>&#x4E4B;&#x524D;&#x57F7;&#x884C;&#xFF0C;&#x4F46;&#x662F;&#x805A;&#x5408;&#x51FD;&#x6578;&#x57F7;&#x884C;&#x904E;&#x5F8C;&#x7684;&#x7D50;&#x679C;&#x6703;&#x5728;<code>GROUP BY</code>&#x4E14;&#x57F7;&#x884C;&#x5B8C;&#x805A;&#x5408;&#x51FD;&#x6578;&#x8A08;&#x7B97;&#x4E4B;&#x5F8C;&#x624D;&#x6703;&#x62FF;&#x5230;&#xFF0C;&#x5728;<code>WHERE</code>&#x57F7;&#x884C;&#x7684;&#x6642;&#x5019;&#x9084;&#x6C92;&#x6709;&#x57F7;&#x884C;<code>GROUP BY</code>&#xFF0C;&#x4E5F;&#x9084;&#x6C92;&#x6709;&#x57F7;&#x884C;&#x805A;&#x5408;&#x51FD;&#x6578;&#x904B;&#x7B97;&#xFF0C;&#x66F4;&#x4E0D;&#x53EF;&#x80FD;&#x62FF;&#x5F97;&#x5230;&#x805A;&#x5408;&#x51FD;&#x6578;&#x57F7;&#x884C;&#x5F8C;&#x7684;&#x7D50;&#x679C;&#xFF0C;&#x9019;&#x5C31;&#x662F;&#x70BA;&#x751A;&#x9EBC;&#x6211;&#x5011;&#x7121;&#x6CD5;&#x5728;<code>WHERE</code>&#x57F7;&#x884C;&#x6642;&#x5C31;&#x4F7F;&#x7528;&#x805A;&#x5408;&#x51FD;&#x6578;&#x7684;&#x7D50;&#x679C;&#x4F5C;&#x70BA;&#x7BE9;&#x9078;&#x689D;&#x4EF6;&#x7684;&#x539F;&#x56E0;&#x3002;</p>
+<h2 id="%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8having%E7%AF%A9%E9%81%B8">&#x5982;&#x4F55;&#x4F7F;&#x7528;HAVING&#x7BE9;&#x9078;</h2>
+<p>&#x5047;&#x8A2D;&#x6211;&#x5011;&#x6709;&#x4E00;&#x500B;&#x54E1;&#x5DE5;&#x8CC7;&#x6599;&#x8868;&#xFF08;Employee&#xFF09;&#xFF0C;&#x5305;&#x542B;&#x7DE8;&#x865F;&#x3001;&#x59D3;&#x540D;&#x53CA;&#x90E8;&#x9580;&#x6B04;&#x4F4D;&#xFF0C;&#x5176;&#x4E2D;&#x8CA1;&#x52D9;&#x90E8;&#x6709;&#x4E09;&#x500B;&#x4EBA;&#xFF0C;&#x54C1;&#x7BA1;&#x90E8;&#x6709;&#x4E09;&#x500B;&#x4EBA;&#xFF0C;&#x4F01;&#x5283;&#x90E8;&#x6709;&#x56DB;&#x500B;&#x4EBA;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>Name</th>
+<th>Department</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>&#x6797;&#x6C34;&#x73E0;</td>
+<td>&#x8CA1;&#x52D9;&#x90E8;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>&#x912D;&#x6CD5;&#x6B61;</td>
+<td>&#x8CA1;&#x52D9;&#x90E8;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>&#x8449;&#x4F69;&#x82B3;</td>
+<td>&#x8CA1;&#x52D9;&#x90E8;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>&#x8521;&#x4F69;&#x821C;</td>
+<td>&#x54C1;&#x7BA1;&#x90E8;</td>
+</tr>
+<tr>
+<td>5</td>
+<td>&#x7A0B;&#x6842;&#x537F;</td>
+<td>&#x54C1;&#x7BA1;&#x90E8;</td>
+</tr>
+<tr>
+<td>6</td>
+<td>&#x738B;&#x96C5;&#x7B51;</td>
+<td>&#x54C1;&#x7BA1;&#x90E8;</td>
+</tr>
+<tr>
+<td>7</td>
+<td>&#x9673;&#x79CB;&#x5357;</td>
+<td>&#x4F01;&#x5283;&#x90E8;</td>
+</tr>
+<tr>
+<td>8</td>
+<td>&#x8D99;&#x5FD7;&#x5049;</td>
+<td>&#x4F01;&#x5283;&#x90E8;</td>
+</tr>
+<tr>
+<td>9</td>
+<td>&#x9322;&#x667A;&#x5091;</td>
+<td>&#x4F01;&#x5283;&#x90E8;</td>
+</tr>
+<tr>
+<td>10</td>
+<td>&#x8B1D;&#x656C;&#x9054;</td>
+<td>&#x4F01;&#x5283;&#x90E8;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x5982;&#x679C;&#x6211;&#x5011;&#x60F3;&#x5F97;&#x5230;&#x90E8;&#x9580;&#x4EBA;&#x6578;&#x5927;&#x65BC;3&#x4EBA;&#x7684;&#x90E8;&#x9580;&#xFF0C;&#x6211;&#x5011;&#x5FC5;&#x9808;&#x5148;&#x4F7F;&#x7528;<code>GROUP BY</code>&#x5C07;&#x90E8;&#x9580;&#x5206;&#x7D44;&#xFF0C;&#x518D;&#x4F7F;&#x7528;<code>Count()</code>&#x9019;&#x500B;&#x805A;&#x5408;&#x51FD;&#x6578;&#x8A08;&#x7B97;&#x6BCF;&#x500B;&#x90E8;&#x9580;&#x7684;&#x4EBA;&#x6578;&#xFF0C;&#x63A5;&#x8457;&#x4F7F;&#x7528;<code>HAVING</code>&#x6BD4;&#x8F03;&#x5404;&#x90E8;&#x9580;&#x4EBA;&#x6578;&#x662F;&#x5426;&#x5927;&#x65BC;3&#xFF0C;&#x6311;&#x51FA;&#x5927;&#x65BC;3&#x4EBA;&#x7684;&#x90E8;&#x9580;&#xFF0C;&#x6700;&#x5F8C;&#x4F7F;&#x7528;SELECT&#x53D6;&#x51FA;&#x90E8;&#x9580;&#x7684;&#x540D;&#x7A31;&#x4EE5;&#x53CA;&#x4EBA;&#x6578;&#x3002;</p>
+<pre><code class="language-sql">SELECT&#xA0;Department, COUNT(Department)
+FROM&#xA0;Employee
+GROUP&#xA0;BY&#xA0;Department
+HAVING&#xA0;COUNT(Department) &gt;&#xA0;3;
+</code></pre>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://blog.csdn.net/zhaomengszu/article/details/80784096?ref=localhost">SQL&#x4E2D;where&#x5B50;&#x53E5;&#x4E2D;&#x4E0D;&#x80FD;&#x51FA;&#x73B0;&#x805A;&#x5408;&#x51FD;&#x6570;&#x7684;&#x539F;&#x56E0;</a></li>
+<li><a href="https://www.w3schools.com/sql/sql_having.asp?ref=localhost">SQL&#xA0;HAVING&#xA0;Clause</a></li>
+<li><a href="https://www.sisense.com/blog/sql-query-order-of-operations/?ref=localhost">SQL Query Order of Execution</a></li>
+</ul>
+]]></content:encoded></item><item><title><![CDATA[Virtual]]></title><description><![CDATA[設定Virtual關鍵字後，允許衍生類別（Derived Class）覆寫（override）其狀態或行為。]]></description><link>https://vincent87720.github.io/csharp-virtual/</link><guid isPermaLink="false">65a4caf76883f700018af452</guid><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Mon, 15 Jan 2024 06:06:50 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2024/01/visualStudioCode.png" medium="image"/><content:encoded><![CDATA[<img src="https://vincent87720.github.io/content/images/2024/01/visualStudioCode.png" alt="Virtual"><p>&#x8A2D;&#x5B9A;Virtual&#x95DC;&#x9375;&#x5B57;&#x5F8C;&#xFF0C;&#x5141;&#x8A31;&#x884D;&#x751F;&#x985E;&#x5225;&#xFF08;Derived Class&#xFF09;&#x8986;&#x5BEB;&#xFF08;override&#xFF09;&#x5176;&#x72C0;&#x614B;&#x6216;&#x884C;&#x70BA;&#x3002;</p>
 <h2 id="%E5%90%8D%E8%A9%9E%E5%AE%9A%E7%BE%A9">&#x540D;&#x8A5E;&#x5B9A;&#x7FA9;</h2>
 <p>&#x70BA;&#x4E86;&#x907F;&#x514D;&#x6DF7;&#x6DC6;&#xFF0C;&#x5148;&#x4F86;&#x9EDE;&#x540D;&#x8A5E;&#x5B9A;&#x7FA9;&#xFF1A;</p>
 <ul>
@@ -1477,41 +1595,5 @@ B-tree&#x5247;&#x9069;&#x5408;&#x5132;&#x5B58;&#x5141;&#x8A31;&#x91CD;&#x8907;&#
 <li><a href="https://learn.microsoft.com/zh-tw/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver16&amp;ref=localhost">&#x53E2;&#x96C6;&#x8207;&#x975E;&#x53E2;&#x96C6;&#x7D22;&#x5F15;&#x8AAA;&#x660E;</a></li>
 <li><a href="https://medium.com/@jinghua.shih/rails-%E7%B6%B2%E7%AB%99%E6%95%88%E8%83%BD%E5%84%AA%E5%8C%96-%E4%BA%8C-%E8%B3%87%E6%96%99%E5%BA%AB%E7%B4%A2%E5%BC%95-database-index-bd89fa3757a?ref=localhost">[Rails &#x6548;&#x80FD;&#x512A;&#x5316;] &#x8CC7;&#x6599;&#x5EAB;&#x7D22;&#x5F15; Database Indexing</a></li>
 <li><a href="https://medium.com/omarelgabrys-blog/database-indexing-and-transactions-part-9-a24781d429f8?ref=localhost">Database &#x2014; Indexing, Transactions &amp; Stored Procedures (Part 9)</a></li>
-</ul>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[Webpack設定多個entry及output]]></title><description><![CDATA[預設的Webpack使用單一entry及output，若需要多個entry及output可以在webpack.config.js中加入一個函式取得目錄內的所有檔案，將所有檔案加入至entry中。]]></description><link>https://vincent87720.github.io/webpack-multiple-entry-and-output/</link><guid isPermaLink="false">64d5f976e17ae60001fb7389</guid><category><![CDATA[Webpack]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Fri, 11 Aug 2023 09:07:59 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/08/webpack.png" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><img src="https://vincent87720.github.io/content/images/2023/08/webpack.png" alt="Webpack&#x8A2D;&#x5B9A;&#x591A;&#x500B;entry&#x53CA;output"><p>&#x9810;&#x8A2D;&#x7684;Webpack&#x4F7F;&#x7528;&#x55AE;&#x4E00;entry&#x53CA;output&#xFF0C;&#x82E5;&#x9700;&#x8981;&#x591A;&#x500B;entry&#x53CA;output&#x53EF;&#x4EE5;&#x5728;<code>webpack.config.js</code>&#x4E2D;&#x52A0;&#x5165;&#x4E00;&#x500B;&#x51FD;&#x5F0F;&#x53D6;&#x5F97;&#x76EE;&#x9304;&#x5167;&#x7684;&#x6240;&#x6709;&#x6A94;&#x6848;&#xFF0C;&#x5C07;&#x6240;&#x6709;&#x6A94;&#x6848;&#x52A0;&#x5165;&#x81F3;entry&#x4E2D;&#x3002;</p>
-<h2 id="%E5%AE%89%E8%A3%9D%E4%B8%A6%E8%BC%89%E5%85%A5glob">&#x5B89;&#x88DD;&#x4E26;&#x8F09;&#x5165;glob</h2>
-<pre><code class="language-shell">npm install glob
-</code></pre>
-<h2 id="%E5%9C%A8webpackconfigjs%E4%B8%AD%E5%8A%A0%E5%85%A5%E5%8F%96%E5%BE%97%E6%AA%94%E6%A1%88%E5%87%BD%E5%BC%8F">&#x5728;webpack.config.js&#x4E2D;&#x52A0;&#x5165;&#x53D6;&#x5F97;&#x6A94;&#x6848;&#x51FD;&#x5F0F;</h2>
-<pre><code class="language-javascript">const glob = require(&quot;glob&quot;);
-
-const getEntry = () =&gt; {
-    const entry = {};
-    glob.sync(&apos;./src/js/*.js&apos;).forEach((name) =&gt; {
-        const start = name.indexOf(&apos;src/js/&apos;) + 7; //&#x524D;&#x9762;&#x8DEF;&#x5F91;&#x5171;8&#x500B;&#x4F4D;&#x5143;&#x7684;&#x5B57;&#x4E32;
-        const end = name.length - 3; //&#x6E1B;&#x53BB;&#x9644;&#x6A94;&#x540D;.js
-        const eArr = [];
-        const n = name.slice(start, end); //&#x53D6;&#x5F97;js&#x7684;&#x540D;&#x7A31;
-        eArr.push(&quot;./&quot;+name); //push&#x81F3;&#x9663;&#x5217;&#x4E2D;
-        entry[n] = eArr;
-    });
-    return entry;
-};
-</code></pre>
-<h2 id="%E5%9C%A8entry%E5%8F%8Aoutput%E5%8A%A0%E5%85%A5%E6%AA%94%E6%A1%88%E8%B3%87%E8%A8%8A">&#x5728;entry&#x53CA;output&#x52A0;&#x5165;&#x6A94;&#x6848;&#x8CC7;&#x8A0A;</h2>
-<pre><code class="language-javascript">const path = require(&apos;path&apos;);
-
-module.exports = {
-    entry: getEntry(),//&#x547C;&#x53EB;getEntry&#x51FD;&#x5F0F;&#x53D6;&#x5F97;&#x6A94;&#x6848;&#x8CC7;&#x8A0A;
-    output: {
-        path: path.resolve(__dirname, &apos;wwwroot&apos;),
-        filename: &apos;./js/[name].min.js&apos;,//&#x8A2D;&#x5B9A;&#x8F38;&#x51FA;&#x6A94;&#x6848;&#x540D;&#x7A31;
-    },
-    mode: &apos;development&apos;,
-}
-</code></pre>
-<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
-<ul>
-<li><a href="https://medium.com/anna-hsaio-%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC%E8%A8%98/webpack-%E6%95%99%E5%AD%B8-webpack%E5%A4%9A%E5%85%A5%E5%8F%A3-%E5%A4%9A%E5%87%BA%E5%8F%A3%E9%85%8D%E7%BD%AE-b15a1a2fd74a?ref=localhost">Webpack&#xFF5C;&#x6559;&#x5B78;&#xFF1A;webpack&#x591A;&#x5165;&#x53E3;/&#x591A;&#x51FA;&#x53E3;&#x914D;&#x7F6E;</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

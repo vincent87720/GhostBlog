@@ -5,7 +5,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>單一職責原則（Single Responsibility Principle，SRP）</title>
+	<title>Generic Delegates 泛型委派</title>
 	<meta name="HandheldFriendly" content="True" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -42,10 +42,7 @@
 				}
 			</style>
 
-	<meta name="description" content="在CleanArchitecture中提到了SRP的定義：
-A module should have one, and only one, reason to change.
-
-書中的定義是「一個模組應該只有一個被改變的原因」。">
+	<meta name="description" content="泛型允許我們在定義時先不決定型別，在實例化時才依照呼叫者傳入的型別決定其型別。而泛型委派就是將委派以泛型的方式實作，使得委派可以在實例化時才指定其回傳值及型別。">
     <link rel="icon" href="../content/images/2019/12/dog-breeder-small.ico" type="image/x-icon">
     <link rel="canonical" href="index.html">
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -53,31 +50,25 @@ A module should have one, and only one, reason to change.
     
     <meta property="og:site_name" content="柴魚筆記本">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="單一職責原則（Single Responsibility Principle，SRP）">
-    <meta property="og:description" content="在CleanArchitecture中提到了SRP的定義：
-A module should have one, and only one, reason to change.
-
-書中的定義是「一個模組應該只有一個被改變的原因」。">
-    <meta property="og:url" content="https://vincent87720.github.io/solid-srp/">
-    <meta property="og:image" content="https://vincent87720.github.io/content/images/2024/03/shapelined-_JBKdviweXI-unsplash.jpg">
-    <meta property="article:published_time" content="2024-03-31T16:21:49.000Z">
-    <meta property="article:modified_time" content="2024-03-31T16:22:25.000Z">
-    <meta property="article:tag" content="SOLID">
+    <meta property="og:title" content="Generic Delegates 泛型委派">
+    <meta property="og:description" content="泛型允許我們在定義時先不決定型別，在實例化時才依照呼叫者傳入的型別決定其型別。而泛型委派就是將委派以泛型的方式實作，使得委派可以在實例化時才指定其回傳值及型別。">
+    <meta property="og:url" content="https://vincent87720.github.io/generic-delegates/">
+    <meta property="og:image" content="https://vincent87720.github.io/content/images/2024/06/vs2012_gray_imprint.png">
+    <meta property="article:published_time" content="2024-06-13T03:28:38.000Z">
+    <meta property="article:modified_time" content="2024-06-13T03:29:29.000Z">
+    <meta property="article:tag" content="C#">
     
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="單一職責原則（Single Responsibility Principle，SRP）">
-    <meta name="twitter:description" content="在CleanArchitecture中提到了SRP的定義：
-A module should have one, and only one, reason to change.
-
-書中的定義是「一個模組應該只有一個被改變的原因」。">
-    <meta name="twitter:url" content="https://vincent87720.github.io/solid-srp/">
-    <meta name="twitter:image" content="https://vincent87720.github.io/content/images/2024/03/shapelined-_JBKdviweXI-unsplash.jpg">
+    <meta name="twitter:title" content="Generic Delegates 泛型委派">
+    <meta name="twitter:description" content="泛型允許我們在定義時先不決定型別，在實例化時才依照呼叫者傳入的型別決定其型別。而泛型委派就是將委派以泛型的方式實作，使得委派可以在實例化時才指定其回傳值及型別。">
+    <meta name="twitter:url" content="https://vincent87720.github.io/generic-delegates/">
+    <meta name="twitter:image" content="https://vincent87720.github.io/content/images/2024/06/vs2012_gray_imprint.png">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="Katsuobushi">
     <meta name="twitter:label2" content="Filed under">
-    <meta name="twitter:data2" content="SOLID">
-    <meta property="og:image:width" content="2000">
-    <meta property="og:image:height" content="1334">
+    <meta name="twitter:data2" content="C#">
+    <meta property="og:image:width" content="1920">
+    <meta property="og:image:height" content="1080">
     
     <script type="application/ld+json">
 {
@@ -106,19 +97,19 @@ A module should have one, and only one, reason to change.
         "url": "https://vincent87720.github.io/author/katsuobushi/",
         "sameAs": []
     },
-    "headline": "單一職責原則（Single Responsibility Principle，SRP）",
-    "url": "https://vincent87720.github.io/solid-srp/",
-    "datePublished": "2024-03-31T16:21:49.000Z",
-    "dateModified": "2024-03-31T16:22:25.000Z",
+    "headline": "Generic Delegates 泛型委派",
+    "url": "https://vincent87720.github.io/generic-delegates/",
+    "datePublished": "2024-06-13T03:28:38.000Z",
+    "dateModified": "2024-06-13T03:29:29.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "https://vincent87720.github.io/content/images/2024/03/shapelined-_JBKdviweXI-unsplash.jpg",
-        "width": 2000,
-        "height": 1334
+        "url": "https://vincent87720.github.io/content/images/2024/06/vs2012_gray_imprint.png",
+        "width": 1920,
+        "height": 1080
     },
-    "keywords": "SOLID",
-    "description": "在CleanArchitecture中提到了SRP的定義：\nA module should have one, and only one, reason to change.\n\n書中的定義是「一個模組應該只有一個被改變的原因」。",
-    "mainEntityOfPage": "https://vincent87720.github.io/solid-srp/"
+    "keywords": "C#",
+    "description": "泛型允許我們在定義時先不決定型別，在實例化時才依照呼叫者傳入的型別決定其型別。而泛型委派就是將委派以泛型的方式實作，使得委派可以在實例化時才指定其回傳值及型別。",
+    "mainEntityOfPage": "https://vincent87720.github.io/generic-delegates/"
 }
     </script>
 
@@ -207,7 +198,7 @@ A module should have one, and only one, reason to change.
 </script><style>:root {--ghost-accent-color: #15171A;}</style>
 </head>
 
-<body class="post-template tag-solid">
+<body class="post-template tag-csharp">
 
 	<div class="nav-header">
 		<nav class="nav-wrapper" aria-label="Main">
@@ -252,9 +243,9 @@ A module should have one, and only one, reason to change.
 	<div class="inner">
 		<span class="post-info">
 			<span class="post-type">Article</span>
-			<span class="post-count">SOLID</span>
+			<span class="post-count">C#</span>
 		</span>
-		<h1 class="post-title">單一職責原則（Single Responsibility Principle，SRP）</h1>
+		<h1 class="post-title">Generic Delegates 泛型委派</h1>
 		<div class="post-meta">
 			<div class="post-meta-avatars">
 					<figure class="post-meta-avatar avatar">
@@ -264,63 +255,124 @@ A module should have one, and only one, reason to change.
 					</figure>
 			</div>
 			<h4 class="post-meta-author"><a href="../author/katsuobushi/index.html">Katsuobushi</a></h4>
-			<time datetime="01-04-2024">01 Apr 2024</time> &bull; 3 min read
+			<time datetime="13-06-2024">13 Jun 2024</time> &bull; 4 min read
 		</div>
 		<div class="post-cover cover">
 			<img
-			srcset="../content/images/size/w320/2024/03/shapelined-_JBKdviweXI-unsplash.jpg 320w,
-             ../content/images/size/w640/2024/03/shapelined-_JBKdviweXI-unsplash.jpg 640w,
-            ../content/images/size/w960/2024/03/shapelined-_JBKdviweXI-unsplash.jpg 960w,
-           ../content/images/size/w1920/2024/03/shapelined-_JBKdviweXI-unsplash.jpg 1920w"
-      src="../content/images/size/w1920/2024/03/shapelined-_JBKdviweXI-unsplash.jpg"
-			alt="單一職責原則（Single Responsibility Principle，SRP）" />
+			srcset="../content/images/size/w320/2024/06/vs2012_gray_imprint.png 320w,
+             ../content/images/size/w640/2024/06/vs2012_gray_imprint.png 640w,
+            ../content/images/size/w960/2024/06/vs2012_gray_imprint.png 960w,
+           ../content/images/size/w1920/2024/06/vs2012_gray_imprint.png 1920w"
+      src="../content/images/size/w1920/2024/06/vs2012_gray_imprint.png"
+			alt="Generic Delegates 泛型委派" />
 		</div>
 	</div>
 </header>
 
 <main class="content" role="main">
-	<article class="post tag-solid">
+	<article class="post tag-csharp">
 		<div class="inner">
 
 			<section class="post-content">
-				<p>在CleanArchitecture中提到了SRP的定義：</p>
-<blockquote>
-<p>A module should have one, and only one, reason to change.</p>
-</blockquote>
-<p>書中的定義是「一個模組應該只有一個被改變的原因」。</p>
-<p>這句話裡面有幾個重要元素，分別是「模組（module）」和「被改變的原因（reason to change）」。</p>
-<p>軟體系統會因為使用者或相關利益者而改變，使用者和相關利益者也可以抽象化為「角色」，這些「角色」就是軟體系統改變的「原因」。</p>
-<p>而「模組」則可以定義為一群被聚集起來的函式或是資料結構。<br>
-SRP中的模組粒度可大可小，從方法、類別、資料表到軟體架構都可以把它當成模組來思考。</p>
-<p>當某個模組會因為多個角色而改變，換句話說就是某個模組有多個「reason to change」時，則違反SRP。</p>
-<p>更白話一點講就是如果業務需求改變了，我想去改某個模組，結果影響到了其他業務需求，就違反了SRP。</p>
-<h1 id="srp%E6%83%B3%E8%A6%81%E8%A7%A3%E6%B1%BA%E7%9A%84%E5%95%8F%E9%A1%8C">SRP想要解決的問題</h1>
-<p>隨著系統成長，業務需求改變是必然的，當業務需求改動時就需要改動某個模組。</p>
-<p>當模組之間耦合過高時可能會發生改動某個模組連帶影響到其他模組，造成可維護性問題。</p>
-<p>SRP想要解決的就是系統的可維護性問題。</p>
-<p>而模組之間的耦合又可分為軟體組件之間的耦合和業務耦合。</p>
-<p>SRP中的「一個模組只能因為一個原因而改變」，其「原因」指的就是<strong>業務需求來源</strong>，也就是可能會對這個模組提出修改的「人」或「人們」的需求。</p>
-<p>為了讓這個模組便於維護，該模組應該盡可能的減少其職責。</p>
-<h1 id="srp%E5%A6%82%E4%BD%95%E8%A7%A3%E6%B1%BA%E5%95%8F%E9%A1%8C">SRP如何解決問題</h1>
-<p>SRP透過將模組拆分解決其中的業務耦合問題，可以透過判斷該模組是否違反SRP而考慮是否拆分。</p>
-<h1 id="%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%B7%E6%98%AF%E5%90%A6%E7%AC%A6%E5%90%88%E6%88%96%E9%81%95%E5%8F%8Dsrp">如何判斷是否符合或違反SRP</h1>
-<p>要識別某個模組是否有符合SRP，可以先問問「這個模組是做什麼用的？」，如果答案包含一個以上的話就代表這個模組可能不符合SRP。</p>
-<h1 id="%E9%81%B5%E5%BE%AAsrp%E7%9A%84%E5%A5%BD%E8%99%95">遵循SRP的好處</h1>
-<h3 id="%E9%99%8D%E4%BD%8E%E7%9B%B8%E4%BE%9D%E6%80%A7%E3%80%81%E8%80%A6%E5%90%88%E6%80%A7">降低相依性、耦合性</h3>
-<p>遵循SRP之後可以減少程式碼之間的依賴，該模組的變更將會來自同一個業務需求，因業務耦合造成的問題將減少，進而減少某個業務需求改動而影響到另一個業務需求的情況。</p>
-<h3 id="%E6%8F%90%E9%AB%98%E5%85%A7%E8%81%9A%E5%8A%9B">提高內聚力</h3>
-<p>程式中每個部分都與自己實作的功能相關，提高內聚力。</p>
-<h3 id="%E6%8F%90%E9%AB%98%E5%8F%AF%E8%AE%80%E6%80%A7%E3%80%81%E5%8F%AF%E7%B6%AD%E8%AD%B7%E6%80%A7%E5%8F%8A%E9%99%8D%E4%BD%8E%E8%A4%87%E9%9B%9C%E6%80%A7">提高可讀性、可維護性及降低複雜性</h3>
-<p>一個模組只包含與自身相關的邏輯，降低程式複雜性</p>
-<h3 id="%E6%8F%90%E9%AB%98%E5%8F%AF%E9%87%8D%E7%94%A8%E6%80%A7">提高可重用性</h3>
-<p>相同的程式邏輯只會出現在同個模組，不會分散在世界各地，提高可重用性</p>
+				<p>泛型允許我們在定義時先不決定型別，在實例化時才依照呼叫者傳入的型別決定其型別。而泛型委派就是將委派以泛型的方式實作，使得委派可以在實例化時才指定其回傳值及型別。</p>
+<p>.NET提供兩個好用的泛型委派，分別是 System.Action 和 System.Func，多數情況下不需要自定義泛型委派。</p>
+<h2 id="%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%B4%BE%E7%9A%84%E5%84%AA%E9%BB%9E">泛型委派的優點</h2>
+<p>泛型委派好用的地方在於可以不用在程式內宣告任何委派，可以直接使用Action&lt;&gt;或Func&lt;&gt;作為參數在多個函式間傳遞，方便好用。</p>
+<h2 id="action">Action&lt;&gt;</h2>
+<p>Action的尖括弧內可放入最多16個型別參數，若需要將參數傳入委派除了需要在呼叫時在括弧內填入參數，也必須在定義時就將參數型別放入尖括弧中定義委派的型別。</p>
+<pre><code class="language-csharp">// 定義委派
+public delegate void SendDrinks(string order);
+
+// 定義一個名稱為SendNearDrinks的方法，其參數及回傳值皆與委派相同
+public static void SendNearDrinks(string drink)
+{
+	Console.WriteLine($"您的{drink}送到囉");
+}
+
+// 定義一個名稱為SendFarDrinks的方法，其參數及回傳值皆與委派相同
+public static void SendFarDrinks(string drink)
+{
+	Console.WriteLine($"您的{drink}送到囉，跟您收取外送費50元");
+}
+
+public static void CreateGroupBuying(string order, SendDrinks send)
+{
+	Console.WriteLine($"已建立訂單：{order}");
+	send(order);// 呼叫委派
+}
+
+static void Main(string[] args)
+{
+	CreateGroupBuying("一杯鮮奶茶微微", SendFarDrinks);
+}
+</code></pre>
+<p>以<code>SendDrinks</code>這個委派為例，我們可以將其由Action改寫。</p>
+<pre><code class="language-csharp">// 簡化定義委派，直接在CreateGroupBuying的參數中使用Action即可
+// public delegate void SendDrinks(string order);
+
+// 定義一個名稱為SendNearDrinks的方法，其參數及回傳值皆與委派相同
+public static void SendNearDrinks(string drink)
+{
+	Console.WriteLine($"您的{drink}送到囉");
+}
+
+// 定義一個名稱為SendFarDrinks的方法，其參數及回傳值皆與委派相同
+public static void SendFarDrinks(string drink)
+{
+	Console.WriteLine($"您的{drink}送到囉，跟您收取外送費50元");
+}
+
+// 直接使用Action定義委派型態，簡化定義委派寫法
+public static void CreateGroupBuying(string order, Action&lt;string&gt; send)
+{
+	Console.WriteLine($"已建立訂單：{order}");
+	send(order);// 呼叫委派
+}
+
+static void Main(string[] args)
+{
+	CreateGroupBuying("一杯鮮奶茶微微", SendFarDrinks);
+}
+</code></pre>
+<p>以Action定義委派使我們不需在程式中額外定義委派，顯得更為簡潔且方便。</p>
+<p>使用Action無法定義回傳值，使用Func則可以定義回傳值。</p>
+<h2 id="func">Func&lt;&gt;</h2>
+<pre><code class="language-csharp">// 簡化定義委派，直接在CreateGroupBuying的參數中使用Func即可
+// public delegate string SendDrinks(string order);
+
+// 定義一個名稱為SendNearDrinks的方法，其參數及回傳值皆與委派相同
+public static string SendNearDrinks(string drink)
+{
+	return $"您的{drink}送到囉";
+}
+
+// 定義一個名稱為SendFarDrinks的方法，其參數及回傳值皆與委派相同
+public static string SendFarDrinks(string drink)
+{
+	return $"您的{drink}送到囉，跟您收取外送費50元";
+}
+
+// 直接使用Func定義委派型態，簡化定義委派寫法
+public static void CreateGroupBuying(string order, Func&lt;string, string&gt; send)
+{
+	Console.WriteLine($"已建立訂單：{order}");
+	var result = send(order);// 呼叫委派
+	Console.WriteLine(result);
+}
+
+static void Main(string[] args)
+{
+	CreateGroupBuying("一杯鮮奶茶微微", SendFarDrinks);
+}
+</code></pre>
+<p><code>CreateGroupBuying</code>方法中使用到<code>Func&lt;string, string&gt; send</code>作為參數，<code>Func&lt;string, string&gt;</code>尖括弧內的最後一個<code>string</code>為回傳值，第一個<code>string</code>為傳入參數的型別。</p>
+<p>需注意，Func會將回傳值型別參數視為必填，在Func的尖括弧內只有一個型別參數的情況下，該型別參數會視為回傳值型別參數，若需要只使用一個型別參數但該型別參數不是回傳值的情況，則必須使用Action進行定義。</p>
 <h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">參考資料</h6>
 <ul>
-<li>Robert C. Martin, "Clean Architecture: A Craftsman's Guide to Software Structure and Design," Pearson, 2018</li>
-<li><a href="https://wadehuanglearning.blogspot.com/2019/12/blog-post.html?ref=localhost">再談物件導向設計原則: 單一職責原則，定義、解析與實踐</a></li>
-<li><a href="https://www.jyt0532.com/2020/03/18/srp/?ref=localhost">深入淺出單一職責原則 Single Responsibility Principle</a></li>
-<li><a href="https://igouist.github.io/post/2020/10/oo-10-single-responsibility-principle/?ref=localhost">菜雞與物件導向 (10): 單一職責原則</a></li>
-<li><a href="https://www.youtube.com/live/e0UOuQ_lCUY?si=8nGdbLvSZyjKyWDs&ref=localhost">Fred聊聊SOLID設計原則</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/dotnet/api/system.action-1?view=net-8.0&ref=localhost">Action</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/dotnet/api/system.func-2?view=net-8.0&ref=localhost">Func</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10270964?ref=localhost">D-21 委派 ? delegate ? Action ? Linq</a></li>
+<li><a href="https://jeffprogrammer.wordpress.com/2015/12/30/%E8%A7%80%E5%BF%B5-generic-delegate-action-func/?ref=localhost">觀念 Generic Delegate, Action, Func</a></li>
 </ul>
 
 			</section>
@@ -329,23 +381,23 @@ SRP中的模組粒度可大可小，從方法、類別、資料表到軟體架�
 
 				<div class="post-share">
 					<span class="post-info-label">Share</span>
-					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=單一職責原則（Single Responsibility Principle，SRP）&url=https://vincent87720.github.io/solid-srp/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+					<a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text=Generic Delegates 泛型委派&url=https://vincent87720.github.io/generic-delegates/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
 						<i class="icon icon-twitter" aria-hidden="true"></i>
 					</a>
-					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/solid-srp/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+					<a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://vincent87720.github.io/generic-delegates/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
 						<i class="icon icon-facebook" aria-hidden="true"></i>
 					</a>
-					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/solid-srp//&amp;title=單一職責原則（Single Responsibility Principle，SRP）" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+					<a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://vincent87720.github.io/generic-delegates//&amp;title=Generic Delegates 泛型委派" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
 						<i class="icon icon-linkedin" aria-hidden="true"></i>
 					</a>
-					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=單一職責原則（Single Responsibility Principle，SRP）&amp;body=https://vincent87720.github.io/solid-srp/">
+					<a title="Email" aria-label="Email" class="email" href="mailto:?subject=Generic Delegates 泛型委派&amp;body=https://vincent87720.github.io/generic-delegates/">
 						<i class="icon icon-mail" aria-hidden="true"></i>
 					</a>
 				</div>
 
 				<aside class="post-tags">
 					<span class="post-info-label">Topic</span>
-					<a href="../tag/solid/index.html">SOLID</a>
+					<a href="../tag/csharp/index.html">C#</a>
 				</aside>
 
 			</section>
@@ -365,21 +417,16 @@ SRP中的模組粒度可大可小，從方法、類別、資料表到軟體架�
 
 			<aside class="post-nav">
 
-					<a class="post-nav-next" href="../generic-delegates/index.html">
-						<section class="post-nav-teaser">
-							<i class="icon icon-arrow-left" aria-label="Next post"></i>
-							<h2 class="post-nav-title">Generic Delegates 泛型委派</h2>
-							<p class="post-nav-excerpt">泛型允許我們在定義時先不決定型別，在實例化時才依照呼叫者傳入的型別決定其型別。而泛型委派就是將委派以泛型的方式實作，使得委派可以在實例化時才指定其回傳值及型別。&hellip;</p>
-							<p class="post-nav-meta"><time datetime="13-06-2024">13 Jun 2024</time></p>
-						</section>
-					</a>
 
-					<a class="post-nav-prev" href="../csharp-delegates/index.html">
+					<a class="post-nav-prev" href="../solid-srp/index.html">
 						<section class="post-nav-teaser">
 							<i class="icon icon-arrow-right" aria-label="Previous post"></i>
-							<h2 class="post-nav-title">Delegates 委派</h2>
-							<p class="post-nav-excerpt">我們可以把委派想像成是一個沒有內容的函式，可以被用來當作是某個函式的臨時替身，當我們決定好要用哪個函式時再將真正的函式變成委派實體，並呼叫委派實體以執行該函式。&hellip;</p>
-							<p class="post-nav-meta"><time datetime="20-02-2024">20 Feb 2024</time></p>
+							<h2 class="post-nav-title">單一職責原則（Single Responsibility Principle，SRP）</h2>
+							<p class="post-nav-excerpt">在CleanArchitecture中提到了SRP的定義：
+A module should have one, and only one, reason to change.
+
+書中的定義是「一個模組應該只有一個被改變的原因」。&hellip;</p>
+							<p class="post-nav-meta"><time datetime="01-04-2024">01 Apr 2024</time></p>
 						</section>
 					</a>
 				<div class="clear"></div>

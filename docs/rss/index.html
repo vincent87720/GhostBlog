@@ -1,4 +1,104 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.71</generator><lastBuildDate>Sun, 31 Mar 2024 16:23:00 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[單一職責原則（Single Responsibility Principle，SRP）]]></title><description><![CDATA[在CleanArchitecture中提到了SRP的定義：
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel><title><![CDATA[柴魚筆記本]]></title><description><![CDATA[程式・軟體・攝影]]></description><link>https://vincent87720.github.io/</link><image><url>https://vincent87720.github.io/favicon.png</url><title>柴魚筆記本</title><link>https://vincent87720.github.io/</link></image><generator>Ghost 5.71</generator><lastBuildDate>Thu, 13 Jun 2024 03:30:19 GMT</lastBuildDate><atom:link href="https://vincent87720.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Generic Delegates 泛型委派]]></title><description><![CDATA[泛型允許我們在定義時先不決定型別，在實例化時才依照呼叫者傳入的型別決定其型別。而泛型委派就是將委派以泛型的方式實作，使得委派可以在實例化時才指定其回傳值及型別。]]></description><link>https://vincent87720.github.io/generic-delegates/</link><guid isPermaLink="false">666a66cc57fb9200019ceee6</guid><category><![CDATA[C#]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Thu, 13 Jun 2024 03:28:38 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2024/06/vs2012_gray_imprint.png" medium="image"/><content:encoded><![CDATA[<img src="https://vincent87720.github.io/content/images/2024/06/vs2012_gray_imprint.png" alt="Generic Delegates &#x6CDB;&#x578B;&#x59D4;&#x6D3E;"><p>&#x6CDB;&#x578B;&#x5141;&#x8A31;&#x6211;&#x5011;&#x5728;&#x5B9A;&#x7FA9;&#x6642;&#x5148;&#x4E0D;&#x6C7A;&#x5B9A;&#x578B;&#x5225;&#xFF0C;&#x5728;&#x5BE6;&#x4F8B;&#x5316;&#x6642;&#x624D;&#x4F9D;&#x7167;&#x547C;&#x53EB;&#x8005;&#x50B3;&#x5165;&#x7684;&#x578B;&#x5225;&#x6C7A;&#x5B9A;&#x5176;&#x578B;&#x5225;&#x3002;&#x800C;&#x6CDB;&#x578B;&#x59D4;&#x6D3E;&#x5C31;&#x662F;&#x5C07;&#x59D4;&#x6D3E;&#x4EE5;&#x6CDB;&#x578B;&#x7684;&#x65B9;&#x5F0F;&#x5BE6;&#x4F5C;&#xFF0C;&#x4F7F;&#x5F97;&#x59D4;&#x6D3E;&#x53EF;&#x4EE5;&#x5728;&#x5BE6;&#x4F8B;&#x5316;&#x6642;&#x624D;&#x6307;&#x5B9A;&#x5176;&#x56DE;&#x50B3;&#x503C;&#x53CA;&#x578B;&#x5225;&#x3002;</p>
+<p>.NET&#x63D0;&#x4F9B;&#x5169;&#x500B;&#x597D;&#x7528;&#x7684;&#x6CDB;&#x578B;&#x59D4;&#x6D3E;&#xFF0C;&#x5206;&#x5225;&#x662F; System.Action &#x548C; System.Func&#xFF0C;&#x591A;&#x6578;&#x60C5;&#x6CC1;&#x4E0B;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5B9A;&#x7FA9;&#x6CDB;&#x578B;&#x59D4;&#x6D3E;&#x3002;</p>
+<h2 id="%E6%B3%9B%E5%9E%8B%E5%A7%94%E6%B4%BE%E7%9A%84%E5%84%AA%E9%BB%9E">&#x6CDB;&#x578B;&#x59D4;&#x6D3E;&#x7684;&#x512A;&#x9EDE;</h2>
+<p>&#x6CDB;&#x578B;&#x59D4;&#x6D3E;&#x597D;&#x7528;&#x7684;&#x5730;&#x65B9;&#x5728;&#x65BC;&#x53EF;&#x4EE5;&#x4E0D;&#x7528;&#x5728;&#x7A0B;&#x5F0F;&#x5167;&#x5BA3;&#x544A;&#x4EFB;&#x4F55;&#x59D4;&#x6D3E;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;Action&lt;&gt;&#x6216;Func&lt;&gt;&#x4F5C;&#x70BA;&#x53C3;&#x6578;&#x5728;&#x591A;&#x500B;&#x51FD;&#x5F0F;&#x9593;&#x50B3;&#x905E;&#xFF0C;&#x65B9;&#x4FBF;&#x597D;&#x7528;&#x3002;</p>
+<h2 id="action">Action&lt;&gt;</h2>
+<p>Action&#x7684;&#x5C16;&#x62EC;&#x5F27;&#x5167;&#x53EF;&#x653E;&#x5165;&#x6700;&#x591A;16&#x500B;&#x578B;&#x5225;&#x53C3;&#x6578;&#xFF0C;&#x82E5;&#x9700;&#x8981;&#x5C07;&#x53C3;&#x6578;&#x50B3;&#x5165;&#x59D4;&#x6D3E;&#x9664;&#x4E86;&#x9700;&#x8981;&#x5728;&#x547C;&#x53EB;&#x6642;&#x5728;&#x62EC;&#x5F27;&#x5167;&#x586B;&#x5165;&#x53C3;&#x6578;&#xFF0C;&#x4E5F;&#x5FC5;&#x9808;&#x5728;&#x5B9A;&#x7FA9;&#x6642;&#x5C31;&#x5C07;&#x53C3;&#x6578;&#x578B;&#x5225;&#x653E;&#x5165;&#x5C16;&#x62EC;&#x5F27;&#x4E2D;&#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;&#x7684;&#x578B;&#x5225;&#x3002;</p>
+<pre><code class="language-csharp">// &#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;
+public delegate void SendDrinks(string order);
+
+// &#x5B9A;&#x7FA9;&#x4E00;&#x500B;&#x540D;&#x7A31;&#x70BA;SendNearDrinks&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x53C3;&#x6578;&#x53CA;&#x56DE;&#x50B3;&#x503C;&#x7686;&#x8207;&#x59D4;&#x6D3E;&#x76F8;&#x540C;
+public static void SendNearDrinks(string drink)
+{
+	Console.WriteLine($&quot;&#x60A8;&#x7684;{drink}&#x9001;&#x5230;&#x56C9;&quot;);
+}
+
+// &#x5B9A;&#x7FA9;&#x4E00;&#x500B;&#x540D;&#x7A31;&#x70BA;SendFarDrinks&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x53C3;&#x6578;&#x53CA;&#x56DE;&#x50B3;&#x503C;&#x7686;&#x8207;&#x59D4;&#x6D3E;&#x76F8;&#x540C;
+public static void SendFarDrinks(string drink)
+{
+	Console.WriteLine($&quot;&#x60A8;&#x7684;{drink}&#x9001;&#x5230;&#x56C9;&#xFF0C;&#x8DDF;&#x60A8;&#x6536;&#x53D6;&#x5916;&#x9001;&#x8CBB;50&#x5143;&quot;);
+}
+
+public static void CreateGroupBuying(string order, SendDrinks send)
+{
+	Console.WriteLine($&quot;&#x5DF2;&#x5EFA;&#x7ACB;&#x8A02;&#x55AE;&#xFF1A;{order}&quot;);
+	send(order);// &#x547C;&#x53EB;&#x59D4;&#x6D3E;
+}
+
+static void Main(string[] args)
+{
+	CreateGroupBuying(&quot;&#x4E00;&#x676F;&#x9BAE;&#x5976;&#x8336;&#x5FAE;&#x5FAE;&quot;, SendFarDrinks);
+}
+</code></pre>
+<p>&#x4EE5;<code>SendDrinks</code>&#x9019;&#x500B;&#x59D4;&#x6D3E;&#x70BA;&#x4F8B;&#xFF0C;&#x6211;&#x5011;&#x53EF;&#x4EE5;&#x5C07;&#x5176;&#x7531;Action&#x6539;&#x5BEB;&#x3002;</p>
+<pre><code class="language-csharp">// &#x7C21;&#x5316;&#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;&#xFF0C;&#x76F4;&#x63A5;&#x5728;CreateGroupBuying&#x7684;&#x53C3;&#x6578;&#x4E2D;&#x4F7F;&#x7528;Action&#x5373;&#x53EF;
+// public delegate void SendDrinks(string order);
+
+// &#x5B9A;&#x7FA9;&#x4E00;&#x500B;&#x540D;&#x7A31;&#x70BA;SendNearDrinks&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x53C3;&#x6578;&#x53CA;&#x56DE;&#x50B3;&#x503C;&#x7686;&#x8207;&#x59D4;&#x6D3E;&#x76F8;&#x540C;
+public static void SendNearDrinks(string drink)
+{
+	Console.WriteLine($&quot;&#x60A8;&#x7684;{drink}&#x9001;&#x5230;&#x56C9;&quot;);
+}
+
+// &#x5B9A;&#x7FA9;&#x4E00;&#x500B;&#x540D;&#x7A31;&#x70BA;SendFarDrinks&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x53C3;&#x6578;&#x53CA;&#x56DE;&#x50B3;&#x503C;&#x7686;&#x8207;&#x59D4;&#x6D3E;&#x76F8;&#x540C;
+public static void SendFarDrinks(string drink)
+{
+	Console.WriteLine($&quot;&#x60A8;&#x7684;{drink}&#x9001;&#x5230;&#x56C9;&#xFF0C;&#x8DDF;&#x60A8;&#x6536;&#x53D6;&#x5916;&#x9001;&#x8CBB;50&#x5143;&quot;);
+}
+
+// &#x76F4;&#x63A5;&#x4F7F;&#x7528;Action&#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;&#x578B;&#x614B;&#xFF0C;&#x7C21;&#x5316;&#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;&#x5BEB;&#x6CD5;
+public static void CreateGroupBuying(string order, Action&lt;string&gt; send)
+{
+	Console.WriteLine($&quot;&#x5DF2;&#x5EFA;&#x7ACB;&#x8A02;&#x55AE;&#xFF1A;{order}&quot;);
+	send(order);// &#x547C;&#x53EB;&#x59D4;&#x6D3E;
+}
+
+static void Main(string[] args)
+{
+	CreateGroupBuying(&quot;&#x4E00;&#x676F;&#x9BAE;&#x5976;&#x8336;&#x5FAE;&#x5FAE;&quot;, SendFarDrinks);
+}
+</code></pre>
+<p>&#x4EE5;Action&#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;&#x4F7F;&#x6211;&#x5011;&#x4E0D;&#x9700;&#x5728;&#x7A0B;&#x5F0F;&#x4E2D;&#x984D;&#x5916;&#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;&#xFF0C;&#x986F;&#x5F97;&#x66F4;&#x70BA;&#x7C21;&#x6F54;&#x4E14;&#x65B9;&#x4FBF;&#x3002;</p>
+<p>&#x4F7F;&#x7528;Action&#x7121;&#x6CD5;&#x5B9A;&#x7FA9;&#x56DE;&#x50B3;&#x503C;&#xFF0C;&#x4F7F;&#x7528;Func&#x5247;&#x53EF;&#x4EE5;&#x5B9A;&#x7FA9;&#x56DE;&#x50B3;&#x503C;&#x3002;</p>
+<h2 id="func">Func&lt;&gt;</h2>
+<pre><code class="language-csharp">// &#x7C21;&#x5316;&#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;&#xFF0C;&#x76F4;&#x63A5;&#x5728;CreateGroupBuying&#x7684;&#x53C3;&#x6578;&#x4E2D;&#x4F7F;&#x7528;Func&#x5373;&#x53EF;
+// public delegate string SendDrinks(string order);
+
+// &#x5B9A;&#x7FA9;&#x4E00;&#x500B;&#x540D;&#x7A31;&#x70BA;SendNearDrinks&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x53C3;&#x6578;&#x53CA;&#x56DE;&#x50B3;&#x503C;&#x7686;&#x8207;&#x59D4;&#x6D3E;&#x76F8;&#x540C;
+public static string SendNearDrinks(string drink)
+{
+	return $&quot;&#x60A8;&#x7684;{drink}&#x9001;&#x5230;&#x56C9;&quot;;
+}
+
+// &#x5B9A;&#x7FA9;&#x4E00;&#x500B;&#x540D;&#x7A31;&#x70BA;SendFarDrinks&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5176;&#x53C3;&#x6578;&#x53CA;&#x56DE;&#x50B3;&#x503C;&#x7686;&#x8207;&#x59D4;&#x6D3E;&#x76F8;&#x540C;
+public static string SendFarDrinks(string drink)
+{
+	return $&quot;&#x60A8;&#x7684;{drink}&#x9001;&#x5230;&#x56C9;&#xFF0C;&#x8DDF;&#x60A8;&#x6536;&#x53D6;&#x5916;&#x9001;&#x8CBB;50&#x5143;&quot;;
+}
+
+// &#x76F4;&#x63A5;&#x4F7F;&#x7528;Func&#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;&#x578B;&#x614B;&#xFF0C;&#x7C21;&#x5316;&#x5B9A;&#x7FA9;&#x59D4;&#x6D3E;&#x5BEB;&#x6CD5;
+public static void CreateGroupBuying(string order, Func&lt;string, string&gt; send)
+{
+	Console.WriteLine($&quot;&#x5DF2;&#x5EFA;&#x7ACB;&#x8A02;&#x55AE;&#xFF1A;{order}&quot;);
+	var result = send(order);// &#x547C;&#x53EB;&#x59D4;&#x6D3E;
+	Console.WriteLine(result);
+}
+
+static void Main(string[] args)
+{
+	CreateGroupBuying(&quot;&#x4E00;&#x676F;&#x9BAE;&#x5976;&#x8336;&#x5FAE;&#x5FAE;&quot;, SendFarDrinks);
+}
+</code></pre>
+<p><code>CreateGroupBuying</code>&#x65B9;&#x6CD5;&#x4E2D;&#x4F7F;&#x7528;&#x5230;<code>Func&lt;string, string&gt; send</code>&#x4F5C;&#x70BA;&#x53C3;&#x6578;&#xFF0C;<code>Func&lt;string, string&gt;</code>&#x5C16;&#x62EC;&#x5F27;&#x5167;&#x7684;&#x6700;&#x5F8C;&#x4E00;&#x500B;<code>string</code>&#x70BA;&#x56DE;&#x50B3;&#x503C;&#xFF0C;&#x7B2C;&#x4E00;&#x500B;<code>string</code>&#x70BA;&#x50B3;&#x5165;&#x53C3;&#x6578;&#x7684;&#x578B;&#x5225;&#x3002;</p>
+<p>&#x9700;&#x6CE8;&#x610F;&#xFF0C;Func&#x6703;&#x5C07;&#x56DE;&#x50B3;&#x503C;&#x578B;&#x5225;&#x53C3;&#x6578;&#x8996;&#x70BA;&#x5FC5;&#x586B;&#xFF0C;&#x5728;Func&#x7684;&#x5C16;&#x62EC;&#x5F27;&#x5167;&#x53EA;&#x6709;&#x4E00;&#x500B;&#x578B;&#x5225;&#x53C3;&#x6578;&#x7684;&#x60C5;&#x6CC1;&#x4E0B;&#xFF0C;&#x8A72;&#x578B;&#x5225;&#x53C3;&#x6578;&#x6703;&#x8996;&#x70BA;&#x56DE;&#x50B3;&#x503C;&#x578B;&#x5225;&#x53C3;&#x6578;&#xFF0C;&#x82E5;&#x9700;&#x8981;&#x53EA;&#x4F7F;&#x7528;&#x4E00;&#x500B;&#x578B;&#x5225;&#x53C3;&#x6578;&#x4F46;&#x8A72;&#x578B;&#x5225;&#x53C3;&#x6578;&#x4E0D;&#x662F;&#x56DE;&#x50B3;&#x503C;&#x7684;&#x60C5;&#x6CC1;&#xFF0C;&#x5247;&#x5FC5;&#x9808;&#x4F7F;&#x7528;Action&#x9032;&#x884C;&#x5B9A;&#x7FA9;&#x3002;</p>
+<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
+<ul>
+<li><a href="https://learn.microsoft.com/zh-tw/dotnet/api/system.action-1?view=net-8.0&amp;ref=localhost">Action</a></li>
+<li><a href="https://learn.microsoft.com/zh-tw/dotnet/api/system.func-2?view=net-8.0&amp;ref=localhost">Func</a></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10270964?ref=localhost">D-21 &#x59D4;&#x6D3E; ? delegate ? Action ? Linq</a></li>
+<li><a href="https://jeffprogrammer.wordpress.com/2015/12/30/%E8%A7%80%E5%BF%B5-generic-delegate-action-func/?ref=localhost">&#x89C0;&#x5FF5; Generic Delegate, Action, Func</a></li>
+</ul>
+]]></content:encoded></item><item><title><![CDATA[單一職責原則（Single Responsibility Principle，SRP）]]></title><description><![CDATA[在CleanArchitecture中提到了SRP的定義：
 A module should have one, and only one, reason to change.
 
 書中的定義是「一個模組應該只有一個被改變的原因」。]]></description><link>https://vincent87720.github.io/solid-srp/</link><guid isPermaLink="false">66098cf2ec21ba0001f83a94</guid><category><![CDATA[SOLID]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Sun, 31 Mar 2024 16:21:49 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2024/03/shapelined-_JBKdviweXI-unsplash.jpg" medium="image"/><content:encoded><![CDATA[<img src="https://vincent87720.github.io/content/images/2024/03/shapelined-_JBKdviweXI-unsplash.jpg" alt="&#x55AE;&#x4E00;&#x8077;&#x8CAC;&#x539F;&#x5247;&#xFF08;Single Responsibility Principle&#xFF0C;SRP&#xFF09;"><p>&#x5728;CleanArchitecture&#x4E2D;&#x63D0;&#x5230;&#x4E86;SRP&#x7684;&#x5B9A;&#x7FA9;&#xFF1A;</p>
@@ -1495,148 +1595,5 @@ ASP.NET&#x63D0;&#x4F9B;Model Binding&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x53EF;&#x4
 <li><a href="https://www.cnblogs.com/Lambquan/p/12980088.html?ref=localhost">header&#x4E2D;Content-Disposition&#x7684;&#x4F5C;&#x7528;&#x4E0E;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</a></li>
 <li><a href="https://ithelp.ithome.com.tw/articles/10186863?ref=localhost">Day20-&#x5167;&#x5BB9;&#x8981;&#x5982;&#x4F55;&#x8655;&#x7F6E;-Content-Disposition</a></li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Disposition?ref=localhost">Content-Disposition</a></li>
-</ul>
-<!--kg-card-end: markdown-->]]></content:encoded></item><item><title><![CDATA[依賴注入 Dependency injection]]></title><description><![CDATA[在高階模組中直接針對低階模組進行實作會產生高耦合，高度依賴低階模組，當想抽換低階模組、低階模組常常變動或是低階模組的設計改變時，會影響到高階模組。應統一由控制反轉中心建立物件，將物件送到高階模組內進行使用]]></description><link>https://vincent87720.github.io/aspnet-core-dependency-injection/</link><guid isPermaLink="false">64dbb5f35f1c820001e0a416</guid><category><![CDATA[ASP.NET Core]]></category><category><![CDATA[C#]]></category><category><![CDATA[Pattern]]></category><dc:creator><![CDATA[Katsuobushi]]></dc:creator><pubDate>Tue, 15 Aug 2023 17:32:39 GMT</pubDate><media:content url="https://vincent87720.github.io/content/images/2023/08/shapelined-_JBKdviweXI-unsplash.jpg" medium="image"/><content:encoded><![CDATA[<!--kg-card-begin: markdown--><h2 id="%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5">&#x4F9D;&#x8CF4;&#x6CE8;&#x5165;</h2>
-<h3 id="%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E4%BD%BF%E7%94%A8%E6%B3%A8%E5%85%A5">&#x70BA;&#x4EC0;&#x9EBC;&#x8981;&#x4F7F;&#x7528;&#x6CE8;&#x5165;</h3>
-<img src="https://vincent87720.github.io/content/images/2023/08/shapelined-_JBKdviweXI-unsplash.jpg" alt="&#x4F9D;&#x8CF4;&#x6CE8;&#x5165; Dependency injection"><p>&#x70BA;&#x4E86;&#x628A;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x9001;&#x5230;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x7684;&#x5167;&#x4F7F;&#x7528;</p>
-<h3 id="%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E6%8A%8A%E4%BD%8E%E9%9A%8E%E6%A8%A1%E7%B5%84%E5%BE%80%E9%AB%98%E9%9A%8E%E6%A8%A1%E7%B5%84%E9%80%81">&#x70BA;&#x4EC0;&#x9EBC;&#x8981;&#x628A;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x5F80;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x9001;</h3>
-<p>&#x70BA;&#x4E86;&#x4E0D;&#x76F4;&#x63A5;&#x5728;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x5167;&#x5EFA;&#x7ACB;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x7269;&#x4EF6;</p>
-<h3 id="%E7%82%BA%E4%BB%80%E9%BA%BC%E4%B8%8D%E7%9B%B4%E6%8E%A5%E5%9C%A8%E9%AB%98%E9%9A%8E%E6%A8%A1%E7%B5%84%E4%B8%AD%E5%BB%BA%E7%AB%8B%E7%89%A9%E4%BB%B6">&#x70BA;&#x4EC0;&#x9EBC;&#x4E0D;&#x76F4;&#x63A5;&#x5728;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x4E2D;&#x5EFA;&#x7ACB;&#x7269;&#x4EF6;</h3>
-<p>&#x5728;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x4E2D;&#x76F4;&#x63A5;&#x91DD;&#x5C0D;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x9032;&#x884C;&#x5BE6;&#x4F5C;&#x6703;&#x7522;&#x751F;&#x9AD8;&#x8026;&#x5408;&#xFF0C;&#x9AD8;&#x5EA6;&#x4F9D;&#x8CF4;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#xFF0C;&#x7576;&#x60F3;&#x62BD;&#x63DB;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x3001;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x5E38;&#x5E38;&#x8B8A;&#x52D5;&#x6216;&#x662F;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x7684;&#x8A2D;&#x8A08;&#x6539;&#x8B8A;&#x6642;&#xFF0C;&#x6703;&#x5F71;&#x97FF;&#x5230;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x3002;&#x61C9;&#x7D71;&#x4E00;&#x7531;&#x63A7;&#x5236;&#x53CD;&#x8F49;&#x4E2D;&#x5FC3;&#x5EFA;&#x7ACB;&#x7269;&#x4EF6;&#xFF0C;&#x5C07;&#x7269;&#x4EF6;&#x9001;&#x5230;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x5167;&#x9032;&#x884C;&#x4F7F;&#x7528;</p>
-<h3 id="%E7%82%BA%E4%BB%80%E9%BA%BC%E6%98%AF%E9%AB%98%E9%9A%8E%E6%A8%A1%E7%B5%84%E5%AE%9A%E7%BE%A9%E9%9C%80%E6%B1%82%E6%94%BE%E5%9C%A8interface%E5%85%A7">&#x70BA;&#x4EC0;&#x9EBC;&#x662F;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x5B9A;&#x7FA9;&#x9700;&#x6C42;&#x653E;&#x5728;Interface&#x5167;</h3>
-<p>&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x4F9D;&#x8CF4;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#xFF0C;&#x7576;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x7570;&#x52D5;&#x6642;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x6703;&#x53D7;&#x5F71;&#x97FF;&#xFF0C;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x76F8;&#x5C0D;&#x5F31;&#x52E2;&#xFF0C;&#x6545;&#x4F7F;&#x7528;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x7684;&#x9700;&#x6C42;&#x5B9A;&#x7FA9;&#x4ECB;&#x9762;&#x7684;&#x5167;&#x5BB9;&#x3002;<br>
-&#x53E6;&#x5916;&#x4EE5;&#x5E38;&#x7406;&#x4F86;&#x770B;&#xFF0C;&#x5047;&#x8A2D;&#x6211;&#x5011;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x700F;&#x89BD;&#x6E05;&#x55AE;&#x670D;&#x52D9;&#xFF0C;&#x6703;&#x9700;&#x8981;&#x7528;&#x5230;&#x767B;&#x5165;&#x529F;&#x80FD;&#x53CA;&#x5217;&#x8868;&#x529F;&#x80FD;&#xFF0C;&#x6211;&#x5011;&#x662F;&#x5148;&#x77E5;&#x9053;&#x6211;&#x5011;&#x8981;&#x4EC0;&#x9EBC;&#x529F;&#x80FD;&#xFF0C;&#x5B9A;&#x7FA9;&#x597D;&#x4ECB;&#x9762;&#x5F8C;&#x518D;&#x7531;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x5BE6;&#x4F5C;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5BE6;&#x4F5C;&#x597D;&#x767B;&#x5165;&#x529F;&#x80FD;&#x53CA;&#x5217;&#x8868;&#x529F;&#x80FD;&#x7B49;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x5F8C;&#xFF0C;&#x6211;&#x5011;&#x624D;&#x60F3;&#x8AAA;&#x4F86;&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x700F;&#x89BD;&#x6E05;&#x55AE;&#x670D;&#x52D9;&#x3002;<br>
-&#x5F9E;&#x4E0D;&#x540C;&#x89D2;&#x5EA6;&#x4F86;&#x770B;&#x90FD;&#x61C9;&#x8A72;&#x7531;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x5B9A;&#x7FA9;&#x4ECB;&#x9762;&#x5167;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
-<h2 id="%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%89%E5%8F%8A%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5">&#x63A7;&#x5236;&#x53CD;&#x8F49;&#x53CA;&#x4F9D;&#x8CF4;&#x6CE8;&#x5165;</h2>
-<p>&#x4EE5;&#x98F2;&#x6599;&#x5E97;&#x4F86;&#x8209;&#x4F8B;&#xFF0C;&#x5047;&#x8A2D;&#x6211;&#x4ECA;&#x5929;&#x958B;&#x4E86;&#x4E00;&#x9593;&#x683C;&#x96F7;&#x4F2F;&#x7235;&#x5976;&#x8336;&#x5C08;&#x8CE3;&#x5E97;&#xFF0C;&#x6211;&#x5411;&#x98DF;&#x54C1;&#x6750;&#x6599;&#x884C;&#x9032;&#x8CA8;&#x8336;&#x8449;</p>
-<pre><code class="language-csharp">public class TeaShop{
-    public int GetTea(){
-        //&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x4F9B;&#x61C9;&#x5546;&#x7269;&#x4EF6;
-        SupplierA supplierA = new SupplierA();
-        
-        //&#x5F9E;&#x4F9B;&#x61C9;&#x5546;&#x8CFC;&#x8CB7;600g&#x7684;&#x8336;&#x8449;
-        int tea = supplierA.buy(600);
-        
-        //&#x53D6;&#x5F97;&#x8336;&#x8449;&#x4E26;&#x56DE;&#x50B3;
-        return tea;
-    }
-}
-</code></pre>
-<p>&#x76EE;&#x524D;&#x6211;&#x628A;SupplierA&#x5BEB;&#x6B7B;&#x5728;&#x98F2;&#x6599;&#x5E97;&#x88E1;&#x7684;GetTea&#x65B9;&#x6CD5;&#x88E1;&#xFF0C;TeaShop&#x9AD8;&#x5EA6;&#x4F9D;&#x8CF4;&#x65BC;SupplierA&#x3002;<br>
-&#x958B;&#x5E97;&#x4E00;&#x9663;&#x5B50;&#x5F8C;&#x6211;&#x89BA;&#x5F97;SupplierA&#x63D0;&#x4F9B;&#x7684;&#x8336;&#x6709;&#x602A;&#x5473;&#xFF0C;&#x60F3;&#x63DB;&#x6210;&#x5F9E;SupplierB&#x53EB;&#x8CA8;</p>
-<pre><code class="language-csharp">public class TeaShop{
-    public int GetTea(){
-        //&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x4F9B;&#x61C9;&#x5546;&#x7269;&#x4EF6;
-        SupplierB supplierB = new SupplierB();
-        
-        //&#x5F9E;&#x4F9B;&#x61C9;&#x5546;&#x8CFC;&#x8CB7;600g&#x7684;&#x8336;&#x8449;
-        int tea = supplierB.buy(600);
-        
-        //&#x53D6;&#x5F97;&#x8336;&#x8449;&#x4E26;&#x56DE;&#x50B3;
-        return tea;
-    }
-}
-</code></pre>
-<p>&#x5982;&#x679C;&#x4F9B;&#x61C9;&#x5546;&#x4E00;&#x76F4;&#x63DB;&#xFF0C;&#x6211;&#x7684;&#x7A0B;&#x5F0F;&#x8C48;&#x4E0D;&#x662F;&#x8981;&#x4E00;&#x76F4;&#x6539;&#xFF1F;<br>
-&#x5E78;&#x597D;&#x9019;&#x500B;&#x554F;&#x984C;&#x6709;&#x89E3;&#x6C7A;&#x7684;&#x8FA6;&#x6CD5;&#xFF0C;&#x6211;&#x5011;&#x628A;SupplierA&#x548C;SupplierB&#x62BD;&#x8C61;&#x6210;Supplier&#x5C31;&#x7686;&#x5927;&#x6B61;&#x559C;&#x5566;</p>
-<pre><code class="language-csharp">public interface ISupplier{
-    int buy();
-}
-
-public class SupplierA : ISupplier{
-    public int buy();
-}
-
-public class TeaShop{
-    public int GetTea(){
-        //&#x5EFA;&#x7ACB;&#x4E00;&#x500B;&#x4F9B;&#x61C9;&#x5546;&#x7269;&#x4EF6;
-        ISupplier supplier = new SupplierA();
-        
-        //&#x5F9E;&#x4F9B;&#x61C9;&#x5546;&#x8CFC;&#x8CB7;600g&#x7684;&#x8336;&#x8449;
-        int tea = supplier.buy(600);
-        
-        //&#x53D6;&#x5F97;&#x8336;&#x8449;&#x4E26;&#x56DE;&#x50B3;
-        return tea;
-    }
-}
-</code></pre>
-<p>&#x9019;&#x986F;&#x7136;&#x6C92;&#x6709;&#x89E3;&#x6C7A;&#x6211;&#x5011;&#x7684;&#x554F;&#x984C;&#xFF0C;&#x7576;&#x6211;&#x8981;&#x628A;SupplierA&#x63DB;&#x6210;SupplierB&#x6642;&#x9084;&#x662F;&#x6703;&#x66F4;&#x6539;&#x5230;&#x7A0B;&#x5F0F;&#x3002;<br>
-&#x5982;&#x679C;&#x6211;&#x8B93;GetTea&#x53EA;&#x95DC;&#x5FC3;&#x8981;&#x8DDF;&#x5EE0;&#x5546;&#x9032;&#x8CA8;&#xFF0C;&#x800C;&#x4E0D;&#x95DC;&#x5FC3;&#x8981;&#x8DDF;&#x54EA;&#x9593;&#x9032;&#x8CA8;&#xFF0C;&#x628A;&#x9019;&#x500B;&#x7169;&#x60F1;&#x4EA4;&#x7D66;&#x5225;&#x4EBA;&#x597D;&#x50CF;&#x554F;&#x984C;&#x5C31;&#x89E3;&#x6C7A;&#x4E86;</p>
-<pre><code class="language-csharp">public interface ISupplier{
-    int buy();
-}
-
-public class SupplierA : ISupplier{
-    public int buy();
-}
-
-public class TeaShop{
-    
-    private ISupplier _supplier;
-    
-    public TeaShop(ISupplier supplier){
-        _supplier = supplier;
-    }
-    
-    public int GetTea(){
-        
-        //&#x5F9E;&#x4F9B;&#x61C9;&#x5546;&#x8CFC;&#x8CB7;600g&#x7684;&#x8336;&#x8449;
-        int tea = _supplier.buy(600);
-        
-        //&#x53D6;&#x5F97;&#x8336;&#x8449;&#x4E26;&#x56DE;&#x50B3;
-        return tea;
-    }
-}
-</code></pre>
-<p>&#x9019;&#x5C31;&#x662F;&#x5927;&#x5BB6;&#x4FD7;&#x7A31;&#x7684;&#x63A7;&#x5236;&#x53CD;&#x8F49; (Inversion of Control, IoC)&#xFF0C;&#x539F;&#x672C;&#x9AD8;&#x968E;&#x4F9D;&#x8CF4;&#x65BC;&#x4F4E;&#x968E;&#xFF08;TeaShop&#x4F9D;&#x8CF4;&#x65BC;SupplierA&#x6216;SupplierB&#xFF09;&#xFF0C;&#x8B8A;&#x6210;&#x9AD8;&#x968E;&#x88AB;&#x52D5;&#x63A5;&#x6536;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#xFF08;TeaShop&#x88AB;&#x52D5;&#x63A5;&#x6536;&#x88AB;&#x50B3;&#x5165;&#x7684;supplier&#xFF09;&#x3002;<br>
-&#x539F;&#x672C;&#x662F;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x76F4;&#x63A5;&#x5EFA;&#x7ACB;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#xFF0C;&#x7D93;&#x904E;&#x63A7;&#x5236;&#x53CD;&#x8F49;&#x4E4B;&#x5F8C;&#x8B8A;&#x6210;&#x7531;&#x63A7;&#x5236;&#x53CD;&#x8F49;&#x4E2D;&#x5FC3;&#x53BB;&#x5EFA;&#x7ACB;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#xFF0C;&#x4E26;&#x50B3;&#x7D66;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x4F7F;&#x7528;&#x3002;</p>
-<p>&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x7684;&#x7269;&#x4EF6;&#x8981;&#x80FD;&#x5920;&#x88AB;&#x50B3;&#x5165;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x5C31;&#x7A31;&#x70BA;&#x4F9D;&#x8CF4;&#x6CE8;&#x5165;&#xFF0C;&#x901A;&#x5E38;&#x6703;&#x5728;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x4E2D;&#x4F7F;&#x7528;&#x5169;&#x8005;&#x4F9D;&#x8CF4;&#x7684;&#x4ECB;&#x9762;&#x5BA3;&#x544A;&#x4E00;&#x500B;&#x8B8A;&#x6578;&#xFF08;&#x4F7F;&#x7528;ISupplier&#x5BA3;&#x544A;_supplier&#x8B8A;&#x6578;&#x7528;&#x65BC;&#x5B58;&#x653E;&#x4F4E;&#x968E;&#x6A21;&#x7D44;&#x7269;&#x4EF6;&#xFF09;&#xFF0C;&#x4F7F;&#x7528;&#x5EFA;&#x69CB;&#x5B50;&#x5C07;&#x8A72;&#x7269;&#x4EF6;&#x50B3;&#x5165;&#x4E26;&#x6307;&#x5B9A;&#x7D66;&#x8A72;&#x8B8A;&#x6578;&#xFF0C;&#x4F9B;&#x9AD8;&#x968E;&#x6A21;&#x7D44;&#x4F7F;&#x7528;&#x3002;</p>
-<p>&#x8981;&#x7528;&#x54EA;&#x500B;&#x5EE0;&#x5546;&#x7684;&#x554F;&#x984C;&#x662F;&#x89E3;&#x6C7A;&#x4E86;&#xFF0C;&#x4F46;&#x4E5F;&#x9084;&#x6C92;&#x89E3;&#x6C7A;&#xFF0C;&#x6211;&#x5011;&#x53EA;&#x662F;&#x628A;&#x554F;&#x984C;&#x4E1F;&#x7D66;&#x5225;&#x4EBA;&#x4E86;&#xFF0C;&#x9019;&#x6642;&#x8A72;&#x7531;&#x8AB0;&#x4F86;&#x5EFA;&#x7ACB;&#x7269;&#x4EF6;&#x50B3;&#x905E;&#x7269;&#x4EF6;&#x5462;&#xFF1F;&#x6211;&#x5011;&#x9019;&#x6642;&#x5C31;&#x6703;&#x9700;&#x8981;&#x300C;&#x63A7;&#x5236;&#x53CD;&#x8F49;&#x4E2D;&#x5FC3;&#x300D;&#x3002;</p>
-<h2 id="%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%89%E4%B8%AD%E5%BF%83">&#x63A7;&#x5236;&#x53CD;&#x8F49;&#x4E2D;&#x5FC3;</h2>
-<p>&#x63A7;&#x5236;&#x53CD;&#x8F49;&#x4E2D;&#x5FC3;&#x5C31;&#x662F;&#x5EFA;&#x7ACB;&#x6240;&#x6709;&#x7269;&#x4EF6;&#x53CA;&#x50B3;&#x905E;&#x7269;&#x4EF6;&#x7684;&#x6839;&#xFF0C;&#x4ED6;&#x6703;&#x96C6;&#x7D50;&#x6240;&#x6709;&#x5BE6;&#x9AD4;&#x5206;&#x914D;&#x7D66;&#x5404;&#x500B;&#x7269;&#x4EF6;&#x3002;</p>
-<h2 id="aspnet-core%E7%9A%84%E4%BE%9D%E8%B3%B4%E6%B3%A8%E5%85%A5">ASP.Net Core&#x7684;&#x4F9D;&#x8CF4;&#x6CE8;&#x5165;</h2>
-<p>&#x5728;ASP.NET&#x4E2D;&#x4F7F;&#x7528;&#x4F9D;&#x8CF4;&#x6CE8;&#x5165;&#x7684;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;<br>
-&#x9996;&#x5148;&#xFF0C;&#x5728;&#x5C08;&#x6848;&#x4E2D;&#x52A0;&#x5165;<strong>services</strong>&#x8CC7;&#x6599;&#x593E;&#xFF0C;&#x5728;&#x8CC7;&#x6599;&#x593E;&#x5EFA;&#x7ACB;SupplierAService.cs</p>
-<pre><code class="language-csharp">public class SupplierAService{
-    public int buy(int gram){
-        return gram;
-    }
-}
-</code></pre>
-<p>&#x63A5;&#x8457;&#x5C07;SupplierAService&#x670D;&#x52D9;&#x8A3B;&#x518A;&#x5230;WebApplicationBuilder&#xFF0C;&#x8A3B;&#x518A;&#x5B8C;&#x4E4B;&#x5F8C;DI&#x5BB9;&#x5668;&#x4FBF;&#x6703;&#x77E5;&#x9053;ISupplier&#x5C0D;&#x61C9;&#x7684;&#x5BE6;&#x4F5C;&#x662F;SupplierAService&#xFF0C;&#x7576;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5230;ISupplier&#x6642;&#x4FBF;&#x6703;&#x5E6B;&#x6211;&#x5011;&#x627E;&#x5230;SupplierAService&#xFF0C;new&#x51FA;&#x7269;&#x4EF6;&#x4E4B;&#x5F8C;&#x5E6B;&#x6211;&#x5011;&#x4E1F;&#x5230;&#x9AD8;&#x968E;&#x5BB9;&#x5668;&#x4E2D;&#x6CE8;&#x5165;&#xFF0C;&#x8D85;&#x7D1A;&#x65B9;&#x4FBF;&#xFF01;&#xFF01;</p>
-<pre><code class="language-csharp">public static void Main(string[] args){
-    var builder = WebApplication.CreateBuilder(args);
-    ...
-    builder.Services.AddTransient&lt;ISupplier,SupplierAService&gt;();
-    ...
-    var app = builder.Build();
-}
-</code></pre>
-<p>&#x4F8B;&#x5982;&#x7576;TeaShopController&#x6709;&#x8981;&#x7528;&#x5230;ISupplier&#x670D;&#x52D9;&#x6642;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5728;&#x5EFA;&#x69CB;&#x5F0F;&#x50B3;&#x5165;ISupplier&#x5373;&#x53EF;&#x4F7F;&#x7528;</p>
-<pre><code class="language-csharp">public class TeaShopController{
-    private ISupplier _supplier;
-    
-    public TeaShopController(ISupplier supplier){
-        _supplier = supplier;
-    }
-    
-    public int GetTea(){
-        
-        //&#x5F9E;&#x4F9B;&#x61C9;&#x5546;&#x8CFC;&#x8CB7;600g&#x7684;&#x8336;&#x8449;
-        int tea = _supplier.buy(600);
-        
-        //&#x53D6;&#x5F97;&#x8336;&#x8449;&#x4E26;&#x56DE;&#x50B3;
-        return tea;
-    }  
-}
-
-</code></pre>
-<h6 id="%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99">&#x53C3;&#x8003;&#x8CC7;&#x6599;</h6>
-<ul>
-<li><a href="https://igouist.github.io/post/2021/11/newbie-6-dependency-injection/?ref=localhost">&#x83DC;&#x96DE;&#x65B0;&#x8A13;&#x8A18; (6): &#x4F7F;&#x7528; &#x4F9D;&#x8CF4;&#x6CE8;&#x5165; (Dependency Injection) &#x4F86;&#x89E3;&#x9664;&#x5F37;&#x8026;&#x5408;&#x5427;</a></li>
-<li><a href="https://old-oomusou.goodjack.tw/netcore/di/?ref=localhost">&#x5982;&#x4F55;&#x5728; .NET Core &#x4F7F;&#x7528; DI ?</a></li>
-<li><a href="https://www.youtube.com/watch&amp;ref=localhost">Dependency Injection in .NET Core (.NET 6)</a></li>
-<li><a href="https://medium.com/wenchin-rolls-around/%E6%B7%BA%E5%85%A5%E6%B7%BA%E5%87%BA-dependency-injection-ea672ba033ca?ref=localhost">&#x6DFA;&#x5165;&#x6DFA;&#x51FA; Dependency Injection</a></li>
-<li><a href="https://learn.microsoft.com/zh-tw/dotnet/core/extensions/dependency-injection?ref=localhost">.NET &#x76F8;&#x4F9D;&#x6027;&#x63D2;&#x5165;</a></li>
 </ul>
 <!--kg-card-end: markdown-->]]></content:encoded></item></channel></rss>

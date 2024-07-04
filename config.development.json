@@ -7,18 +7,21 @@
   "database": {
     "client": "sqlite3",
     "connection": {
-      "filename": "/Users/vincent/Desktop/Blog/content/data/ghost-local.db"
+      "filename": "/Users/vincent/Desktop/SynologyDrive/Blog/GhostBlog/content/data/ghost-local.db"
     }
   },
   "mail": {
     "transport": "Direct"
   },
   "logging": {
-    "transports": ["file", "stdout"]
+    "transports": [
+      "file",
+      "stdout"
+    ]
   },
   "process": "local",
   "paths": {
-    "contentPath": "/Users/vincent/Desktop/Blog/content"
+    "contentPath": "/Users/vincent/Desktop/SynologyDrive/Blog/GhostBlog/content"
   },
   "spam": {
     "user_login": {
